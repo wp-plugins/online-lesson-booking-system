@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.6.1
-Stable tag: 0.2.0
+Stable tag: 0.2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,10 +71,19 @@ Not include. Please use the `membership` which is a standard function of WordPre
 
 == Changelog ==
 
+= 0.2.0.1 =
+
+* Small bug fix
+
 = 0.2.0 =
+
 * first release.
 
 == Upgrade Notice ==
+
+= 0.2.0.1 =
+
+* URL-parameter in a redirection place after updating "scheduler for teacher" was corrected.
 
 = 0.2.0 =
 

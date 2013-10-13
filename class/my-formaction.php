@@ -451,7 +451,7 @@ class olbFormAction {
 			$qs[] = 'date='.$_POST['date'];
 		}
 		$url = get_permalink(get_page_by_path($olb->edit_schedule_page)->ID);
-		$query_string = (strstr($url, '?')) ? '?' : '&';
+		$query_string = (strstr($url, '?')) ? '&' : '?';
 		$query_string .= implode('&', $qs);
 		header('Location:'.$url.$query_string);
 		exit;
