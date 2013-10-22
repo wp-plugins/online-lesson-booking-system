@@ -15,8 +15,6 @@ class olbHistory extends olbPaging {
 	public function __construct($mode, $target, $target_id, $limit) {
 		global $olb;
 
-		self::getCurrentPage();
-
 		$currenttime = current_time('timestamp');
 		if( $olb->closetime >= '24:00' && olbTimetable::calcHour($olb->closetime, -24*60) >= olbTimetable::calcHour(date('H:i:s', $currenttime), 0)){
 			list($y, $m, $d) = explode('-', date('Y-m-d', $currenttime));
@@ -33,6 +31,8 @@ class olbHistory extends olbPaging {
 		$this->limit = $limit;			// 予約履歴表示ページの表示件数(1ページ当たり)
 		$this->recordmax = self::recordMax();				// 有効な講座数
 		$this->pagemax = ceil($this->recordmax/$this->limit);	// ページ数
+
+		self::getCurrentPage();
 	}
 
 	/** 
@@ -174,7 +174,7 @@ class olbHistory extends olbPaging {
 			echo '<tr class="head">'."\n";
 			printf('<th class="date">%s</th><th class="room">%s</th><th class="absent">%s</th>',
 				__('Date/Time', OLBsystem::TEXTDOMAIN),
-				__('Member', OLBsystem::TEXTDOMAIN),
+				__('Member(Skype)', OLBsystem::TEXTDOMAIN),
 				__('Absent', OLBsystem::TEXTDOMAIN)
 				);
 			echo '</tr>'."\n";
@@ -187,10 +187,11 @@ class olbHistory extends olbPaging {
 				if($r['absent']){
 					$reportlink .= sprintf(' <span class="absent">%s</span>', __('Absent', OLBsystem::TEXTDOMAIN));
 				}
-				printf('<td class="date">%s %s</td><td class="member">%s</td><td class="absent">%s</td>',
+				printf('<td class="date">%s %s</td><td class="member">%s(%s)</td><td class="absent">%s</td>',
 					$r['date'],
 					substr($r['time'], 0, 5),
 					$user->data['name'],
+					$user->data['skype'],
 					$reportlink
 					);
 				echo '</tr>'."\n";
@@ -279,7 +280,7 @@ class olbHistory extends olbPaging {
 			printf('<th class="date">%s</th><th class="waiting">%s</th><th class="room">%s</th><th class="cancel">%s</th>',
 				__('Date/Time', OLBsystem::TEXTDOMAIN),
 				__('Waiting', OLBsystem::TEXTDOMAIN),
-				__('Member', OLBsystem::TEXTDOMAIN),
+				__('Member(Skype)', OLBsystem::TEXTDOMAIN),
 				__('Cancel', OLBsystem::TEXTDOMAIN)
 				);
 			echo '</tr>'."\n";
@@ -297,11 +298,12 @@ class olbHistory extends olbPaging {
 				}
 
 				$waiting = self::waitingTime($r['date'], $r['time'], current_time('timestamp'));
-				printf('<td class="date">%s %s</td><td class="waiting">%s</td><td class="member">%s</td><td class="cancel">%s</td>',
+				printf('<td class="date">%s %s</td><td class="waiting">%s</td><td class="member">%s(%s)</td><td class="cancel">%s</td>',
 					$r['date'],
 					substr($r['time'], 0, 5),
 					$waiting,
 					$user->data['name'],
+					$user->data['skype'],
 					$cancellink
 					);
 				echo '</tr>'."\n";

@@ -9,8 +9,8 @@ class OLBsystem {
 	// システム設定
 	const TABLEPREFIX = 'olb_';
 	const TEXTDOMAIN = 'olbsystem';
-	const PLUGIN_VERSION = '0.2.0';
-	const DB_VERSION = '0.2.0';
+	const PLUGIN_VERSION = '0.3.0';
+	const DB_VERSION = '0.3.0';
 
 	// タイムテーブル基本設定
 	public $starttime           = null;		// 表示開始時刻(default: 09:00)
@@ -54,6 +54,7 @@ class OLBsystem {
 	 */
 	public function __construct() {
 		$mywpinit = new olbInitFunction();
+		add_action( 'plugins_loaded', array('olbHookAction', 'db_update_check'), 8 );
 		add_action( 'plugins_loaded', array( &$this, 'init' ) );
 	}
 	

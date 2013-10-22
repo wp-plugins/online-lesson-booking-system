@@ -508,6 +508,45 @@ EOD;
 	}
 
 	/** 
+	 *	データベース構造の更新
+	 */
+	public static function db_update_check() {
+		global $wpdb;
+
+		$installed_version = get_option('olbversion');
+		$new_version = $installed_version;
+		$new_version['plugin'] = OLBsystem::PLUGIN_VERSION;
+		if($installed_version['db'] >= OLBsystem::DB_VERSION ) {
+			return;
+		}
+
+		// UPDATE TABLE
+		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
+		if($wpdb->get_var("SHOW TABLES LIKE '{$prefix}timetable'") == $prefix.'timetable' &&
+			$wpdb->get_var("SHOW TABLES LIKE '{$prefix}history'") == $prefix.'history') {
+			require_once(ABSPATH.'wp-admin/includes/upgrade.php');
+			$sql = <<<EOD
+ALTER TABLE {$prefix}timetable 
+DROP COLUMN id,
+DROP COLUMN user_id,
+DROP COLUMN free,
+DROP COLUMN absent,
+ADD COLUMN seats int(11) NOT NULL COMMENT 'Seats',
+ADD PRIMARY KEY (`date`,`time`,`room_id`);
+EOD;
+			$wpdb->query($sql);
+
+			$sql = <<<EOD
+ALTER TABLE {$prefix}history 
+MODIFY COLUMN id bigint(20) NOT NULL COMMENT 'Reserve ID' AUTO_INCREMENT;
+EOD;
+			$wpdb->query($sql);
+			$new_version['db'] = OLBsystem::DB_VERSION;
+		}
+		update_option('olbversion', $new_version);
+	}
+
+	/** 
 	 *	プラグイン有効化
 	 */
 	public static function activation() {
@@ -517,26 +556,23 @@ EOD;
 
 		// CREATE TABLE
 		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
-		if($wpdb->get_var("SHOW TABLES LIKE '{$prefix}timetable'") != $prefix.'timetable' &&
-			$wpdb->get_var("SHOW TABLES LIKE '{$prefix}history'") != $prefix.'history') {
+		if($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $prefix.'timetable')) != $prefix.'timetable' &&
+			$wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $prefix.'history')) != $prefix.'history') {
 			require_once(ABSPATH.'wp-admin/includes/upgrade.php');
 			$sql = <<<EOD
 CREATE TABLE IF NOT EXISTS {$prefix}timetable (
-id bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'Reserve ID',
 date date NOT NULL COMMENT 'Reserve date',
 time time NOT NULL COMMENT 'Reserve time',
 room_id int NOT NULL COMMENT 'Room ID',
-user_id int NOT NULL COMMENT 'User ID',
-free int NOT NULL  COMMENT 'Free',
-absent int NOT NULL  COMMENT 'Absent',
-PRIMARY KEY (id)
+seats int(11) NOT NULL COMMENT 'Seats',
+PRIMARY KEY (`date`,`time`,`room_id`)
 );
 EOD;
 			dbDelta($sql);
 
 			$sql = <<<EOD
 CREATE TABLE IF NOT EXISTS {$prefix}history (
-id bigint(20) NOT NULL COMMENT 'Reserve ID',
+id bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'Reserve ID',
 date date NOT NULL COMMENT 'Reserve date',
 time time NOT NULL COMMENT 'Reserve time',
 room_id int NOT NULL COMMENT 'Room ID',
@@ -719,7 +755,7 @@ Hello [olb_member_data key="name"].
 
 		$preserve_day = current_time('timestamp') - ($olb->preserve_past*60*60*24);
 		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
-		$query = "DELETE FROM ".$prefix."timetable WHERE `date`<%s AND `user_id`=0";
+		$query = "DELETE FROM ".$prefix."timetable WHERE `date`<%s";
 		$ret = $wpdb->query($wpdb->prepare($query, array(date('Y-m-d', $preserve_day))), ARRAY_A);
 	}
 
