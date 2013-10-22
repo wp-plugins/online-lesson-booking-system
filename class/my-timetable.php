@@ -73,8 +73,8 @@ class olbTimetable extends OLBsystem{
 		global $wpdb;
 
 		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
-		$query = "SELECT t.id, t.date, t.time, t.room_id, h.user_id, h.free, h.absent FROM ".$prefix."timetable t "
-		        ."LEFT JOIN ".$prefix."history h ON t.id=h.id "
+		$query = "SELECT h.id, t.date, t.time, t.room_id, h.user_id, h.free, h.absent FROM ".$prefix."timetable t "
+		        ."LEFT JOIN ".$prefix."history h ON t.date=h.date AND t.time=h.time AND t.room_id=h.room_id "
 		        ."WHERE t.room_id IN (%d) "
 		        ."AND t.date=%s ";
 		$ret = $wpdb->get_results($wpdb->prepare($query, array($room_id, $date)), ARRAY_A);
@@ -89,8 +89,8 @@ class olbTimetable extends OLBsystem{
 		global $wpdb;
 
 		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
-		$query = "SELECT t.id, t.date, t.time, t.room_id, h.user_id, h.free, h.absent FROM ".$prefix."timetable t "
-		        ."LEFT JOIN ".$prefix."history h ON t.id=h.id "
+		$query = "SELECT h.id, t.date, t.time, t.room_id, h.user_id, h.free, h.absent FROM ".$prefix."timetable t "
+		        ."LEFT JOIN ".$prefix."history h ON t.date=h.date AND t.time=h.time AND t.room_id=h.room_id "
 		        ."WHERE t.room_id IN (%d) "
 		        ."AND t.date>=%s AND t.date<=%s";
 		$ret = $wpdb->get_results($wpdb->prepare($query, array($this->room_id, $this->startdate, $this->enddate)), ARRAY_A);
@@ -104,8 +104,8 @@ class olbTimetable extends OLBsystem{
 		global $wpdb;
 
 		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
-		$query = "SELECT t.id, t.date, t.time, t.room_id, h.user_id, h.free, h.absent FROM ".$prefix."timetable t "
-		        ."LEFT JOIN ".$prefix."history h ON t.id=h.id "
+		$query = "SELECT h.id, t.date, t.time, t.room_id, h.user_id, h.free, h.absent FROM ".$prefix."timetable t "
+		        ."LEFT JOIN ".$prefix."history h ON t.date=h.date AND t.time=h.time AND t.room_id=h.room_id "
 		        ."WHERE t.room_id=%d "
 		        ."AND t.date=%s AND t.time=%s ";
 		$ret = $wpdb->get_row($wpdb->prepare($query, array($room_id, $date, $time)), ARRAY_A);
@@ -192,13 +192,28 @@ class olbTimetable extends OLBsystem{
 		$room = olbRoom::get($room_id);
 		$record = olbTimetable::reserved($room_id, $date, $time);
 		/** 
+		 *	[reserved]
 		 *	$record = array( 
-		 *		'id'=> 1595,
+		 *		'id'      => 1595,
+		 *		'date'    => '2013-07-09',
+		 *		'time'    => '10:00:00',
 		 *		'room_id' => 1,
 		 *		'user_id' => 3,
-		 *		'date' => '2013-07-09',
-		 *		'time' => '10:00:00',
+		 *		'free'    => 0,
+		 *		'absent'  => 0,
 		 *	)
+		 *
+		 *	[not reserved]
+		 *	$record = array( 
+		 *		'id'      => (null),
+		 *		'date'    => '2013-07-09',
+		 *		'time'    => '10:00:00',
+		 *		'room_id' => 1,
+		 *		'user_id' => (null),
+		 *		'free'    => (null),
+		 *		'absent'  => (null),
+		 *	)
+		 *
 		 */
 
 		$result['record'] = $record;
@@ -271,13 +286,28 @@ class olbTimetable extends OLBsystem{
 		$room = olbRoom::get($room_id);
 		$record = olbTimetable::reserved($room_id, $date, $time);
 		/** 
+		 *	[reserved]
 		 *	$record = array( 
-		 *		'id'=> 1595,
+		 *		'id'      => 1595,
+		 *		'date'    => '2013-07-09',
+		 *		'time'    => '10:00:00',
 		 *		'room_id' => 1,
 		 *		'user_id' => 3,
-		 *		'date' => '2013-07-09',
-		 *		'time' => '10:00:00',
+		 *		'free'    => 0,
+		 *		'absent'  => 0,
 		 *	)
+		 *
+		 *	[not reserved]
+		 *	$record = array( 
+		 *		'id'      => (null),
+		 *		'date'    => '2013-07-09',
+		 *		'time'    => '10:00:00',
+		 *		'room_id' => 1,
+		 *		'user_id' => (null),
+		 *		'free'    => (null),
+		 *		'absent'  => (null),
+		 *	)
+		 *
 		 */
 
 		$result['record'] = $record;
@@ -347,19 +377,19 @@ class olbTimetable extends OLBsystem{
 			$result = olbTimetable::canReservation($olb->room_id, $olb->operator->data['id'], $date, $time); 
 			/** 
 			 *	$result = array( 
-			 *		'code'=> 'RESERVE_OK',
+			 *		'code'   => 'RESERVE_OK',
 			 *		'record' => array(
-			 *			'id' => 56,
+			 *			'id'      => 56,
 			 *			'room_id' => 5,
 			 *			'user_id' => 6,
-			 *			'date' => '2013-07-11',
-			 *			'time' => '10:00:00'
-			 *			'free' => 0
-			 *			'absent' => 0
+			 *			'date'    => '2013-07-11',
+			 *			'time'    => '10:00:00'
+			 *			'free'    => 0
+			 *			'absent'  => 0
 			 *		),
-			 *		'user' => olbAuth Object(
+			 *		'user'   => olbAuth Object(
 			 *		),
-			 *		'room' => array(
+			 *		'room'   => array(
 			 *		),
 			 *	)
 			 */
@@ -375,6 +405,7 @@ class olbTimetable extends OLBsystem{
 						$free = '';
 					}
 					$action = 'reserve';
+					$reserve_id = '---';
 					$submit = __('reserve', OLBsystem::TEXTDOMAIN);
 					$btnclass = 'reserve_btn';
 				}
@@ -387,6 +418,7 @@ class olbTimetable extends OLBsystem{
 						$free = '';
 					}
 					$action = 'cancel';
+					$reserve_id = $record['id'];
 					$submit = __('cancel', OLBsystem::TEXTDOMAIN);
 					$btnclass = 'cancel_btn';
 				}
@@ -414,7 +446,7 @@ class olbTimetable extends OLBsystem{
 <input type="hidden" id="room_id" name="room_id" value="%ROOM_ID%" />
 </dd>
 <dt>%LABEL_USER%:</dt>
-<dd>%USER_NAME%(No.%USER_ID%)
+<dd>%USER_NAME%(Skype: %USER_SKYPE%)
 <input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
 </dd>
 <dt>%LABEL_DATETIME%:</dt>
@@ -443,6 +475,7 @@ EOD;
 						'%LABEL_USER%',
 						'%USER_NAME%',
 						'%USER_ID%',
+						'%USER_SKYPE%',
 						'%LABEL_DATETIME%',
 						'%DATE%',
 						'%TIME%',
@@ -454,13 +487,14 @@ EOD;
 				$replace = array(
 						$formaction,
 						__('Reserve ID', OLBsystem::TEXTDOMAIN),
-						$record['id'],
+						$reserve_id,
 						__('Teacher', OLBsystem::TEXTDOMAIN),
-						$room['name'],
+						sprintf('<a href="%s">%s</a>', $room['url'], $room['name']),
 						$olb->room_id,
 						__('User', OLBsystem::TEXTDOMAIN),
 						$olb->operator->data['name'],
 						$olb->operator->data['id'],
+						$olb->operator->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
 						$date,
 						$time,
@@ -499,7 +533,7 @@ EOD;
 <input type="hidden" id="room_id" name="room_id" value="%ROOM_ID%" />
 </dd>
 <dt>%LABEL_USER%:</dt>
-<dd>%USER_NAME%(No.%USER_ID%)
+<dd>%USER_NAME%(Skype: %USER_SKYPE%)
 <input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
 </dd>
 <dt>%LABEL_DATETIME%:</dt>
@@ -520,6 +554,7 @@ EOD;
 						'%LABEL_USER%',
 						'%USER_NAME%',
 						'%USER_ID%',
+						'%USER_SKYPE%',
 						'%LABEL_DATETIME%',
 						'%DATE%',
 						'%TIME%',
@@ -527,13 +562,14 @@ EOD;
 					);
 				$replace = array(
 						__('Reserve ID', OLBsystem::TEXTDOMAIN),
-						$record['id'],
+						$reserve_id,
 						__('Teacher', OLBsystem::TEXTDOMAIN),
-						$room['name'],
+						sprintf('<a href="%s">%s</a>', $room['url'], $room['name']),
 						$olb->room_id,
 						__('User', OLBsystem::TEXTDOMAIN),
 						$olb->operator->data['name'],
 						$olb->operator->data['id'],
+						$olb->operator->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
 						$date,
 						$time,
@@ -587,7 +623,7 @@ EOD;
 					);
 				$replace = array(
 						__('Teacher', OLBsystem::TEXTDOMAIN),
-						$room['name'],
+						sprintf('<a href="%s">%s</a>', $room['url'], $room['name']),
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
 						$date,
 						$time,
@@ -644,17 +680,19 @@ EOD;
 			$result = olbTimetable::canCancellation($olb->room_id, $date, $time); 
 			/** 
 			 *	$result = array( 
-			 *		'code'=> 'RESERVE_OK',
+			 *		'code'   => 'RESERVE_OK',
 			 *		'record' => array(
-			 *			'id' => 56,
+			 *			'id'      => 56,
 			 *			'room_id' => 5,
 			 *			'user_id' => 6,
-			 *			'date' => '2013-07-11',
-			 *			'time' => '10:00:00'
+			 *			'date'    => '2013-07-11',
+			 *			'time'    => '10:00:00'
+			 *			'free'    => 0
+			 *			'absent'  => 0
 			 *		),
-			 *		'user' => olbAuth Object(
+			 *		'user'   => olbAuth Object(
 			 *		),
-			 *		'room' => array(
+			 *		'room'   => array(
 			 *		),
 			 *	)
 			 */
@@ -676,7 +714,7 @@ EOD;
 <input type="hidden" id="room_id" name="room_id" value="%ROOM_ID%" />
 </dd>
 <dt>%LABEL_USER%:</dt>
-<dd>%USER_NAME%(No.%USER_ID%)
+<dd>%USER_NAME%(Skype: %USER_SKYPE%)
 <input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
 </dd>
 <dt>%LABEL_DATETIME%:</dt>
@@ -706,6 +744,7 @@ EOD;
 						'%LABEL_USER%',
 						'%USER_NAME%',
 						'%USER_ID%',
+						'%USER_SKYPE%',
 						'%LABEL_DATETIME%',
 						'%DATE%',
 						'%TIME%',
@@ -726,6 +765,7 @@ EOD;
 						__('User', OLBsystem::TEXTDOMAIN),
 						$user->data['name'],
 						$user->data['id'],
+						$user->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
 						$date,
 						$time,
@@ -873,7 +913,7 @@ EOD;
 <input type="hidden" id="room_id" name="room_id" value="%ROOM_ID%" />
 </dd>
 <dt>%LABEL_USER%:</dt>
-<dd>%USER_NAME%(No.%USER_ID%)
+<dd>%USER_NAME%(Skype: %USER_SKYPE%)
 <input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
 </dd>
 <dt>%LABEL_DATETIME%:</dt>
@@ -903,6 +943,7 @@ EOD;
 						'%LABEL_USER%',
 						'%USER_NAME%',
 						'%USER_ID%',
+						'%USER_SKYPE%',
 						'%LABEL_DATETIME%',
 						'%DATE%',
 						'%TIME%',
@@ -923,6 +964,7 @@ EOD;
 						__('User', OLBsystem::TEXTDOMAIN),
 						$user->data['name'],
 						$user->data['id'],
+						$user->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
 						$date,
 						$time,

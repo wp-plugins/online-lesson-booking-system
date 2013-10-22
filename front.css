@@ -4,10 +4,14 @@
 form#edit_schedule input.submit {
 }
 table.edit_schedule {
+	border-collapse: collapse;
 	margin: 5px auto;
 }
+table.edit_schedule th {
+	color: #333;
+}
 table.edit_schedule th, .edit_schedule td {
-	padding: 3px 10px !important;
+	padding: 3px !important;
 	border: 1px solid #ccc;
 	text-align: center;
 	line-height: 1.3em;
@@ -32,23 +36,39 @@ table.edit_schedule .reserved {
 /*
  *	Reservation form
  */
+.reservation {
+	text-align: left;
+}
 .reservation dl {
 	margin: 0;
 	padding: 0;
 	width: 100%;
 }
+.reservation dl:after {
+	display:block;
+	clear:both;
+	height:0px;
+	visibility:hidden;
+	content:".";
+}
 .reservation dt {
-	width: 15%;
+	clear: both;
+	width: 25%;
 	float: left;
 }
 .reservation dd {
-	width: 80%;
+	width: 70%;
 	float: left;
 	margin-left: 1%;
 }
 .reservation dt, .reservation dd {
+	margin-top: 0;
 	padding: 10px 0 0 10px;
 	border-top: 1px solid #ccc;
+}
+.reservation input {
+	margin-top: 10px;
+	clear: both;
 }
 .already_reserved {
 	margin-left: 30px;
@@ -90,8 +110,9 @@ table.history_list {
 }
 table.history_list th {
 	padding: 5px 10px !important;
-	background-color: #def;
+	background-color: #f9f9f6;
 	border-bottom: 1px solid #ccc;
+	color: #333;
 }
 table.history_list td {
 	padding: 5px 10px !important;
@@ -116,8 +137,9 @@ table.future_list {
 }
 table.future_list th {
 	padding: 5px 10px !important;
-	background-color: #def;
+	background-color: #f9f9f6;
 	border-bottom: 1px solid #ccc;
+	color: #333;
 }
 table.future_list td {
 	padding: 5px 10px !important;
@@ -173,14 +195,15 @@ table.daily_schedule {
 	font-size: small;
 }
 table.daily_schedule th {
-	padding: 3px 10px !important;
+	padding: 3px !important;
 	border: 1px solid #ccc;
 	text-align: center;
 	line-height: 1.3em;
 	background-color: #f9f9f9;
+	color: #333;
 }
 table.daily_schedule td, table.daily_schedule th.times {
-	padding: 3px 10px !important;
+	padding: 3px !important;
 	border-width: 1px 1px 0;
 	border-style: solid;
 	border-color: #eee #ccc;
@@ -222,15 +245,16 @@ table.single_schedule_status {
 	font-size: small;
 }
 table.single_schedule_time th {
-	padding: 3px 10px !important;
+	padding: 3px !important;
 	border-width: 1px 1px 0;
 	border-style: solid;
 	border-color: #eee #ccc;
 	text-align: center;
 	line-height: 1.3em;
+	color: #333;
 }
 table.single_schedule_status td {
-	padding: 3px 10px !important;
+	padding: 3px !important;
 	border-width: 1px 1px 0 0;
 	border-style: solid;
 	border-color: #eee #ccc;
@@ -259,19 +283,21 @@ table.single_schedule_status td.you a {
  *	Weekly schedule board
  */
 table.weekly_schedule {
+	border-collapse: collapse;
 	padding: 1px;
 	border: 1px solid #ccc;
 	font-size: small;
 }
 table.weekly_schedule th {
-	padding: 3px 10px !important;
+	padding: 3px !important;
 	border: 1px solid #ccc;
 	text-align: center;
 	line-height: 1.3em;
 	background-color: #f9f9f9;
+	color: #333;
 }
 table.weekly_schedule td, table.weekly_schedule th.times {
-	padding: 3px 10px !important;
+	padding: 3px !important;
 	border-width: 1px 1px 0;
 	border-style: solid;
 	border-color: #eee #ccc;

@@ -25,23 +25,24 @@ class olbFormAction {
 			$result = $olb->canReservation($_POST['room_id'], $_POST['user_id'], $_POST['reservedate'], $_POST['reservetime']);
 			/**
 			 *	$result = array( 
-			 *		'code'=> 'RESERVE_OK',
+			 *		'code'   => 'RESERVE_OK',
 			 *		'record' => array(
-			 *			'id' => 56,
+			 *			'id'      => 56,
 			 *			'room_id' => 5,
 			 *			'user_id' => 6,
-			 *			'date' => '2013-07-11',
-			 *			'time' => '10:00:00'
+			 *			'date'    => '2013-07-11',
+			 *			'time'    => '10:00:00'
+			 *			'free'    => 0
+			 *			'absent'  => 0
 			 *		),
-			 *		'user' => olbAuth Object(
+			 *		'user'   => olbAuth Object(
 			 *		),
-			 *		'room' => array(
+			 *		'room'   => array(
 			 *		),
 			 *	)
 			 */
 			extract($result);	// $code, $record, $user, $room
 
-			$where = array('id'=>$record['id']);
 			$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
 			// 予約
 			if($_POST['reserveaction']=='reserve' && $code=='NOT_RESERVED'){
@@ -53,7 +54,6 @@ class olbFormAction {
 				$result = $wpdb->insert(
 								$table,
 								array(
-									'id' => $record['id'],
 									'date'=>$record['date'],
 									'time'=>$record['time'],
 									'room_id' => $record['room_id'],
@@ -61,6 +61,7 @@ class olbFormAction {
 									'free' => $record['free']
 								)
 							);
+				$record = $olb->reserved($record['room_id'], $record['date'], $record['time']);
 			}
 			// CANCEL
 			else if($_POST['reserveaction']=='cancel' && $code=='ALREADY_RESERVED'){
@@ -235,8 +236,8 @@ class olbFormAction {
 				if(!$ret){
 					$error = 'CANCEL_FAILED';
 				}
-				$query = "DELETE FROM ".$prefix."timetable WHERE `id`='%d'";
-				$ret = $wpdb->query($wpdb->prepare($query, array($record['id'])), ARRAY_A);
+				$query = "DELETE FROM ".$prefix."timetable WHERE `room_id`='%d' AND `date`='%s' AND `time`='%s'";
+				$ret = $wpdb->query($wpdb->prepare($query, array($record['room_id'], $record['date'], $record['time'])), ARRAY_A);
 			}
 			// エラーあり
 			else {
@@ -288,13 +289,12 @@ class olbFormAction {
 					$options['cancel_subject_by_teacher_to_teacher']
 					)
 			);
-		$to_user_signature = $options['sigunature'];
-
+		$to_user_signature = $options['signature'];
 		$to_user_body = $mail_body.$to_user_signature;
 		$to_user_headers = sprintf("From: %s\r\n", $options['from_email']);
 		$to_user_email = sprintf('%s <%s>', $user->data['name'], $user->data['email']);
 
-		olbTimetable::sendReserveMail($to_user_email , $to_user_subject, $to_user_body, $to_user_headers);
+		$ret = olbTimetable::sendReserveMail($to_user_email , $to_user_subject, $to_user_body, $to_user_headers);
 		// エラーあり
 		if(!$ret) {
 			$error = 'USER_SEND_ERROR';

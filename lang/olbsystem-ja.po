@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2013-10-04 19:00+0900\n"
-"PO-Revision-Date: 2013-10-04 20:00+0900\n"
+"POT-Creation-Date: 2013-10-21 19:00+0900\n"
+"PO-Revision-Date: 2013-10-21 19:00+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: \n"
 "Language: Japanese\n"
@@ -14,458 +14,667 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: class/my-adminpage.php:12
+#: tags/0.2.0/class/my-adminpage.php:12 tags/0.2.0.1/class/my-adminpage.php:12
+#: trunk/class/my-adminpage.php:12
 msgid "Online Lesson Booking system"
 msgstr "タイムテーブル予約"
 
-#: class/my-adminpage.php:13 class/my-adminpage.php:20
-#: class/my-adminpage.php:28 class/my-adminpage.php:36
-#: class/my-adminpage.php:44
+#: tags/0.2.0/class/my-adminpage.php:13 tags/0.2.0/class/my-adminpage.php:20
+#: tags/0.2.0/class/my-adminpage.php:28 tags/0.2.0/class/my-adminpage.php:36
+#: tags/0.2.0/class/my-adminpage.php:44 tags/0.2.0.1/class/my-adminpage.php:13
+#: tags/0.2.0.1/class/my-adminpage.php:20
+#: tags/0.2.0.1/class/my-adminpage.php:28
+#: tags/0.2.0.1/class/my-adminpage.php:36
+#: tags/0.2.0.1/class/my-adminpage.php:44 trunk/class/my-adminpage.php:13
+#: trunk/class/my-adminpage.php:20 trunk/class/my-adminpage.php:28
+#: trunk/class/my-adminpage.php:36 trunk/class/my-adminpage.php:44
 msgid "OLBsystem"
 msgstr "OLBsystem"
 
-#: class/my-adminpage.php:20 class/my-adminpage.php:21
-#: class/my-adminpage.php:119 class/my-adminpage.php:518
+#: tags/0.2.0/class/my-adminpage.php:20 tags/0.2.0/class/my-adminpage.php:21
+#: tags/0.2.0/class/my-adminpage.php:119 tags/0.2.0/class/my-adminpage.php:518
+#: tags/0.2.0.1/class/my-adminpage.php:20
+#: tags/0.2.0.1/class/my-adminpage.php:21
+#: tags/0.2.0.1/class/my-adminpage.php:119
+#: tags/0.2.0.1/class/my-adminpage.php:518 trunk/class/my-adminpage.php:20
+#: trunk/class/my-adminpage.php:21 trunk/class/my-adminpage.php:119
+#: trunk/class/my-adminpage.php:518
 msgid "General"
 msgstr "全般設定"
 
-#: class/my-adminpage.php:28 class/my-adminpage.php:29
-#: class/my-adminpage.php:264
+#: tags/0.2.0/class/my-adminpage.php:28 tags/0.2.0/class/my-adminpage.php:29
+#: tags/0.2.0/class/my-adminpage.php:264
+#: tags/0.2.0.1/class/my-adminpage.php:28
+#: tags/0.2.0.1/class/my-adminpage.php:29
+#: tags/0.2.0.1/class/my-adminpage.php:264 trunk/class/my-adminpage.php:28
+#: trunk/class/my-adminpage.php:29 trunk/class/my-adminpage.php:264
 msgid "Special Pages"
 msgstr "特別なページの名前"
 
-#: class/my-adminpage.php:36 class/my-adminpage.php:37
-#: class/my-adminpage.php:371 class/my-adminpage.php:522
+#: tags/0.2.0/class/my-adminpage.php:36 tags/0.2.0/class/my-adminpage.php:37
+#: tags/0.2.0/class/my-adminpage.php:371 tags/0.2.0/class/my-adminpage.php:522
+#: tags/0.2.0.1/class/my-adminpage.php:36
+#: tags/0.2.0.1/class/my-adminpage.php:37
+#: tags/0.2.0.1/class/my-adminpage.php:371
+#: tags/0.2.0.1/class/my-adminpage.php:522 trunk/class/my-adminpage.php:36
+#: trunk/class/my-adminpage.php:37 trunk/class/my-adminpage.php:371
+#: trunk/class/my-adminpage.php:522
 msgid "Mail"
 msgstr "メール設定"
 
-#: class/my-adminpage.php:44 class/my-adminpage.php:45
-#: class/my-adminpage.php:507
+#: tags/0.2.0/class/my-adminpage.php:44 tags/0.2.0/class/my-adminpage.php:45
+#: tags/0.2.0/class/my-adminpage.php:507
+#: tags/0.2.0.1/class/my-adminpage.php:44
+#: tags/0.2.0.1/class/my-adminpage.php:45
+#: tags/0.2.0.1/class/my-adminpage.php:507 trunk/class/my-adminpage.php:44
+#: trunk/class/my-adminpage.php:45 trunk/class/my-adminpage.php:507
 msgid "Reset"
 msgstr "リセット"
 
-#: class/my-adminpage.php:57
+#: tags/0.2.0/class/my-adminpage.php:57 tags/0.2.0.1/class/my-adminpage.php:57
+#: trunk/class/my-adminpage.php:57
 msgid "Online Lesson Booking system settings"
 msgstr "オンラインレッスン予約システムの設定"
 
-#: class/my-adminpage.php:89
+#: tags/0.2.0/class/my-adminpage.php:89 tags/0.2.0.1/class/my-adminpage.php:89
+#: trunk/class/my-adminpage.php:89
 msgid "Settings are reset"
 msgstr "設定がリセットされました"
 
-#: class/my-adminpage.php:99
+#: tags/0.2.0/class/my-adminpage.php:99 tags/0.2.0.1/class/my-adminpage.php:99
+#: trunk/class/my-adminpage.php:99
 msgid "Settings are updated"
 msgstr "設定が更新されました"
 
-#: class/my-adminpage.php:124
+#: tags/0.2.0/class/my-adminpage.php:124
+#: tags/0.2.0.1/class/my-adminpage.php:124 trunk/class/my-adminpage.php:124
 msgid "Timetable settings"
 msgstr "タイムテーブル設定"
 
-#: class/my-adminpage.php:127
+#: tags/0.2.0/class/my-adminpage.php:127
+#: tags/0.2.0.1/class/my-adminpage.php:127 trunk/class/my-adminpage.php:127
 msgid "Start time"
 msgstr "表示開始時刻"
 
-#: class/my-adminpage.php:135
+#: tags/0.2.0/class/my-adminpage.php:135
+#: tags/0.2.0.1/class/my-adminpage.php:135 trunk/class/my-adminpage.php:135
 msgid "End time"
 msgstr "表示終了時刻"
 
-#: class/my-adminpage.php:143
+#: tags/0.2.0/class/my-adminpage.php:143
+#: tags/0.2.0.1/class/my-adminpage.php:143 trunk/class/my-adminpage.php:143
 msgid "Interval"
 msgstr "時間間隔(分)"
 
-#: class/my-adminpage.php:146
+#: tags/0.2.0/class/my-adminpage.php:146
+#: tags/0.2.0.1/class/my-adminpage.php:146 trunk/class/my-adminpage.php:146
 msgid "minutes"
 msgstr "分"
 
-#: class/my-adminpage.php:152
+#: tags/0.2.0/class/my-adminpage.php:152
+#: tags/0.2.0.1/class/my-adminpage.php:152 trunk/class/my-adminpage.php:152
 msgid "Reservation settings"
 msgstr "予約処理設定"
 
-#: class/my-adminpage.php:155
+#: tags/0.2.0/class/my-adminpage.php:155
+#: tags/0.2.0.1/class/my-adminpage.php:155 trunk/class/my-adminpage.php:155
 msgid "Time to close a reservation request "
 msgstr "予約受付締切時間"
 
-#: class/my-adminpage.php:158 class/my-adminpage.php:167
+#: tags/0.2.0/class/my-adminpage.php:158 tags/0.2.0/class/my-adminpage.php:167
+#: tags/0.2.0.1/class/my-adminpage.php:158
+#: tags/0.2.0.1/class/my-adminpage.php:167 trunk/class/my-adminpage.php:158
+#: trunk/class/my-adminpage.php:167
 msgid "minutes before"
 msgstr "分前"
 
-#: class/my-adminpage.php:164
+#: tags/0.2.0/class/my-adminpage.php:164
+#: tags/0.2.0.1/class/my-adminpage.php:164 trunk/class/my-adminpage.php:164
 msgid "Time to close a cancellation request "
 msgstr "キャンセル受付締切時間"
 
-#: class/my-adminpage.php:173
+#: tags/0.2.0/class/my-adminpage.php:173
+#: tags/0.2.0.1/class/my-adminpage.php:173 trunk/class/my-adminpage.php:173
 msgid "The limit of the reservation per day"
 msgstr "1日に予約できる回数"
 
-#: class/my-adminpage.php:181
+#: tags/0.2.0/class/my-adminpage.php:181
+#: tags/0.2.0.1/class/my-adminpage.php:181 trunk/class/my-adminpage.php:181
 msgid "The limit of the reservation which is not charged"
 msgstr "無料予約できる回数"
 
-#: class/my-adminpage.php:189
+#: tags/0.2.0/class/my-adminpage.php:189
+#: tags/0.2.0.1/class/my-adminpage.php:189 trunk/class/my-adminpage.php:189
 msgid "CRON settings"
 msgstr "CRON設定"
 
-#: class/my-adminpage.php:192
+#: tags/0.2.0/class/my-adminpage.php:192
+#: tags/0.2.0.1/class/my-adminpage.php:192 trunk/class/my-adminpage.php:192
 msgid "The days which do not delete the past schedule"
 msgstr "過去のスケジュールの維持期間"
 
-#: class/my-adminpage.php:195
+#: tags/0.2.0/class/my-adminpage.php:195
+#: tags/0.2.0.1/class/my-adminpage.php:195 trunk/class/my-adminpage.php:195
 msgid "days"
 msgstr "日分"
 
-#: class/my-adminpage.php:201
+#: tags/0.2.0/class/my-adminpage.php:201
+#: tags/0.2.0.1/class/my-adminpage.php:201 trunk/class/my-adminpage.php:201
 msgid "CRON interval"
 msgstr "CRON実行間隔"
 
-#: class/my-adminpage.php:204
+#: tags/0.2.0/class/my-adminpage.php:204
+#: tags/0.2.0.1/class/my-adminpage.php:204 trunk/class/my-adminpage.php:204
 msgid "every harf hour"
 msgstr "30分ごと"
 
-#: class/my-adminpage.php:205
+#: tags/0.2.0/class/my-adminpage.php:205
+#: tags/0.2.0.1/class/my-adminpage.php:205 trunk/class/my-adminpage.php:205
 msgid "hourly"
 msgstr "1時間ごと"
 
-#: class/my-adminpage.php:206
+#: tags/0.2.0/class/my-adminpage.php:206
+#: tags/0.2.0.1/class/my-adminpage.php:206 trunk/class/my-adminpage.php:206
 msgid "daily"
 msgstr "1日ごと"
 
-#: class/my-adminpage.php:207
+#: tags/0.2.0/class/my-adminpage.php:207
+#: tags/0.2.0.1/class/my-adminpage.php:207 trunk/class/my-adminpage.php:207
 msgid "debug(every 10 seconds)"
 msgstr "確認用（10秒ごと）"
 
-#: class/my-adminpage.php:214
+#: tags/0.2.0/class/my-adminpage.php:214
+#: tags/0.2.0.1/class/my-adminpage.php:214 trunk/class/my-adminpage.php:214
 msgid "View settings"
 msgstr "表示設定"
 
-#: class/my-adminpage.php:217
+#: tags/0.2.0/class/my-adminpage.php:217
+#: tags/0.2.0.1/class/my-adminpage.php:217 trunk/class/my-adminpage.php:217
 msgid "Show teachers per page"
 msgstr "1ページ当たりに表示する講師数"
 
-#: class/my-adminpage.php:225
+#: tags/0.2.0/class/my-adminpage.php:225
+#: tags/0.2.0.1/class/my-adminpage.php:225 trunk/class/my-adminpage.php:225
 msgid "Customize user profile page"
 msgstr "プロフィール編集ページの改変"
 
-#: class/my-adminpage.php:229
+#: tags/0.2.0/class/my-adminpage.php:229
+#: tags/0.2.0.1/class/my-adminpage.php:229 trunk/class/my-adminpage.php:229
 msgid "Yes"
 msgstr "適用する"
 
-#: class/my-adminpage.php:240 class/my-adminpage.php:344
-#: class/my-adminpage.php:484 class/my-adminpage.php:531
+#: tags/0.2.0/class/my-adminpage.php:240 tags/0.2.0/class/my-adminpage.php:344
+#: tags/0.2.0/class/my-adminpage.php:484 tags/0.2.0/class/my-adminpage.php:531
+#: tags/0.2.0.1/class/my-adminpage.php:240
+#: tags/0.2.0.1/class/my-adminpage.php:344
+#: tags/0.2.0.1/class/my-adminpage.php:484
+#: tags/0.2.0.1/class/my-adminpage.php:531 trunk/class/my-adminpage.php:240
+#: trunk/class/my-adminpage.php:344 trunk/class/my-adminpage.php:484
+#: trunk/class/my-adminpage.php:531
 msgid "Update"
 msgstr "更新"
 
-#: class/my-adminpage.php:269
+#: tags/0.2.0/class/my-adminpage.php:269
+#: tags/0.2.0.1/class/my-adminpage.php:269 trunk/class/my-adminpage.php:269
 msgid "Special page slug"
 msgstr "特別なページの名前（スラッグ名）"
 
-#: class/my-adminpage.php:272
+#: tags/0.2.0/class/my-adminpage.php:272
+#: tags/0.2.0.1/class/my-adminpage.php:272 trunk/class/my-adminpage.php:272
 msgid "Daily schedule page"
 msgstr "日別スケジュール（全講師）"
 
-#: class/my-adminpage.php:276 class/my-adminpage.php:286
-#: class/my-adminpage.php:296 class/my-adminpage.php:306
-#: class/my-adminpage.php:316
+#: tags/0.2.0/class/my-adminpage.php:276 tags/0.2.0/class/my-adminpage.php:286
+#: tags/0.2.0/class/my-adminpage.php:296 tags/0.2.0/class/my-adminpage.php:306
+#: tags/0.2.0/class/my-adminpage.php:316
+#: tags/0.2.0.1/class/my-adminpage.php:276
+#: tags/0.2.0.1/class/my-adminpage.php:286
+#: tags/0.2.0.1/class/my-adminpage.php:296
+#: tags/0.2.0.1/class/my-adminpage.php:306
+#: tags/0.2.0.1/class/my-adminpage.php:316 trunk/class/my-adminpage.php:276
+#: trunk/class/my-adminpage.php:286 trunk/class/my-adminpage.php:296
+#: trunk/class/my-adminpage.php:306 trunk/class/my-adminpage.php:316
 #, php-format
 msgid "The page which inserted the short code %s"
 msgstr "ショートコード %s を挿入したページ"
 
-#: class/my-adminpage.php:282
+#: tags/0.2.0/class/my-adminpage.php:282
+#: tags/0.2.0.1/class/my-adminpage.php:282 trunk/class/my-adminpage.php:282
 msgid "Reservation form page"
 msgstr "予約フォームページ"
 
-#: class/my-adminpage.php:292
+#: tags/0.2.0/class/my-adminpage.php:292
+#: tags/0.2.0.1/class/my-adminpage.php:292 trunk/class/my-adminpage.php:292
 msgid "Cancel(by teacher) form page"
 msgstr "講師用キャンセルフォームページ"
 
-#: class/my-adminpage.php:302
+#: tags/0.2.0/class/my-adminpage.php:302
+#: tags/0.2.0.1/class/my-adminpage.php:302 trunk/class/my-adminpage.php:302
 msgid "Absent(by teacher) form page"
 msgstr "講師用出欠フォームページ"
 
-#: class/my-adminpage.php:312
+#: tags/0.2.0/class/my-adminpage.php:312
+#: tags/0.2.0.1/class/my-adminpage.php:312 trunk/class/my-adminpage.php:312
 msgid "Edit schedule(by teacher) page"
 msgstr "講師用スケジュール設定ページ"
 
-#: class/my-adminpage.php:322
+#: tags/0.2.0/class/my-adminpage.php:322
+#: tags/0.2.0.1/class/my-adminpage.php:322 trunk/class/my-adminpage.php:322
 msgid "Members my page"
 msgstr "会員マイページ"
 
-#: class/my-adminpage.php:325
+#: tags/0.2.0/class/my-adminpage.php:325
+#: tags/0.2.0.1/class/my-adminpage.php:325 trunk/class/my-adminpage.php:325
 msgid "After login, member is redirected to this Page"
 msgstr "会員のログイン後、このページにリダイレクトします"
 
-#: class/my-adminpage.php:330
+#: tags/0.2.0/class/my-adminpage.php:330
+#: tags/0.2.0.1/class/my-adminpage.php:330 trunk/class/my-adminpage.php:330
 msgid "Login page"
 msgstr "ログインページ"
 
-#: class/my-adminpage.php:334
+#: tags/0.2.0/class/my-adminpage.php:334
+#: tags/0.2.0.1/class/my-adminpage.php:334 trunk/class/my-adminpage.php:334
 msgid ""
 "A standard login page will be used if a \"login page\" is not specified."
 msgstr "「ログインページ」が空の場合、標準のログインページを使用します"
 
-#: class/my-adminpage.php:335
+#: tags/0.2.0/class/my-adminpage.php:335
+#: tags/0.2.0.1/class/my-adminpage.php:335 trunk/class/my-adminpage.php:335
 msgid "If a login page is made separately, specify the name of that page."
 msgstr "別途ログインページを作った場合は、そのページ名を指定します"
 
-#: class/my-adminpage.php:377
+#: tags/0.2.0/class/my-adminpage.php:377
+#: tags/0.2.0.1/class/my-adminpage.php:377 trunk/class/my-adminpage.php:377
 msgid "Email address"
 msgstr "メールアドレス"
 
-#: class/my-adminpage.php:380
+#: tags/0.2.0/class/my-adminpage.php:380
+#: tags/0.2.0.1/class/my-adminpage.php:380 trunk/class/my-adminpage.php:380
 msgid "From email"
 msgstr "差出人メールアドレス"
 
-#: class/my-adminpage.php:388 class/my-adminpage.php:391
+#: tags/0.2.0/class/my-adminpage.php:388 tags/0.2.0/class/my-adminpage.php:391
+#: tags/0.2.0.1/class/my-adminpage.php:388
+#: tags/0.2.0.1/class/my-adminpage.php:391 trunk/class/my-adminpage.php:388
+#: trunk/class/my-adminpage.php:391
 msgid "Signature"
 msgstr "シグネチャ"
 
-#: class/my-adminpage.php:399
+#: tags/0.2.0/class/my-adminpage.php:399
+#: tags/0.2.0.1/class/my-adminpage.php:399 trunk/class/my-adminpage.php:399
 msgid "Notice of received reservation"
 msgstr "予約受付通知"
 
-#: class/my-adminpage.php:402 class/my-adminpage.php:429
-#: class/my-adminpage.php:456
+#: tags/0.2.0/class/my-adminpage.php:402 tags/0.2.0/class/my-adminpage.php:429
+#: tags/0.2.0/class/my-adminpage.php:456
+#: tags/0.2.0.1/class/my-adminpage.php:402
+#: tags/0.2.0.1/class/my-adminpage.php:429
+#: tags/0.2.0.1/class/my-adminpage.php:456 trunk/class/my-adminpage.php:402
+#: trunk/class/my-adminpage.php:429 trunk/class/my-adminpage.php:456
 msgid "Subject"
 msgstr "件名"
 
-#: class/my-adminpage.php:410 class/my-adminpage.php:437
-#: class/my-adminpage.php:464
+#: tags/0.2.0/class/my-adminpage.php:410 tags/0.2.0/class/my-adminpage.php:437
+#: tags/0.2.0/class/my-adminpage.php:464
+#: tags/0.2.0.1/class/my-adminpage.php:410
+#: tags/0.2.0.1/class/my-adminpage.php:437
+#: tags/0.2.0.1/class/my-adminpage.php:464 trunk/class/my-adminpage.php:410
+#: trunk/class/my-adminpage.php:437 trunk/class/my-adminpage.php:464
 msgid "Subject to teacher"
 msgstr "講師宛件名"
 
-#: class/my-adminpage.php:418 class/my-adminpage.php:445
-#: class/my-adminpage.php:472 class/my-timetable.php:732
+#: tags/0.2.0/class/my-adminpage.php:418 tags/0.2.0/class/my-adminpage.php:445
+#: tags/0.2.0/class/my-adminpage.php:472 tags/0.2.0/class/my-timetable.php:732
+#: tags/0.2.0.1/class/my-adminpage.php:418
+#: tags/0.2.0.1/class/my-adminpage.php:445
+#: tags/0.2.0.1/class/my-adminpage.php:472
+#: tags/0.2.0.1/class/my-timetable.php:732 trunk/class/my-adminpage.php:418
+#: trunk/class/my-adminpage.php:445 trunk/class/my-adminpage.php:472
+#: trunk/class/my-timetable.php:772
 msgid "Message"
 msgstr "メッセージ"
 
-#: class/my-adminpage.php:426
+#: tags/0.2.0/class/my-adminpage.php:426
+#: tags/0.2.0.1/class/my-adminpage.php:426 trunk/class/my-adminpage.php:426
 msgid "Notice of received cancellation"
 msgstr "キャンセル受付通知"
 
-#: class/my-adminpage.php:453
+#: tags/0.2.0/class/my-adminpage.php:453
+#: tags/0.2.0.1/class/my-adminpage.php:453 trunk/class/my-adminpage.php:453
 msgid "Notice of cancellation by teacher"
 msgstr "講師都合によるキャンセルの通知"
 
-#: class/my-adminpage.php:512
+#: tags/0.2.0/class/my-adminpage.php:512
+#: tags/0.2.0.1/class/my-adminpage.php:512 trunk/class/my-adminpage.php:512
 msgid "Reset plugin options"
 msgstr "プラグインオプションのリセット"
 
-#: class/my-adminpage.php:515
+#: tags/0.2.0/class/my-adminpage.php:515
+#: tags/0.2.0.1/class/my-adminpage.php:515 trunk/class/my-adminpage.php:515
 msgid "Target"
 msgstr "対象"
 
-#: class/my-adminpage.php:520
+#: tags/0.2.0/class/my-adminpage.php:520
+#: tags/0.2.0.1/class/my-adminpage.php:520 trunk/class/my-adminpage.php:520
 msgid "Special pages"
 msgstr "特別なページの名前"
 
-#: class/my-formaction.php:125
+#: tags/0.2.0/class/my-formaction.php:125
+#: tags/0.2.0.1/class/my-formaction.php:125 trunk/class/my-formaction.php:126
 #, php-format
 msgid "%d minutes before start time"
 msgstr "開始時刻の%d分前"
 
-#: class/my-formaction.php:143
+#: tags/0.2.0/class/my-formaction.php:143
+#: tags/0.2.0.1/class/my-formaction.php:143 trunk/class/my-formaction.php:144
 msgid "Free reservation applied."
 msgstr "無料予約を適用"
 
-#: class/my-formaction.php:145
+#: tags/0.2.0/class/my-formaction.php:145
+#: tags/0.2.0.1/class/my-formaction.php:145 trunk/class/my-formaction.php:146
 #, php-format
 msgid "Your free reservation: %d times left."
 msgstr "無料予約：残り %d 回"
 
-#: class/my-functions.php:26
+#: tags/0.2.0/class/my-functions.php:26 tags/0.2.0.1/class/my-functions.php:26
+#: trunk/class/my-functions.php:26
 msgid "Parameter is insufficient."
 msgstr "パラメーターが不足しています"
 
-#: class/my-functions.php:28
+#: tags/0.2.0/class/my-functions.php:28 tags/0.2.0.1/class/my-functions.php:28
+#: trunk/class/my-functions.php:28
 msgid "Invalid parameter is contained."
 msgstr "無効なパラメーターが含まれています"
 
-#: class/my-functions.php:30 class/my-functions.php:32
+#: tags/0.2.0/class/my-functions.php:30 tags/0.2.0/class/my-functions.php:32
+#: tags/0.2.0.1/class/my-functions.php:30
+#: tags/0.2.0.1/class/my-functions.php:32 trunk/class/my-functions.php:30
+#: trunk/class/my-functions.php:32
 msgid "Specified record does not exist."
 msgstr "指定された情報がありません"
 
-#: class/my-functions.php:34
+#: tags/0.2.0/class/my-functions.php:34 tags/0.2.0.1/class/my-functions.php:34
+#: trunk/class/my-functions.php:34
 msgid "Specified timetable is not reserved. It cannot cancel."
 msgstr "指定されたタイムテーブルは予約されていません。キャンセルはできません。"
 
-#: class/my-functions.php:36
+#: tags/0.2.0/class/my-functions.php:36 tags/0.2.0.1/class/my-functions.php:36
+#: trunk/class/my-functions.php:36
 msgid "You have double-booking on this date and time."
 msgstr "この日時はダブルブッキングになります"
 
-#: class/my-functions.php:38
+#: tags/0.2.0/class/my-functions.php:38 tags/0.2.0.1/class/my-functions.php:38
+#: trunk/class/my-functions.php:38
 msgid "Specified timetable is reserved. It cannot reserve."
 msgstr "指定されたタイムテーブルは予約済みです。予約はできません。"
 
-#: class/my-functions.php:40
+#: tags/0.2.0/class/my-functions.php:40 tags/0.2.0.1/class/my-functions.php:40
+#: trunk/class/my-functions.php:40
 msgid "Specified timetable is reserved by other member. You cannot reserve."
 msgstr ""
 "指定されたタイムテーブルは他の会員により予約済みです。予約はできません。"
 
-#: class/my-functions.php:42
+#: tags/0.2.0/class/my-functions.php:42 tags/0.2.0.1/class/my-functions.php:42
+#: trunk/class/my-functions.php:42
 msgid "Member has reached expiration date."
 msgstr "ユーザーの有効期限内ではありません"
 
-#: class/my-functions.php:44
+#: tags/0.2.0/class/my-functions.php:44 tags/0.2.0.1/class/my-functions.php:44
+#: trunk/class/my-functions.php:44
 msgid "Time is up. It cannot reserve."
 msgstr "予約受付時間を過ぎました。予約はできません。"
 
-#: class/my-functions.php:46
+#: tags/0.2.0/class/my-functions.php:46 tags/0.2.0.1/class/my-functions.php:46
+#: trunk/class/my-functions.php:46
 msgid "Time is up. It cannot cancel."
 msgstr "キャンセル受付時間を過ぎました。キャンセルはできません。"
 
-#: class/my-functions.php:48
+#: tags/0.2.0/class/my-functions.php:48 tags/0.2.0.1/class/my-functions.php:48
+#: trunk/class/my-functions.php:48
 msgid "The number of reservations reached a limit per day."
 msgstr "1日に予約できる数の上限に達しています"
 
-#: class/my-functions.php:50
+#: tags/0.2.0/class/my-functions.php:50 tags/0.2.0.1/class/my-functions.php:50
+#: trunk/class/my-functions.php:50
 msgid "Cancellation processing failed. It was not able to cancel."
 msgstr ""
 "キャンセル処理が正しく行われませんでした。キャンセルはできませんでした。"
 
-#: class/my-functions.php:52
+#: tags/0.2.0/class/my-functions.php:52 tags/0.2.0.1/class/my-functions.php:52
+#: trunk/class/my-functions.php:52
 msgid "Reservation processing failed. It was not able to reserve."
 msgstr "予約処理が正しく行われませんでした。予約はできませんでした。"
 
-#: class/my-functions.php:54
+#: tags/0.2.0/class/my-functions.php:54 tags/0.2.0.1/class/my-functions.php:54
+#: trunk/class/my-functions.php:54
 msgid "Sending email to user failed."
 msgstr "ユーザー宛のメール送信に失敗しました"
 
-#: class/my-functions.php:56
+#: tags/0.2.0/class/my-functions.php:56 tags/0.2.0.1/class/my-functions.php:56
+#: trunk/class/my-functions.php:56
 msgid "Teacher is not specified."
 msgstr "講師が指定されていません"
 
-#: class/my-functions.php:60
+#: tags/0.2.0/class/my-functions.php:60 tags/0.2.0.1/class/my-functions.php:60
+#: trunk/class/my-functions.php:60
 msgid "No teachers."
 msgstr "現在、講師は登録されていません"
 
-#: class/my-functions.php:62
+#: tags/0.2.0/class/my-functions.php:62 tags/0.2.0.1/class/my-functions.php:62
+#: trunk/class/my-functions.php:62
 msgid "Specified teacher does not exist."
 msgstr "指定された講師は存在しません"
 
-#: class/my-functions.php:64
+#: tags/0.2.0/class/my-functions.php:64 tags/0.2.0.1/class/my-functions.php:64
+#: trunk/class/my-functions.php:64
 msgid "Onetime token error."
 msgstr "ワンタイムトークンエラー"
 
-#: class/my-functions.php:66
+#: tags/0.2.0/class/my-functions.php:66 tags/0.2.0.1/class/my-functions.php:66
+#: trunk/class/my-functions.php:66
 msgid "It reserved."
 msgstr "予約しました"
 
-#: class/my-functions.php:68
+#: tags/0.2.0/class/my-functions.php:68 tags/0.2.0.1/class/my-functions.php:68
+#: trunk/class/my-functions.php:68
 msgid "It canceled."
 msgstr "キャンセルしました"
 
-#: class/my-history.php:126 class/my-history.php:176 class/my-history.php:222
-#: class/my-history.php:280 class/my-timetable.php:464
-#: class/my-timetable.php:537 class/my-timetable.php:591
-#: class/my-timetable.php:729 class/my-timetable.php:787
-#: class/my-timetable.php:926 class/my-timetable.php:982
+#: tags/0.2.0/class/my-history.php:126 tags/0.2.0/class/my-history.php:176
+#: tags/0.2.0/class/my-history.php:222 tags/0.2.0/class/my-history.php:280
+#: tags/0.2.0/class/my-timetable.php:464 tags/0.2.0/class/my-timetable.php:537
+#: tags/0.2.0/class/my-timetable.php:591 tags/0.2.0/class/my-timetable.php:729
+#: tags/0.2.0/class/my-timetable.php:787 tags/0.2.0/class/my-timetable.php:926
+#: tags/0.2.0/class/my-timetable.php:982 tags/0.2.0.1/class/my-history.php:126
+#: tags/0.2.0.1/class/my-history.php:176 tags/0.2.0.1/class/my-history.php:222
+#: tags/0.2.0.1/class/my-history.php:280
+#: tags/0.2.0.1/class/my-timetable.php:464
+#: tags/0.2.0.1/class/my-timetable.php:537
+#: tags/0.2.0.1/class/my-timetable.php:591
+#: tags/0.2.0.1/class/my-timetable.php:729
+#: tags/0.2.0.1/class/my-timetable.php:787
+#: tags/0.2.0.1/class/my-timetable.php:926
+#: tags/0.2.0.1/class/my-timetable.php:982 trunk/class/my-history.php:126
+#: trunk/class/my-history.php:176 trunk/class/my-history.php:223
+#: trunk/class/my-history.php:281 trunk/class/my-timetable.php:498
+#: trunk/class/my-timetable.php:573 trunk/class/my-timetable.php:627
+#: trunk/class/my-timetable.php:769 trunk/class/my-timetable.php:827
+#: trunk/class/my-timetable.php:968 trunk/class/my-timetable.php:1024
 msgid "Date/Time"
 msgstr "日時"
 
-#: class/my-history.php:127 class/my-history.php:224
-#: class/my-hookactions.php:176 class/my-hookactions.php:479
-#: class/my-hookactions.php:495 class/my-timetable.php:458
-#: class/my-timetable.php:531 class/my-timetable.php:589
-#: class/my-timetable.php:723 class/my-timetable.php:785
-#: class/my-timetable.php:920 class/my-timetable.php:980
-#: class/my-timetable.php:1597
+#: tags/0.2.0/class/my-history.php:127 tags/0.2.0/class/my-history.php:224
+#: tags/0.2.0/class/my-hookactions.php:176
+#: tags/0.2.0/class/my-hookactions.php:479
+#: tags/0.2.0/class/my-hookactions.php:495
+#: tags/0.2.0/class/my-timetable.php:458 tags/0.2.0/class/my-timetable.php:531
+#: tags/0.2.0/class/my-timetable.php:589 tags/0.2.0/class/my-timetable.php:723
+#: tags/0.2.0/class/my-timetable.php:785 tags/0.2.0/class/my-timetable.php:920
+#: tags/0.2.0/class/my-timetable.php:980
+#: tags/0.2.0/class/my-timetable.php:1597
+#: tags/0.2.0.1/class/my-history.php:127 tags/0.2.0.1/class/my-history.php:224
+#: tags/0.2.0.1/class/my-hookactions.php:176
+#: tags/0.2.0.1/class/my-hookactions.php:479
+#: tags/0.2.0.1/class/my-hookactions.php:495
+#: tags/0.2.0.1/class/my-timetable.php:458
+#: tags/0.2.0.1/class/my-timetable.php:531
+#: tags/0.2.0.1/class/my-timetable.php:589
+#: tags/0.2.0.1/class/my-timetable.php:723
+#: tags/0.2.0.1/class/my-timetable.php:785
+#: tags/0.2.0.1/class/my-timetable.php:920
+#: tags/0.2.0.1/class/my-timetable.php:980
+#: tags/0.2.0.1/class/my-timetable.php:1597 trunk/class/my-history.php:127
+#: trunk/class/my-history.php:225 trunk/class/my-hookactions.php:176
+#: trunk/class/my-hookactions.php:479 trunk/class/my-hookactions.php:495
+#: trunk/class/my-timetable.php:491 trunk/class/my-timetable.php:566
+#: trunk/class/my-timetable.php:625 trunk/class/my-timetable.php:762
+#: trunk/class/my-timetable.php:825 trunk/class/my-timetable.php:961
+#: trunk/class/my-timetable.php:1022 trunk/class/my-timetable.php:1639
 msgid "Teacher"
 msgstr "講師"
 
-#: class/my-history.php:128 class/my-history.php:141 class/my-history.php:178
-#: class/my-history.php:188 class/my-timetable.php:929
+#: tags/0.2.0/class/my-history.php:128 tags/0.2.0/class/my-history.php:141
+#: tags/0.2.0/class/my-history.php:178 tags/0.2.0/class/my-history.php:188
+#: tags/0.2.0/class/my-timetable.php:929 tags/0.2.0.1/class/my-history.php:128
+#: tags/0.2.0.1/class/my-history.php:141 tags/0.2.0.1/class/my-history.php:178
+#: tags/0.2.0.1/class/my-history.php:188
+#: tags/0.2.0.1/class/my-timetable.php:929 trunk/class/my-history.php:128
+#: trunk/class/my-history.php:141 trunk/class/my-history.php:178
+#: trunk/class/my-history.php:188 trunk/class/my-timetable.php:971
 msgid "Absent"
 msgstr "欠席"
 
-#: class/my-history.php:177 class/my-history.php:282
+#: tags/0.2.0/class/my-history.php:177 tags/0.2.0/class/my-history.php:282
+#: tags/0.2.0.1/class/my-history.php:177 tags/0.2.0.1/class/my-history.php:282
 msgid "Member"
 msgstr "会員"
 
-#: class/my-history.php:223 class/my-history.php:281
+#: tags/0.2.0/class/my-history.php:223 tags/0.2.0/class/my-history.php:281
+#: tags/0.2.0.1/class/my-history.php:223 tags/0.2.0.1/class/my-history.php:281
+#: trunk/class/my-history.php:224 trunk/class/my-history.php:282
 msgid "Waiting"
 msgstr "待ち時間"
 
-#: class/my-history.php:225 class/my-history.php:283
+#: tags/0.2.0/class/my-history.php:225 tags/0.2.0/class/my-history.php:283
+#: tags/0.2.0.1/class/my-history.php:225 tags/0.2.0.1/class/my-history.php:283
+#: trunk/class/my-history.php:226 trunk/class/my-history.php:284
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: class/my-history.php:240 class/my-history.php:293
+#: tags/0.2.0/class/my-history.php:240 tags/0.2.0/class/my-history.php:293
+#: tags/0.2.0.1/class/my-history.php:240 tags/0.2.0.1/class/my-history.php:293
+#: trunk/class/my-history.php:241 trunk/class/my-history.php:294
 msgid "Time over"
 msgstr "時間切れ"
 
-#: class/my-history.php:243 class/my-history.php:296
+#: tags/0.2.0/class/my-history.php:243 tags/0.2.0/class/my-history.php:296
+#: tags/0.2.0.1/class/my-history.php:243 tags/0.2.0.1/class/my-history.php:296
+#: trunk/class/my-history.php:244 trunk/class/my-history.php:297
 msgid "CANCEL"
 msgstr "キャンセル"
 
-#: class/my-history.php:340
+#: tags/0.2.0/class/my-history.php:340 tags/0.2.0.1/class/my-history.php:340
+#: trunk/class/my-history.php:342
 #, php-format
 msgid "%1$d hour "
 msgstr "%1$d時間 "
 
-#: class/my-history.php:343
+#: tags/0.2.0/class/my-history.php:343 tags/0.2.0.1/class/my-history.php:343
+#: trunk/class/my-history.php:345
 #, php-format
 msgid "%1$d hours "
 msgstr "%1$d時間 "
 
-#: class/my-history.php:350
+#: tags/0.2.0/class/my-history.php:350 tags/0.2.0.1/class/my-history.php:350
+#: trunk/class/my-history.php:352
 #, php-format
 msgid "%2$d minute "
 msgstr "%2$d分"
 
-#: class/my-history.php:353
+#: tags/0.2.0/class/my-history.php:353 tags/0.2.0.1/class/my-history.php:353
+#: trunk/class/my-history.php:355
 #, php-format
 msgid "%2$d minutes "
 msgstr "%2$d分"
 
-#: class/my-history.php:359
+#: tags/0.2.0/class/my-history.php:359 tags/0.2.0.1/class/my-history.php:359
+#: trunk/class/my-history.php:361
 msgid "later"
 msgstr "後"
 
-#: class/my-history.php:364
+#: tags/0.2.0/class/my-history.php:364 tags/0.2.0.1/class/my-history.php:364
+#: trunk/class/my-history.php:366
 #, php-format
 msgid "%d day later"
 msgstr "%d日後"
 
-#: class/my-history.php:367
+#: tags/0.2.0/class/my-history.php:367 tags/0.2.0.1/class/my-history.php:367
+#: trunk/class/my-history.php:369
 #, php-format
 msgid "%d days later"
 msgstr "%d日後"
 
-#: class/my-hookactions.php:34
+#: tags/0.2.0/class/my-hookactions.php:34
+#: tags/0.2.0.1/class/my-hookactions.php:34 trunk/class/my-hookactions.php:34
 msgid "My page"
 msgstr "マイページ"
 
-#: class/my-hookactions.php:41 class/my-widget.php:74 class/my-widget.php:172
+#: tags/0.2.0/class/my-hookactions.php:41 tags/0.2.0/class/my-widget.php:74
+#: tags/0.2.0/class/my-widget.php:172 tags/0.2.0.1/class/my-hookactions.php:41
+#: tags/0.2.0.1/class/my-widget.php:74 tags/0.2.0.1/class/my-widget.php:172
+#: trunk/class/my-hookactions.php:41 trunk/class/my-widget.php:74
+#: trunk/class/my-widget.php:172 trunk/class/my-widget.php:258
 msgid "Logout"
 msgstr "ログアウト"
 
-#: class/my-hookactions.php:122
+#: tags/0.2.0/class/my-hookactions.php:122
+#: tags/0.2.0.1/class/my-hookactions.php:122
+#: trunk/class/my-hookactions.php:122
 msgid "Address"
 msgstr "住所"
 
-#: class/my-hookactions.php:123
+#: tags/0.2.0/class/my-hookactions.php:123
+#: tags/0.2.0.1/class/my-hookactions.php:123
+#: trunk/class/my-hookactions.php:123
 msgid "Phone"
 msgstr "電話番号"
 
-#: class/my-hookactions.php:124
+#: tags/0.2.0/class/my-hookactions.php:124
+#: tags/0.2.0.1/class/my-hookactions.php:124
+#: trunk/class/my-hookactions.php:124
 msgid "Skype ID"
 msgstr "スカイプID"
 
-#: class/my-hookactions.php:135
+#: tags/0.2.0/class/my-hookactions.php:135
+#: tags/0.2.0.1/class/my-hookactions.php:135
+#: trunk/class/my-hookactions.php:135
 msgid "The term of validity is updated after the check of payment."
 msgstr "有効期限はご入金の確認後に更新されます。"
 
-#: class/my-hookactions.php:145 class/my-hookactions.php:190
+#: tags/0.2.0/class/my-hookactions.php:145
+#: tags/0.2.0/class/my-hookactions.php:190
+#: tags/0.2.0.1/class/my-hookactions.php:145
+#: tags/0.2.0.1/class/my-hookactions.php:190
+#: trunk/class/my-hookactions.php:145 trunk/class/my-hookactions.php:190
 msgid "Term of validity"
 msgstr "有効期限"
 
-#: class/my-hookactions.php:176
+#: tags/0.2.0/class/my-hookactions.php:176
+#: tags/0.2.0.1/class/my-hookactions.php:176
+#: trunk/class/my-hookactions.php:176
 msgid "property \"Teacher\""
 msgstr "講師属性"
 
-#: class/my-hookactions.php:480
+#: tags/0.2.0/class/my-hookactions.php:480
+#: tags/0.2.0.1/class/my-hookactions.php:480
+#: trunk/class/my-hookactions.php:480
 msgid "ID"
 msgstr "ID"
 
-#: class/my-hookactions.php:567
+#: tags/0.2.0/class/my-hookactions.php:567
+#: tags/0.2.0.1/class/my-hookactions.php:567
+#: trunk/class/my-hookactions.php:603
 msgid ""
 "\n"
 "<p>\n"
@@ -515,65 +724,104 @@ msgstr ""
 "<p>（予定はありません）</p>\n"
 "[/olb_members_schedule]\n"
 
-#: class/my-hookactions.php:595
+#: tags/0.2.0/class/my-hookactions.php:595
+#: tags/0.2.0.1/class/my-hookactions.php:595
+#: trunk/class/my-hookactions.php:631
 msgid "Scheduler for teacher"
 msgstr "講師用スケジュール編集"
 
-#: class/my-hookactions.php:600
+#: tags/0.2.0/class/my-hookactions.php:600
+#: tags/0.2.0.1/class/my-hookactions.php:600
+#: trunk/class/my-hookactions.php:636
 msgid "Cancel form for teacher"
 msgstr "講師用キャンセルフォーム"
 
-#: class/my-hookactions.php:605
+#: tags/0.2.0/class/my-hookactions.php:605
+#: tags/0.2.0.1/class/my-hookactions.php:605
+#: trunk/class/my-hookactions.php:641
 msgid "Report form for teacher"
 msgstr "講師用出欠フォーム"
 
-#: class/my-hookactions.php:610
+#: tags/0.2.0/class/my-hookactions.php:610
+#: tags/0.2.0.1/class/my-hookactions.php:610
+#: trunk/class/my-hookactions.php:646
 msgid "Reservation and cancellation form"
 msgstr "予約・キャンセルフォーム"
 
-#: class/my-hookactions.php:615
+#: tags/0.2.0/class/my-hookactions.php:615
+#: tags/0.2.0.1/class/my-hookactions.php:615
+#: trunk/class/my-hookactions.php:651
 msgid "Members my-page"
 msgstr "会員マイページ"
 
-#: class/my-hookactions.php:620
+#: tags/0.2.0/class/my-hookactions.php:620
+#: tags/0.2.0.1/class/my-hookactions.php:620
+#: trunk/class/my-hookactions.php:656
 msgid "Daily schedule"
 msgstr "日別スケジュール（全講師）"
 
-#: class/my-hookactions.php:628 class/my-hookactions.php:630
+#: tags/0.2.0/class/my-hookactions.php:628
+#: tags/0.2.0/class/my-hookactions.php:630
+#: tags/0.2.0.1/class/my-hookactions.php:628
+#: tags/0.2.0.1/class/my-hookactions.php:630
+#: trunk/class/my-hookactions.php:664 trunk/class/my-hookactions.php:666
 msgid "Teachers history"
 msgstr "講師用実施履歴"
 
-#: class/my-hookactions.php:629 class/my-hookactions.php:641
+#: tags/0.2.0/class/my-hookactions.php:629
+#: tags/0.2.0/class/my-hookactions.php:641
+#: tags/0.2.0.1/class/my-hookactions.php:629
+#: tags/0.2.0.1/class/my-hookactions.php:641
+#: trunk/class/my-hookactions.php:665 trunk/class/my-hookactions.php:677
 msgid "No history"
 msgstr "履歴情報はありません"
 
-#: class/my-hookactions.php:633 class/my-hookactions.php:635
+#: tags/0.2.0/class/my-hookactions.php:633
+#: tags/0.2.0/class/my-hookactions.php:635
+#: tags/0.2.0.1/class/my-hookactions.php:633
+#: tags/0.2.0.1/class/my-hookactions.php:635
+#: trunk/class/my-hookactions.php:669 trunk/class/my-hookactions.php:671
 msgid "Teachers schedule"
 msgstr "講師用予約済み情報"
 
-#: class/my-hookactions.php:634 class/my-hookactions.php:646
+#: tags/0.2.0/class/my-hookactions.php:634
+#: tags/0.2.0/class/my-hookactions.php:646
+#: tags/0.2.0.1/class/my-hookactions.php:634
+#: tags/0.2.0.1/class/my-hookactions.php:646
+#: trunk/class/my-hookactions.php:670 trunk/class/my-hookactions.php:682
 msgid "No schedule"
 msgstr "予約情報はありません"
 
-#: class/my-hookactions.php:640 class/my-hookactions.php:642
+#: tags/0.2.0/class/my-hookactions.php:640
+#: tags/0.2.0/class/my-hookactions.php:642
+#: tags/0.2.0.1/class/my-hookactions.php:640
+#: tags/0.2.0.1/class/my-hookactions.php:642
+#: trunk/class/my-hookactions.php:676 trunk/class/my-hookactions.php:678
 msgid "Members history"
 msgstr "会員受講履歴"
 
-#: class/my-hookactions.php:645 class/my-hookactions.php:647
+#: tags/0.2.0/class/my-hookactions.php:645
+#: tags/0.2.0/class/my-hookactions.php:647
+#: tags/0.2.0.1/class/my-hookactions.php:645
+#: tags/0.2.0.1/class/my-hookactions.php:647
+#: trunk/class/my-hookactions.php:681 trunk/class/my-hookactions.php:683
 msgid "Members schedule"
 msgstr "会員予約情報"
 
-#: class/my-settings.php:216
+#: tags/0.2.0/class/my-settings.php:216 tags/0.2.0.1/class/my-settings.php:216
+#: trunk/class/my-settings.php:217
 msgid "Reserved: %RESERVE_DATE% %RESERVE_TIME% %ROOM_NAME%"
 msgstr "予約: %RESERVE_DATE% %RESERVE_TIME% %ROOM_NAME%"
 
-#: class/my-settings.php:217
+#: tags/0.2.0/class/my-settings.php:217 tags/0.2.0.1/class/my-settings.php:217
+#: trunk/class/my-settings.php:218
 msgid ""
 "Reserved: %RESERVE_DATE% %RESERVE_TIME% by %USER_NAME%(Skype: %USER_SKYPE%)"
 msgstr ""
 "予約: %RESERVE_DATE% %RESERVE_TIME% by %USER_NAME%(Skype: %USER_SKYPE%)"
 
-#: class/my-settings.php:218
+#: tags/0.2.0/class/my-settings.php:218 tags/0.2.0.1/class/my-settings.php:218
+#: trunk/class/my-settings.php:219
 msgid ""
 "\n"
 "To: %USER_NAME% (Skype: %USER_SKYPE%)\n"
@@ -604,15 +852,18 @@ msgstr ""
 "%CANCEL_URL%\n"
 "\n"
 
-#: class/my-settings.php:232
+#: tags/0.2.0/class/my-settings.php:232 tags/0.2.0.1/class/my-settings.php:232
+#: trunk/class/my-settings.php:233
 msgid "Cancelled: %RESERVE_DATE% %RESERVE_TIME% %ROOM_NAME%"
 msgstr "キャンセル: %RESERVE_DATE% %RESERVE_TIME% %ROOM_NAME%"
 
-#: class/my-settings.php:233
+#: tags/0.2.0/class/my-settings.php:233 tags/0.2.0.1/class/my-settings.php:233
+#: trunk/class/my-settings.php:234
 msgid "Cancelled: %RESERVE_DATE% %RESERVE_TIME% by %USER_NAME%"
 msgstr "キャンセル: %RESERVE_DATE% %RESERVE_TIME% by %USER_NAME%"
 
-#: class/my-settings.php:234
+#: tags/0.2.0/class/my-settings.php:234 tags/0.2.0.1/class/my-settings.php:234
+#: trunk/class/my-settings.php:235
 msgid ""
 "\n"
 "To: %USER_NAME% (Skype: %USER_SKYPE%)\n"
@@ -636,15 +887,18 @@ msgstr ""
 "(受付日時: %SEND_TIME%)\n"
 "\n"
 
-#: class/my-settings.php:245
+#: tags/0.2.0/class/my-settings.php:245 tags/0.2.0.1/class/my-settings.php:245
+#: trunk/class/my-settings.php:246
 msgid "Cancelled by teacher: %RESERVE_DATE% %RESERVE_TIME% %ROOM_NAME%"
 msgstr "講師都合によるキャンセル: %RESERVE_DATE% %RESERVE_TIME% %ROOM_NAME%"
 
-#: class/my-settings.php:246
+#: tags/0.2.0/class/my-settings.php:246 tags/0.2.0.1/class/my-settings.php:246
+#: trunk/class/my-settings.php:247
 msgid "Cancelled by teacher: %RESERVE_DATE% %RESERVE_TIME% by %USER_NAME%"
 msgstr "講師都合によるキャンセル: %RESERVE_DATE% %RESERVE_TIME% by %USER_NAME%"
 
-#: class/my-settings.php:247
+#: tags/0.2.0/class/my-settings.php:247 tags/0.2.0.1/class/my-settings.php:247
+#: trunk/class/my-settings.php:248
 msgid ""
 "\n"
 "To: %USER_NAME% (Skype: %USER_SKYPE%)\n"
@@ -672,124 +926,227 @@ msgstr ""
 "(処理日時: %SEND_TIME%)\n"
 "\n"
 
-#: class/my-shortcodes.php:39 class/my-shortcodes.php:326
-#: class/my-shortcodes.php:375 class/my-shortcodes.php:424
-#: class/my-shortcodes.php:473
+#: tags/0.2.0/class/my-shortcodes.php:39
+#: tags/0.2.0/class/my-shortcodes.php:326
+#: tags/0.2.0/class/my-shortcodes.php:375
+#: tags/0.2.0/class/my-shortcodes.php:424
+#: tags/0.2.0/class/my-shortcodes.php:473
+#: tags/0.2.0.1/class/my-shortcodes.php:39
+#: tags/0.2.0.1/class/my-shortcodes.php:326
+#: tags/0.2.0.1/class/my-shortcodes.php:375
+#: tags/0.2.0.1/class/my-shortcodes.php:424
+#: tags/0.2.0.1/class/my-shortcodes.php:473 trunk/class/my-shortcodes.php:39
+#: trunk/class/my-shortcodes.php:326 trunk/class/my-shortcodes.php:375
+#: trunk/class/my-shortcodes.php:424 trunk/class/my-shortcodes.php:473
 msgid "&laquo; PREV"
 msgstr "前"
 
-#: class/my-shortcodes.php:40 class/my-shortcodes.php:327
-#: class/my-shortcodes.php:376 class/my-shortcodes.php:425
-#: class/my-shortcodes.php:474
+#: tags/0.2.0/class/my-shortcodes.php:40
+#: tags/0.2.0/class/my-shortcodes.php:327
+#: tags/0.2.0/class/my-shortcodes.php:376
+#: tags/0.2.0/class/my-shortcodes.php:425
+#: tags/0.2.0/class/my-shortcodes.php:474
+#: tags/0.2.0.1/class/my-shortcodes.php:40
+#: tags/0.2.0.1/class/my-shortcodes.php:327
+#: tags/0.2.0.1/class/my-shortcodes.php:376
+#: tags/0.2.0.1/class/my-shortcodes.php:425
+#: tags/0.2.0.1/class/my-shortcodes.php:474 trunk/class/my-shortcodes.php:40
+#: trunk/class/my-shortcodes.php:327 trunk/class/my-shortcodes.php:376
+#: trunk/class/my-shortcodes.php:425 trunk/class/my-shortcodes.php:474
 msgid "NEXT &raquo;"
 msgstr "次"
 
-#: class/my-shortcodes.php:41
+#: tags/0.2.0/class/my-shortcodes.php:41
+#: tags/0.2.0.1/class/my-shortcodes.php:41 trunk/class/my-shortcodes.php:41
 msgid "&laquo; PREV DAY"
 msgstr "前日"
 
-#: class/my-shortcodes.php:42
+#: tags/0.2.0/class/my-shortcodes.php:42
+#: tags/0.2.0.1/class/my-shortcodes.php:42 trunk/class/my-shortcodes.php:42
 msgid "NEXT DAY &raquo;"
 msgstr "翌日"
 
-#: class/my-shortcodes.php:92 class/my-shortcodes.php:179
+#: tags/0.2.0/class/my-shortcodes.php:92
+#: tags/0.2.0/class/my-shortcodes.php:179
+#: tags/0.2.0.1/class/my-shortcodes.php:92
+#: tags/0.2.0.1/class/my-shortcodes.php:179 trunk/class/my-shortcodes.php:92
+#: trunk/class/my-shortcodes.php:179
 msgid "&laquo; PREV WEEK"
 msgstr "前週"
 
-#: class/my-shortcodes.php:93 class/my-shortcodes.php:180
+#: tags/0.2.0/class/my-shortcodes.php:93
+#: tags/0.2.0/class/my-shortcodes.php:180
+#: tags/0.2.0.1/class/my-shortcodes.php:93
+#: tags/0.2.0.1/class/my-shortcodes.php:180 trunk/class/my-shortcodes.php:93
+#: trunk/class/my-shortcodes.php:180
 msgid "NEXT WEEK &raquo;"
 msgstr "翌週"
 
-#: class/my-shortcodes.php:128
+#: tags/0.2.0/class/my-shortcodes.php:128
+#: tags/0.2.0.1/class/my-shortcodes.php:128 trunk/class/my-shortcodes.php:128
 msgid "Select teacher"
-msgstr "講師を選択"
+msgstr "講師を選択してください"
 
-#: class/my-shortcodes.php:159
+#: tags/0.2.0/class/my-shortcodes.php:159
+#: tags/0.2.0.1/class/my-shortcodes.php:159 trunk/class/my-shortcodes.php:159
 #, php-format
 msgid "%s edites schedule of %s"
 msgstr "%s が %s のスケジュールを編集中"
 
-#: class/my-shortcodes.php:192 class/my-shortcodes.php:224
-#: class/my-shortcodes.php:257 class/my-shortcodes.php:289
+#: tags/0.2.0/class/my-shortcodes.php:192
+#: tags/0.2.0/class/my-shortcodes.php:224
+#: tags/0.2.0/class/my-shortcodes.php:257
+#: tags/0.2.0/class/my-shortcodes.php:289
+#: tags/0.2.0.1/class/my-shortcodes.php:192
+#: tags/0.2.0.1/class/my-shortcodes.php:224
+#: tags/0.2.0.1/class/my-shortcodes.php:257
+#: tags/0.2.0.1/class/my-shortcodes.php:289 trunk/class/my-shortcodes.php:192
+#: trunk/class/my-shortcodes.php:224 trunk/class/my-shortcodes.php:257
+#: trunk/class/my-shortcodes.php:289
 msgid "Do not have authority to show this page."
 msgstr "このページへのアクセス権がありません"
 
-#: class/my-timetable.php:372 class/my-timetable.php:384
-#: class/my-timetable.php:486
+#: tags/0.2.0/class/my-timetable.php:372 tags/0.2.0/class/my-timetable.php:384
+#: tags/0.2.0/class/my-timetable.php:486
+#: tags/0.2.0.1/class/my-timetable.php:372
+#: tags/0.2.0.1/class/my-timetable.php:384
+#: tags/0.2.0.1/class/my-timetable.php:486 trunk/class/my-timetable.php:402
+#: trunk/class/my-timetable.php:415 trunk/class/my-timetable.php:520
 msgid "FREE"
 msgstr "無料"
 
-#: class/my-timetable.php:378
+#: tags/0.2.0/class/my-timetable.php:378
+#: tags/0.2.0.1/class/my-timetable.php:378 trunk/class/my-timetable.php:409
 msgid "reserve"
 msgstr "予約"
 
-#: class/my-timetable.php:382 class/my-timetable.php:484
+#: tags/0.2.0/class/my-timetable.php:382 tags/0.2.0/class/my-timetable.php:484
+#: tags/0.2.0.1/class/my-timetable.php:382
+#: tags/0.2.0.1/class/my-timetable.php:484 trunk/class/my-timetable.php:413
+#: trunk/class/my-timetable.php:518
 msgid "Reserved"
 msgstr "予約済み"
 
-#: class/my-timetable.php:390 class/my-timetable.php:665
+#: tags/0.2.0/class/my-timetable.php:390 tags/0.2.0/class/my-timetable.php:665
+#: tags/0.2.0.1/class/my-timetable.php:390
+#: tags/0.2.0.1/class/my-timetable.php:665 trunk/class/my-timetable.php:422
+#: trunk/class/my-timetable.php:703
 msgid "cancel"
 msgstr "キャンセル"
 
-#: class/my-timetable.php:456 class/my-timetable.php:529
-#: class/my-timetable.php:721 class/my-timetable.php:918
+#: tags/0.2.0/class/my-timetable.php:456 tags/0.2.0/class/my-timetable.php:529
+#: tags/0.2.0/class/my-timetable.php:721 tags/0.2.0/class/my-timetable.php:918
+#: tags/0.2.0.1/class/my-timetable.php:456
+#: tags/0.2.0.1/class/my-timetable.php:529
+#: tags/0.2.0.1/class/my-timetable.php:721
+#: tags/0.2.0.1/class/my-timetable.php:918 trunk/class/my-timetable.php:489
+#: trunk/class/my-timetable.php:564 trunk/class/my-timetable.php:760
+#: trunk/class/my-timetable.php:959
 msgid "Reserve ID"
 msgstr "予約ID"
 
-#: class/my-timetable.php:461 class/my-timetable.php:534
-#: class/my-timetable.php:726 class/my-timetable.php:923
+#: tags/0.2.0/class/my-timetable.php:461 tags/0.2.0/class/my-timetable.php:534
+#: tags/0.2.0/class/my-timetable.php:726 tags/0.2.0/class/my-timetable.php:923
+#: tags/0.2.0.1/class/my-timetable.php:461
+#: tags/0.2.0.1/class/my-timetable.php:534
+#: tags/0.2.0.1/class/my-timetable.php:726
+#: tags/0.2.0.1/class/my-timetable.php:923 trunk/class/my-timetable.php:494
+#: trunk/class/my-timetable.php:569 trunk/class/my-timetable.php:765
+#: trunk/class/my-timetable.php:964
 msgid "User"
 msgstr "ユーザー"
 
-#: class/my-timetable.php:720 class/my-timetable.php:917
+#: tags/0.2.0/class/my-timetable.php:720 tags/0.2.0/class/my-timetable.php:917
+#: tags/0.2.0.1/class/my-timetable.php:720
+#: tags/0.2.0.1/class/my-timetable.php:917 trunk/class/my-timetable.php:759
+#: trunk/class/my-timetable.php:958
 msgid ""
 "*) When timetable is canceled by a teacher, it is closed at the same time"
 msgstr "*) 講師によるキャンセルは、同時にそのタイムテーブルをクローズします。"
 
-#: class/my-timetable.php:861 class/my-timetable.php:1733
-#: class/my-timetable.php:1743
+#: tags/0.2.0/class/my-timetable.php:861
+#: tags/0.2.0/class/my-timetable.php:1733
+#: tags/0.2.0/class/my-timetable.php:1743
+#: tags/0.2.0.1/class/my-timetable.php:861
+#: tags/0.2.0.1/class/my-timetable.php:1733
+#: tags/0.2.0.1/class/my-timetable.php:1743 trunk/class/my-timetable.php:901
+#: trunk/class/my-timetable.php:1775 trunk/class/my-timetable.php:1785
 msgid "update"
 msgstr "更新"
 
-#: class/my-timetable.php:1245
+#: tags/0.2.0/class/my-timetable.php:1245
+#: tags/0.2.0.1/class/my-timetable.php:1245 trunk/class/my-timetable.php:1287
 msgid "Date"
 msgstr "日付"
 
-#: class/my-widget.php:9
+#: tags/0.2.0/class/my-widget.php:9 tags/0.2.0.1/class/my-widget.php:9
+#: trunk/class/my-widget.php:9
 msgid "This block is displayed while member logged in."
 msgstr "このブロックは会員ユーザーのログイン中にだけ表示されます"
 
-#: class/my-widget.php:11
+#: tags/0.2.0/class/my-widget.php:11 tags/0.2.0.1/class/my-widget.php:11
+#: trunk/class/my-widget.php:11
 msgid "Members only"
 msgstr "会員専用"
 
-#: class/my-widget.php:48
+#: tags/0.2.0/class/my-widget.php:48 tags/0.2.0.1/class/my-widget.php:48
+#: trunk/class/my-widget.php:48
 msgid "Members menu"
 msgstr "会員メニュー"
 
-#: class/my-widget.php:72 class/my-widget.php:170
+#: tags/0.2.0/class/my-widget.php:72 tags/0.2.0/class/my-widget.php:170
+#: tags/0.2.0.1/class/my-widget.php:72 tags/0.2.0.1/class/my-widget.php:170
+#: trunk/class/my-widget.php:72 trunk/class/my-widget.php:170
 msgid "Edit profile"
 msgstr "プロフィール編集"
 
-#: class/my-widget.php:73 class/my-widget.php:171
+#: tags/0.2.0/class/my-widget.php:73 tags/0.2.0/class/my-widget.php:171
+#: tags/0.2.0.1/class/my-widget.php:73 tags/0.2.0.1/class/my-widget.php:171
+#: trunk/class/my-widget.php:73 trunk/class/my-widget.php:171
 msgid "Change password"
 msgstr "パスワード変更"
 
-#: class/my-widget.php:84 class/my-widget.php:182
+#: tags/0.2.0/class/my-widget.php:84 tags/0.2.0/class/my-widget.php:182
+#: tags/0.2.0.1/class/my-widget.php:84 tags/0.2.0.1/class/my-widget.php:182
+#: trunk/class/my-widget.php:84 trunk/class/my-widget.php:182
+#: trunk/class/my-widget.php:268
 msgid "Title:"
 msgstr "タイトル:"
 
-#: class/my-widget.php:107
+#: tags/0.2.0/class/my-widget.php:107 tags/0.2.0.1/class/my-widget.php:107
+#: trunk/class/my-widget.php:107
 msgid "This block is displayed while teacher logged in."
 msgstr "このブロックは講師ユーザーのログイン中にだけ表示されます"
 
-#: class/my-widget.php:109
+#: tags/0.2.0/class/my-widget.php:109 tags/0.2.0.1/class/my-widget.php:109
+#: trunk/class/my-widget.php:109
 msgid "Teachers only"
 msgstr "講師専用"
 
-#: class/my-widget.php:146
+#: tags/0.2.0/class/my-widget.php:146 tags/0.2.0.1/class/my-widget.php:146
+#: trunk/class/my-widget.php:146
 msgid "Teachers menu"
 msgstr "講師メニュー"
+
+#: trunk/class/my-history.php:177 trunk/class/my-history.php:283
+msgid "Member(Skype)"
+msgstr "会員（Skype）"
+
+#: trunk/class/my-widget.php:205
+msgid "This block is displayed while administrator logged in."
+msgstr "このブロックは管理者ユーザーのログイン中にだけ表示されます"
+
+#: trunk/class/my-widget.php:207
+msgid "Admins only"
+msgstr "管理者専用"
+
+#: trunk/class/my-widget.php:244
+msgid "Admins menu"
+msgstr "管理者メニュー"
+
+#: trunk/class/my-widget.php:257
+msgid "Dash board"
+msgstr "WordPress管理画面"
 
 #~ msgid "Cancellation deadline"
 #~ msgstr "キャンセル受付締切"

@@ -90,6 +90,7 @@ class olbInitFunction {
 		$pluginfile = dirname(plugin_dir_path(__FILE__)).'/olb-system.php';
 		add_action('widgets_init', create_function('', 'return register_widget("olbWidgetMembersMenu");'));
 		add_action('widgets_init', create_function('', 'return register_widget("olbWidgetTeachersMenu");'));
+		add_action('widgets_init', create_function('', 'return register_widget("olbWidgetAdminsMenu");'));
 		register_activation_hook($pluginfile, array('olbHookAction', 'activation'));
 		add_action('init', array(&$this, 'init'));
 	}
