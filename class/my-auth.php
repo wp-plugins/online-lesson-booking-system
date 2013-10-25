@@ -109,6 +109,49 @@ class olbAuth {
 		return $userdata;
 	}
 
+	/**  
+	 *	特定ユーザーの情報をhtmlで取得: Get user info (html)
+	 */
+	public static function htmlUser($userdata){
+		$format = <<<EOD
+<table id="members_info" class="members_info">
+<tr><th>%LABEL_ID%</th><td>%USER_ID%</td></tr>
+<tr><th>%LABEL_NAME%</td><td>%USER_NAME%</td></tr>
+<tr><th>%LABEL_SKYPE%</th><td>%USER_SKYPE%</td></tr>
+<tr><th>%LABEL_TERM%</th><td>%USER_TERM%</td></tr>
+<tr><th>%LABEL_EMAIL%</th><td>%USER_EMAIL%</td></tr>
+<tr><th>%LABEL_FIRSTNAME%</th><td>%USER_FIRSTNAME%</td></tr>
+<tr><th>%LABEL_LASTNAME%</th><td>%USER_LASTNAME%</td></tr>
+<tr><th>%LABEL_ADDRESS%</th><td>%USER_ADDRESS%</td></tr>
+<tr><th>%LABEL_PHONE%</th><td>%USER_PHONE%</td></tr>
+</table>
+EOD;
+		$search = array(
+			'%LABEL_ID%',        '%USER_ID%',
+			'%LABEL_NAME%',      '%USER_NAME%',
+			'%LABEL_SKYPE%',     '%USER_SKYPE%',
+			'%LABEL_TERM%',     '%USER_TERM%',
+			'%LABEL_EMAIL%',     '%USER_EMAIL%',
+			'%LABEL_FIRSTNAME%', '%USER_FIRSTNAME%',
+			'%LABEL_LASTNAME%',  '%USER_LASTNAME%',
+			'%LABEL_ADDRESS%',   '%USER_ADDRESS%',
+			'%LABEL_PHONE%',     '%USER_PHONE%',
+		);
+		$replace = array(
+			__('ID', OLBsystem::TEXTDOMAIN), $userdata['id'],
+			__('Name', OLBsystem::TEXTDOMAIN), $userdata['name'],
+			__('Skype ID', OLBsystem::TEXTDOMAIN), $userdata['skype'],
+			__('Term', OLBsystem::TEXTDOMAIN), $userdata['olbterm'],
+			__('Email', OLBsystem::TEXTDOMAIN), $userdata['email'],
+			__('First name', OLBsystem::TEXTDOMAIN), $userdata['firstname'],
+			__('Last name', OLBsystem::TEXTDOMAIN), $userdata['lastname'],
+			__('Address', OLBsystem::TEXTDOMAIN), $userdata['address'],
+			__('Phone', OLBsystem::TEXTDOMAIN), $userdata['phone'],
+		);
+		$html = str_replace($search, $replace, $format);
+		return $html;
+	}
+
 	/** 
 	 *	管理者の検査: Administrator inspection 
 	 */

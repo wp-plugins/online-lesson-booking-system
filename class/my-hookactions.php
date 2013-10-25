@@ -510,22 +510,71 @@ EOD;
 	/** 
 	 *	データベース構造の更新
 	 */
-	public static function db_update_check() {
-		global $wpdb;
+	public static function plugin_update_check() {
+		global $wpdb, $olb;
 
-		$installed_version = get_option('olbversion');
-		$new_version = $installed_version;
-		$new_version['plugin'] = OLBsystem::PLUGIN_VERSION;
-		if($installed_version['db'] >= OLBsystem::DB_VERSION ) {
+		if(!is_admin()){
 			return;
 		}
 
-		// UPDATE TABLE
-		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
-		if($wpdb->get_var("SHOW TABLES LIKE '{$prefix}timetable'") == $prefix.'timetable' &&
-			$wpdb->get_var("SHOW TABLES LIKE '{$prefix}history'") == $prefix.'history') {
-			require_once(ABSPATH.'wp-admin/includes/upgrade.php');
-			$sql = <<<EOD
+		$installed_version = get_option('olbversion');
+		$new_version = $installed_version;
+
+		// PLUGIN
+		if($installed_version['plugin'] < OLBsystem::PLUGIN_VERSION) {
+
+			// Add 'Members info' page (ver 0.3.0 -> 0.3.1)
+			if($installed_version['plugin'] < '0.3.1'
+				&& empty(get_page_by_path($pages['edit_schedule_page'].'/'.$default['specialpages']['members_info_page'])->ID)){
+
+				$pages = OLBsystem::getPluginOptions( 'specialpages' );
+				$default = OLBsystem::setDefaultOptions();
+
+				$parent = get_page_by_path($pages['edit_schedule_page']);
+				$parent_id = $parent->ID;
+				$args = array(
+					'post_title'     => __('Members information', OLBsystem::TEXTDOMAIN),
+					'post_content'   => "[olb_refer_members_info]\n"
+								   ."<h3>".__('Recent history', OLBsystem::TEXTDOMAIN)."</h3>\n"
+								   ."[olb_refer_members_history]<p>".__('No history', OLBsystem::TEXTDOMAIN)."</p>[/olb_refer_members_history]",
+					'post_name'     => $default['specialpages']['members_info_page'],
+					'post_parent'    => $parent_id,
+					'post_status'    => 'publish',
+					'post_type'      => 'page',
+					'comment_status' => 'closed',
+					'ping_status'    => 'closed'
+				);
+				wp_insert_post($args);
+				$options = get_option(OLBsystem::TEXTDOMAIN);
+				$options['specialpages']['members_info_page'] = $default['specialpages']['members_info_page'];
+				update_option(OLBsystem::TEXTDOMAIN, $options);
+			}
+			$new_version['plugin'] = OLBsystem::PLUGIN_VERSION;
+			update_option('olbversion', $new_version);
+		}
+	}
+
+	/** 
+	 *	データベース構造の更新
+	 */
+	public static function db_update_check() {
+		global $wpdb, $olb;
+
+		if(!is_admin()){
+			return;
+		}
+
+		$installed_version = get_option('olbversion');
+		$new_version = $installed_version;
+		// DATABASE
+		if($installed_version['db'] < OLBsystem::DB_VERSION ) {
+			// UPDATE TABLE  (ver 0.2.0.1 -> 0.3.0)
+			$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
+			if($installed_version['db'] < '0.3.0' 
+				&& $wpdb->get_var("SHOW TABLES LIKE '{$prefix}timetable'") == $prefix.'timetable'
+				&& $wpdb->get_var("SHOW TABLES LIKE '{$prefix}history'") == $prefix.'history') {
+				require_once(ABSPATH.'wp-admin/includes/upgrade.php');
+				$sql = <<<EOD
 ALTER TABLE {$prefix}timetable 
 DROP COLUMN id,
 DROP COLUMN user_id,
@@ -534,16 +583,17 @@ DROP COLUMN absent,
 ADD COLUMN seats int(11) NOT NULL COMMENT 'Seats',
 ADD PRIMARY KEY (`date`,`time`,`room_id`);
 EOD;
-			$wpdb->query($sql);
+				$wpdb->query($sql);
 
-			$sql = <<<EOD
+				$sql = <<<EOD
 ALTER TABLE {$prefix}history 
 MODIFY COLUMN id bigint(20) NOT NULL COMMENT 'Reserve ID' AUTO_INCREMENT;
 EOD;
-			$wpdb->query($sql);
-			$new_version['db'] = OLBsystem::DB_VERSION;
+				$wpdb->query($sql);
+				$new_version['db'] = OLBsystem::DB_VERSION;
+			}
+			update_option('olbversion', $new_version);
 		}
-		update_option('olbversion', $new_version);
 	}
 
 	/** 
@@ -669,6 +719,13 @@ Hello [olb_member_data key="name"].
 					'post_title'     => __('Teachers schedule', OLBsystem::TEXTDOMAIN),
 					'post_content'   => '[olb_teachers_schedule]<p>'.__('No schedule', OLBsystem::TEXTDOMAIN).'</p>[/olb_teachers_schedule]',
 					'post_name'     => __('Teachers schedule', OLBsystem::TEXTDOMAIN),
+				),
+				'members_info' => array(
+					'post_title'     => __('Members information', OLBsystem::TEXTDOMAIN),
+					'post_content'   => "[olb_refer_members_info]\n"
+									   ."<h3>".__('Recent history', OLBsystem::TEXTDOMAIN)."</h3>\n"
+									   ."[olb_refer_members_history]<p>".__('No history', OLBsystem::TEXTDOMAIN)."</p>[/olb_refer_members_history]",
+					'post_name'     => $specialpages['members_info_page'],
 				),
 			),
 			'member_page' => array(

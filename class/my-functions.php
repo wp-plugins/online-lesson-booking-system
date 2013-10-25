@@ -127,6 +127,8 @@ class olbInitFunction {
 		add_action('olb_cron',  array('olbHookAction', 'olb_cron_do'));
 		add_action('wp', array('olbHookAction', 'olb_cron_update'));
 
+		add_action('admin_notices', array('OLBsystem', 'showAdminNotices'));
+
 		add_action('admin_init', array('olbInitFunction', 'hideMenuAdminpage'));
 		add_action('manage_users_columns', array('olbHookAction', 'addUsersColumns'));
 		add_action('manage_users_custom_column', array('olbHookAction', 'customUsersColumn'), 10, 3);
@@ -173,6 +175,12 @@ class olbInitFunction {
 
 		// 講師用評価フォーム: Report form
 		add_shortcode('olb_report_form', array('olbShortcode', 'showReportForm'));
+
+		// 会員情報参照: Refer members information 
+		add_shortcode('olb_refer_members_info', array('olbShortcode', 'referMembersInfo'));
+
+		// 会員受講履歴参照: Refer members attendance history
+		add_shortcode('olb_refer_members_history', array('olbShortcode', 'referMembersHistory'));
 
 		// 会員受講履歴: Shows member's attendance history 
 		add_shortcode('olb_members_history', array('olbShortcode', 'showMembersHistory'));

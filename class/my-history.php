@@ -187,10 +187,17 @@ class olbHistory extends olbPaging {
 				if($r['absent']){
 					$reportlink .= sprintf(' <span class="absent">%s</span>', __('Absent', OLBsystem::TEXTDOMAIN));
 				}
+				$user_name = $user->data['name'];
+				$members_info_url = get_permalink(get_page_by_path($olb->edit_schedule_page.'/'.$olb->members_info_page)->ID);
+				if($members_info_url) {
+					$members_info_url .= (strstr($members_info_url, '?')) ? '&' : '?';
+					$members_info_url .= 'user_id='.$user->data['id'];
+					$user_name = sprintf('<a href="%s">%s</a>', $members_info_url, $user->data['name']);
+				}
 				printf('<td class="date">%s %s</td><td class="member">%s(%s)</td><td class="absent">%s</td>',
 					$r['date'],
 					substr($r['time'], 0, 5),
-					$user->data['name'],
+					$user_name,
 					$user->data['skype'],
 					$reportlink
 					);
@@ -297,12 +304,19 @@ class olbHistory extends olbPaging {
 					$cancellink = $olb->htmlCancelLink($time, __('CANCEL', OLBsystem::TEXTDOMAIN));
 				}
 
+				$user_name = $user->data['name'];
+				$members_info_url = get_permalink(get_page_by_path($olb->edit_schedule_page.'/'.$olb->members_info_page)->ID);
+				if($members_info_url) {
+					$members_info_url .= (strstr($members_info_url, '?')) ? '&' : '?';
+					$members_info_url .= 'user_id='.$user->data['id'];
+					$user_name = sprintf('<a href="%s">%s</a>', $members_info_url, $user->data['name']);
+				}
 				$waiting = self::waitingTime($r['date'], $r['time'], current_time('timestamp'));
 				printf('<td class="date">%s %s</td><td class="waiting">%s</td><td class="member">%s(%s)</td><td class="cancel">%s</td>',
 					$r['date'],
 					substr($r['time'], 0, 5),
 					$waiting,
-					$user->data['name'],
+					$user_name,
 					$user->data['skype'],
 					$cancellink
 					);

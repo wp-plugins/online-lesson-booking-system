@@ -319,6 +319,16 @@ class olbAdminPage {
 </tr>
 
 <tr valign="top">
+<th scope="row"><?php _e('Refer members info(by teacher) page', OLBsystem::TEXTDOMAIN); ?></th>
+<td>
+<input type="text" name="olb_options[members_info_page]" id="" value="<?php echo $options['members_info_page']; ?>" />
+<p class="description">
+<?php printf(__('The page which inserted the short code %s', OLBsystem::TEXTDOMAIN), '"<span style="color:#093">[olb_refer_members_info]</span>"'); ?>
+</p>
+</td>
+</tr>
+
+<tr valign="top">
 <th scope="row"><?php _e('Members my page', OLBsystem::TEXTDOMAIN); ?></th>
 <td>
 <input type="text" name="olb_options[member_page]" id="" value="<?php echo $options['member_page']; ?>" size="20" />

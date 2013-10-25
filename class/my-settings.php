@@ -9,7 +9,7 @@ class OLBsystem {
 	// システム設定
 	const TABLEPREFIX = 'olb_';
 	const TEXTDOMAIN = 'olbsystem';
-	const PLUGIN_VERSION = '0.3.0';
+	const PLUGIN_VERSION = '0.3.1';
 	const DB_VERSION = '0.3.0';
 
 	// タイムテーブル基本設定
@@ -45,6 +45,7 @@ class OLBsystem {
 	public $report_form_page    = null;		// 評価ページ
 	public $edit_schedule_page  = null;		// スケジュール設定ページ
 	public $login_page          = null;		// ログインページ
+	public $members_info_page   = null;		// 会員情報参照ページ
 
 	public $preserve_past       = null;		// 過去スケジュール保存日数
 	public $cron_interval       = null;		// cron実行間隔
@@ -54,8 +55,9 @@ class OLBsystem {
 	 */
 	public function __construct() {
 		$mywpinit = new olbInitFunction();
-		add_action( 'plugins_loaded', array('olbHookAction', 'db_update_check'), 8 );
 		add_action( 'plugins_loaded', array( &$this, 'init' ) );
+		add_action( 'plugins_loaded', array('olbHookAction', 'db_update_check'), 11 );
+		add_action( 'init', array('olbHookAction', 'plugin_update_check'), 11 );
 	}
 	
 	/**
@@ -77,6 +79,7 @@ class OLBsystem {
 		$this->edit_schedule_page  = $pages['edit_schedule_page'];			// スケジュール設定ページ
 		$this->member_page         = $pages['member_page'];					// 会員ページ
 		$this->login_page          = $pages['login_page'];					// ログインページ
+		$this->members_info_page   = $pages['members_info_page'];			// 会員情報参照ページ
 
 		$this->starttime           = $options['starttime'];					// 表示開始時刻(default: 09:00)
 		$this->endtime             = $options['endtime'];					// 表示終了時刻(default: 20:00)
@@ -209,6 +212,7 @@ class OLBsystem {
 				'edit_schedule_page'  => 'editschedule',
 				'member_page'         => 'mypage',
 				'login_page'          => '',
+				'members_info_page'   => 'membersinfo',
 				),
 
 			'mail' => array(
@@ -263,6 +267,18 @@ Your reservation was canceled by teacher.
 		return $default_options;
 	}
 
+	/** 
+	 *	管理画面へのお知らせ: Show Admin-page notices
+	 */
+	public static function showAdminNotices(){
+		if (0){
+			 echo <<<EOD
+'<div class="updated">
+<p>(Admin notices)</p>
+</div>'
+EOD;
+		}
+	}
 
 }
 ?>

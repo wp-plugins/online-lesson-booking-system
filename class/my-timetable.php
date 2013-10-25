@@ -702,6 +702,14 @@ EOD;
 				$action = 'cancel';
 				$submit = __('cancel', OLBsystem::TEXTDOMAIN);
 
+				$user_name = $user->data['name'];
+				$members_info_url = get_permalink(get_page_by_path($olb->edit_schedule_page.'/'.$olb->members_info_page)->ID);
+				if($members_info_url) {
+					$members_info_url .= (strstr($members_info_url, '?')) ? '&' : '?';
+					$members_info_url .= 'user_id='.$user->data['id'];
+					$user_name = sprintf('<a href="%s">%s</a>', $members_info_url, $user->data['name']);
+				}
+
 				$format = <<<EOD
 <form id="reservation" class="reservation" method="post" action="%FORMACTION%">
 <p>%ATTENTION%</p>
@@ -763,7 +771,7 @@ EOD;
 						$room['name'],
 						$olb->room_id,
 						__('User', OLBsystem::TEXTDOMAIN),
-						$user->data['name'],
+						$user_name,
 						$user->data['id'],
 						$user->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
@@ -901,6 +909,14 @@ EOD;
 				$submit = __('update', OLBsystem::TEXTDOMAIN);
 				$absent_checked = ($record['absent']) ? 'checked="checked"' : '';
 
+				$user_name = $user->data['name'];
+				$members_info_url = get_permalink(get_page_by_path($olb->edit_schedule_page.'/'.$olb->members_info_page)->ID);
+				if($members_info_url) {
+					$members_info_url .= (strstr($members_info_url, '?')) ? '&' : '?';
+					$members_info_url .= 'user_id='.$user->data['id'];
+					$user_name = sprintf('<a href="%s">%s</a>', $members_info_url, $user->data['name']);
+				}
+
 				$format = <<<EOD
 <form id="reservation" class="reservation" method="post" action="%FORMACTION%">
 <p>%ATTENTION%</p>
@@ -962,7 +978,7 @@ EOD;
 						$room['name'],
 						$olb->room_id,
 						__('User', OLBsystem::TEXTDOMAIN),
-						$user->data['name'],
+						$user_name,
 						$user->data['id'],
 						$user->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),

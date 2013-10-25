@@ -161,6 +161,9 @@ if($body){
 			$child = get_posts('post_type=page&post_parent='.get_page_by_path($olb->edit_schedule_page)->ID);
 			if(!empty($child)){
 				foreach($child as $c){
+					if($c->post_name == $olb->members_info_page) {
+						continue;
+					}
 					$menu[] = sprintf('<li><a href="%s">%s</a></li>',
 						get_permalink($c->ID),
 						$c->post_title);

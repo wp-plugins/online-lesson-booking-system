@@ -13,6 +13,22 @@
 	font-size: x-small;
 	padding: 0 5px;
 }
+/*
+ *	Member's information
+ */
+table.members_info {
+	color: #333;
+	text-align: left;
+}
+table.members_info th {
+	padding: 3px;
+	width: 80px;
+}
+table.members_info td {
+	padding: 3px;
+}
+
+
 table.edit_schedule th, table.edit_schedule td,
 table.daily_schedule th, table.daily_schedule td,
 table.single_schedule_time th, table.single_schedule_status td,

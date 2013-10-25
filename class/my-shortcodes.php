@@ -294,6 +294,89 @@ EOD;
 	}
 
 	/** 
+	 *	[ショートコード]会員情報参照: [Short code]Refer members information
+	 */
+	public static function referMembersInfo($atts, $content = null){
+		global $olb;
+		extract(
+			shortcode_atts(
+				array(
+				),
+				$atts
+			)
+		);
+
+		ob_start();
+		if($olb->operator->isLoggedIn() && ($olb->operator->isRoomManager() || $olb->operator->isAdmin())
+			&& isset($_SERVER['QUERY_STRING']) && isset($_GET['user_id'])) {
+			$user = olbAuth::getUser($_GET['user_id']);
+			if(!empty($user)){
+				echo olbAuth::htmlUser($user);
+			}
+		}
+
+		$html = ob_get_contents();
+		ob_end_clean();
+		return $html;
+	}
+
+	/** 
+	 *	[ショートコード]会員受講履歴参照: [Short code ] Refer member's attendance history 
+	 */
+	public static function referMembersHistory($atts, $content = null){
+		global $olb;
+		extract(
+			shortcode_atts(
+				array(
+					'perpage' => 10,
+					'pagenavi' => false,
+				),
+				$atts
+			)
+		);
+
+		ob_start();
+		if($olb->operator->isLoggedIn() && ($olb->operator->isRoomManager() || $olb->operator->isAdmin())
+			&& isset($_SERVER['QUERY_STRING']) && isset($_GET['user_id'])) {
+			$user = olbAuth::getUser($_GET['user_id']);
+			if(!empty($user)){
+				$records = new olbHistory('history', 'user', $user['id'], $perpage);
+				if($records->recordmax){
+					if($pagenavi){
+						$format = <<<EOD
+<div id="list_pagenavi" class="list_pagenavi">
+<div id="prev_page" class="prev_page">%PREV_PAGE%</div>
+<div id="next_page" class="next_page">%NEXT_PAGE%</div>
+</div>
+EOD;
+						$search = array(
+								'%PREV_PAGE%',
+								'%NEXT_PAGE%',
+							);
+						$text_prev = __('&laquo; PREV', OLBsystem::TEXTDOMAIN);
+						$text_next = __('NEXT &raquo;', OLBsystem::TEXTDOMAIN);
+						$replace = array(
+								$records->getPrevPageLink(-1, $text_prev, $_SERVER['QUERY_STRING']),
+								$records->getNextPageLink( 1, $text_next, $_SERVER['QUERY_STRING']),
+							);
+						echo str_replace($search, $replace, $format);
+					}
+					echo $records->htmlMembersHistory();
+				}
+				else {
+					echo $content;
+				}
+			}
+			else {
+				echo $content;
+			}
+		}
+		$html = ob_get_contents();
+		ob_end_clean();
+		return $html;
+	}
+
+	/** 
 	 *	[ショートコード]会員受講履歴: [Short code ] Member's attendance history 
 	 */
 	public static function showMembersHistory($atts, $content = null){

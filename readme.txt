@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.6.1
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,10 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Changelog ==
 
+= 0.3.1 =
+
+* "Members info" page was added one of special page
+
 = 0.3.0 =
 
 * Table structure and processing were changed
@@ -87,16 +91,13 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Upgrade Notice ==
 
-= 0.3.0 =
+= 0.3.1 =
 
-In order to give a reservation-id sequentially, table structure and processing were changed. 
-"Adminis only" widget was added. Activate that widget, if necessary.
-And, some bugs were corrected.
+"Members info" page and its shortcode were added as one of special page.
+"Members info" page is referred from some following pages, in order to check a member information.
 
-= 0.2.0.1 =
+* “Cancellation form for teacher” page
+* “Report form for teacher” page
+* “Teachers history” page
+* “Teachers schedule” page.
 
-URL-parameter in a redirection place after updating "scheduler for teacher" was corrected.
-
-= 0.2.0 =
-
-Nothing.
