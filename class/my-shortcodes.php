@@ -119,48 +119,18 @@ EOD;
 		);
 
 		ob_start();
-		if($olb->operator->isLoggedIn() && $olb->operator->isAdmin() && !isset($olb->qs['room_id'])){
-			$error = 'CHOOSE_TEACHER';
-			echo olbFunction::errorMessage($error);
-			//echo '<p>講師が指定されていません。</p>';
-			$rooms = olbRoom::getAll();
-			if(!empty($rooms)){
-				echo '<p>'.__('Select teacher', OLBsystem::TEXTDOMAIN).'</p>';
-				//echo "<p>スケジュールを編集する講師をクリックします</p>\n";
-				echo "<ul>\n";
-				$url = get_permalink(get_page_by_path($olb->edit_schedule_page)->ID);
-				foreach($rooms as $r){
-					if(strstr($url, '?')) {
-						$query_string = sprintf('&room_id=%d', $r['id']);
-					}
-					else {
-						$query_string = sprintf('&room_id=%d', $r['id']);
-					}
-					printf('<li><a href="%s%s">%s</a></li>'."\n", $url, $query_string, $r['name']);
-				}
-				echo "</ul>\n";
-			}
-			else {
-				$error = 'NO_TEACHERS';
-				echo olbFunction::errorMessage($error);
-				//echo '<p>現在、講師は登録されていません</p>';
-			}
-		}
-		else if($olb->operator->isLoggedIn() && ($olb->operator->isRoomManager() || $olb->operator->isAdmin())) {
-			$room = olbRoom::get($olb->room_id);
-			if(empty($room['id'])){
-				$error = 'NONEXISTENT_TEACHER';
-				echo olbFunction::errorMessage($error);
-				//echo '<p>指定された講師は存在しません</p>';
-			}
-			else {
-				printf('<h3>%s</h3>'."\n", $room['name']);
-				if($olb->operator->isAdmin()){
-					$format = __('%s edites schedule of %s', OLBsystem::TEXTDOMAIN);
-					printf('<p>'.$format.'<p>'."\n", $olb->operator->data['name'], $room['name']);
-					//printf('<p>%sさんが%sさんのスケジュールを編集しています<p>'."\n", $admin->data['name'], $user->data['name']);
-				}
-				$format = <<<EOD
+		$target_user = false;
+		$args = array(
+			'pretends' => 'teacher',
+		);
+		$target_user = apply_filters( 'olb_admin_pretending_user', $target_user, $args );
+
+		if( $olb->operator->isLoggedIn() && ( $olb->operator->isRoomManager() || !empty( $target_user ) ) ) {
+			$room_id = ( !empty( $target_user ) ) ? $target_user->data['id'] : $olb->room_id;
+			$room = olbRoom::get( $room_id );
+
+			printf('<h3>%s</h3>'."\n", $room['name']);
+			$format = <<<EOD
 <div id="list_pagenavi" class="list_pagenavi">
 <div id="prev_page" class="prev_page">&nbsp;</div>
 <div id="list_datenavi" class="list_datenavi">
@@ -171,25 +141,26 @@ EOD;
 <div id="next_page" class="next_page">&nbsp;</div>
 </div>
 EOD;
-				$search = array(
-						'%PREV_DATE%',
-						'%CURRENT_DATE%',
-						'%NEXT_DATE%',
-					);
-				$text_prevweek = __('&laquo; PREV WEEK', OLBsystem::TEXTDOMAIN);
-				$text_nextweek = __('NEXT WEEK &raquo;', OLBsystem::TEXTDOMAIN);
-				$replace = array(
-						olbPaging::getPrevDateLink($olb->startdate, -7, $text_prevweek, $_SERVER['QUERY_STRING']),
-						$olb->startdate,
-						olbPaging::getNextDateLink($olb->startdate,  7, $text_nextweek, $_SERVER['QUERY_STRING']),
-					);
-				echo str_replace($search, $replace, $format);
-				echo $olb->htmlEditSchedule();
-				echo str_replace($search, $replace, $format);
-			}
+			$search = array(
+					'%PREV_DATE%',
+					'%CURRENT_DATE%',
+					'%NEXT_DATE%',
+				);
+			$text_prevweek = __('&laquo; PREV WEEK', OLBsystem::TEXTDOMAIN);
+			$text_nextweek = __('NEXT WEEK &raquo;', OLBsystem::TEXTDOMAIN);
+			$replace = array(
+					olbPaging::getPrevDateLink($olb->startdate, -7, $text_prevweek, $_SERVER['QUERY_STRING']),
+					$olb->startdate,
+					olbPaging::getNextDateLink($olb->startdate,  7, $text_nextweek, $_SERVER['QUERY_STRING']),
+				);
+			echo str_replace($search, $replace, $format);
+			echo $olb->htmlEditSchedule();
+			echo str_replace($search, $replace, $format);
 		}
 		else {
-			echo __('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN);
+			if ( !$olb->operator->isAdmin()) {
+				printf( '<div class="alert alert-error">%s</div>', __('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN) );
+			}
 		}
 		$html = ob_get_contents();
 		ob_end_clean();
@@ -221,7 +192,7 @@ EOD;
 			}
 		}
 		else {
-			_e('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN);
+			printf( '<div class="alert alert-error">%s</div>', __('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN) );
 		}
 		$html = ob_get_contents();
 		ob_end_clean();
@@ -254,7 +225,7 @@ EOD;
 			}
 		}
 		else {
-			_e('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN);
+			printf( '<div class="alert alert-error">%s</div>', __('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN) );
 		}
 		$html = ob_get_contents();
 		ob_end_clean();
@@ -286,7 +257,7 @@ EOD;
 			}
 		}
 		else {
-			_e('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN);
+			printf( '<div class="alert alert-error">%s</div>', __('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN) );
 		}
 		$html = ob_get_contents();
 		ob_end_clean();
@@ -307,12 +278,25 @@ EOD;
 		);
 
 		ob_start();
-		if($olb->operator->isLoggedIn() && ($olb->operator->isRoomManager() || $olb->operator->isAdmin())
-			&& isset($_SERVER['QUERY_STRING']) && isset($_GET['user_id'])) {
-			$user = olbAuth::getUser($_GET['user_id']);
-			if(!empty($user)){
-				echo olbAuth::htmlUser($user);
+		if($olb->operator->isLoggedIn() && ( $olb->operator->isRoomManager() || $olb->operator->isAdmin() ) ){
+			if ( isset( $olb->qs['user_id'] ) ) {
+				$user = olbAuth::getUser($_GET['user_id']);
+				if(!empty($user)){
+					echo olbAuth::htmlUser($user);
+				}
+				else {
+					$error = 'NONEXISTENT_MEMBER';
+				}
 			}
+			else {
+				$error = 'PARAMETER_INSUFFICIENT';
+			}
+			if ( $error ) {
+				printf( '<div class="alert alert-error">%s</div>', apply_filters( 'olb_error', $information, $error ) );
+			}
+		}
+		else {
+			printf( '<div class="alert alert-error">%s</div>', __('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN) );
 		}
 
 		$html = ob_get_contents();
@@ -336,40 +320,34 @@ EOD;
 		);
 
 		ob_start();
-		if($olb->operator->isLoggedIn() && ($olb->operator->isRoomManager() || $olb->operator->isAdmin())
-			&& isset($_SERVER['QUERY_STRING']) && isset($_GET['user_id'])) {
-			$user = olbAuth::getUser($_GET['user_id']);
-			if(!empty($user)){
-				$records = new olbHistory('history', 'user', $user['id'], $perpage);
-				if($records->recordmax){
-					if($pagenavi){
-						$format = <<<EOD
-<div id="list_pagenavi" class="list_pagenavi">
-<div id="prev_page" class="prev_page">%PREV_PAGE%</div>
-<div id="next_page" class="next_page">%NEXT_PAGE%</div>
-</div>
-EOD;
-						$search = array(
-								'%PREV_PAGE%',
-								'%NEXT_PAGE%',
-							);
-						$text_prev = __('&laquo; PREV', OLBsystem::TEXTDOMAIN);
-						$text_next = __('NEXT &raquo;', OLBsystem::TEXTDOMAIN);
-						$replace = array(
-								$records->getPrevPageLink(-1, $text_prev, $_SERVER['QUERY_STRING']),
-								$records->getNextPageLink( 1, $text_next, $_SERVER['QUERY_STRING']),
-							);
-						echo str_replace($search, $replace, $format);
+		if($olb->operator->isLoggedIn() && ($olb->operator->isRoomManager() || $olb->operator->isAdmin() ) ) {
+			if ( isset($olb->qs['user_id']) ) {
+				$user = olbAuth::getUser($olb->qs['user_id']);
+				if(!empty($user)){
+					$records = new olb_member_history( $user['id'], $perpage);
+					if($records->recordmax){
+						if($pagenavi){
+							echo $records->page_navi($records);
+						}
+						echo $records->html();
 					}
-					echo $records->htmlMembersHistory();
+					else {
+						echo $content;
+					}
 				}
 				else {
-					echo $content;
+					$error = 'NONEXISTENT_MEMBER';
 				}
 			}
 			else {
-				echo $content;
+				$error = 'PARAMETER_INSUFFICIENT';
 			}
+			if ( $error ) {
+				printf( '<div class="alert alert-error">%s</div>', apply_filters( 'olb_error', $information, $error ) );
+			}
+		}
+		else {
+			printf( '<div class="alert alert-error">%s</div>', __('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN) );
 		}
 		$html = ob_get_contents();
 		ob_end_clean();
@@ -392,29 +370,20 @@ EOD;
 		);
 
 		ob_start();
-		if($olb->operator->isLoggedIn() && $olb->operator->isMember()){
-			$records = new olbHistory('history', 'user', $olb->operator->data['id'], $perpage);
+		$target_user = false;
+		$args = array(
+			'pretends' => 'user',
+		);
+		$target_user = apply_filters( 'olb_admin_pretending_user', $target_user, $args );
+
+		if( $olb->operator->isLoggedIn() && ( $olb->operator->isMember() || !empty( $target_user ) ) ) {
+			$user_id = ( !empty( $target_user ) ) ? $target_user->data['id'] : $olb->operator->data['id'];
+			$records = new olb_member_history( $user_id, $perpage);
 			if($records->recordmax){
 				if($pagenavi){
-					$format = <<<EOD
-<div id="list_pagenavi" class="list_pagenavi">
-<div id="prev_page" class="prev_page">%PREV_PAGE%</div>
-<div id="next_page" class="next_page">%NEXT_PAGE%</div>
-</div>
-EOD;
-					$search = array(
-							'%PREV_PAGE%',
-							'%NEXT_PAGE%',
-						);
-					$text_prev = __('&laquo; PREV', OLBsystem::TEXTDOMAIN);
-					$text_next = __('NEXT &raquo;', OLBsystem::TEXTDOMAIN);
-					$replace = array(
-							$records->getPrevPageLink(-1, $text_prev, $_SERVER['QUERY_STRING']),
-							$records->getNextPageLink( 1, $text_next, $_SERVER['QUERY_STRING']),
-						);
-					echo str_replace($search, $replace, $format);
+					echo $records->page_navi($records);
 				}
-				echo $records->htmlMembersHistory();
+				echo $records->html();
 			}
 			else {
 				echo $content;
@@ -441,29 +410,20 @@ EOD;
 		);
 
 		ob_start();
-		if($olb->operator->isLoggedIn() && $olb->operator->isMember()){
-			$records = new olbHistory('future', 'user', $olb->operator->data['id'], $perpage);
+		$target_user = false;
+		$args = array(
+			'pretends' => 'user',
+		);
+		$target_user = apply_filters( 'olb_admin_pretending_user', $target_user, $args );
+
+		if( $olb->operator->isLoggedIn() && ( $olb->operator->isMember() || !empty( $target_user ) ) ) {
+			$user_id = ( !empty( $target_user ) ) ? $target_user->data['id'] : $olb->operator->data['id'];
+			$records = new olb_member_schedule($user_id, $perpage);
 			if($records->recordmax){
 				if($pagenavi){
-					$format = <<<EOD
-<div id="list_pagenavi" class="list_pagenavi">
-<div id="prev_page" class="prev_page">%PREV_PAGE%</div>
-<div id="next_page" class="next_page">%NEXT_PAGE%</div>
-</div>
-EOD;
-					$search = array(
-							'%PREV_PAGE%',
-							'%NEXT_PAGE%',
-						);
-					$text_prev = __('&laquo; PREV', OLBsystem::TEXTDOMAIN);
-					$text_next = __('NEXT &raquo;', OLBsystem::TEXTDOMAIN);
-					$replace = array(
-							$records->getPrevPageLink(-1, $text_prev, $_SERVER['QUERY_STRING']),
-							$records->getNextPageLink( 1, $text_next, $_SERVER['QUERY_STRING']),
-						);
-					echo str_replace($search, $replace, $format);
+					echo $records->page_navi($records);
 				}
-				echo $records->htmlMembersSchedule();
+				echo $records->html();
 			}
 			else {
 				echo $content;
@@ -490,29 +450,20 @@ EOD;
 		);
 
 		ob_start();
-		if($olb->operator->isLoggedIn() && $olb->operator->isRoomManager()){
-			$records = new olbHistory('history', 'room', $olb->operator->data['id'], $perpage);
+		$target_user = false;
+		$args = array(
+			'pretends' => 'teacher',
+		);
+		$target_user = apply_filters( 'olb_admin_pretending_user', $target_user, $args );
+
+		if($olb->operator->isLoggedIn() && ( $olb->operator->isRoomManager() || !empty( $target_user ) ) ){
+			$room_id = ( !empty( $target_user ) ) ? $target_user->data['id'] : $olb->operator->data['id'];
+			$records = new olb_room_history( $room_id, $perpage);
 			if($records->recordmax){
 				if($pagenavi){
-					$format = <<<EOD
-<div id="list_pagenavi" class="list_pagenavi">
-<div id="prev_page" class="prev_page">%PREV_PAGE%</div>
-<div id="next_page" class="next_page">%NEXT_PAGE%</div>
-</div>
-EOD;
-					$search = array(
-							'%PREV_PAGE%',
-							'%NEXT_PAGE%',
-						);
-					$text_prev = __('&laquo; PREV', OLBsystem::TEXTDOMAIN);
-					$text_next = __('NEXT &raquo;', OLBsystem::TEXTDOMAIN);
-					$replace = array(
-							$records->getPrevPageLink(-1, $text_prev, $_SERVER['QUERY_STRING']),
-							$records->getNextPageLink( 1, $text_next, $_SERVER['QUERY_STRING']),
-						);
-					echo str_replace($search, $replace, $format);
+					echo $records->page_navi($records);
 				}
-				echo $records->htmlRoomHistory();
+				echo $records->html();
 			}
 			else {
 				echo $content;
@@ -539,8 +490,55 @@ EOD;
 		);
 
 		ob_start();
-		if($olb->operator->isLoggedIn() && $olb->operator->isRoomManager()){
-			$records = new olbHistory('future', 'room', $olb->operator->data['id'], $perpage);
+		$target_user = false;
+		$args = array(
+			'pretends' => 'teacher',
+		);
+		$target_user = apply_filters( 'olb_admin_pretending_user', $target_user, $args );
+
+		if($olb->operator->isLoggedIn() && ( $olb->operator->isRoomManager() || !empty( $target_user ) ) ){
+			$room_id = ( !empty( $target_user ) ) ? $target_user->data['id'] : $olb->operator->data['id'];
+			$records = new olb_room_schedule( $room_id, $perpage);
+			if($records->recordmax){
+				if($pagenavi){
+					echo $records->page_navi($records);
+				}
+				echo $records->html();
+			}
+			else {
+				echo $content;
+			}
+		}
+		$html = ob_get_contents();
+		ob_end_clean();
+		return $html;
+	}
+
+	/** 
+	 *	[ショートコード]チケット更新ログの表示: [Short code]Member's ticket update logs
+	 */
+	public static function show_ticket_logs($atts, $content = null){
+		global $olb;
+		extract(
+			shortcode_atts(
+				array(
+					'perpage' => 10,
+					'pagenavi' => true,
+				),
+				$atts
+			)
+		);
+
+		ob_start();
+		$target_user = false;
+		$args = array(
+			'pretends' => 'user',
+		);
+		$target_user = apply_filters( 'olb_admin_pretending_user', $target_user, $args );
+
+		if( $olb->operator->isLoggedIn() && ( $olb->operator->isMember() || !empty( $target_user ) ) ) {
+			$user_id = ( !empty( $target_user ) ) ? $target_user->data['id'] : $olb->operator->data['id'];
+			$records = new olb_logs($user_id, $perpage);
 			if($records->recordmax){
 				if($pagenavi){
 					$format = <<<EOD
@@ -561,10 +559,15 @@ EOD;
 						);
 					echo str_replace($search, $replace, $format);
 				}
-				echo $records->htmlRoomSchedule();
+				echo $records->html();
 			}
 			else {
 				echo $content;
+			}
+		}
+		else {
+			if ( empty( $olb->operator->data ) || !$olb->operator->isAdmin()) {
+				printf( '<div class="alert alert-error">%s</div>', __('Do not have authority to show this page.', OLBsystem::TEXTDOMAIN) );
 			}
 		}
 		$html = ob_get_contents();
@@ -585,6 +588,7 @@ EOD;
 				$atts
 			)
 		);
+		// Member
 		if($olb->operator->isLoggedIn() && $olb->operator->isMember()){
 			if(isset($olb->operator->data[$key])){
 				return $olb->operator->data[$key];
@@ -592,6 +596,21 @@ EOD;
 			if($key=='free'){
 				return $olb->operator->canFreeReservation();
 			}
+		}
+		// Admin
+		if($olb->operator->isLoggedIn() && $olb->operator->isAdmin()){
+			if ( isset( $olb->qs['user_id'] ) ) {
+				$user = new olbAuth( $olb->qs['user_id'] );
+				if ( !empty( $user->data['id'] ) ) {
+					if( isset( $user->data[$key] ) ) {
+						return $user->data[$key];
+					}
+					if( $key=='free'){
+						return $user->canFreeReservation();
+					}
+				}
+			}
+
 		}
 		return false;
 	}
@@ -672,6 +691,5 @@ EOD;
 		ob_end_clean();
 		return $html;
 	}
-
 }
 ?>

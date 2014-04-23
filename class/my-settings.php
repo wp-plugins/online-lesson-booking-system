@@ -9,8 +9,9 @@ class OLBsystem {
 	// システム設定
 	const TABLEPREFIX = 'olb_';
 	const TEXTDOMAIN = 'olbsystem';
-	const PLUGIN_VERSION = '0.3.1';
-	const DB_VERSION = '0.3.0';
+	const URL = 'http://olbsys.com/';
+	const PLUGIN_VERSION = '0.4.0';
+	const DB_VERSION = '0.4.0';
 
 	// タイムテーブル基本設定
 	public $starttime           = null;		// 表示開始時刻(default: 09:00)
@@ -22,8 +23,12 @@ class OLBsystem {
 	public $term                = null;		// 1ページ当たりの表示時間(default: 1週間)
 	public $opentime            = null;		// [Option] 営業開始時刻
 	public $closetime           = null;		// [Option] 営業終了時刻
-	public $limit_per_day       = null;		// １日当たりの予約回数上限
+	public $limit_per_day       = null;		// 1日当たりの予約回数上限
+	public $limit_per_month     = null;		// 1ヶ月当たりの予約回数上限
 	public $free                = null;		// 無料予約回数上限
+	public $ticket_system       = null;		// チケット制（会員別の予約可能数）の使用
+	public $ticket_metakey      = null;		// 会員のチケット数保存キー(user_meta)
+	public $ticket_expire       = null;		// チケット有効期限
 
 	// タイムテーブル表示パラメータ($_GET)
 	public $room_id             = null;		// 表示させる講師ID
@@ -91,7 +96,12 @@ class OLBsystem {
 		$this->opentime            = $options['starttime'];					// [Option] 営業開始時刻
 		$this->closetime           = $options['endtime'];					// [Option] 営業終了時刻
 		$this->limit_per_day       = $options['limit_per_day'];				// １日当たりの予約回数上限
+		$this->limit_per_month     = $options['limit_per_month'];			// １日当たりの予約回数上限
 		$this->free                = $options['free'];						// 無料予約回数
+		$this->ticket_system       = $options['ticket_system'];				// チケット制（会員別の予約可能数）の使用
+		$this->ticket_metakey      = $options['ticket_metakey'];			// 会員のチケット数保存キー（user_meta）
+		$this->ticket_expire       = $options['ticket_expire'];				// チケットの有効期限（default:60days）
+
 		$this->room_per_page       = $options['room_per_page'];				// 日別スケジュールの1ページ当たりの表示数
 		$this->preserve_past       = $options['preserve_past'];				// 過去スケジュール保存日数
 		$this->profile_customize   = $options['profile_customize'];			// プロフィールページの改変
@@ -196,7 +206,11 @@ class OLBsystem {
 				'reserve_deadline'    => 30,
 				'cancel_deadline'     => 30,
 				'limit_per_day'       => 2,
+				'limit_per_month'     => 0,
 				'free'                => 2,
+				'ticket_system'       => 0,
+				'ticket_metakey'      => 'olbticket',
+				'ticket_expire'       => 60,
 				'room_per_page'       => 3,
 
 				'preserve_past'       => 7,

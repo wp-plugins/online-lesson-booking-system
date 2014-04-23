@@ -3,8 +3,8 @@ Contributors: tnomi
 Donate link: 
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
-Tested up to: 3.6.1
-Stable tag: 0.3.1
+Tested up to: 3.9.0
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,10 +14,12 @@ This plug-in supplies the reservation-form and scheduler for the one-to-one onli
 
 Online Lesson Booking system (OLB) was made in order to equip a web site with the reservation-form and scheduler for one-to-one online lesson.
 
-Teacher (author) sets up a timetable using a scheduler, and member (subscriber) clicks and reserves a timetable.
+Teacher (author) sets up a timetable using a scheduler, and member (subscriber) makes a reservation by clicking timetable.
 Teacher and a member are informed by e-mail in the case of reservation and cancellation. 
 
 == Installation ==
+
+Visit [Setup Guide (ja)](http://olbsys.com/setup/)/[(en)](http://olbsys.com/en/setup/).
 
 = Installation =
 
@@ -50,9 +52,11 @@ Teacher and a member are informed by e-mail in the case of reservation and cance
 3. Members perform new user's registration themselves. Member must set item "Skype ID".
 4. Administrator update the item "term of validity" of member's profile. (ex. after checking the payment from a member, etc.)
 
-* The member can reserve a lesson until the "term of validity". 
+* "Ticket system" can be chosen from version 0.4.0. 
 
 == Frequently Asked Questions ==
+
+Visit [The User's Guide (ja)](http://olbsys.com)/[(en)](http://olbsys.com/en/) which covered all of features of this plugin.
 
 = How is reservation information saved? =
 
@@ -70,6 +74,15 @@ Not include. Please use the "membership" which is a standard function of WordPre
 4. "Plugin option" page
 
 == Changelog ==
+
+= 0.4.0 =
+
+* The limit of the number of reservation per month can be specified. 
+* "Ticket system" can be chosen. It is the system of giving each member tickets and making a reservation by consuming ticket. If tickets run short, the member has to purchase.
+* Administrator can see the page which they use pretending to be a member or a teacher. 
+* Some special pages were added and changed. 
+* Some short-code were added. 
+* Bug fix
 
 = 0.3.1 =
 
@@ -91,13 +104,7 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Upgrade Notice ==
 
-= 0.3.1 =
+= 0.4.0 =
 
-"Members info" page and its shortcode were added as one of special page.
-"Members info" page is referred from some following pages, in order to check a member information.
-
-* “Cancellation form for teacher” page
-* “Report form for teacher” page
-* “Teachers history” page
-* “Teachers schedule” page.
-
+The limit of the number of reservation per month can be specified. 
+"Ticket system" can be chosen. It is the system of giving each member tickets and making a reservation by consuming ticket. If tickets run short, the member has to purchase.
