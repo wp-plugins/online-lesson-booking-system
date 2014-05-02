@@ -135,6 +135,27 @@ class olbPaging {
 		}
 	}
 
+	// Page Navi
+	public static function page_navi( $records ) {
+		$format = <<<EOD
+<div id="list_pagenavi" class="list_pagenavi">
+<div id="prev_page" class="prev_page">%PREV_PAGE%</div>
+<div id="next_page" class="next_page">%NEXT_PAGE%</div>
+</div>
+EOD;
+		$search = array(
+				'%PREV_PAGE%',
+				'%NEXT_PAGE%',
+			);
+		$text_prev = __('&laquo; PREV', OLBsystem::TEXTDOMAIN);
+		$text_next = __('NEXT &raquo;', OLBsystem::TEXTDOMAIN);
+		$replace = array(
+				$records->getPrevPageLink(-1, $text_prev, $_SERVER['QUERY_STRING']),
+				$records->getNextPageLink( 1, $text_next, $_SERVER['QUERY_STRING']),
+			);
+		return str_replace($search, $replace, $format);
+	}
+
 }
 
 ?>

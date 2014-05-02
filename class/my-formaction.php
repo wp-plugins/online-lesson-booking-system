@@ -22,7 +22,8 @@ class olbFormAction {
 			$error = 'INVALID_PARAMETER';
 		}
 		else {
-			$result = $olb->canReservation($_POST['room_id'], $_POST['user_id'], $_POST['reservedate'], $_POST['reservetime']);
+			$result = array();
+			$result = apply_filters( 'olb_can_reservation', $result, $_POST['room_id'], $_POST['user_id'], $_POST['reservedate'], $_POST['reservetime'] );
 			/**
 			 *	$result = array( 
 			 *		'code'   => 'RESERVE_OK',
@@ -51,7 +52,7 @@ class olbFormAction {
 					$record['free'] = 1;
 				}
 				$table = $prefix."history";
-				$result = $wpdb->insert(
+				$ret = $wpdb->insert(
 								$table,
 								array(
 									'date'=>$record['date'],
@@ -62,15 +63,34 @@ class olbFormAction {
 								)
 							);
 				$record = $olb->reserved($record['room_id'], $record['date'], $record['time']);
+				$result['record'] = $record;
+				// チケットシステム有効時
+				if ( $olb->ticket_system ) {
+					if(!$record['free']) {
+						$tickets = $user->data['olbticket'] - 1;
+						update_user_meta($user->data['id'], $olb->ticket_metakey, $tickets );
+					}
+				}
+				do_action( 'olb_reservation', $result );
 			}
 			// CANCEL
 			else if($_POST['reserveaction']=='cancel' && $code=='ALREADY_RESERVED'){
-				$record['user_id'] = '';
-				$record['free'] = 0;
+//				$record['user_id'] = '';
+//				$record['free'] = 0;
 				$query = "DELETE FROM ".$prefix."history WHERE `id`=%d";
 				$ret = $wpdb->query($wpdb->prepare($query, array($record['id'])), ARRAY_A);
 				if(!$ret){
 					$error = 'CANCEL_FAILED';
+				}
+				else {
+					// チケットシステム有効時（チケット返却）
+					if ( $olb->ticket_system ) {
+						if(!$record['free']) {
+							$tickets = $user->data['olbticket'] + 1;
+							update_user_meta($user->data['id'], $olb->ticket_metakey, $tickets );
+						}
+					}
+					do_action( 'olb_cancellation', $result );
 				}
 			}
 			// エラーあり
@@ -94,6 +114,7 @@ class olbFormAction {
 			'%USER_NAME%',
 			'%USER_EMAIL%',
 			'%USER_SKYPE%',
+			'%USER_TICKETS%',
 			'%ROOM_NAME%',
 			'%RESERVE_ID%',
 			'%RESERVE_DATE%',
@@ -105,6 +126,7 @@ class olbFormAction {
 			$user->data['name'],
 			$user->data['email'],
 			$user->data['skype'],
+			$user->data['olbticket'],
 			$room['name'],
 			$record['id'],
 			$record['date'],
@@ -212,17 +234,19 @@ class olbFormAction {
 			$result = olbTimetable::canCancellation($_POST['room_id'], $_POST['reservedate'], $_POST['reservetime']);
 			/**
 			 *	$result = array( 
-			 *		'code'=> 'RESERVE_OK',
+			 *		'code'   => 'RESERVE_OK',
 			 *		'record' => array(
-			 *			'id' => 56,
+			 *			'id'      => 56,
 			 *			'room_id' => 5,
 			 *			'user_id' => 6,
-			 *			'date' => '2013-07-11',
-			 *			'time' => '10:00:00'
+			 *			'date'    => '2013-07-11',
+			 *			'time'    => '10:00:00'
+			 *			'free'    => 0
+			 *			'absent'  => 0
 			 *		),
-			 *		'user' => olbAuth Object(
+			 *		'user'   => olbAuth Object(
 			 *		),
-			 *		'room' => array(
+			 *		'room'   => array(
 			 *		),
 			 *	)
 			 */
@@ -238,6 +262,15 @@ class olbFormAction {
 				}
 				$query = "DELETE FROM ".$prefix."timetable WHERE `room_id`='%d' AND `date`='%s' AND `time`='%s'";
 				$ret = $wpdb->query($wpdb->prepare($query, array($record['room_id'], $record['date'], $record['time'])), ARRAY_A);
+
+				// チケットシステム有効時（チケット返却）
+				if ( $olb->ticket_system ) {
+					if(!$result['record']['free']) {
+						$tickets = $result['user']->data['olbticket'] + 1;
+						update_user_meta($result['user']->data['id'], $olb->ticket_metakey, $tickets );
+					}
+				}
+				do_action( 'olb_cancellation_by_teacher', $result );
 			}
 			// エラーあり
 			else {
@@ -260,6 +293,7 @@ class olbFormAction {
 			'%USER_NAME%',
 			'%USER_EMAIL%',
 			'%USER_SKYPE%',
+			'%USER_TICKETS%',
 			'%ROOM_NAME%',
 			'%RESERVE_ID%',
 			'%RESERVE_DATE%',
@@ -272,6 +306,7 @@ class olbFormAction {
 			$user->data['name'],
 			$user->data['email'],
 			$user->data['skype'],
+			$user->data['olbticket'],
 			$room['name'],
 			$record['id'],
 			$record['date'],
@@ -399,7 +434,6 @@ class olbFormAction {
 		global $wpdb, $olb;
 		
 		$error = '';
-
 		if (empty($_POST['onetimetoken']) || !wp_verify_nonce($_POST['onetimetoken'], OLBsystem::TEXTDOMAIN)) {
 			$url = get_permalink(get_page_by_path($olb->edit_schedule_page)->ID);
 			$query_string = (strstr($url, '?')) ? '&' : '?';
@@ -456,5 +490,189 @@ class olbFormAction {
 		header('Location:'.$url.$query_string);
 		exit;
 	}
+
+	/**
+	 *	管理者用ツール: Dashboard for admin
+	 */
+	public static function admin_pretending_selecter($atts, $content = null){
+		global $olb;
+		extract(
+			shortcode_atts(
+				array(
+					'pretends' => null,
+				),
+				$atts
+			)
+		);
+
+		ob_start();
+		$admin_show = false;
+		if ( $olb->operator->isLoggedIn() && $olb->operator->isAdmin() ) {
+				$url = ( empty( $_SERVER["HTTPS"] ) ) ? "http://" : "https://";
+				$url .= $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
+
+			switch( $pretends ) {
+			case 'teacher':
+				$rooms = olbRoom::getAll();
+				if ( !empty( $rooms ) ) {
+					echo '<div>'.__('Select teacher', OLBsystem::TEXTDOMAIN).'</div>';
+					echo <<<EOD
+<form name="userlist">
+<select name="link" onChange="if(document.userlist.link.value){location.href=document.userlist.link.value;}">
+<option></option>
+EOD;
+
+					foreach($rooms as $r){
+						$query_string = ( strstr( $url, '?' ) ) ? '&' : '?';
+						$query_string .= sprintf('room_id=%d', $r['id']);
+						$name = $r['name'].'('.$r['id'].')';
+						printf('<option value="%s%s">%s</option>'."\n", $url, $query_string, $name );
+					}
+					echo "</select>\n</form>\n";
+
+					echo '<div>'.__("Or input teacher's ID (ex.'2')", OLBsystem::TEXTDOMAIN).'</div>';
+					echo <<<EOD
+<form name="usersearch" method="get">
+<input type="text" name="room_id" value="" />
+<input type="submit" value="go" />
+</form>
+EOD;
+				}
+				else {
+					$error = 'NO_TEACHERS';
+					echo apply_filters( 'olb_error', $information, $error );
+				}
+				break;
+
+			case 'user':
+				$users = olbAuth::getAll();
+				if ( !empty( $users ) ) {
+					echo '<div>'.__('Select member', OLBsystem::TEXTDOMAIN).'</div>';
+					echo <<<EOD
+<form name="userlist">
+<select name="link" onChange="if(document.userlist.link.value){location.href=document.userlist.link.value;}">
+<option></option>
+EOD;
+
+					foreach($users as $u){
+						$query_string = ( strstr( $url, '?' ) ) ? '&' : '?';
+						$query_string .= sprintf('user_id=%d', $u['id']);
+						$name = $u['loginname'].' ('.$u['id'].') '.': '.$u['name'];
+						printf('<option value="%s%s">%s</option>'."\n", $url, $query_string, $name );
+					}
+					echo "</select>\n</form>\n";
+
+					echo '<div>'.__("Or input member's ID (ex.'5')", OLBsystem::TEXTDOMAIN).'</div>';
+					echo <<<EOD
+<form name="usersearch" method="get">
+<input type="text" name="user_id" value="" />
+<input type="submit" value="go" />
+</form>
+EOD;
+
+				}
+				else {
+					$error = 'NO_MEMBERS';
+					echo apply_filters( 'olb_error', $information, $error );
+				}
+				break;
+
+			default:
+				break;
+			}
+		}
+		$html = ob_get_contents();
+		ob_end_clean();
+		return $html;
+	}
+
+	public static function admin_pretending_user( $target_user, $args ) {
+		global $olb, $post;
+
+		$ret = false;
+		$information = $error = '';
+		if ( $olb->operator->isLoggedIn() && $olb->operator->isAdmin() ) {
+			$target_user = null;
+			switch( $args['pretends'] ) {
+			case 'teacher':
+				if ( isset($olb->qs['room_id'] ) ) {
+					$target_user = new olbAuth($olb->qs['room_id']);
+					if ( !empty( $target_user->data['id'] ) && $target_user->isRoomManager() ) {
+						$ret = $target_user;
+						echo self::admin_pretending_now( 'room', $target_user );
+					}
+					else {
+						$error = 'NONEXISTENT_TEACHER';
+					}
+				}
+				else {
+					$error = 'CHOOSE_TEACHER';
+				}
+				if ( $error ) {
+					//printf( '<div class="alert alert-error">%s</div>', apply_filters( 'olb_error', $information, $error ) );
+					echo olbFormAction::admin_pretending_selecter( $args );
+				}
+				break;
+
+			case 'user':
+				if ( isset($olb->qs['user_id'] ) ) {
+					$target_user = new olbAuth($olb->qs['user_id']);
+					if ( !empty( $target_user->data['id'] ) && $target_user->isMember() ) {
+						$ret = $target_user;
+						echo self::admin_pretending_now( 'user', $target_user );
+					}
+					else {
+						$error = 'NONEXISTENT_MEMBER';
+					}
+				}
+				else {
+					$error = 'CHOOSE_MEMBER';
+				}
+				if ( $error ) {
+					//printf( '<div class="alert alert-error">%s</div>', apply_filters( 'olb_error', $information, $error ) );
+					echo olbFormAction::admin_pretending_selecter( $args );
+				}
+				break;
+
+			default:
+
+			}
+		}
+		return $ret;
+	}
+
+	public static function admin_pretending_now( $mode, $target_user ) {
+		global $olb, $post;
+
+		$url = ( empty( $_SERVER["HTTPS"] ) ) ? "http://" : "https://";
+		$url .= $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
+
+		// 先祖postのID
+		$ancestor_id = array_pop( get_post_ancestors( $post->ID ) );
+		$ancestor = ( $ancestor_id ) ? get_post( $ancestor_id ) : $post;
+
+		if ( $mode == 'user' ) {
+			$_SESSION['admin_pretend'] = array(
+				'ancestor' => $ancestor->ID,
+				'user_id' => $target_user->data['id']
+			);
+			$message = __('Admin is pretending a user', OLBsystem::TEXTDOMAIN );
+		}
+		if ( $mode == 'room' ) {
+			$_SESSION['admin_pretend'] = array(
+				'ancestor' => $ancestor->ID,
+				'room_id' => $target_user->data['id']
+			);
+			$message = __('Admin is pretending a teacher', OLBsystem::TEXTDOMAIN );
+		}
+		$html = sprintf( '<p>%s "%s". [<a href="%s">%s</a>]</p>', 
+			$message, 
+			$target_user->data['name'].'(ID:'.$target_user->data['id'].')', 
+			$url.'&pretend_off', 
+			__('OFF', OLBsystem::TEXTDOMAIN )
+		);
+		return $html;
+	}
+
 }
 ?>

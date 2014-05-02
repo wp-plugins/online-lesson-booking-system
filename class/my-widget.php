@@ -63,6 +63,12 @@ if($body){
 			$child = get_posts('post_type=page&post_parent='.get_page_by_path($olb->member_page)->ID);
 			if(!empty($child)){
 				foreach($child as $c){
+					$excludes = array(
+						$olb->reserve_form_page,
+					);
+					if(in_array($c->post_name, $excludes)) {
+						continue;
+					}
 					$menu[] = sprintf('<li><a href="%s">%s</a></li>',
 						get_permalink($c->ID),
 						$c->post_title);
@@ -161,7 +167,13 @@ if($body){
 			$child = get_posts('post_type=page&post_parent='.get_page_by_path($olb->edit_schedule_page)->ID);
 			if(!empty($child)){
 				foreach($child as $c){
-					if($c->post_name == $olb->members_info_page) {
+					$excludes = array(
+						$olb->reserve_form_page,
+						$olb->cancel_form_page,
+						$olb->report_form_page,
+						$olb->members_info_page,
+					);
+					if(in_array($c->post_name, $excludes)) {
 						continue;
 					}
 					$menu[] = sprintf('<li><a href="%s">%s</a></li>',
@@ -250,12 +262,62 @@ if($body){
 			$body = esc_attr($instance['body']);
 		}
 		else {
+/*
 			$menu = array();
 			$menu = array_merge($menu, array(
 				sprintf('<li><a href="%s">%s</a></li>',
 					get_permalink(get_page_by_path($olb->edit_schedule_page)->ID),
 					get_post(get_page_by_path($olb->edit_schedule_page)->ID)->post_title),
 				));
+			$menu = array_merge($menu, array(
+				sprintf('<li><a href="%s">%s</a></li>', get_admin_url(), __('Dash board', OLBsystem::TEXTDOMAIN)),
+				sprintf('<li><a href="%s">%s</a></li>', wp_logout_url(), __('Logout', OLBsystem::TEXTDOMAIN)),
+				));
+*/			$menu = array();
+			// for teacher
+			$menu = array_merge($menu, array(
+				sprintf('<li><a href="%s">%s</a></li>',
+					get_permalink(get_page_by_path($olb->edit_schedule_page)->ID),
+					get_post(get_page_by_path($olb->edit_schedule_page)->ID)->post_title),
+				));
+			$child = get_posts('post_type=page&post_parent='.get_page_by_path($olb->edit_schedule_page)->ID);
+			if(!empty($child)){
+				foreach($child as $c){
+					$excludes = array(
+						$olb->reserve_form_page,
+						$olb->cancel_form_page,
+						$olb->report_form_page,
+						$olb->members_info_page,
+					);
+					if(in_array($c->post_name, $excludes)) {
+						continue;
+					}
+					$menu[] = sprintf('<li><a href="%s">%s</a></li>',
+						get_permalink($c->ID),
+						$c->post_title);
+				}
+			}
+			// for member
+			$menu = array_merge($menu, array(
+				sprintf('<li><a href="%s">%s</a></li>',
+					get_permalink(get_page_by_path($olb->member_page)->ID),
+					get_post(get_page_by_path($olb->member_page)->ID)->post_title),
+				));
+			$child = get_posts('post_type=page&post_parent='.get_page_by_path($olb->member_page)->ID);
+			if(!empty($child)){
+				foreach($child as $c){
+					$excludes = array(
+						$olb->reserve_form_page,
+					);
+					if(in_array($c->post_name, $excludes)) {
+						continue;
+					}
+					$menu[] = sprintf('<li><a href="%s">%s</a></li>',
+						get_permalink($c->ID),
+						$c->post_title);
+				}
+			}
+			// for admin
 			$menu = array_merge($menu, array(
 				sprintf('<li><a href="%s">%s</a></li>', get_admin_url(), __('Dash board', OLBsystem::TEXTDOMAIN)),
 				sprintf('<li><a href="%s">%s</a></li>', wp_logout_url(), __('Logout', OLBsystem::TEXTDOMAIN)),

@@ -138,13 +138,51 @@ class olbTimetable extends OLBsystem{
 	}
 
 	/** 
+	 *	1ヶ月の予約数: Limit of reservation per month
+	 */
+	public static function reservedPerMonth($user_id, $date){
+		global $wpdb;
+
+		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
+		$query = "SELECT COUNT(*) as count FROM ".$prefix."history "
+				."WHERE `user_id`=%d AND `date` LIKE '%s'";
+		$ret = $wpdb->get_row($wpdb->prepare($query, array($user_id, substr( $date, 0, 7 ).'%' )), ARRAY_A);
+
+		if(empty($ret)){
+			return false;
+		}
+		else {
+			return $ret;
+		}
+	}
+
+	/** 
 	 *	１日の予約数制限内か: Less than the limit of reservation per day 
 	 */
 	public static function canReservePerDay($user_id, $date) {
 		global $olb;
 
 		$ret = self::reservedPerDay($user_id, $date);
-		if($ret['count']<$olb->limit_per_day){
+		if( empty( $olb->limit_per_day ) ) {
+			return true;
+		}
+		elseif ( $ret['count']<$olb->limit_per_day ){
+			return true;
+		}
+		return false;
+	}
+
+	/** 
+	 *	1ヶ月の予約数制限内か: Less than the limit of reservation per month 
+	 */
+	public static function canReservePerMonth($user_id, $date) {
+		global $olb;
+
+		$ret = self::reservedPerMonth($user_id, $date);
+		if( empty( $olb->limit_per_month ) ){
+			return true;
+		}
+		elseif( $ret['count'] < $olb->limit_per_month ){
 			return true;
 		}
 		return false;
@@ -172,7 +210,9 @@ class olbTimetable extends OLBsystem{
 	/** 
 	 *	会員による予約の可否: Can member do reservation ? 
 	 */
-	public static function canReservation($room_id, $user_id, $date, $time){
+	public static function canReservation( $result, $room_id, $user_id, $date, $time ) {
+		global $olb;
+
 		$result = array(
 			'code' => null,
 			'record' => null,
@@ -220,37 +260,45 @@ class olbTimetable extends OLBsystem{
 		$result['user'] = $user;
 		$result['room'] = $room;
 
-		if(empty($room)) {
+		if ( empty( $room ) ) {
 			$result['code'] = 'NONEXISTENT_TEACHER';
 		}
-		else if(empty($record)) {
+		elseif( empty( $record ) ) {
 			$result['code'] = 'NO_RECORD';
 		}
 		// 空き: not reserved
-		else if(empty($record['user_id'])) {
+		elseif ( empty( $record['user_id'] ) ) {
 			// 期限切れ & 無料予約数残なし
-			if(!$user->isNotExpire($date) && !$user->canFreeReservation()){
+			if( !$user->isNotExpire( $date ) && !$user->canFreeReservation() ) {
 				$result['code'] = 'RESERVE_EXPIRED';
 			}
 			// 受付時間オーバー
-			else if(olbTimetable::isTimeover('reserve', $date, $time)){
+			elseif ( olbTimetable::isTimeover( 'reserve', $date, $time ) ) {
 				$result['code'] = 'RESERVE_TIMEOVER';
 			}
 			// 1日の予約数上限
-			else if(!olbTimetable::canReservePerDay($user_id, $date)){
+			elseif ( !olbTimetable::canReservePerDay( $user_id, $date ) ) {
 				$result['code'] = 'RESERVE_LIMIT_PER_DAY';
 			}
+			// 1ヶ月の予約数上限
+			elseif ( !olbTimetable::canReservePerMonth( $user_id, $date ) ) {
+				$result['code'] = 'RESERVE_LIMIT_PER_MONTH';
+			}
 			// 同日時を別予約済み
-			else if(olbTimetable::isDoubleBooking($user_id, $date, $time)) {
+			elseif( olbTimetable::isDoubleBooking( $user_id, $date, $time ) ) {
 				$result['code'] = 'DOUBLE_BOOKING';
+			}
+			// チケットシステム有効＋保有チケットなし
+			elseif( $olb->ticket_system && empty( $user->data['olbticket'] ) ) {
+				$result['code'] = 'USERTICKET_EMPTY';
 			}
 			else {
 				$result['code'] = 'NOT_RESERVED';
 			}
 		}
 		// 自身予約済: reserved by self
-		else if($record['user_id']==$user_id) {
-			if(olbTimetable::isTimeover('cancel', $date, $time)){
+		elseif ( $record['user_id'] == $user_id ) {
+			if ( olbTimetable::isTimeover( 'cancel', $date, $time ) ) {
 				$result['code'] = 'CANCEL_TIMEOVER';
 			}
 			else {
@@ -261,6 +309,7 @@ class olbTimetable extends OLBsystem{
 		else {
 			$result['code'] = 'OTHERS_RECORD';
 		}
+
 		return $result;
 	}
 
@@ -374,7 +423,8 @@ class olbTimetable extends OLBsystem{
 
 			$action = null;
 
-			$result = olbTimetable::canReservation($olb->room_id, $olb->operator->data['id'], $date, $time); 
+			$result = array();
+			$result = apply_filters( 'olb_can_reservation', $result, $olb->room_id, $olb->operator->data['id'], $date, $time );
 			/** 
 			 *	$result = array( 
 			 *		'code'   => 'RESERVE_OK',
@@ -512,6 +562,7 @@ EOD;
 		}
 
 		if($error){
+			$information = '';
 			if(in_array($error, array(
 					'CANCEL_TIMEOVER',
 				))) {
@@ -573,7 +624,7 @@ EOD;
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
 						$date,
 						$time,
-						olbFunction::errorMessage($error),
+						apply_filters( 'olb_error', $information, $error ),
 					);
 			}
 			else if(in_array($error, array(
@@ -592,13 +643,14 @@ EOD;
 					'%MESSAGE%',
 					);
 				$replace = array(
-					olbFunction::errorMessage($error),
+					apply_filters( 'olb_error', $information, $error ),
 					);
 			}
 			else {
 				// 'RESERVE_EXPIRED';
 				// 'RESERVE_TIMEOVER';
 				// 'RESERVE_LIMIT_PER_DAY';
+				// 'RESERVE_LIMIT_PER_MONTH';
 				// 'DOUBLE_BOOKING';
 				// 'OTHERS_RECORD';
 
@@ -627,7 +679,7 @@ EOD;
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
 						$date,
 						$time,
-						olbFunction::errorMessage($error),
+						apply_filters( 'olb_error', $information, $error ),
 					);
 			}
 			echo str_replace($search, $replace, $format);
@@ -792,6 +844,7 @@ EOD;
 		}
 
 		if($error){
+			$information = '';
 			if(in_array($error, array(
 					'PARAMETER_INSUFFICIENT',
 					'INVALID_PARAMETER',
@@ -835,7 +888,7 @@ EOD;
 					__('Date/Time', OLBsystem::TEXTDOMAIN),
 					$date,
 					$time,
-					olbFunction::errorMessage($error),
+					apply_filters( 'olb_error', $information, $error ),
 					$submit
 				);
 			echo str_replace($search, $replace, $format);
@@ -919,7 +972,7 @@ EOD;
 
 				$format = <<<EOD
 <form id="reservation" class="reservation" method="post" action="%FORMACTION%">
-<p>%ATTENTION%</p>
+%ATTENTION%
 <dl>
 <dt>%LABEL_ID%:</dt>
 <dd>%ID%
@@ -971,7 +1024,7 @@ EOD;
 					);
 				$replace = array(
 						$formaction,
-						__('*) When timetable is canceled by a teacher, it is closed at the same time', OLBsystem::TEXTDOMAIN),
+						sprintf( '<p>%s</p>', '' ),
 						__('Reserve ID', OLBsystem::TEXTDOMAIN),
 						$record['id'],
 						__('Teacher', OLBsystem::TEXTDOMAIN),
@@ -999,6 +1052,7 @@ EOD;
 		}
 
 		if($error){
+			$information = '';
 			if(in_array($error, array(
 					'PARAMETER_INSUFFICIENT',
 					'INVALID_PARAMETER',
@@ -1007,7 +1061,7 @@ EOD;
 				))){
 				$format = <<<EOD
 <div id="reservation" class="reservation">
-<div class="olb_error">%MESSAGE%</div>
+<div class="alert alert-error">%MESSAGE%</div>
 </div>
 EOD;
 			}
@@ -1020,7 +1074,7 @@ EOD;
 <dt>%LABEL_DATETIME%:</dt>
 <dd>%DATE% %TIME%</dd>
 </dl>
-<div class="olb_error">%MESSAGE%</div>
+<div class="alert alert-error">%MESSAGE%</div>
 <input type="button" id="reservesubmit" name="reservesubmit" value="%SUBMIT%" />
 </div>
 EOD;
@@ -1040,7 +1094,7 @@ EOD;
 					__('Date/Time', OLBsystem::TEXTDOMAIN),
 					$date,
 					$time,
-					olbFunction::errorMessage($error),
+					apply_filters( 'olb_error', $information, $error ),
 					$submit
 				);
 			echo str_replace($search, $replace, $format);

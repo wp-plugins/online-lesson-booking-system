@@ -50,6 +50,8 @@ class olbAdminPage {
 
 	}
 	public static function settingPage($args = null){
+		global $wpdb;
+
 		extract(
 			wp_parse_args(
 				$args,
@@ -91,11 +93,21 @@ class olbAdminPage {
 		// Update
 		else if(isset($_POST['olb_options'])) {
 			$olb_options = get_option($options_key);
+			$before = $olb_options;
 			$olb_options[$options_group] = $_POST['olb_options'];
 			if(isset($_POST['olb_options']['preserve_past'])) {
 				$olb_options[$options_group]['preserve_past'] = floor(abs($_POST['olb_options']['preserve_past']));
 			}
+			if(!isset($_POST['olb_options']['ticket_system'])) {
+				$olb_options[$options_group]['ticket_system'] = 0;
+			}
 			update_option($options_key, $olb_options);
+			/*
+			if ( $olb_options['settings']['ticket_metakey'] != $before['settings']['ticket_metakey'] ) {
+				$table = $wpdb->prefix.'usermeta';
+				$ret = $wpdb->update( $table, array( 'meta_key' => $olb_options['settings']['ticket_metakey'] ), array( 'meta_key'=>$before['settings']['ticket_metakey'] ));
+			}
+			*/
 			$message = __('Settings are updated', OLBsystem::TEXTDOMAIN);
 		}
 		if($message){
@@ -112,7 +124,12 @@ class olbAdminPage {
 <div id="<?php echo $options_key; ?>" class="wrap">
 <?php screen_icon('options-general'); ?>
 <h2><?php echo esc_html($title); ?></h2>
-<div class="metabox-holder">
+<div class="metabox-holder has-right-sidebar">
+<div class="inner-sidebar">
+<?php do_action( 'olb_plugin_info' ); ?>
+<?php do_action( 'olb_latest_info' ); ?>
+</div>
+
 <div id="post-body">
 <div id="post-body-content">
 <div class="postbox">
@@ -173,6 +190,16 @@ class olbAdminPage {
 <th scope="row"><?php _e('The limit of the reservation per day', OLBsystem::TEXTDOMAIN); ?></th>
 <td>
 <input type="text" name="olb_options[limit_per_day]" id="" value="<?php echo $options['limit_per_day']; ?>" size="5" />
+<?php _e( 'empty (or 0) is unlimited', OLBsystem::TEXTDOMAIN); ?>
+<p class="description"></p>
+</td>
+</tr>
+
+<tr valign="top">
+<th scope="row"><?php _e('The limit of the reservation per month', OLBsystem::TEXTDOMAIN); ?></th>
+<td>
+<input type="text" name="olb_options[limit_per_month]" id="" value="<?php echo $options['limit_per_month']; ?>" size="5" />
+<?php _e( 'empty (or 0) is unlimited', OLBsystem::TEXTDOMAIN); ?>
 <p class="description"></p>
 </td>
 </tr>
@@ -181,7 +208,31 @@ class olbAdminPage {
 <th scope="row"><?php _e('The limit of the reservation which is not charged', OLBsystem::TEXTDOMAIN); ?></th>
 <td>
 <input type="text" name="olb_options[free]" id="" value="<?php echo $options['free']; ?>" size="5" />
+<p class="description"><?php _e('It is so-called "Trial lesson" or a "Free ticket".', OLBsystem::TEXTDOMAIN); ?></p>
+</td>
+</tr>
+
+<tr valign="top">
+<th scope="row"><?php _e("Using ticket system", OLBsystem::TEXTDOMAIN); ?></th>
+<td>
+<input type="checkbox" name="olb_options[ticket_system]" id="" value="1" <?php echo ( $options['ticket_system'] ) ? 'checked' : ''; ?> />
+<p class="description"><?php _e("Set up each member's number of possession tickets.", OLBsystem::TEXTDOMAIN); ?></p>
+</td>
+</tr>
+
+<tr valign="top">
+<th scope="row"><?php _e('Meta-key of ticket', OLBsystem::TEXTDOMAIN); ?></th>
+<td>
+<input type="text" name="olb_options[ticket_metakey]" id="" value="<?php echo $options['ticket_metakey']; ?>" size="5" /> ex. 'olbticket'
 <p class="description"></p>
+</td>
+</tr>
+
+<tr valign="top">
+<th scope="row"><?php _e('The term of validity of ticket', OLBsystem::TEXTDOMAIN); ?></th>
+<td>
+<input type="text" name="olb_options[ticket_expire]" id="" value="<?php echo $options['ticket_expire']; ?>" size="5" /><?php _e("Days.", OLBsystem::TEXTDOMAIN); ?> ex. 60(Days)
+<p class="description"><?php _e("If this is larger than zero, when the each member's number of tickets is updated, the term of validity will also be updated automatically.", OLBsystem::TEXTDOMAIN); ?></p>
 </td>
 </tr>
 

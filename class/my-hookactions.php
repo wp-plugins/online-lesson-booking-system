@@ -126,28 +126,51 @@ EOD;
 	}
 
 	/** 
-	 *	プロフィール追加項目の表示: Show profile items (term of validity)
+	 *	プロフィール追加項目の表示: Show additional fields of profile (for Member)
 	 */
 	public static function showAddedProfile(){
 		$user = new olbAuth();
 		// 購読者
 		if(in_array('subscriber', $user->data['roles'])){
-			$description = __('The term of validity is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
-			$format = <<<EOD
-<h3>%s</h3>
-<table class="form-table">
-<tr>
-<th><label for="olbterm">%s</label></th>
-<td><input type="text" name="olbterm" id="olbterm" value="%s" readonly /> <span class="description">%s</span><br></td>
-</tr>
-</table>
-EOD;
-			printf($format, __('Term of validity', OLBsystem::TEXTDOMAIN), __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description);
+			$html = '';
+			echo apply_filters( 'olb_added_profile', $html, $user );
 		}
 	}
 
 	/** 
-	 *	プロフィール項目の追加(管理者用): Add profile items (for admin)
+	 *	プロフィール追加項目のHTML: HTML code of additional fields
+	 */
+	public static function additional_fields( $html, $user ){
+		global $olb;
+
+		$title = __('Online-Booking-System Additional Fields', OLBsystem::TEXTDOMAIN);
+		$description = __('The term of validity is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
+		$format = <<<EOD
+<h3>%s</h3>
+<table class="form-table">
+<tr>
+<th>%s</th>
+<td>%s <span class="description" style="margin-left:20px">(%s)</span></td>
+</tr>
+EOD;
+		$html = sprintf($format, $title, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description);
+
+		if($olb->ticket_system) {
+			$description = __('The possession tickets is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
+			$format = <<<EOD
+<tr>
+<th>%s</th>
+<td>%s <span class="description" style="margin-left:20px">(%s)</span></td>
+</tr>
+EOD;
+			$html .= sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket'], $description);
+		}
+		$html .= "</table>\n";
+		return $html;
+	}
+
+	/** 
+	 *	プロフィール項目の追加(管理者用): Show additional fields of profile (for Admin)
 	 */
 	public static function addProfileMeta(){
 
@@ -158,6 +181,20 @@ EOD;
 			$user_id = $_POST['user_id'];
 		}
 		$user = new olbAuth($user_id);
+		$html = '';
+		echo apply_filters( 'olb_added_profile_admin', $html, $user );
+		return;
+	}
+
+	/** 
+	 *	プロフィール追加項目のHTML(管理者用): HTML code of additional fields (for Admin)
+	 */
+	public static function additional_fields_admin( $html, $user ){
+		global $olb;
+
+		$title = __('Online-Booking-System Additional Fields', OLBsystem::TEXTDOMAIN);
+		$html = sprintf( "<h3>%s</h3>\n", $title );
+
 		// 投稿者のみ
 		if(in_array('author', $user->data['roles'])){
 			$checked = '';
@@ -165,32 +202,40 @@ EOD;
 				$checked = 'checked="checked"';
 			}
 			$format = <<<EOD
-<h3>%s</h3>
 <table class="form-table">
 <tr>
-<th><label for="olbgroup">%s</label></th>
-<td><input type="checkbox" name="olbgroup" id="olbgroup" value="teacher" %s/></td>
+<th>%s</th>
+<td><label for="olbgroup"><input type="checkbox" name="olbgroup" id="olbgroup" value="teacher" %s/> %s</label></td>
 </tr>
 </table>
 EOD;
-			printf($format, __('property "Teacher"', OLBsystem::TEXTDOMAIN), __('Teacher', OLBsystem::TEXTDOMAIN), $checked);
+			$html .= sprintf($format, __('Property "Teacher"', OLBsystem::TEXTDOMAIN), $checked, __('Teacher', OLBsystem::TEXTDOMAIN) );
 		}
 
 		// 購読者のみ
 		if(in_array('subscriber', $user->data['roles'])){
 			$format = <<<EOD
-<h3>%s</h3>
 <table class="form-table">
 <tr>
 <th><label for="olbterm">%s</label></th>
-<td><input type="text" name="olbterm" id="olbterm" value="%s" /></td>
+<td><input type="text" name="olbterm" id="olbterm" value="%s" /> ex. %s</td>
 </tr>
-</table>
 EOD;
-			printf($format, __('Term of validity', OLBsystem::TEXTDOMAIN), __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description);
-		}
-	}
+			$html .= sprintf($format, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], date( 'Y-m-d', current_time('timestamp')+60*60*24*30 ) );
 
+			if($olb->ticket_system) {
+				$format = <<<EOD
+<tr>
+<th><label for="olbticket">%s</label></th>
+<td><input type="text" name="olbticket" id="olbticket" value="%s" /> ex. 10</td>
+</tr>
+EOD;
+				$html .= sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket']);
+			}
+		}
+		$html .= "</table>\n";
+		return $html;
+	}
 
 	/** 
 	 *	ツールバー非表示: Hide admin tool bar
@@ -204,7 +249,7 @@ EOD;
 	 *	プロフィール追加項目の保存: Save added items of profile
 	 */
 	public static function inUpdateProfile(){
-		$options = get_option('tt_options');
+		global $olb;
 
 		if (empty($_POST['user_id'])) {
 			$user_id = $_GET['user_id'];
@@ -222,29 +267,148 @@ EOD;
 		}
 		$newgroup = get_user_meta($user_id, 'olbgroup', true);
 		if($oldgroup != $newgroup){
-			// Any action (if needed)
+			$result = array( 'user_id'=>$user_id, 'old'=>$oldgroup, 'new'=>$newgroup );
+			$result = apply_filters('olb_update_profile_group', $result );
 		}
 
-		// 有効期限
-		$oldlimit = get_user_meta($user_id, 'olbterm', true);
+		// process payment
+		$result = array(
+			'type'    => 'admin',
+			'user_id' => $user_id,
+			'old'     => 0,
+			'new'     => 0,
+			'days'    => 0,
+		 );
+
+		// UPDATE TICKET
+		$oldticket = $newticket = 0;
+		// Using 'ticket system'
+		if($olb->ticket_system) {
+			$oldticket = get_user_meta( $user_id, $olb->ticket_metakey, true );
+			if ( $_POST['olbticket'] != '' ){
+				$newticket = intval( $_POST['olbticket'] );
+				// Check integer
+				if(strval($newticket) == strval(intval($newticket))){
+					if ( $newticket != $oldticket ) {
+						$result['old'] = $oldticket;
+						$result['new'] = $newticket;
+					}
+				}
+			}
+			else {
+				$newticket = 0;
+				if ( $newticket != $oldticket ) {
+					$result['old'] = $oldticket;
+					$result['new'] = $newticket;
+				}
+			}
+		}
+
+		// UPDATE TERM (of validity)
+		$days = 0;
+		$oldterm = get_user_meta( $user_id, 'olbterm', true );
+		list( $oy, $om, $od ) = explode( '-', $oldterm );
+		$om = intval( $om );
+		$od = intval( $od );
 		if (!empty($_POST['olbterm'])){
-			update_user_meta($user_id, 'olbterm', $_POST['olbterm']);
+			$newterm = str_replace( '/', '-', $_POST['olbterm'] );
+			if( preg_match('/^([2-9][0-9]{3})-(0[1-9]{1}|1[0-2]{1})-(0[1-9]{1}|[1-2]{1}[0-9]{1}|3[0-1]{1})$/', $newterm ) ) {
+				list( $ny, $nm, $nd ) = explode( '-', $newterm );
+				$nm = intval( $nm );
+				$nd = intval( $nd );
+				$days = ( mktime( 0, 0, 0, $nm, $nd, $ny ) - mktime( 0, 0, 0, $om, $od, $oy ) ) / ( 60 * 60 * 24 );
+				if ( $days != 0 ) {
+					$result['days'] = $days;
+				}
+			}
 		}
 		else {
 			delete_user_meta($user_id, 'olbterm', '');
 		}
-		$newlimit = get_user_meta($user_id, 'olbterm', true);
-		if($oldgroup != $newgroup){
-			// Any action (if needed)
+
+		$result = apply_filters( 'olb_update_ticket', $result );
+		$result = apply_filters( 'olb_update_term', $result );
+		$result = apply_filters( 'olb_update_log', $result );
+	}
+
+	/**
+	 *	保有チケットの更新: Update 'possession tickets'
+	 */
+	public static function update_ticket( $result ) {
+		global $olb;
+
+		if ( $result['old'] != $result['new'] ) {
+			update_user_meta( $result['user_id'], $olb->ticket_metakey, $result['new'] );
 		}
+		return $result;
+	}
+
+	/**
+	 *	有効期限の更新: Update 'term of validity'
+	 */
+	public static function update_term( $result ) {
+		global $olb;
+
+		$days = 0;
+		if ( !empty( $result['days'] ) ) {
+			$days = intval( $result['days'] );
+		}
+		// Using 'ticket system' and 'auto update expire'
+		else if ( $olb->ticket_system && ( intval( $olb->ticket_expire ) > 0 ) ) {
+			if ( $result['new'] > $result['old'] ) {
+				$days = $olb->ticket_expire;
+			}
+		}
+
+		if ( $days ) {
+			$now = current_time('timestamp');
+			$term = get_user_meta( $result['user_id'], 'olbterm', true );
+			if ( empty( $term ) ) {
+				$term = date( 'Y-n-j', $now );
+			}
+			list( $y, $m, $d ) = explode( '-', $term );
+
+			$newterm = date( 'Y-m-d', mktime( 0, 0, 0, $m, $d + $days, $y ) );
+			update_user_meta( $result['user_id'], 'olbterm', $newterm );
+			$result['oldterm'] = $term;
+			$result['newterm'] = $newterm;
+			$result['days'] = $days;
+		}
+		return $result;
+	}
+
+	/*
+	 *	チケット更新ログ: Update logs (Tickets)
+	 */
+	public static function update_log( $result ) {
+		global $wpdb, $olb;
+
+		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
+		$table = $prefix."logs";
+		$increment = $result['new'] - $result['old'];
+		$now = current_time('timestamp');
+		$ret = $wpdb->insert(
+			$table,
+			array(
+				'uid'       => $result['user_id'],
+				'type'      => $result['type'],
+				'data'      => serialize( $result ),
+				'points'    => $increment,
+				'timestamp' => $now
+			)
+		);
+		return $result;
 	}
 
 	/** 
 	 *	プロフィール追加項目の削除: Delete added items of profile (when delete user)
 	 */
 	public static function inDeleteUser($user_id){
+		global $olb;
+
 		delete_user_meta($user_id, 'olbgroup');
 		delete_user_meta($user_id, 'olbterm');
+		delete_user_meta($user_id, $olb->ticket_metakey );
 	}
 
 	/** 
@@ -298,13 +462,10 @@ EOD;
 
 		// 先祖postのID
 		$ancestor_id = array_pop(get_post_ancestors($current_post->ID));
-		$ancestor = null;
-		if($ancestor_id) {
-			$ancestor = get_post($ancestor_id);
-		}
+		$ancestor = ( $ancestor_id ) ? get_post($ancestor_id) : $current_post;
 
 		// 会員ページ(ログイン中のみ): Member-page(only login member)
-		if($current_post->post_name==$olb->member_page || $ancestor->post_name==$olb->member_page){
+		if($ancestor->post_name==$olb->member_page){
 			if(!$user->isLoggedIn()){
 				if(empty($olb->login_page)) {
 					$url = wp_login_url();
@@ -315,14 +476,18 @@ EOD;
 				header('Location: '.$url);
 				exit;
 			}
-			if(!$user->isMember()){
+			if(!$user->isAdmin() && !$user->isMember()){
 				header('Location: '.$olb->home);
 				exit;
+			}
+			// Admin
+			if ( $user->isAdmin() ) {
+				self::admin_pretending_switch( 'user', $current_post, $ancestor );
 			}
 		}
 
 		// 予約ページ(ログイン中のみ): Reservation-page(only login member)
-		if($current_post->post_name==$olb->reserve_form_page || $ancestor->post_name==$olb->reserve_form_page){
+		if($ancestor->post_name==$olb->reserve_form_page){
 			if(!$user->isLoggedIn()){
 				if(empty($olb->login_page)) {
 					$url = wp_login_url();
@@ -340,7 +505,7 @@ EOD;
 		}
 
 		// スケジュール設定ページ(管理者か講師のみ): Scheduling-page(only admin and room manager)
-		if($current_post->post_name==$olb->edit_schedule_page || $ancestor->post_name==$olb->edit_schedule_page){
+		if($ancestor->post_name==$olb->edit_schedule_page){
 			if(!$user->isLoggedIn()){
 				if(empty($olb->login_page)) {
 					$url = wp_login_url();
@@ -354,11 +519,15 @@ EOD;
 			if(!$user->isAdmin() && !$user->isRoomManager()){
 				header('Location: '.$olb->home);
 				exit;
+			}
+			// Admin
+			if ( $user->isAdmin() && $_SERVER['REQUEST_METHOD']!='POST' ) {
+				self::admin_pretending_switch( 'room', $current_post, $ancestor );
 			}
 		}
 
 		// 講師によるキャンセルページ(ログイン中のみ): Cancellation-page(only admin and room manager)
-		if($current_post->post_name==$olb->cancel_form_page || $ancestor->post_name==$olb->cancel_form_page){
+		if($ancestor->post_name==$olb->cancel_form_page){
 			if(!$user->isLoggedIn()){
 				if(empty($olb->login_page)) {
 					$url = wp_login_url();
@@ -375,6 +544,59 @@ EOD;
 			}
 		}
 
+	}
+
+	/**
+	 *	管理者によるユーザーのふりを解除する
+	 */
+	public static function admin_pretending_switch( $mode, $current_post, $ancestor ) {
+		global $olb;
+
+		$url = ( empty( $_SERVER["HTTPS"] ) ) ? "http://" : "https://";
+		$url .= $_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
+
+		// Pretending off
+		if ( isset( $olb->qs['pretend_off'] ) ) {
+			unset( $_SESSION['admin_pretend'] );
+			$url = get_permalink($current_post->ID);
+			header('Location: '.$url);
+			exit;
+		}
+
+		$id_key = $mode.'_id';
+
+		if ( !isset( $olb->qs[$id_key] ) ) {
+			if ( isset( $_SESSION['admin_pretend'] ) && $_SESSION['admin_pretend']['ancestor'] == $ancestor->ID ) {
+				$url .= ( strstr( $url, '?' ) ) ? '&' : '?';
+				$url .= sprintf( $id_key.'=%d', $_SESSION['admin_pretend'][$id_key]);
+				header('Location: '.$url);
+				exit;
+			}
+		}
+	}
+
+	/**
+	 *	管理者による会員マイページへのアクセス: Accessing to member's my page by admin
+	 */
+	public static function admin_access_mypage( $content ) {
+		global $olb;
+
+		if ( is_page( $olb->member_page ) ) {
+			if ( $olb->operator->isLoggedIn() && $olb->operator->isAdmin() ) {
+				ob_start();
+				$target_user = false;
+				$args = array(
+					'pretends' => 'user',
+				);
+				$target_user = apply_filters( 'olb_admin_pretending_user', $target_user, $args );
+				if( empty( $target_user ) ) {
+					$content = ob_get_contents();
+					ob_end_clean();
+				}
+				return $content;
+			}
+		}
+		return $content;
 	}
 
 	/**
@@ -508,7 +730,7 @@ EOD;
 	}
 
 	/** 
-	 *	データベース構造の更新
+	 *	プラグインの更新
 	 */
 	public static function plugin_update_check() {
 		global $wpdb, $olb;
@@ -548,6 +770,33 @@ EOD;
 				$options = get_option(OLBsystem::TEXTDOMAIN);
 				$options['specialpages']['members_info_page'] = $default['specialpages']['members_info_page'];
 				update_option(OLBsystem::TEXTDOMAIN, $options);
+			}
+
+			// Add 'Members info' page (ver 0.3.1 -> 0.4.0)
+			if($installed_version['plugin'] < '0.4.0') {
+				$options_key = OLBsystem::TEXTDOMAIN;
+				$old_options = get_option( $options_key );
+				$new_options = OLBsystem::setDefaultOptions();
+				foreach( $new_options['settings'] as $key=>$value ) {
+					if ( in_array( $key, array( 'limit_per_month', 'ticket_system', 'ticket_metakey', 'ticket_expire' ) ) ) {
+						$old_options['settings'][$key] = $value;
+					}
+				}
+				update_option( $options_key, $olb_options );
+
+				$parent = get_page_by_path($olb->member_page);
+				$parent_id = $parent->ID;
+				$args = array(
+					'post_title'    => __('Ticket Logs', OLBsystem::TEXTDOMAIN),
+					'post_content'  => '[olb_ticket_logs]<p>'.__('No Logs', OLBsystem::TEXTDOMAIN).'</p>[/olb_ticket_logs]',
+					'post_name'     => __('Ticket Logs', OLBsystem::TEXTDOMAIN),
+					'post_parent'    => $parent_id,
+					'post_status'    => 'draft',
+					'post_type'      => 'page',
+					'comment_status' => 'closed',
+					'ping_status'    => 'closed'
+				);
+				wp_insert_post($args);
 			}
 			$new_version['plugin'] = OLBsystem::PLUGIN_VERSION;
 			update_option('olbversion', $new_version);
@@ -592,6 +841,26 @@ EOD;
 				$wpdb->query($sql);
 				$new_version['db'] = OLBsystem::DB_VERSION;
 			}
+			// UPDATE TABLE  (ver 0.3.0 -> 0.4.0)
+			if($installed_version['db'] < '0.4.0' 
+				&& $wpdb->get_var("SHOW TABLES LIKE '{$prefix}logs'") != $prefix.'logs') {
+				require_once(ABSPATH.'wp-admin/includes/upgrade.php');
+				$sql = <<<EOD
+CREATE TABLE IF NOT EXISTS {$prefix}logs (
+id bigint(20) NOT NULL AUTO_INCREMENT,
+uid bigint(20) NOT NULL,
+type varchar(256) NOT NULL,
+data text NOT NULL,
+points bigint(20) NOT NULL,
+timestamp bigint(20) NOT NULL,
+UNIQUE KEY id (id)
+) AUTO_INCREMENT=1;
+EOD;
+				dbDelta($sql);
+
+				$wpdb->query($sql);
+				$new_version['db'] = OLBsystem::DB_VERSION;
+			}
 			update_option('olbversion', $new_version);
 		}
 	}
@@ -607,7 +876,8 @@ EOD;
 		// CREATE TABLE
 		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
 		if($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $prefix.'timetable')) != $prefix.'timetable' &&
-			$wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $prefix.'history')) != $prefix.'history') {
+			$wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $prefix.'history')) != $prefix.'history' &&
+			$wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $prefix.'logs')) != $prefix.'logs') {
 			require_once(ABSPATH.'wp-admin/includes/upgrade.php');
 			$sql = <<<EOD
 CREATE TABLE IF NOT EXISTS {$prefix}timetable (
@@ -631,6 +901,19 @@ free int NOT NULL  COMMENT 'Free',
 absent int NOT NULL  COMMENT 'Absent',
 PRIMARY KEY (id)
 );
+EOD;
+			dbDelta($sql);
+
+			$sql = <<<EOD
+CREATE TABLE IF NOT EXISTS {$prefix}logs (
+id bigint(20) NOT NULL AUTO_INCREMENT,
+uid bigint(20) NOT NULL,
+type varchar(256) NOT NULL,
+data text NOT NULL,
+points bigint(20) NOT NULL,
+timestamp bigint(20) NOT NULL,
+UNIQUE KEY id (id)
+) AUTO_INCREMENT=1;
 EOD;
 			dbDelta($sql);
 
@@ -681,63 +964,80 @@ Hello [olb_member_data key="name"].
 				'post_title'     => __('Scheduler for teacher', OLBsystem::TEXTDOMAIN),
 				'post_content'   => '[olb_edit_schedule]',
 				'post_name'      => $specialpages['edit_schedule_page'],
+				'post_status'   => 'publish',
 			),
 			'cancel_form' => array(
 				'post_title'     => __('Cancel form for teacher', OLBsystem::TEXTDOMAIN),
 				'post_content'   => '[olb_cancel_form]',
 				'post_name'      => $specialpages['cancel_form_page'],
+				'post_status'   => 'publish',
 			),
 			'report_form' => array(
 				'post_title'     => __('Report form for teacher', OLBsystem::TEXTDOMAIN),
 				'post_content'   => '[olb_report_form]',
 				'post_name'      => $specialpages['report_form_page'],
+				'post_status'   => 'publish',
 			),
 			'reserve_form' => array(
 				'post_title'     => __('Reservation and cancellation form', OLBsystem::TEXTDOMAIN),
 				'post_content'   => '[olb_reserve_form]',
 				'post_name'      => $specialpages['reserve_form_page'],
+				'post_status'   => 'publish',
 			),
 			'member_page' => array(
 				'post_title'     => __('Members my-page', OLBsystem::TEXTDOMAIN),
 				'post_content'   => $memer_page_content,
 				'post_name'      => $specialpages['member_page'],
+				'post_status'   => 'publish',
 			),
 			'daily_schedule' => array(
 				'post_title'     => __('Daily schedule', OLBsystem::TEXTDOMAIN),
 				'post_content'   => '[olb_daily_schedule]',
 				'post_name'      => $specialpages['daily_schedule_page'],
+				'post_status'   => 'publish',
 			),
 		);
 		$child_pages = array(
 			'edit_schedule' => array(
 				'teachers_history' => array(
-					'post_title'     => __('Teachers history', OLBsystem::TEXTDOMAIN),
-					'post_content'   => '[olb_teachers_history]<p>'.__('No history', OLBsystem::TEXTDOMAIN).'</p>[/olb_teachers_history]',
+					'post_title'    => __('Teachers history', OLBsystem::TEXTDOMAIN),
+					'post_content'  => '[olb_teachers_history]<p>'.__('No history', OLBsystem::TEXTDOMAIN).'</p>[/olb_teachers_history]',
 					'post_name'     => __('Teachers history', OLBsystem::TEXTDOMAIN),
+					'post_status'   => 'publish',
 				),
 				'teachers_schedule' => array(
-					'post_title'     => __('Teachers schedule', OLBsystem::TEXTDOMAIN),
-					'post_content'   => '[olb_teachers_schedule]<p>'.__('No schedule', OLBsystem::TEXTDOMAIN).'</p>[/olb_teachers_schedule]',
+					'post_title'    => __('Teachers schedule', OLBsystem::TEXTDOMAIN),
+					'post_content'  => '[olb_teachers_schedule]<p>'.__('No schedule', OLBsystem::TEXTDOMAIN).'</p>[/olb_teachers_schedule]',
 					'post_name'     => __('Teachers schedule', OLBsystem::TEXTDOMAIN),
+					'post_status'   => 'publish',
 				),
 				'members_info' => array(
-					'post_title'     => __('Members information', OLBsystem::TEXTDOMAIN),
-					'post_content'   => "[olb_refer_members_info]\n"
+					'post_title'    => __('Members information', OLBsystem::TEXTDOMAIN),
+					'post_content'  => "[olb_refer_members_info]\n"
 									   ."<h3>".__('Recent history', OLBsystem::TEXTDOMAIN)."</h3>\n"
 									   ."[olb_refer_members_history]<p>".__('No history', OLBsystem::TEXTDOMAIN)."</p>[/olb_refer_members_history]",
 					'post_name'     => $specialpages['members_info_page'],
+					'post_status'   => 'publish',
 				),
 			),
 			'member_page' => array(
+				'ticket_logs' => array(
+					'post_title'    => __('Ticket Logs', OLBsystem::TEXTDOMAIN),
+					'post_content'  => '[olb_ticket_logs]<p>'.__('No Logs', OLBsystem::TEXTDOMAIN).'</p>[/olb_ticket_logs]',
+					'post_name'     => __('Ticket Logs', OLBsystem::TEXTDOMAIN),
+					'post_status'    => 'draft',
+				),
 				'members_history' => array(
-					'post_title'     => __('Members history', OLBsystem::TEXTDOMAIN),
-					'post_content'   => '[olb_members_history]<p>'.__('No history', OLBsystem::TEXTDOMAIN).'</p>[/olb_members_history]',
+					'post_title'    => __('Members history', OLBsystem::TEXTDOMAIN),
+					'post_content'  => '[olb_members_history]<p>'.__('No history', OLBsystem::TEXTDOMAIN).'</p>[/olb_members_history]',
 					'post_name'     => __('Members history', OLBsystem::TEXTDOMAIN),
+					'post_status'   => 'publish',
 				),
 				'members_schedule' => array(
-					'post_title'     => __('Members schedule', OLBsystem::TEXTDOMAIN),
-					'post_content'   => '[olb_members_schedule]<p>'.__('No schedule', OLBsystem::TEXTDOMAIN).'</p>[/olb_members_schedule]',
+					'post_title'    => __('Members schedule', OLBsystem::TEXTDOMAIN),
+					'post_content'  => '[olb_members_schedule]<p>'.__('No schedule', OLBsystem::TEXTDOMAIN).'</p>[/olb_members_schedule]',
 					'post_name'     => __('Members schedule', OLBsystem::TEXTDOMAIN),
+					'post_status'   => 'publish',
 				),
 			)
 		);
@@ -746,13 +1046,15 @@ Hello [olb_member_data key="name"].
 				$args = array_merge(
 					$page, 
 					array(
-						'post_status'    => 'publish',
 						'post_type'      => 'page',
 						'comment_status' => 'closed',
 						'ping_status'    => 'closed'
 					)
 				);
-				$parent_id= wp_insert_post($args);
+				$parent_id = wp_insert_post($args);
+			}
+			else {
+				$parent_id = get_page_by_path($page['post_name'])->ID;
 			}
 			if(isset($child_pages[$name])){
 				foreach($child_pages[$name] as $child){
@@ -761,7 +1063,6 @@ Hello [olb_member_data key="name"].
 							$child, 
 							array(
 								'post_parent'    => $parent_id,
-								'post_status'    => 'publish',
 								'post_type'      => 'page',
 								'comment_status' => 'closed',
 								'ping_status'    => 'closed'

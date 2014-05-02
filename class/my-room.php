@@ -2,6 +2,7 @@
 /** 
  *	講師情報: Room info (as teacher)
  */
+add_filter( 'olb_get_room_data', array( 'olbRoom', 'get_room_data' ), 10, 2 );
 
 class olbRoom extends olbPaging {
 
@@ -30,17 +31,28 @@ class olbRoom extends olbPaging {
 				'number' => 1,
 			);
 
-		list($u) = get_users($args);
-		$user = array(
-				'id'       => $u->data->ID,
-				'nicename' => $u->data->user_nicename,
-				'name'     => $u->data->display_name,
-				'status'   => $u->data->user_status,
-				'email'    => $u->data->user_email,
-				'url'      => $u->data->user_url,
-				'olbgroup'  => get_user_meta($u->data->ID, 'olbgroup', true),
+		list( $room ) = get_users( $args );
+		$roomdata = array();
+		if ( !empty( $room->ID ) ) {
+			$roomdata = apply_filters( 'olb_get_room_data', $roomdata, $room );
+		}
+		return $roomdata;
+	}
+
+	/** 
+	 *	講師データを取得: Get room data
+	 */
+	public static function get_room_data( $roomdata, $room ) {
+		$roomdata = array(
+				'id'       => $room->data->ID,
+				'nicename' => $room->data->user_nicename,
+				'name'     => $room->data->display_name,
+				'status'   => $room->data->user_status,
+				'email'    => $room->data->user_email,
+				'url'      => $room->data->user_url,
+				'olbgroup' => get_user_meta( $room->data->ID, 'olbgroup', true ),
 			);
-		return $user;
+		return $roomdata;
 	}
 
 	/** 
@@ -63,20 +75,13 @@ class olbRoom extends olbPaging {
 				$args['number'] = $this->limit;
 			}
 		}
-		$users = array();
-		$org = get_users($args);
-		foreach($org as $u){
-			$users[] = array(
-					'id'       => $u->data->ID,
-					'nicename' => $u->data->user_nicename,
-					'name'     => $u->data->display_name,
-					'status'   => $u->data->user_status,
-					'email'    => $u->data->user_email,
-					'url'      => $u->data->user_url,
-					'olbgroup'  => get_user_meta($u->data->ID, 'olbgroup', true),
-				);
+		$rooms = array();
+		$roomlist = get_users( $args );
+		foreach( $roomlist as $room ) {
+			$roomdata = array();
+			$rooms[] = apply_filters( 'olb_get_room_data', $roomdata, $room );
 		}
-		return $users;
+		return $rooms;
 	}
 
 	/** 
@@ -89,19 +94,13 @@ class olbRoom extends olbPaging {
 				'meta_compare' => '=',
 			);
 
-		$users = array();
-		$org = get_users($args);
-		foreach($org as $u){
-			$users[] = array(
-					'id'       => $u->data->ID,
-					'nicename' => $u->data->user_nicename,
-					'name'     => $u->data->display_name,
-					'status'   => $u->data->user_status,
-					'email'    => $u->data->user_email,
-					'olbgroup'  => get_user_meta($u->data->ID, 'olbgroup', true),
-				);
+		$rooms = array();
+		$roomlist = get_users( $args );
+		foreach( $roomlist as $room ) {
+			$roomdata = array();
+			$rooms[] = apply_filters( 'olb_get_room_data', $roomdata, $room );
 		}
-		return $users;
+		return $rooms;
 	}
 
 	/** 
