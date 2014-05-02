@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-04-23 21:30+0900\n"
-"PO-Revision-Date: 2014-04-23 21:30+0900\n"
+"POT-Creation-Date: 2014-05-03 04:31+0900\n"
+"PO-Revision-Date: 2014-05-03 04:31+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: \n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -298,7 +298,7 @@ msgstr ""
 msgid "Special pages"
 msgstr ""
 
-#: class/my-auth.php:153 class/my-hookactions.php:670
+#: class/my-auth.php:153 class/my-hookactions.php:702
 msgid "ID"
 msgstr ""
 
@@ -545,8 +545,8 @@ msgid "CANCEL"
 msgstr ""
 
 #: class/my-history.php:372 class/my-history.php:468
-#: class/my-hookactions.php:212 class/my-hookactions.php:669
-#: class/my-hookactions.php:685 class/my-timetable.php:541
+#: class/my-hookactions.php:212 class/my-hookactions.php:701
+#: class/my-hookactions.php:717 class/my-timetable.php:541
 #: class/my-timetable.php:617 class/my-timetable.php:677
 #: class/my-timetable.php:822 class/my-timetable.php:886
 #: class/my-timetable.php:1030 class/my-timetable.php:1092
@@ -555,11 +555,49 @@ msgid "Teacher"
 msgstr ""
 
 #: class/my-history.php:569
-msgid "Update type"
+msgid "Update info"
 msgstr ""
 
-#: class/my-history.php:570
-msgid "Increment"
+#: class/my-history.php:582
+msgid "by PayPal payment"
+msgstr ""
+
+#: class/my-history.php:587
+msgid "by Admin"
+msgstr ""
+
+#: class/my-history.php:593 class/my-history.php:626
+#, php-format
+msgid "Corrected %d ticket."
+msgstr ""
+
+#: class/my-history.php:596 class/my-history.php:629
+#, php-format
+msgid "Added %d ticket."
+msgstr ""
+
+#: class/my-history.php:607
+#, php-format
+msgid "Extended for %d days."
+msgstr ""
+
+#: class/my-history.php:611
+#, php-format
+msgid "Corrected for %d days."
+msgstr ""
+
+#: class/my-history.php:615 class/my-history.php:620
+msgid "Error"
+msgstr ""
+
+#: class/my-history.php:633
+#, php-format
+msgid "And extended for %d days."
+msgstr ""
+
+#: class/my-history.php:636
+#, php-format
+msgid "And corrected for %d days."
 msgstr ""
 
 #: class/my-hookactions.php:34
@@ -595,29 +633,29 @@ msgstr ""
 msgid "Property \"Teacher\""
 msgstr ""
 
-#: class/my-hookactions.php:726 class/my-hookactions.php:983
+#: class/my-hookactions.php:758 class/my-hookactions.php:1015
 msgid "Members information"
 msgstr ""
 
-#: class/my-hookactions.php:728 class/my-hookactions.php:985
+#: class/my-hookactions.php:760 class/my-hookactions.php:1017
 msgid "Recent history"
 msgstr ""
 
-#: class/my-hookactions.php:729 class/my-hookactions.php:972
-#: class/my-hookactions.php:986 class/my-hookactions.php:1000
+#: class/my-hookactions.php:761 class/my-hookactions.php:1004
+#: class/my-hookactions.php:1018 class/my-hookactions.php:1032
 msgid "No history"
 msgstr ""
 
-#: class/my-hookactions.php:758 class/my-hookactions.php:760
-#: class/my-hookactions.php:993 class/my-hookactions.php:995
+#: class/my-hookactions.php:790 class/my-hookactions.php:792
+#: class/my-hookactions.php:1025 class/my-hookactions.php:1027
 msgid "Ticket Logs"
 msgstr ""
 
-#: class/my-hookactions.php:759 class/my-hookactions.php:994
+#: class/my-hookactions.php:791 class/my-hookactions.php:1026
 msgid "No Logs"
 msgstr ""
 
-#: class/my-hookactions.php:904
+#: class/my-hookactions.php:936
 msgid ""
 "\n"
 "<p>\n"
@@ -644,47 +682,47 @@ msgid ""
 "[/olb_members_schedule]\n"
 msgstr ""
 
-#: class/my-hookactions.php:932
+#: class/my-hookactions.php:964
 msgid "Scheduler for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:938
+#: class/my-hookactions.php:970
 msgid "Cancel form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:944
+#: class/my-hookactions.php:976
 msgid "Report form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:950
+#: class/my-hookactions.php:982
 msgid "Reservation and cancellation form"
 msgstr ""
 
-#: class/my-hookactions.php:956
+#: class/my-hookactions.php:988
 msgid "Members my-page"
 msgstr ""
 
-#: class/my-hookactions.php:962
+#: class/my-hookactions.php:994
 msgid "Daily schedule"
 msgstr ""
 
-#: class/my-hookactions.php:971 class/my-hookactions.php:973
+#: class/my-hookactions.php:1003 class/my-hookactions.php:1005
 msgid "Teachers history"
 msgstr ""
 
-#: class/my-hookactions.php:977 class/my-hookactions.php:979
+#: class/my-hookactions.php:1009 class/my-hookactions.php:1011
 msgid "Teachers schedule"
 msgstr ""
 
-#: class/my-hookactions.php:978 class/my-hookactions.php:1006
+#: class/my-hookactions.php:1010 class/my-hookactions.php:1038
 msgid "No schedule"
 msgstr ""
 
-#: class/my-hookactions.php:999 class/my-hookactions.php:1001
+#: class/my-hookactions.php:1031 class/my-hookactions.php:1033
 msgid "Members history"
 msgstr ""
 
-#: class/my-hookactions.php:1005 class/my-hookactions.php:1007
+#: class/my-hookactions.php:1037 class/my-hookactions.php:1039
 msgid "Members schedule"
 msgstr ""
 
@@ -708,9 +746,12 @@ msgstr ""
 msgid "Plugin site"
 msgstr ""
 
-#: class/my-info.php:42 class/my-info.php:51 class/my-info.php:68
-#: class/my-info.php:82
+#: class/my-info.php:42 class/my-info.php:52
 msgid "Latest from Plugin"
+msgstr ""
+
+#: class/my-info.php:64 class/my-info.php:79
+msgid "Latest from \"Online Lesson Booking\" plugin"
 msgstr ""
 
 #: class/my-paging.php:150 class/my-shortcodes.php:39

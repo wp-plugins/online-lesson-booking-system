@@ -271,100 +271,132 @@ EOD;
 			$result = apply_filters('olb_update_profile_group', $result );
 		}
 
-		// 有効期限
-		$oldterm = get_user_meta($user_id, 'olbterm', true);
+		// process payment
+		$result = array(
+			'type'    => 'admin',
+			'user_id' => $user_id,
+			'old'     => 0,
+			'new'     => 0,
+			'days'    => 0,
+		 );
+
+		// UPDATE TICKET
+		$oldticket = $newticket = 0;
+		// Using 'ticket system'
+		if($olb->ticket_system) {
+			$oldticket = get_user_meta( $user_id, $olb->ticket_metakey, true );
+			if ( $_POST['olbticket'] != '' ){
+				$newticket = intval( $_POST['olbticket'] );
+				// Check integer
+				if(strval($newticket) == strval(intval($newticket))){
+					if ( $newticket != $oldticket ) {
+						$result['old'] = $oldticket;
+						$result['new'] = $newticket;
+					}
+				}
+			}
+			else {
+				$newticket = 0;
+				if ( $newticket != $oldticket ) {
+					$result['old'] = $oldticket;
+					$result['new'] = $newticket;
+				}
+			}
+		}
+
+		// UPDATE TERM (of validity)
+		$days = 0;
+		$oldterm = get_user_meta( $user_id, 'olbterm', true );
+		list( $oy, $om, $od ) = explode( '-', $oldterm );
+		$om = intval( $om );
+		$od = intval( $od );
 		if (!empty($_POST['olbterm'])){
-			$term = str_replace( '/', '-', $_POST['olbterm'] );
-			if( preg_match('/^([2-9][0-9]{3})-(0[1-9]{1}|1[0-2]{1})-(0[1-9]{1}|[1-2]{1}[0-9]{1}|3[0-1]{1})$/', $term ) ) {
-				update_user_meta($user_id, 'olbterm', $term );
+			$newterm = str_replace( '/', '-', $_POST['olbterm'] );
+			if( preg_match('/^([2-9][0-9]{3})-(0[1-9]{1}|1[0-2]{1})-(0[1-9]{1}|[1-2]{1}[0-9]{1}|3[0-1]{1})$/', $newterm ) ) {
+				list( $ny, $nm, $nd ) = explode( '-', $newterm );
+				$nm = intval( $nm );
+				$nd = intval( $nd );
+				$days = ( mktime( 0, 0, 0, $nm, $nd, $ny ) - mktime( 0, 0, 0, $om, $od, $oy ) ) / ( 60 * 60 * 24 );
+				if ( $days != 0 ) {
+					$result['days'] = $days;
+				}
 			}
 		}
 		else {
 			delete_user_meta($user_id, 'olbterm', '');
 		}
-		$newterm = get_user_meta($user_id, 'olbterm', true);
-		if($oldterm != $newterm){
-			$result = array( 'user_id'=>$user_id, 'old'=>$oldterm, 'new'=>$newterm );
-			$result = apply_filters('olb_update_profile_term', $result );
-		}
 
-		// チケット
-		$oldticket = get_user_meta($user_id, $olb->ticket_metakey, true);
-		if (!empty($_POST['olbticket'])){
-			$ticket = $_POST['olbticket'];
-			if(strval($ticket) == strval(intval($ticket))){
-				update_user_meta($user_id, $olb->ticket_metakey, $ticket );
-			}
-		}
-		else {
-			update_user_meta($user_id, $olb->ticket_metakey, 0 );
-		}
-		$newticket = get_user_meta($user_id, $olb->ticket_metakey, true);
-		if($oldticket != $newticket){
-			$result = array( 'user_id'=>$user_id, 'old'=>$oldticket, 'new'=>$newticket );
-			$result = apply_filters('olb_update_profile_ticket', $result );
-		}
-
+		$result = apply_filters( 'olb_update_ticket', $result );
+		$result = apply_filters( 'olb_update_term', $result );
+		$result = apply_filters( 'olb_update_log', $result );
 	}
 
-	/*
-	 *	有効期限更新ログ: Update logs (Term)
+	/**
+	 *	保有チケットの更新: Update 'possession tickets'
 	 */
-	public static function update_term_log( $result ) {
-		global $wpdb;
+	public static function update_ticket( $result ) {
+		global $olb;
 
-		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
-		$table = $prefix."logs";
-		$data = array(
-			'type' => 'term',
-			'old' => $result['old'],
-			'new' => $result['new']
-		);
-		$ret = $wpdb->insert(
-			$table,
-			array(
-				'uid'=>$result['user_id'],
-				'type'=>'admin',
-				'data' => serialize( $data ),
-				'points' => 0,
-				'timestamp' => current_time('timestamp')
-			)
-		);
+		if ( $result['old'] != $result['new'] ) {
+			update_user_meta( $result['user_id'], $olb->ticket_metakey, $result['new'] );
+		}
+		return $result;
+	}
+
+	/**
+	 *	有効期限の更新: Update 'term of validity'
+	 */
+	public static function update_term( $result ) {
+		global $olb;
+
+		$days = 0;
+		if ( !empty( $result['days'] ) ) {
+			$days = intval( $result['days'] );
+		}
+		// Using 'ticket system' and 'auto update expire'
+		else if ( $olb->ticket_system && ( intval( $olb->ticket_expire ) > 0 ) ) {
+			if ( $result['new'] > $result['old'] ) {
+				$days = $olb->ticket_expire;
+			}
+		}
+
+		if ( $days ) {
+			$now = current_time('timestamp');
+			$term = get_user_meta( $result['user_id'], 'olbterm', true );
+			if ( empty( $term ) ) {
+				$term = date( 'Y-n-j', $now );
+			}
+			list( $y, $m, $d ) = explode( '-', $term );
+
+			$newterm = date( 'Y-m-d', mktime( 0, 0, 0, $m, $d + $days, $y ) );
+			update_user_meta( $result['user_id'], 'olbterm', $newterm );
+			$result['oldterm'] = $term;
+			$result['newterm'] = $newterm;
+			$result['days'] = $days;
+		}
 		return $result;
 	}
 
 	/*
 	 *	チケット更新ログ: Update logs (Tickets)
 	 */
-	public static function update_ticket_log( $result ) {
+	public static function update_log( $result ) {
 		global $wpdb, $olb;
 
 		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
 		$table = $prefix."logs";
-		$data = array(
-			'type' => 'term',
-			'old' => $result['old'],
-			'new' => $result['new']
-		);
 		$increment = $result['new'] - $result['old'];
 		$now = current_time('timestamp');
 		$ret = $wpdb->insert(
 			$table,
 			array(
-				'uid'=>$result['user_id'],
-				'type'=>'admin',
-				'data' => serialize( $data ),
-				'points' => $increment,
+				'uid'       => $result['user_id'],
+				'type'      => $result['type'],
+				'data'      => serialize( $result ),
+				'points'    => $increment,
 				'timestamp' => $now
 			)
 		);
-		// 有効期限の自動更新
-		if ( $increment > 0 && $olb->ticket_expire > 0 ) {
-			$term = date( 'Y-m-d', $now );
-			list( $y, $m, $d ) = explode( '-', $term );
-			$newterm = date( 'Y-m-d', mktime( 0, 0, 0, $m, $d + $olb->ticket_expire, $y ) );
-			update_user_meta( $result['user_id'], 'olbterm', $newterm );
-		}
 		return $result;
 	}
 

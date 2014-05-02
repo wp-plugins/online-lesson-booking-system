@@ -12,7 +12,7 @@ class olbInfo {
 	 */
 	public static function plugin_info() {
 		$url = OLBsystem::URL;
-		if ( WPLANG != 'ja' ) {
+		if ( WPLANG != '' &&  WPLANG != 'ja' ) {
 			$url .= WPLANG.'/';
 		}
 	?>
@@ -43,18 +43,14 @@ class olbInfo {
 		<div class="inside">
 		<?php
 		$url = OLBsystem::URL;
-		if ( WPLANG != 'ja' ) {
+		if ( WPLANG != '' && WPLANG != 'ja' ) {
 			$url .= WPLANG.'/';
 		}
-		wp_widget_rss_output( array(
-				'url' => $url.'feed/',
-				'title' => __( 'Latest from Plugin', OLBsystem::TEXTDOMAIN ),
-				'items' => 5,
-				'show_summary' => 0,
-				'show_author' => 0,
-				'show_date' => 0
-			)
-		);
+		$feed = fetch_feed( $url );
+		$feed->set_cache_duration( 60*60 );
+		$feed->init();
+		$param = sprintf( 'title=%s&items=5&show_summary=0&show_author=0&show_date=0', __( 'Latest from Plugin', OLBsystem::TEXTDOMAIN ) );
+		wp_widget_rss_output( $feed, $param );
 		?>
 		</div>
 	</div>
@@ -65,7 +61,7 @@ class olbInfo {
 	 *	LATEST INFO (in DASHBOARD)
 	 */
 	public static function olb_dashboard() {
-		wp_add_dashboard_widget( 'dashboard_custom_feed', __( 'Latest from Plugin', OLBsystem::TEXTDOMAIN ), array( 'olbInfo', 'latest_info_dashboard' ) );
+		wp_add_dashboard_widget( 'dashboard_custom_feed', __( 'Latest from "Online Lesson Booking" plugin', OLBsystem::TEXTDOMAIN ), array( 'olbInfo', 'latest_info_dashboard' ) );
 	}
 
 	/** 
@@ -74,18 +70,14 @@ class olbInfo {
 	public static function latest_info_dashboard() {
 		echo '<div class="rss-widget">';
 		$url = OLBsystem::URL;
-		if ( WPLANG != 'ja' ) {
+		if ( WPLANG != '' && WPLANG != 'ja' ) {
 			$url .= WPLANG.'/';
 		}
-		wp_widget_rss_output( array(
-				'url' => $url.'feed/',
-				'title' => __( 'Latest from Plugin', OLBsystem::TEXTDOMAIN ),
-				'items' => 5,
-				'show_summary' => 0,
-				'show_author' => 0,
-				'show_date' => 1
-			)
-		);
+		$feed = fetch_feed( $url );
+		$feed->set_cache_duration( 60*60 );
+		$feed->init();
+		$param = sprintf( 'title=%s&items=5&show_summary=0&show_author=0&show_date=1', __( 'Latest from "Online Lesson Booking" plugin', OLBsystem::TEXTDOMAIN ) );
+		wp_widget_rss_output( $feed, $param );
 		echo '</div>';
 	}
 

@@ -127,11 +127,11 @@ table.history_list td {
 	border-bottom: 1px solid #ccc;
 }
 table.history_list th.date {
-	width: 50%;
+	width: 20%;
 }
 table.history_list th.room,
 table.history_list th.member {
-	width: 30%;
+	width: 60%;
 }
 table.history_list th.absent {
 	width: 20%;
@@ -154,10 +154,10 @@ table.future_list td {
 	border-bottom: 1px solid #ccc;
 }
 table.future_list th.date {
-	width: 25%;
+	width: 20%;
 }
 table.future_list th.waiting {
-	width: 25%;
+	width: 30%;
 }
 table.future_list th.room,
 table.future_list th.member {
@@ -166,6 +166,11 @@ table.future_list th.member {
 table.future_list th.cancel {
 	width: 20%;
 }
+
+table.ticket_logs th.date {
+	width: 20% !important;
+}
+
 
 /*
  *	Page navi for history

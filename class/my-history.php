@@ -564,21 +564,81 @@ class olb_logs extends olbHistory {
 		if(!empty($records)) {
 			echo '<table id="ticket_logs" class="history_list">'."\n";
 			echo '<tr class="head">'."\n";
-			printf('<th class="date">%s</th><th class="type">%s</th><th class="increment">%s</th>',
+			printf('<th class="date">%s</th><th class="info">%s</th>',
 				__('Date/Time', OLBsystem::TEXTDOMAIN),
-				__('Update type', OLBsystem::TEXTDOMAIN),
-				__('Increment', OLBsystem::TEXTDOMAIN)
+				__('Update info', OLBsystem::TEXTDOMAIN)
 				);
 			echo '</tr>'."\n";
 
 			foreach($records as $r) {
 				$user = olbAuth::getUser($r['uid']);
+				$data = unserialize( $r['data'] );
+				$increment = $data['new'] - $data['old'];
 				echo '<tr>'."\n";
-				printf('<td class="date">%s</td><td class="type">%s</td><td class="increment">%s</td>',
-					date( 'Y-m-d', $r['timestamp'] ),
-					$r['type'],
-					$r['points']
-					);
+				printf('<td class="date">%s</td>', date( 'Y-m-d H:i', $r['timestamp'] ) );
+
+				switch( $r['type'] ) {
+				case 'paypal':
+					$by = '('.__('by PayPal payment', OLBsystem::TEXTDOMAIN ).')';
+					break;
+
+				case 'admin':
+				default:
+					$by = '('.__('by Admin', OLBsystem::TEXTDOMAIN ).')';
+				}
+				$by = '';
+				// Ver 0.4.0 
+				if ( $data['type'] == 'term' ) {
+					if ( $r['points'] < 1 ) {
+						$info = sprintf( __('Corrected %d ticket.', OLBsystem::TEXTDOMAIN).' %s', $r['points'], $by );
+					}
+					else {
+						$info = sprintf( __('Added %d ticket.', OLBsystem::TEXTDOMAIN).' %s', $r['points'], $by );
+					}
+				}
+				// Ver >= 0.4.1
+				else {
+					// change of days
+					if ( $increment == 0 ) {
+						// no change of point 
+						if ( $data['old'] == $data['new'] ) {
+							// extended
+							if ( $data['days'] > 0 ) {
+								$info = sprintf( __('Extended for %d days.', OLBsystem::TEXTDOMAIN).' %s', $data['days'], $by );
+							}
+							// corrected 
+							else if ( $data['days'] < 0 ) {
+								$info = sprintf( __('Corrected for %d days.', OLBsystem::TEXTDOMAIN).' %s', $data['days'], $by );
+							}
+							// no change of point and days
+							else {
+								$info = __('Error', OLBsystem::TEXTDOMAIN);
+							}
+						}
+						// points is 0 in spite of having changed the point. 
+						else {
+							$info = __( 'Error', OLBsystem::TEXTDOMAIN);
+						}
+					}
+					// change ob points
+					else {
+						if ( $r['points'] < 1 ) {
+							$info = sprintf( __('Corrected %d ticket.', OLBsystem::TEXTDOMAIN), $r['points'] );
+						}
+						else {
+							$info = sprintf( __('Added %d ticket.', OLBsystem::TEXTDOMAIN), $r['points'] );
+						}
+
+						if ( $data['days'] > 0 ) {
+							$info .= sprintf( ' '.__('And extended for %d days.', OLBsystem::TEXTDOMAIN), $data['days'] );
+						}
+						else if ( $data['days'] < 0 ) {
+							$info .= sprintf( ' '.__('And corrected for %d days.', OLBsystem::TEXTDOMAIN), $data['days'] );
+						}
+						$info .= ''.$by;
+					}
+				}
+				printf('<td class="info">%s</td>', $info );
 				echo '</tr>'."\n";
 			}
 			echo '</table>';

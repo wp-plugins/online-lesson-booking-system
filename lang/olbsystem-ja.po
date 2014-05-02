@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-04-23 21:36+0900\n"
-"PO-Revision-Date: 2014-04-23 21:36+0900\n"
+"POT-Creation-Date: 2014-05-03 04:32+0900\n"
+"PO-Revision-Date: 2014-05-03 04:32+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: \n"
-"Language: Japanese\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -300,7 +300,7 @@ msgstr "対象"
 msgid "Special pages"
 msgstr "特別なページの名前"
 
-#: class/my-auth.php:153 class/my-hookactions.php:670
+#: class/my-auth.php:153 class/my-hookactions.php:702
 msgid "ID"
 msgstr "ID"
 
@@ -549,8 +549,8 @@ msgid "CANCEL"
 msgstr "キャンセル"
 
 #: class/my-history.php:372 class/my-history.php:468
-#: class/my-hookactions.php:212 class/my-hookactions.php:669
-#: class/my-hookactions.php:685 class/my-timetable.php:541
+#: class/my-hookactions.php:212 class/my-hookactions.php:701
+#: class/my-hookactions.php:717 class/my-timetable.php:541
 #: class/my-timetable.php:617 class/my-timetable.php:677
 #: class/my-timetable.php:822 class/my-timetable.php:886
 #: class/my-timetable.php:1030 class/my-timetable.php:1092
@@ -559,12 +559,50 @@ msgid "Teacher"
 msgstr "講師"
 
 #: class/my-history.php:569
-msgid "Update type"
-msgstr "更新タイプ"
+msgid "Update info"
+msgstr "更新情報"
 
-#: class/my-history.php:570
-msgid "Increment"
-msgstr "増分"
+#: class/my-history.php:582
+msgid "by PayPal payment"
+msgstr "PayPal支払い"
+
+#: class/my-history.php:587
+msgid "by Admin"
+msgstr "管理者"
+
+#: class/my-history.php:593 class/my-history.php:626
+#, php-format
+msgid "Corrected %d ticket."
+msgstr "%dチケット修正。"
+
+#: class/my-history.php:596 class/my-history.php:629
+#, php-format
+msgid "Added %d ticket."
+msgstr "%dチケット追加。"
+
+#: class/my-history.php:607
+#, php-format
+msgid "Extended for %d days."
+msgstr "有効期限を %d日延長。"
+
+#: class/my-history.php:611
+#, php-format
+msgid "Corrected for %d days."
+msgstr "有効期限を %d日修正。"
+
+#: class/my-history.php:615 class/my-history.php:620
+msgid "Error"
+msgstr "エラー"
+
+#: class/my-history.php:633
+#, php-format
+msgid "And extended for %d days."
+msgstr "また、有効期限を %d日延長。"
+
+#: class/my-history.php:636
+#, php-format
+msgid "And corrected for %d days."
+msgstr "また、有効期限を %d日修正。"
 
 #: class/my-hookactions.php:34
 msgid "My page"
@@ -599,29 +637,29 @@ msgstr "保有チケット数"
 msgid "Property \"Teacher\""
 msgstr "講師属性"
 
-#: class/my-hookactions.php:726 class/my-hookactions.php:983
+#: class/my-hookactions.php:758 class/my-hookactions.php:1015
 msgid "Members information"
 msgstr "会員情報"
 
-#: class/my-hookactions.php:728 class/my-hookactions.php:985
+#: class/my-hookactions.php:760 class/my-hookactions.php:1017
 msgid "Recent history"
 msgstr "最近の受講履歴"
 
-#: class/my-hookactions.php:729 class/my-hookactions.php:972
-#: class/my-hookactions.php:986 class/my-hookactions.php:1000
+#: class/my-hookactions.php:761 class/my-hookactions.php:1004
+#: class/my-hookactions.php:1018 class/my-hookactions.php:1032
 msgid "No history"
 msgstr "履歴情報はありません"
 
-#: class/my-hookactions.php:758 class/my-hookactions.php:760
-#: class/my-hookactions.php:993 class/my-hookactions.php:995
+#: class/my-hookactions.php:790 class/my-hookactions.php:792
+#: class/my-hookactions.php:1025 class/my-hookactions.php:1027
 msgid "Ticket Logs"
 msgstr "チケット更新ログ"
 
-#: class/my-hookactions.php:759 class/my-hookactions.php:994
+#: class/my-hookactions.php:791 class/my-hookactions.php:1026
 msgid "No Logs"
 msgstr "ログはまだありません"
 
-#: class/my-hookactions.php:904
+#: class/my-hookactions.php:936
 msgid ""
 "\n"
 "<p>\n"
@@ -671,47 +709,47 @@ msgstr ""
 "<p>（予定はありません）</p>\n"
 "[/olb_members_schedule]\n"
 
-#: class/my-hookactions.php:932
+#: class/my-hookactions.php:964
 msgid "Scheduler for teacher"
 msgstr "講師用スケジュール編集"
 
-#: class/my-hookactions.php:938
+#: class/my-hookactions.php:970
 msgid "Cancel form for teacher"
 msgstr "講師用キャンセルフォーム"
 
-#: class/my-hookactions.php:944
+#: class/my-hookactions.php:976
 msgid "Report form for teacher"
 msgstr "講師用出欠フォーム"
 
-#: class/my-hookactions.php:950
+#: class/my-hookactions.php:982
 msgid "Reservation and cancellation form"
 msgstr "予約・キャンセルフォーム"
 
-#: class/my-hookactions.php:956
+#: class/my-hookactions.php:988
 msgid "Members my-page"
 msgstr "会員マイページ"
 
-#: class/my-hookactions.php:962
+#: class/my-hookactions.php:994
 msgid "Daily schedule"
 msgstr "日別スケジュール（全講師）"
 
-#: class/my-hookactions.php:971 class/my-hookactions.php:973
+#: class/my-hookactions.php:1003 class/my-hookactions.php:1005
 msgid "Teachers history"
 msgstr "講師用実施履歴"
 
-#: class/my-hookactions.php:977 class/my-hookactions.php:979
+#: class/my-hookactions.php:1009 class/my-hookactions.php:1011
 msgid "Teachers schedule"
 msgstr "講師用予約済み情報"
 
-#: class/my-hookactions.php:978 class/my-hookactions.php:1006
+#: class/my-hookactions.php:1010 class/my-hookactions.php:1038
 msgid "No schedule"
 msgstr "予約情報はありません"
 
-#: class/my-hookactions.php:999 class/my-hookactions.php:1001
+#: class/my-hookactions.php:1031 class/my-hookactions.php:1033
 msgid "Members history"
 msgstr "会員受講履歴"
 
-#: class/my-hookactions.php:1005 class/my-hookactions.php:1007
+#: class/my-hookactions.php:1037 class/my-hookactions.php:1039
 msgid "Members schedule"
 msgstr "会員予約情報"
 
@@ -735,10 +773,13 @@ msgstr "もし誤った動作等があればお知らせください。"
 msgid "Plugin site"
 msgstr "プラグインサイト"
 
-#: class/my-info.php:42 class/my-info.php:51 class/my-info.php:68
-#: class/my-info.php:82
+#: class/my-info.php:42 class/my-info.php:52
 msgid "Latest from Plugin"
 msgstr "最新情報"
+
+#: class/my-info.php:64 class/my-info.php:79
+msgid "Latest from \"Online Lesson Booking\" plugin"
+msgstr "\"Online Lesson Booking\" の最新情報"
 
 #: class/my-paging.php:150 class/my-shortcodes.php:39
 #: class/my-shortcodes.php:554
@@ -974,6 +1015,15 @@ msgstr "管理者メニュー"
 #: class/my-widget.php:322
 msgid "Dash board"
 msgstr "WordPress管理画面"
+
+#~ msgid "Corrected %d point."
+#~ msgstr "%d"
+
+#~ msgid "Update type"
+#~ msgstr "更新タイプ"
+
+#~ msgid "Increment"
+#~ msgstr "増分"
 
 #~ msgid "%s edites schedule of %s"
 #~ msgstr "%s が %s のスケジュールを編集中"

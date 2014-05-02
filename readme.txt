@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.0
-Stable tag: 0.4.0
+Stable tag: 0.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,12 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Changelog ==
 
+= 0.4.1 =
+
+* The display style of "Ticket logs" was changed. 
+* Also when the "Term of validity" is extended, it is displayed on "Ticket logs". 
+* Bug fix
+
 = 0.4.0 =
 
 * The limit of the number of reservation per month can be specified. 
@@ -104,7 +110,7 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Upgrade Notice ==
 
-= 0.4.0 =
+= 0.4.1 =
 
-The limit of the number of reservation per month can be specified. 
-"Ticket system" can be chosen. It is the system of giving each member tickets and making a reservation by consuming ticket. If tickets run short, the member has to purchase.
+The display style of "Ticket logs" was changed. 
+Also when the "Term of validity" is extended, it is displayed on "Ticket logs". 

@@ -166,8 +166,9 @@ class olbInitFunction {
 		add_filter( 'olb_can_reservation',  array( 'olbTimetable', 'canReservation' ), 10, 5 );
 		add_filter( 'olb_added_profile', array( 'olbHookAction', 'additional_fields'), 10, 2 );
 		add_filter( 'olb_added_profile_admin', array( 'olbHookAction', 'additional_fields_admin'), 10, 2 );
-//		add_filter( 'olb_update_profile_term', array( 'olbHookAction', 'update_term_log' ), 10, 1  );
-		add_filter( 'olb_update_profile_ticket', array( 'olbHookAction', 'update_ticket_log' ), 10, 1  );
+		add_filter( 'olb_update_ticket', array( 'olbHookAction', 'update_ticket' ), 10, 1  );
+		add_filter( 'olb_update_term', array( 'olbHookAction', 'update_term' ), 10, 1  );
+		add_filter( 'olb_update_log', array( 'olbHookAction', 'update_log' ), 10, 1  );
 		add_filter( 'olb_admin_pretending_user', array( 'olbFormAction', 'admin_pretending_user' ), 10, 2 );
 		add_filter( 'the_content', array( 'olbhookAction', 'admin_access_mypage' ), 10, 1 ); 
  
