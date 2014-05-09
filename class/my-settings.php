@@ -10,7 +10,7 @@ class OLBsystem {
 	const TABLEPREFIX = 'olb_';
 	const TEXTDOMAIN = 'olbsystem';
 	const URL = 'http://olbsys.com/';
-	const PLUGIN_VERSION = '0.4.2';
+	const PLUGIN_VERSION = '0.4.3';
 	const DB_VERSION = '0.4.0';
 
 	// タイムテーブル基本設定

@@ -271,67 +271,69 @@ EOD;
 			$result = apply_filters('olb_update_profile_group', $result );
 		}
 
-		// process payment
-		$result = array(
-			'type'    => 'admin',
-			'user_id' => $user_id,
-			'old'     => 0,
-			'new'     => 0,
-			'days'    => 0,
-		 );
+		if ( $olb->operator->isLoggedIn() && $olb->operator->isAdmin() ) {
+			// process payment
+			$result = array(
+				'type'    => 'admin',
+				'user_id' => $user_id,
+				'old'     => 0,
+				'new'     => 0,
+				'days'    => 0,
+			 );
 
-		// UPDATE TICKET
-		$oldticket = $newticket = 0;
-		// Using 'ticket system'
-		if($olb->ticket_system) {
-			$oldticket = get_user_meta( $user_id, $olb->ticket_metakey, true );
-			if ( $_POST['olbticket'] != '' ){
-				$newticket = intval( $_POST['olbticket'] );
-				// Check integer
-				if(strval($newticket) == strval(intval($newticket))){
+			// UPDATE TICKET
+			$oldticket = $newticket = 0;
+			// Using 'ticket system'
+			if($olb->ticket_system) {
+				$oldticket = get_user_meta( $user_id, $olb->ticket_metakey, true );
+				if ( $_POST['olbticket'] != '' ){
+					$newticket = intval( $_POST['olbticket'] );
+					// Check integer
+					if(strval($newticket) == strval(intval($newticket))){
+						if ( $newticket != $oldticket ) {
+							$result['old'] = $oldticket;
+							$result['new'] = $newticket;
+						}
+					}
+				}
+				else {
+					$newticket = 0;
 					if ( $newticket != $oldticket ) {
 						$result['old'] = $oldticket;
 						$result['new'] = $newticket;
 					}
 				}
 			}
+
+			// UPDATE TERM (of validity)
+			$days = 0;
+			$oldterm = get_user_meta( $user_id, 'olbterm', true );
+			if ( empty( $oldterm ) ) {
+				$oldterm = date( 'Y-m-d', current_time('timestamp') );
+			}
+			list( $oy, $om, $od ) = explode( '-', $oldterm );
+			$om = intval( $om );
+			$od = intval( $od );
+			if (!empty($_POST['olbterm'])){
+				$newterm = str_replace( '/', '-', $_POST['olbterm'] );
+				if( preg_match('/^([2-9][0-9]{3})-(0[1-9]{1}|1[0-2]{1})-(0[1-9]{1}|[1-2]{1}[0-9]{1}|3[0-1]{1})$/', $newterm ) ) {
+					list( $ny, $nm, $nd ) = explode( '-', $newterm );
+					$nm = intval( $nm );
+					$nd = intval( $nd );
+					$days = ( mktime( 0, 0, 0, $nm, $nd, $ny ) - mktime( 0, 0, 0, $om, $od, $oy ) ) / ( 60 * 60 * 24 );
+					if ( $days != 0 ) {
+						$result['days'] = $days;
+					}
+				}
+			}
 			else {
-				$newticket = 0;
-				if ( $newticket != $oldticket ) {
-					$result['old'] = $oldticket;
-					$result['new'] = $newticket;
-				}
+				delete_user_meta($user_id, 'olbterm', '');
 			}
-		}
 
-		// UPDATE TERM (of validity)
-		$days = 0;
-		$oldterm = get_user_meta( $user_id, 'olbterm', true );
-		if ( empty( $oldterm ) ) {
-			$oldterm = date( 'Y-m-d', current_time('timestamp') );
+			$result = apply_filters( 'olb_update_ticket', $result );
+			$result = apply_filters( 'olb_update_term', $result );
+			$result = apply_filters( 'olb_update_log', $result );
 		}
-		list( $oy, $om, $od ) = explode( '-', $oldterm );
-		$om = intval( $om );
-		$od = intval( $od );
-		if (!empty($_POST['olbterm'])){
-			$newterm = str_replace( '/', '-', $_POST['olbterm'] );
-			if( preg_match('/^([2-9][0-9]{3})-(0[1-9]{1}|1[0-2]{1})-(0[1-9]{1}|[1-2]{1}[0-9]{1}|3[0-1]{1})$/', $newterm ) ) {
-				list( $ny, $nm, $nd ) = explode( '-', $newterm );
-				$nm = intval( $nm );
-				$nd = intval( $nd );
-				$days = ( mktime( 0, 0, 0, $nm, $nd, $ny ) - mktime( 0, 0, 0, $om, $od, $oy ) ) / ( 60 * 60 * 24 );
-				if ( $days != 0 ) {
-					$result['days'] = $days;
-				}
-			}
-		}
-		else {
-			delete_user_meta($user_id, 'olbterm', '');
-		}
-
-		$result = apply_filters( 'olb_update_ticket', $result );
-		$result = apply_filters( 'olb_update_term', $result );
-		$result = apply_filters( 'olb_update_log', $result );
 	}
 
 	/**

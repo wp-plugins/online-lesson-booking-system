@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.0
-Stable tag: 0.4.2
+Stable tag: 0.4.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,10 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Changelog ==
 
+= 0.4.3 =
+
+* Bug fix
+
 = 0.4.2 =
 
 * Bug fix
@@ -114,6 +118,6 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Upgrade Notice ==
 
-= 0.4.2 =
+= 0.4.3 =
 
 Bug fix. 
