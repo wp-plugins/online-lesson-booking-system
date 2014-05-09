@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-05-03 04:31+0900\n"
-"PO-Revision-Date: 2014-05-03 04:31+0900\n"
+"POT-Creation-Date: 2014-05-09 16:13+0900\n"
+"PO-Revision-Date: 2014-05-09 16:13+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -298,7 +298,7 @@ msgstr ""
 msgid "Special pages"
 msgstr ""
 
-#: class/my-auth.php:153 class/my-hookactions.php:702
+#: class/my-auth.php:153 class/my-hookactions.php:705
 msgid "ID"
 msgstr ""
 
@@ -545,8 +545,8 @@ msgid "CANCEL"
 msgstr ""
 
 #: class/my-history.php:372 class/my-history.php:468
-#: class/my-hookactions.php:212 class/my-hookactions.php:701
-#: class/my-hookactions.php:717 class/my-timetable.php:541
+#: class/my-hookactions.php:212 class/my-hookactions.php:704
+#: class/my-hookactions.php:720 class/my-timetable.php:541
 #: class/my-timetable.php:617 class/my-timetable.php:677
 #: class/my-timetable.php:822 class/my-timetable.php:886
 #: class/my-timetable.php:1030 class/my-timetable.php:1092
@@ -633,29 +633,29 @@ msgstr ""
 msgid "Property \"Teacher\""
 msgstr ""
 
-#: class/my-hookactions.php:758 class/my-hookactions.php:1015
+#: class/my-hookactions.php:761 class/my-hookactions.php:1018
 msgid "Members information"
 msgstr ""
 
-#: class/my-hookactions.php:760 class/my-hookactions.php:1017
+#: class/my-hookactions.php:763 class/my-hookactions.php:1020
 msgid "Recent history"
 msgstr ""
 
-#: class/my-hookactions.php:761 class/my-hookactions.php:1004
-#: class/my-hookactions.php:1018 class/my-hookactions.php:1032
+#: class/my-hookactions.php:764 class/my-hookactions.php:1007
+#: class/my-hookactions.php:1021 class/my-hookactions.php:1035
 msgid "No history"
 msgstr ""
 
-#: class/my-hookactions.php:790 class/my-hookactions.php:792
-#: class/my-hookactions.php:1025 class/my-hookactions.php:1027
+#: class/my-hookactions.php:793 class/my-hookactions.php:795
+#: class/my-hookactions.php:1028 class/my-hookactions.php:1030
 msgid "Ticket Logs"
 msgstr ""
 
-#: class/my-hookactions.php:791 class/my-hookactions.php:1026
+#: class/my-hookactions.php:794 class/my-hookactions.php:1029
 msgid "No Logs"
 msgstr ""
 
-#: class/my-hookactions.php:936
+#: class/my-hookactions.php:939
 msgid ""
 "\n"
 "<p>\n"
@@ -682,47 +682,47 @@ msgid ""
 "[/olb_members_schedule]\n"
 msgstr ""
 
-#: class/my-hookactions.php:964
+#: class/my-hookactions.php:967
 msgid "Scheduler for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:970
+#: class/my-hookactions.php:973
 msgid "Cancel form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:976
+#: class/my-hookactions.php:979
 msgid "Report form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:982
+#: class/my-hookactions.php:985
 msgid "Reservation and cancellation form"
 msgstr ""
 
-#: class/my-hookactions.php:988
+#: class/my-hookactions.php:991
 msgid "Members my-page"
 msgstr ""
 
-#: class/my-hookactions.php:994
+#: class/my-hookactions.php:997
 msgid "Daily schedule"
 msgstr ""
 
-#: class/my-hookactions.php:1003 class/my-hookactions.php:1005
+#: class/my-hookactions.php:1006 class/my-hookactions.php:1008
 msgid "Teachers history"
 msgstr ""
 
-#: class/my-hookactions.php:1009 class/my-hookactions.php:1011
+#: class/my-hookactions.php:1012 class/my-hookactions.php:1014
 msgid "Teachers schedule"
 msgstr ""
 
-#: class/my-hookactions.php:1010 class/my-hookactions.php:1038
+#: class/my-hookactions.php:1013 class/my-hookactions.php:1041
 msgid "No schedule"
 msgstr ""
 
-#: class/my-hookactions.php:1031 class/my-hookactions.php:1033
+#: class/my-hookactions.php:1034 class/my-hookactions.php:1036
 msgid "Members history"
 msgstr ""
 
-#: class/my-hookactions.php:1037 class/my-hookactions.php:1039
+#: class/my-hookactions.php:1040 class/my-hookactions.php:1042
 msgid "Members schedule"
 msgstr ""
 

@@ -307,6 +307,9 @@ EOD;
 		// UPDATE TERM (of validity)
 		$days = 0;
 		$oldterm = get_user_meta( $user_id, 'olbterm', true );
+		if ( empty( $oldterm ) ) {
+			$oldterm = date( 'Y-m-d', current_time('timestamp') );
+		}
 		list( $oy, $om, $od ) = explode( '-', $oldterm );
 		$om = intval( $om );
 		$od = intval( $od );
