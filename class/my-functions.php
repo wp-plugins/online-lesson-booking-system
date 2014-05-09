@@ -20,8 +20,8 @@ class olbFunction {
 	/** 
 	 *	エラーメッセージ: Error message
 	 */
-	public static function errorMessage($code){
-		switch($code){
+	public static function errorMessage( $information, $code){
+		switch( $code ) {
 			case 'PARAMETER_INSUFFICIENT':
 				return __('Parameter is insufficient.', OLBsystem::TEXTDOMAIN);
 			case 'INVALID_PARAMETER':
@@ -46,6 +46,10 @@ class olbFunction {
 				return __('Time is up. It cannot cancel.', OLBsystem::TEXTDOMAIN);
 			case 'RESERVE_LIMIT_PER_DAY':
 				return __('The number of reservations reached a limit per day.', OLBsystem::TEXTDOMAIN);
+			case 'RESERVE_LIMIT_PER_MONTH':
+				return __('The number of reservations reached a limit per month.', OLBsystem::TEXTDOMAIN);
+			case 'USERTICKET_EMPTY':
+				return __( 'Your possession tickets is empty. ', OLBsystem::TEXTDOMAIN );
 			case 'CANCEL_FAILED':
 				return __('Cancellation processing failed. It was not able to cancel.', OLBsystem::TEXTDOMAIN);
 			case 'RESERVE_FAILED':
@@ -54,12 +58,18 @@ class olbFunction {
 				return __('Sending email to user failed.', OLBsystem::TEXTDOMAIN);
 			case 'CHOOSE_TEACHER':
 				return __('Teacher is not specified.', OLBsystem::TEXTDOMAIN);
+			case 'CHOOSE_MEMBER':
+				return __('Member is not specified.', OLBsystem::TEXTDOMAIN);
 		//	case 'NO_SKYPE_ID':
 		//		return __('No Skype-ID.', OLBsystem::TEXTDOMAIN);
+			case 'NO_MEMBERS':
+				return __('No members.', OLBsystem::TEXTDOMAIN);
 			case 'NO_TEACHERS':
 				return __('No teachers.', OLBsystem::TEXTDOMAIN);
 			case 'NONEXISTENT_TEACHER':
 				return __('Specified teacher does not exist.', OLBsystem::TEXTDOMAIN);
+			case 'NONEXISTENT_MEMBER':
+				return __('Specified member does not exist.', OLBsystem::TEXTDOMAIN);
 			case 'NONCE_ERROR':
 				return __('Onetime token error.', OLBsystem::TEXTDOMAIN);
 			case 'SUCCESS_RESERVE':
@@ -76,7 +86,8 @@ class olbFunction {
 	 *	メッセージ表示: Show message
 	 */
 	public static function showMessage($code){
-		return self::errorMessage($code);
+		$information = '';
+		return apply_filters( 'olb_error', $information, $code );
 	}
 
 }
@@ -131,7 +142,7 @@ class olbInitFunction {
 
 		add_action('admin_init', array('olbInitFunction', 'hideMenuAdminpage'));
 		add_action('manage_users_columns', array('olbHookAction', 'addUsersColumns'));
-		add_action('manage_users_custom_column', array('olbHookAction', 'customUsersColumn'), 10, 3);
+		add_action('manage_users_custom_column', array('olbHookAction', 'customUsersColumn'), 9, 3);
 		add_filter('manage_users_sortable_columns', array('olbHookAction', 'sortableUsersColumns'));
 		add_filter('request', array('olbHookAction', 'orderbyUsersColumn'));
 		add_action('wp_login', array('olbHookAction', 'redirectAfterLogin'), 10, 2);
@@ -151,6 +162,16 @@ class olbInitFunction {
 
 		add_action('admin_menu', array('olbAdminPage', 'addAdminMenu'));
 
+		add_filter( 'olb_error',  array( 'olbFunction', 'errorMessage' ), 10, 2 );
+		add_filter( 'olb_can_reservation',  array( 'olbTimetable', 'canReservation' ), 10, 5 );
+		add_filter( 'olb_added_profile', array( 'olbHookAction', 'additional_fields'), 10, 2 );
+		add_filter( 'olb_added_profile_admin', array( 'olbHookAction', 'additional_fields_admin'), 10, 2 );
+		add_filter( 'olb_update_ticket', array( 'olbHookAction', 'update_ticket' ), 10, 1  );
+		add_filter( 'olb_update_term', array( 'olbHookAction', 'update_term' ), 10, 1  );
+		add_filter( 'olb_update_log', array( 'olbHookAction', 'update_log' ), 10, 1  );
+		add_filter( 'olb_admin_pretending_user', array( 'olbFormAction', 'admin_pretending_user' ), 10, 2 );
+		add_filter( 'the_content', array( 'olbhookAction', 'admin_access_mypage' ), 10, 1 ); 
+ 
 		/** 
 		 *	ショートコード: Short code
 		 */
@@ -205,6 +226,9 @@ class olbInitFunction {
 
 		// ログイン中講師にのみ表示: Show block only room-manager
 		add_shortcode('olb_if_manager', array('olbShortcode', 'showIfManager'));
+
+		// ポイント更新履歴: Shows member's update ticket logs 
+		add_shortcode('olb_ticket_logs', array('olbShortcode', 'show_ticket_logs'));
 
 	}
 

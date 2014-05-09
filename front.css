@@ -82,23 +82,6 @@ table.edit_schedule .reserved {
 	background-color: #390;
 	color: #fff;
 }
-.olb_error, .olb_success, .olb_warning, .olb_info {
-	clear: both;
-	margin: 5px auto;
-	padding: 10px;
-	border-style: solid;
-	border-width: 1px;
-}
-.olb_error {
-	border-color: #c00;
-	background-color: #fee;
-	color: #c00;
-}
-.olb_success {
-	border-color: #480;
-	background-color: #efd;
-	color: #480;
-}
 
 /*
  *	Member's information
@@ -144,11 +127,11 @@ table.history_list td {
 	border-bottom: 1px solid #ccc;
 }
 table.history_list th.date {
-	width: 50%;
+	width: 25%;
 }
 table.history_list th.room,
 table.history_list th.member {
-	width: 30%;
+	width: 55%;
 }
 table.history_list th.absent {
 	width: 20%;
@@ -174,15 +157,20 @@ table.future_list th.date {
 	width: 25%;
 }
 table.future_list th.waiting {
-	width: 25%;
+	width: 30%;
 }
 table.future_list th.room,
 table.future_list th.member {
-	width: 30%;
+	width: 25%;
 }
 table.future_list th.cancel {
 	width: 20%;
 }
+
+table.ticket_logs th.date {
+	width: 25% !important;
+}
+
 
 /*
  *	Page navi for history

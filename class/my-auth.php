@@ -2,6 +2,7 @@
 /** 
  *	ユーザー情報: User info 
  */
+add_filter( 'olb_get_user_data', array( 'olbAuth', 'get_user_data' ), 10, 2 );
 
 class olbAuth {
 
@@ -91,21 +92,32 @@ class olbAuth {
 		*/
 		$userdata = array();
 		if(!empty($user->ID)) {
-			$userdata = array(
-				'id' => $user->ID,
-				'loginname' => $user->user_login,
-				'email' => $user->user_email,
-				'firstname' => $user->user_firstname,
-				'lastname' => $user->user_lastname,
-				'name' => $user->display_name,
-				'roles' => $user->roles,
-				'address' => get_user_meta($user->ID, 'user_address', true),
-				'phone' => get_user_meta($user->ID, 'user_phone', true),
-				'skype' => get_user_meta($user->ID, 'user_skype', true),
-				'olbgroup' => get_user_meta($user->ID, 'olbgroup', true),
-				'olbterm' => get_user_meta($user->ID, 'olbterm', true),
-			);
+			$userdata = apply_filters( 'olb_get_user_data', $userdata, $user );
 		}
+		return $userdata;
+	}
+ 
+	/** 
+	 *	特定ユーザーの拡張情報を取得: Get user data
+	 */
+	public static function get_user_data( $userdata, $user ) {
+		global $olb;
+
+		$userdata = array(
+			'id'        => $user->ID,
+			'loginname' => $user->user_login,
+			'email'     => $user->user_email,
+			'firstname' => $user->user_firstname,
+			'lastname'  => $user->user_lastname,
+			'name'      => $user->display_name,
+			'roles'     => $user->roles,
+			'address'   => get_user_meta( $user->ID, 'user_address', true ),
+			'phone'     => get_user_meta( $user->ID, 'user_phone', true ),
+			'skype'     => get_user_meta( $user->ID, 'user_skype', true ),
+			'olbgroup'  => get_user_meta( $user->ID, 'olbgroup', true ),
+			'olbterm'   => get_user_meta( $user->ID, 'olbterm', true ),
+			'olbticket' => get_user_meta( $user->ID, $olb->ticket_metakey, true ),
+		);
 		return $userdata;
 	}
 
@@ -150,6 +162,23 @@ EOD;
 		);
 		$html = str_replace($search, $replace, $format);
 		return $html;
+	}
+
+	/** 
+	 *	全ユーザー情報を取得: Get all users info
+	 */
+	public static function getAll(){
+		$args = array(
+				'role' => 'subscriber',
+			);
+
+		$users = array();
+		$userlist = get_users( $args );
+		foreach( $userlist as $user ) {
+			$userdata = array();
+			$users[] = apply_filters( 'olb_get_user_data', $userdata, $user );
+		}
+		return $users;
 	}
 
 	/** 
