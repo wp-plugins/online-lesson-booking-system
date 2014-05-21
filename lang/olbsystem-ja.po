@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-05-10 04:50+0900\n"
-"PO-Revision-Date: 2014-05-10 04:50+0900\n"
+"POT-Creation-Date: 2014-05-21 14:18+0900\n"
+"PO-Revision-Date: 2014-05-21 14:19+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -13,6 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: class/my-adminpage.php:12
 msgid "Online Lesson Booking system"
@@ -276,7 +277,7 @@ msgid "Subject to teacher"
 msgstr "講師宛件名"
 
 #: class/my-adminpage.php:479 class/my-adminpage.php:506
-#: class/my-adminpage.php:533 class/my-timetable.php:832
+#: class/my-adminpage.php:533 class/my-timetable.php:828
 msgid "Message"
 msgstr "メッセージ"
 
@@ -300,81 +301,81 @@ msgstr "対象"
 msgid "Special pages"
 msgstr "特別なページの名前"
 
-#: class/my-auth.php:153 class/my-hookactions.php:707
+#: class/my-auth.php:152 class/my-hookactions.php:668
 msgid "ID"
 msgstr "ID"
 
-#: class/my-auth.php:154
+#: class/my-auth.php:153
 msgid "Name"
 msgstr "名前"
 
-#: class/my-auth.php:155 class/my-hookactions.php:124
+#: class/my-auth.php:154 class/my-hookactions.php:130
 msgid "Skype ID"
 msgstr "スカイプID"
 
-#: class/my-auth.php:156
+#: class/my-auth.php:155
 msgid "Term"
 msgstr "有効期限"
 
-#: class/my-auth.php:157
+#: class/my-auth.php:156
 msgid "Email"
 msgstr "Eメール"
 
-#: class/my-auth.php:158
+#: class/my-auth.php:157
 msgid "First name"
 msgstr "名"
 
-#: class/my-auth.php:159
+#: class/my-auth.php:158
 msgid "Last name"
 msgstr "姓"
 
-#: class/my-auth.php:160 class/my-hookactions.php:122
+#: class/my-auth.php:159 class/my-hookactions.php:128
 msgid "Address"
 msgstr "住所"
 
-#: class/my-auth.php:161 class/my-hookactions.php:123
+#: class/my-auth.php:160 class/my-hookactions.php:129
 msgid "Phone"
 msgstr "電話番号"
 
-#: class/my-formaction.php:148
+#: class/my-formaction.php:132
 #, php-format
 msgid "%d minutes before start time"
 msgstr "開始時刻の%d分前"
 
-#: class/my-formaction.php:166
+#: class/my-formaction.php:150
 msgid "Free reservation applied."
 msgstr "無料予約を適用"
 
-#: class/my-formaction.php:168
+#: class/my-formaction.php:152
 #, php-format
 msgid "Your free reservation: %d times left."
 msgstr "無料予約：残り %d 回"
 
-#: class/my-formaction.php:518
+#: class/my-formaction.php:494
 msgid "Select teacher"
 msgstr "講師を選択してください"
 
-#: class/my-formaction.php:533
+#: class/my-formaction.php:509
 msgid "Or input teacher's ID (ex.'2')"
 msgstr "または、講師IDを入力します（例: 2）"
 
-#: class/my-formaction.php:550
+#: class/my-formaction.php:526
 msgid "Select member"
 msgstr "会員を選択してください"
 
-#: class/my-formaction.php:565
+#: class/my-formaction.php:541
 msgid "Or input member's ID (ex.'5')"
 msgstr "または、会員IDを入力します（例: 5）"
 
-#: class/my-formaction.php:659
+#: class/my-formaction.php:635
 msgid "Admin is pretending a user"
 msgstr "管理者が会員を装っています"
 
-#: class/my-formaction.php:666
+#: class/my-formaction.php:642
 msgid "Admin is pretending a teacher"
 msgstr "管理者が講師を装っています"
 
-#: class/my-formaction.php:672
+#: class/my-formaction.php:648
 msgid "OFF"
 msgstr "解除"
 
@@ -428,55 +429,51 @@ msgid "The number of reservations reached a limit per month."
 msgstr "1ヶ月に予約できる数の上限に達しています"
 
 #: class/my-functions.php:52
-msgid "Your possession tickets is empty. "
-msgstr "あなたの保有チケットはありません。"
-
-#: class/my-functions.php:54
 msgid "Cancellation processing failed. It was not able to cancel."
 msgstr ""
 "キャンセル処理が正しく行われませんでした。キャンセルはできませんでした。"
 
-#: class/my-functions.php:56
+#: class/my-functions.php:54
 msgid "Reservation processing failed. It was not able to reserve."
 msgstr "予約処理が正しく行われませんでした。予約はできませんでした。"
 
-#: class/my-functions.php:58
+#: class/my-functions.php:56
 msgid "Sending email to user failed."
 msgstr "ユーザー宛のメール送信に失敗しました"
 
-#: class/my-functions.php:60
+#: class/my-functions.php:58
 msgid "Teacher is not specified."
 msgstr "講師が指定されていません"
 
-#: class/my-functions.php:62
+#: class/my-functions.php:60
 msgid "Member is not specified."
 msgstr "会員が指定されていません"
 
-#: class/my-functions.php:66
+#: class/my-functions.php:64
 msgid "No members."
 msgstr "現在、会員は登録されていません"
 
-#: class/my-functions.php:68
+#: class/my-functions.php:66
 msgid "No teachers."
 msgstr "現在、講師は登録されていません"
 
-#: class/my-functions.php:70
+#: class/my-functions.php:68
 msgid "Specified teacher does not exist."
 msgstr "指定された講師は存在しません"
 
-#: class/my-functions.php:72
+#: class/my-functions.php:70
 msgid "Specified member does not exist."
 msgstr "指定された会員は存在しません"
 
-#: class/my-functions.php:74
+#: class/my-functions.php:72
 msgid "Onetime token error."
 msgstr "ワンタイムトークンエラー"
 
-#: class/my-functions.php:76
+#: class/my-functions.php:74
 msgid "It reserved."
 msgstr "予約しました"
 
-#: class/my-functions.php:78
+#: class/my-functions.php:76
 msgid "It canceled."
 msgstr "キャンセルしました"
 
@@ -516,10 +513,10 @@ msgstr "%d日後"
 
 #: class/my-history.php:161 class/my-history.php:263 class/my-history.php:371
 #: class/my-history.php:466 class/my-history.php:568
-#: class/my-timetable.php:548 class/my-timetable.php:624
-#: class/my-timetable.php:679 class/my-timetable.php:829
-#: class/my-timetable.php:888 class/my-timetable.php:1037
-#: class/my-timetable.php:1094
+#: class/my-timetable.php:544 class/my-timetable.php:620
+#: class/my-timetable.php:675 class/my-timetable.php:825
+#: class/my-timetable.php:884 class/my-timetable.php:1033
+#: class/my-timetable.php:1090
 msgid "Date/Time"
 msgstr "日時"
 
@@ -528,7 +525,7 @@ msgid "Member(Skype)"
 msgstr "会員（Skype）"
 
 #: class/my-history.php:163 class/my-history.php:173 class/my-history.php:373
-#: class/my-history.php:386 class/my-timetable.php:1040
+#: class/my-history.php:386 class/my-timetable.php:1036
 msgid "Absent"
 msgstr "欠席"
 
@@ -549,12 +546,12 @@ msgid "CANCEL"
 msgstr "キャンセル"
 
 #: class/my-history.php:372 class/my-history.php:468
-#: class/my-hookactions.php:212 class/my-hookactions.php:706
-#: class/my-hookactions.php:722 class/my-timetable.php:541
-#: class/my-timetable.php:617 class/my-timetable.php:677
-#: class/my-timetable.php:822 class/my-timetable.php:886
-#: class/my-timetable.php:1030 class/my-timetable.php:1092
-#: class/my-timetable.php:1709
+#: class/my-hookactions.php:206 class/my-hookactions.php:667
+#: class/my-hookactions.php:683 class/my-timetable.php:537
+#: class/my-timetable.php:613 class/my-timetable.php:673
+#: class/my-timetable.php:818 class/my-timetable.php:882
+#: class/my-timetable.php:1026 class/my-timetable.php:1088
+#: class/my-timetable.php:1705
 msgid "Teacher"
 msgstr "講師"
 
@@ -562,104 +559,92 @@ msgstr "講師"
 msgid "Update info"
 msgstr "更新情報"
 
-#: class/my-history.php:582
+#: class/my-history.php:603
 msgid "by PayPal payment"
 msgstr "PayPal支払い"
 
-#: class/my-history.php:587
-msgid "by Admin"
-msgstr "管理者"
-
-#: class/my-history.php:593 class/my-history.php:626
+#: class/my-history.php:614 class/my-history.php:647
 #, php-format
 msgid "Corrected %d ticket."
 msgstr "%dチケット修正。"
 
-#: class/my-history.php:596 class/my-history.php:629
+#: class/my-history.php:617 class/my-history.php:650
 #, php-format
 msgid "Added %d ticket."
 msgstr "%dチケット追加。"
 
-#: class/my-history.php:607
+#: class/my-history.php:628
 #, php-format
 msgid "Extended for %d days."
 msgstr "有効期限を %d日延長。"
 
-#: class/my-history.php:611
+#: class/my-history.php:632
 #, php-format
 msgid "Corrected for %d days."
 msgstr "有効期限を %d日修正。"
 
-#: class/my-history.php:615 class/my-history.php:620
+#: class/my-history.php:636 class/my-history.php:641
 msgid "Error"
 msgstr "エラー"
 
-#: class/my-history.php:633
+#: class/my-history.php:654
 #, php-format
 msgid "And extended for %d days."
 msgstr "また、有効期限を %d日延長。"
 
-#: class/my-history.php:636
+#: class/my-history.php:657
 #, php-format
 msgid "And corrected for %d days."
 msgstr "また、有効期限を %d日修正。"
 
-#: class/my-hookactions.php:34
+#: class/my-hookactions.php:40
 msgid "My page"
 msgstr "マイページ"
 
-#: class/my-hookactions.php:41 class/my-widget.php:80 class/my-widget.php:187
+#: class/my-hookactions.php:47 class/my-widget.php:80 class/my-widget.php:187
 #: class/my-widget.php:323
 msgid "Logout"
 msgstr "ログアウト"
 
-#: class/my-hookactions.php:146 class/my-hookactions.php:195
+#: class/my-hookactions.php:152 class/my-hookactions.php:190
 msgid "Online-Booking-System Additional Fields"
 msgstr "Online-Booking-System 追加フィールド"
 
-#: class/my-hookactions.php:147
+#: class/my-hookactions.php:153
 msgid "The term of validity is updated after the check of payment."
 msgstr "有効期限はご入金の確認後に更新されます。"
 
-#: class/my-hookactions.php:156 class/my-hookactions.php:224
+#: class/my-hookactions.php:162 class/my-hookactions.php:218
 msgid "Term of validity"
 msgstr "有効期限"
 
-#: class/my-hookactions.php:159
-msgid "The possession tickets is updated after the check of payment."
-msgstr "保有チケットはご入金の確認後に更新されます。"
-
-#: class/my-hookactions.php:166 class/my-hookactions.php:233
-msgid "Possession tickets"
-msgstr "保有チケット数"
-
-#: class/my-hookactions.php:212
+#: class/my-hookactions.php:206
 msgid "Property \"Teacher\""
 msgstr "講師属性"
 
-#: class/my-hookactions.php:763 class/my-hookactions.php:1020
+#: class/my-hookactions.php:724 class/my-hookactions.php:981
 msgid "Members information"
 msgstr "会員情報"
 
-#: class/my-hookactions.php:765 class/my-hookactions.php:1022
+#: class/my-hookactions.php:726 class/my-hookactions.php:983
 msgid "Recent history"
 msgstr "最近の受講履歴"
 
-#: class/my-hookactions.php:766 class/my-hookactions.php:1009
-#: class/my-hookactions.php:1023 class/my-hookactions.php:1037
+#: class/my-hookactions.php:727 class/my-hookactions.php:970
+#: class/my-hookactions.php:984 class/my-hookactions.php:998
 msgid "No history"
 msgstr "履歴情報はありません"
 
-#: class/my-hookactions.php:795 class/my-hookactions.php:797
-#: class/my-hookactions.php:1030 class/my-hookactions.php:1032
+#: class/my-hookactions.php:756 class/my-hookactions.php:758
+#: class/my-hookactions.php:991 class/my-hookactions.php:993
 msgid "Ticket Logs"
 msgstr "チケット更新ログ"
 
-#: class/my-hookactions.php:796 class/my-hookactions.php:1031
+#: class/my-hookactions.php:757 class/my-hookactions.php:992
 msgid "No Logs"
 msgstr "ログはまだありません"
 
-#: class/my-hookactions.php:941
+#: class/my-hookactions.php:902
 msgid ""
 "\n"
 "<p>\n"
@@ -709,47 +694,47 @@ msgstr ""
 "<p>（予定はありません）</p>\n"
 "[/olb_members_schedule]\n"
 
-#: class/my-hookactions.php:969
+#: class/my-hookactions.php:930
 msgid "Scheduler for teacher"
 msgstr "講師用スケジュール編集"
 
-#: class/my-hookactions.php:975
+#: class/my-hookactions.php:936
 msgid "Cancel form for teacher"
 msgstr "講師用キャンセルフォーム"
 
-#: class/my-hookactions.php:981
+#: class/my-hookactions.php:942
 msgid "Report form for teacher"
 msgstr "講師用出欠フォーム"
 
-#: class/my-hookactions.php:987
+#: class/my-hookactions.php:948
 msgid "Reservation and cancellation form"
 msgstr "予約・キャンセルフォーム"
 
-#: class/my-hookactions.php:993
+#: class/my-hookactions.php:954
 msgid "Members my-page"
 msgstr "会員マイページ"
 
-#: class/my-hookactions.php:999
+#: class/my-hookactions.php:960
 msgid "Daily schedule"
 msgstr "日別スケジュール（全講師）"
 
-#: class/my-hookactions.php:1008 class/my-hookactions.php:1010
+#: class/my-hookactions.php:969 class/my-hookactions.php:971
 msgid "Teachers history"
 msgstr "講師用実施履歴"
 
-#: class/my-hookactions.php:1014 class/my-hookactions.php:1016
+#: class/my-hookactions.php:975 class/my-hookactions.php:977
 msgid "Teachers schedule"
 msgstr "講師用予約済み情報"
 
-#: class/my-hookactions.php:1015 class/my-hookactions.php:1043
+#: class/my-hookactions.php:976 class/my-hookactions.php:1004
 msgid "No schedule"
 msgstr "予約情報はありません"
 
-#: class/my-hookactions.php:1036 class/my-hookactions.php:1038
+#: class/my-hookactions.php:997 class/my-hookactions.php:999
 msgid "Members history"
 msgstr "会員受講履歴"
 
-#: class/my-hookactions.php:1042 class/my-hookactions.php:1044
+#: class/my-hookactions.php:1003 class/my-hookactions.php:1005
 msgid "Members schedule"
 msgstr "会員予約情報"
 
@@ -777,7 +762,7 @@ msgstr "プラグインサイト"
 msgid "Latest from Plugin"
 msgstr "最新情報"
 
-#: class/my-info.php:64 class/my-info.php:79
+#: class/my-info.php:65 class/my-info.php:81
 msgid "Latest from \"Online Lesson Booking\" plugin"
 msgstr "\"Online Lesson Booking\" の最新情報"
 
@@ -923,44 +908,56 @@ msgstr "翌週"
 msgid "Do not have authority to show this page."
 msgstr "このページへのアクセス権がありません"
 
-#: class/my-timetable.php:452 class/my-timetable.php:465
-#: class/my-timetable.php:571
+#: class/my-ticket.php:43
+msgid "The possession tickets is updated after the check of payment."
+msgstr "保有チケットはご入金の確認後に更新されます。"
+
+#: class/my-ticket.php:50 class/my-ticket.php:71
+msgid "Possession tickets"
+msgstr "保有チケット数"
+
+#: class/my-ticket.php:284
+msgid "Your possession tickets is empty. "
+msgstr "あなたの保有チケットはありません。"
+
+#: class/my-timetable.php:448 class/my-timetable.php:461
+#: class/my-timetable.php:567
 msgid "FREE"
 msgstr "無料"
 
-#: class/my-timetable.php:459
+#: class/my-timetable.php:455
 msgid "reserve"
 msgstr "予約"
 
-#: class/my-timetable.php:463 class/my-timetable.php:569
+#: class/my-timetable.php:459 class/my-timetable.php:565
 msgid "Reserved"
 msgstr "予約済み"
 
-#: class/my-timetable.php:472 class/my-timetable.php:755
+#: class/my-timetable.php:468 class/my-timetable.php:751
 msgid "cancel"
 msgstr "キャンセル"
 
-#: class/my-timetable.php:539 class/my-timetable.php:615
-#: class/my-timetable.php:820 class/my-timetable.php:1028
+#: class/my-timetable.php:535 class/my-timetable.php:611
+#: class/my-timetable.php:816 class/my-timetable.php:1024
 msgid "Reserve ID"
 msgstr "予約ID"
 
-#: class/my-timetable.php:544 class/my-timetable.php:620
-#: class/my-timetable.php:825 class/my-timetable.php:1033
+#: class/my-timetable.php:540 class/my-timetable.php:616
+#: class/my-timetable.php:821 class/my-timetable.php:1029
 msgid "User"
 msgstr "ユーザー"
 
-#: class/my-timetable.php:819
+#: class/my-timetable.php:815
 msgid ""
 "*) When timetable is canceled by a teacher, it is closed at the same time"
 msgstr "*) 講師によるキャンセルは、同時にそのタイムテーブルをクローズします。"
 
-#: class/my-timetable.php:962 class/my-timetable.php:1845
-#: class/my-timetable.php:1855
+#: class/my-timetable.php:958 class/my-timetable.php:1841
+#: class/my-timetable.php:1851
 msgid "update"
 msgstr "更新"
 
-#: class/my-timetable.php:1357
+#: class/my-timetable.php:1353
 msgid "Date"
 msgstr "日付"
 
@@ -1015,6 +1012,9 @@ msgstr "管理者メニュー"
 #: class/my-widget.php:322
 msgid "Dash board"
 msgstr "WordPress管理画面"
+
+#~ msgid "by Admin"
+#~ msgstr "管理者"
 
 #~ msgid "Corrected %d point."
 #~ msgstr "%d"

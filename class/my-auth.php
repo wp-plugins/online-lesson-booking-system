@@ -116,7 +116,6 @@ class olbAuth {
 			'skype'     => get_user_meta( $user->ID, 'user_skype', true ),
 			'olbgroup'  => get_user_meta( $user->ID, 'olbgroup', true ),
 			'olbterm'   => get_user_meta( $user->ID, 'olbterm', true ),
-			'olbticket' => get_user_meta( $user->ID, $olb->ticket_metakey, true ),
 		);
 		return $userdata;
 	}

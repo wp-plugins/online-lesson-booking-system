@@ -2,13 +2,19 @@
 /** 
  *	管理画面: WP Hook Actions
  */
+add_action( 'plugins_loaded', array('olbHookAction', 'moReload' ) );
 
 class olbHookAction {
 	/**
 	 *	MOファイルをロード: load textdomain
 	 */
-	public static function moLoad(){
-		load_textdomain(OLBsystem::TEXTDOMAIN, dirname(plugin_dir_path(__FILE__)).'/lang/'.OLBsystem::TEXTDOMAIN.'-'.get_locale().'.mo');
+	public static function moReload(){
+		if ( get_locale() != WPLANG ) {
+			if ( is_textdomain_loaded( OLBsystem::TEXTDOMAIN ) ) {
+				unload_textdomain( OLBsystem::TEXTDOMAIN );
+			}
+			load_plugin_textdomain( OLBsystem::TEXTDOMAIN, false, dirname(dirname(plugin_basename(__FILE__))).'/lang');
+		}
 	}
 	
 	/** 
@@ -154,17 +160,6 @@ EOD;
 </tr>
 EOD;
 		$html = sprintf($format, $title, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description);
-
-		if($olb->ticket_system) {
-			$description = __('The possession tickets is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
-			$format = <<<EOD
-<tr>
-<th>%s</th>
-<td>%s <span class="description" style="margin-left:20px">(%s)</span></td>
-</tr>
-EOD;
-			$html .= sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket'], $description);
-		}
 		$html .= "</table>\n";
 		return $html;
 	}
@@ -207,7 +202,6 @@ EOD;
 <th>%s</th>
 <td><label for="olbgroup"><input type="checkbox" name="olbgroup" id="olbgroup" value="teacher" %s/> %s</label></td>
 </tr>
-</table>
 EOD;
 			$html .= sprintf($format, __('Property "Teacher"', OLBsystem::TEXTDOMAIN), $checked, __('Teacher', OLBsystem::TEXTDOMAIN) );
 		}
@@ -222,16 +216,6 @@ EOD;
 </tr>
 EOD;
 			$html .= sprintf($format, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], date( 'Y-m-d', current_time('timestamp')+60*60*24*30 ) );
-
-			if($olb->ticket_system) {
-				$format = <<<EOD
-<tr>
-<th><label for="olbticket">%s</label></th>
-<td><input type="text" name="olbticket" id="olbticket" value="%s" /> ex. 10</td>
-</tr>
-EOD;
-				$html .= sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket']);
-			}
 		}
 		$html .= "</table>\n";
 		return $html;
@@ -281,30 +265,6 @@ EOD;
 				'days'    => 0,
 			 );
 
-			// UPDATE TICKET
-			$oldticket = $newticket = 0;
-			// Using 'ticket system'
-			if($olb->ticket_system) {
-				$oldticket = get_user_meta( $user_id, $olb->ticket_metakey, true );
-				if ( $_POST['olbticket'] != '' ){
-					$newticket = intval( $_POST['olbticket'] );
-					// Check integer
-					if(strval($newticket) == strval(intval($newticket))){
-						if ( $newticket != $oldticket ) {
-							$result['old'] = $oldticket;
-							$result['new'] = $newticket;
-						}
-					}
-				}
-				else {
-					$newticket = 0;
-					if ( $newticket != $oldticket ) {
-						$result['old'] = $oldticket;
-						$result['new'] = $newticket;
-					}
-				}
-			}
-
 			// UPDATE TERM (of validity)
 			$days = 0;
 			$oldterm = get_user_meta( $user_id, 'olbterm', true );
@@ -330,7 +290,7 @@ EOD;
 				delete_user_meta($user_id, 'olbterm', '');
 			}
 
-			$result = apply_filters( 'olb_update_ticket', $result );
+			$result = apply_filters( 'olb_update_profile', $result );
 			$result = apply_filters( 'olb_update_term', $result );
 			$result = apply_filters( 'olb_update_log', $result );
 		}
@@ -358,11 +318,10 @@ EOD;
 		if ( !empty( $result['days'] ) ) {
 			$days = intval( $result['days'] );
 		}
-		// Using 'ticket system' and 'auto update expire'
-		else if ( $olb->ticket_system && ( intval( $olb->ticket_expire ) > 0 ) ) {
-			if ( $result['new'] > $result['old'] ) {
-				$days = $olb->ticket_expire;
-			}
+		// ex. Using 'ticket system' and 'auto update expire'
+		else {
+			$result = apply_filters( 'olb_update_term_exception', $result );
+			$days = $result['days'];
 		}
 
 		if ( $days ) {
@@ -388,20 +347,22 @@ EOD;
 	public static function update_log( $result ) {
 		global $wpdb, $olb;
 
-		$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
-		$table = $prefix."logs";
-		$increment = $result['new'] - $result['old'];
-		$now = current_time('timestamp');
-		$ret = $wpdb->insert(
-			$table,
-			array(
-				'uid'       => $result['user_id'],
-				'type'      => $result['type'],
-				'data'      => serialize( $result ),
-				'points'    => $increment,
-				'timestamp' => $now
-			)
-		);
+		if ( ( $result['old'] != $result['new'] ) || ( $result['oldterm'] != $result['newterm'] ) ) {
+			$prefix = $wpdb->prefix.OLBsystem::TABLEPREFIX;
+			$table = $prefix."logs";
+			$increment = $result['new'] - $result['old'];
+			$now = current_time('timestamp');
+			$ret = $wpdb->insert(
+				$table,
+				array(
+					'uid'       => $result['user_id'],
+					'type'      => $result['type'],
+					'data'      => serialize( $result ),
+					'points'    => $increment,
+					'timestamp' => $now
+				)
+			);
+		}
 		return $result;
 	}
 
