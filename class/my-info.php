@@ -61,7 +61,9 @@ class olbInfo {
 	 *	LATEST INFO (in DASHBOARD)
 	 */
 	public static function olb_dashboard() {
-		wp_add_dashboard_widget( 'dashboard_custom_feed', __( 'Latest from "Online Lesson Booking" plugin', OLBsystem::TEXTDOMAIN ), array( 'olbInfo', 'latest_info_dashboard' ) );
+		if ( current_user_can('administrator') ) {
+			wp_add_dashboard_widget( 'dashboard_custom_feed', __( 'Latest from "Online Lesson Booking" plugin', OLBsystem::TEXTDOMAIN ), array( 'olbInfo', 'latest_info_dashboard' ) );
+		}
 	}
 
 	/** 

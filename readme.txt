@@ -3,8 +3,8 @@ Contributors: tnomi
 Donate link: 
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
-Tested up to: 3.9.0
-Stable tag: 0.4.3
+Tested up to: 3.9.1
+Stable tag: 0.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,13 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Changelog ==
 
+= 0.4.4 =
+
+* With the output of Short-code in contents, a translation file (.mo file) is read according to the value of current locale information (get_locale()). <br>
+(For example, in the cases of multilingualization etc.) <br />
+However, the translation files which are attached at present are only Japanese and English. Sorry. 
+* Bug fix
+
 = 0.4.3 =
 
 * Bug fix
@@ -118,6 +125,7 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Upgrade Notice ==
 
-= 0.4.3 =
+= 0.4.4 =
 
-Bug fix. 
+With the output of Short-code in contents, a translation file (.mo file) is read according to the value of current locale information (get_locale()). (For example, in the cases of multilingualization etc.) <br />
+However, the translation files which are attached at present are only Japanese and English. Sorry. 

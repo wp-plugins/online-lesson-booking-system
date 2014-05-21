@@ -64,32 +64,16 @@ class olbFormAction {
 							);
 				$record = $olb->reserved($record['room_id'], $record['date'], $record['time']);
 				$result['record'] = $record;
-				// チケットシステム有効時
-				if ( $olb->ticket_system ) {
-					if(!$record['free']) {
-						$tickets = $user->data['olbticket'] - 1;
-						update_user_meta($user->data['id'], $olb->ticket_metakey, $tickets );
-					}
-				}
 				do_action( 'olb_reservation', $result );
 			}
 			// CANCEL
 			else if($_POST['reserveaction']=='cancel' && $code=='ALREADY_RESERVED'){
-//				$record['user_id'] = '';
-//				$record['free'] = 0;
 				$query = "DELETE FROM ".$prefix."history WHERE `id`=%d";
 				$ret = $wpdb->query($wpdb->prepare($query, array($record['id'])), ARRAY_A);
 				if(!$ret){
 					$error = 'CANCEL_FAILED';
 				}
 				else {
-					// チケットシステム有効時（チケット返却）
-					if ( $olb->ticket_system ) {
-						if(!$record['free']) {
-							$tickets = $user->data['olbticket'] + 1;
-							update_user_meta($user->data['id'], $olb->ticket_metakey, $tickets );
-						}
-					}
 					do_action( 'olb_cancellation', $result );
 				}
 			}
@@ -262,14 +246,6 @@ class olbFormAction {
 				}
 				$query = "DELETE FROM ".$prefix."timetable WHERE `room_id`='%d' AND `date`='%s' AND `time`='%s'";
 				$ret = $wpdb->query($wpdb->prepare($query, array($record['room_id'], $record['date'], $record['time'])), ARRAY_A);
-
-				// チケットシステム有効時（チケット返却）
-				if ( $olb->ticket_system ) {
-					if(!$result['record']['free']) {
-						$tickets = $result['user']->data['olbticket'] + 1;
-						update_user_meta($result['user']->data['id'], $olb->ticket_metakey, $tickets );
-					}
-				}
 				do_action( 'olb_cancellation_by_teacher', $result );
 			}
 			// エラーあり
