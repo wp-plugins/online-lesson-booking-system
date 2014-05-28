@@ -287,6 +287,8 @@ EOD;
 				}
 			}
 			else {
+				$result['oldterm'] = get_user_meta( $user_id, 'olbterm', true );
+				$result['newterm'] = '';
 				delete_user_meta($user_id, 'olbterm', '');
 			}
 
@@ -327,8 +329,13 @@ EOD;
 		if ( $days ) {
 			$now = current_time('timestamp');
 			$term = get_user_meta( $result['user_id'], 'olbterm', true );
-			if ( empty( $term ) ) {
-				$term = date( 'Y-n-j', $now );
+			// Start date
+			// When updating the point, it starts from today.
+			if ( $result['old'] != $result['new'] /*&& $result['type'] != 'admin'*/) {
+				$term = date( 'Y-m-d', $now );
+			}
+			else if ( empty( $term ) || ( strcmp( $term, date( 'Y-m-d', $now ) ) < 0 && $result['type'] != 'admin' ) ){
+				$term = date( 'Y-m-d', $now );
 			}
 			list( $y, $m, $d ) = explode( '-', $term );
 

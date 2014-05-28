@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-05-21 14:19+0900\n"
-"PO-Revision-Date: 2014-05-21 14:19+0900\n"
+"POT-Creation-Date: 2014-05-28 14:03+0900\n"
+"PO-Revision-Date: 2014-05-28 14:04+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -299,7 +299,7 @@ msgstr ""
 msgid "Special pages"
 msgstr ""
 
-#: class/my-auth.php:152 class/my-hookactions.php:668
+#: class/my-auth.php:152 class/my-hookactions.php:675
 msgid "ID"
 msgstr ""
 
@@ -542,8 +542,8 @@ msgid "CANCEL"
 msgstr ""
 
 #: class/my-history.php:372 class/my-history.php:468
-#: class/my-hookactions.php:206 class/my-hookactions.php:667
-#: class/my-hookactions.php:683 class/my-timetable.php:537
+#: class/my-hookactions.php:206 class/my-hookactions.php:674
+#: class/my-hookactions.php:690 class/my-timetable.php:537
 #: class/my-timetable.php:613 class/my-timetable.php:673
 #: class/my-timetable.php:818 class/my-timetable.php:882
 #: class/my-timetable.php:1026 class/my-timetable.php:1088
@@ -559,38 +559,32 @@ msgstr ""
 msgid "by PayPal payment"
 msgstr ""
 
-#: class/my-history.php:614 class/my-history.php:647
+#: class/my-history.php:614 class/my-history.php:651
 #, php-format
 msgid "Corrected %d ticket."
 msgstr ""
 
-#: class/my-history.php:617 class/my-history.php:650
+#: class/my-history.php:617 class/my-history.php:654
 #, php-format
 msgid "Added %d ticket."
 msgstr ""
 
-#: class/my-history.php:628
+#: class/my-history.php:628 class/my-history.php:658
 #, php-format
-msgid "Extended for %d days."
+msgid "Extended till %s."
 msgstr ""
 
-#: class/my-history.php:632
+#: class/my-history.php:632 class/my-history.php:661
 #, php-format
-msgid "Corrected for %d days."
+msgid "Corrected to %s."
 msgstr ""
 
-#: class/my-history.php:636 class/my-history.php:641
+#: class/my-history.php:636 class/my-history.php:664
+msgid "Removed expiration."
+msgstr ""
+
+#: class/my-history.php:640 class/my-history.php:645
 msgid "Error"
-msgstr ""
-
-#: class/my-history.php:654
-#, php-format
-msgid "And extended for %d days."
-msgstr ""
-
-#: class/my-history.php:657
-#, php-format
-msgid "And corrected for %d days."
 msgstr ""
 
 #: class/my-hookactions.php:40
@@ -618,29 +612,29 @@ msgstr ""
 msgid "Property \"Teacher\""
 msgstr ""
 
-#: class/my-hookactions.php:724 class/my-hookactions.php:981
+#: class/my-hookactions.php:731 class/my-hookactions.php:988
 msgid "Members information"
 msgstr ""
 
-#: class/my-hookactions.php:726 class/my-hookactions.php:983
+#: class/my-hookactions.php:733 class/my-hookactions.php:990
 msgid "Recent history"
 msgstr ""
 
-#: class/my-hookactions.php:727 class/my-hookactions.php:970
-#: class/my-hookactions.php:984 class/my-hookactions.php:998
+#: class/my-hookactions.php:734 class/my-hookactions.php:977
+#: class/my-hookactions.php:991 class/my-hookactions.php:1005
 msgid "No history"
 msgstr ""
 
-#: class/my-hookactions.php:756 class/my-hookactions.php:758
-#: class/my-hookactions.php:991 class/my-hookactions.php:993
+#: class/my-hookactions.php:763 class/my-hookactions.php:765
+#: class/my-hookactions.php:998 class/my-hookactions.php:1000
 msgid "Ticket Logs"
 msgstr ""
 
-#: class/my-hookactions.php:757 class/my-hookactions.php:992
+#: class/my-hookactions.php:764 class/my-hookactions.php:999
 msgid "No Logs"
 msgstr ""
 
-#: class/my-hookactions.php:902
+#: class/my-hookactions.php:909
 msgid ""
 "\n"
 "<p>\n"
@@ -667,47 +661,47 @@ msgid ""
 "[/olb_members_schedule]\n"
 msgstr ""
 
-#: class/my-hookactions.php:930
+#: class/my-hookactions.php:937
 msgid "Scheduler for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:936
+#: class/my-hookactions.php:943
 msgid "Cancel form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:942
+#: class/my-hookactions.php:949
 msgid "Report form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:948
+#: class/my-hookactions.php:955
 msgid "Reservation and cancellation form"
 msgstr ""
 
-#: class/my-hookactions.php:954
+#: class/my-hookactions.php:961
 msgid "Members my-page"
 msgstr ""
 
-#: class/my-hookactions.php:960
+#: class/my-hookactions.php:967
 msgid "Daily schedule"
 msgstr ""
 
-#: class/my-hookactions.php:969 class/my-hookactions.php:971
+#: class/my-hookactions.php:976 class/my-hookactions.php:978
 msgid "Teachers history"
 msgstr ""
 
-#: class/my-hookactions.php:975 class/my-hookactions.php:977
+#: class/my-hookactions.php:982 class/my-hookactions.php:984
 msgid "Teachers schedule"
 msgstr ""
 
-#: class/my-hookactions.php:976 class/my-hookactions.php:1004
+#: class/my-hookactions.php:983 class/my-hookactions.php:1011
 msgid "No schedule"
 msgstr ""
 
-#: class/my-hookactions.php:997 class/my-hookactions.php:999
+#: class/my-hookactions.php:1004 class/my-hookactions.php:1006
 msgid "Members history"
 msgstr ""
 
-#: class/my-hookactions.php:1003 class/my-hookactions.php:1005
+#: class/my-hookactions.php:1010 class/my-hookactions.php:1012
 msgid "Members schedule"
 msgstr ""
 
@@ -848,11 +842,18 @@ msgstr ""
 msgid "The possession tickets is updated after the check of payment."
 msgstr ""
 
-#: class/my-ticket.php:50 class/my-ticket.php:71
+#: class/my-ticket.php:50 class/my-ticket.php:76
 msgid "Possession tickets"
 msgstr ""
 
-#: class/my-ticket.php:284
+#: class/my-ticket.php:74
+msgid ""
+"If a possession ticket is updated, the term of validity will be "
+"automatically updated by the value of a plug-in option \"term of validity of "
+"a ticket\"."
+msgstr ""
+
+#: class/my-ticket.php:303
 msgid "Your possession tickets is empty. "
 msgstr ""
 

@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 0.4.4
+Stable tag: 0.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,11 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Changelog ==
 
+= 0.4.5 =
+
+* The message in a "Ticket-logs" was changed partially.
+* Bug fix
+
 = 0.4.4 =
 
 * With the output of Short-code in contents, a translation file (.mo file) is read according to the value of current locale information (get_locale()). <br>
@@ -125,7 +130,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.4.4 =
+= 0.4.5 =
 
-With the output of Short-code in contents, a translation file (.mo file) is read according to the value of current locale information (get_locale()). (For example, in the cases of multilingualization etc.) <br />
-However, the translation files which are attached at present are only Japanese and English. Sorry. 
+The message in a "Ticket-logs" was changed partially. And Bug fix. 

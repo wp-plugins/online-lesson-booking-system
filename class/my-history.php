@@ -625,11 +625,15 @@ class olb_logs extends olbHistory {
 				if ( $data['old'] == $data['new'] ) {
 					// extended
 					if ( $data['days'] > 0 ) {
-						$info = sprintf( __('Extended for %d days.', OLBsystem::TEXTDOMAIN).' %s', $data['days'], $by );
+						$info = sprintf( __('Extended till %s.', OLBsystem::TEXTDOMAIN).' %s', $data['newterm'], $by );
 					}
 					// corrected 
 					else if ( $data['days'] < 0 ) {
-						$info = sprintf( __('Corrected for %d days.', OLBsystem::TEXTDOMAIN).' %s', $data['days'], $by );
+						$info = sprintf( __('Corrected to %s.', OLBsystem::TEXTDOMAIN).' %s', $data['newterm'], $by );
+					}
+					// deleted
+					else if ( strcmp( $data['oldterm'], $data['newterm'] ) != 0 && trim( $data['newterm'] ) == '' ) {
+						$info .= __('Removed expiration.', OLBsystem::TEXTDOMAIN);
 					}
 					// no change of point and days
 					else {
@@ -641,7 +645,7 @@ class olb_logs extends olbHistory {
 					$info = __( 'Error', OLBsystem::TEXTDOMAIN);
 				}
 			}
-			// change ob points
+			// change of points
 			else {
 				if ( $r['points'] < 1 ) {
 					$info = sprintf( __('Corrected %d ticket.', OLBsystem::TEXTDOMAIN), $r['points'] );
@@ -651,10 +655,13 @@ class olb_logs extends olbHistory {
 				}
 
 				if ( $data['days'] > 0 ) {
-					$info .= sprintf( ' '.__('And extended for %d days.', OLBsystem::TEXTDOMAIN), $data['days'] );
+					$info .= sprintf( ' '.__('Extended till %s.', OLBsystem::TEXTDOMAIN), $data['newterm'] );
 				}
 				else if ( $data['days'] < 0 ) {
-					$info .= sprintf( ' '.__('And corrected for %d days.', OLBsystem::TEXTDOMAIN), $data['days'] );
+					$info .= sprintf( ' '.__('Corrected to %s.', OLBsystem::TEXTDOMAIN), $data['newterm'] );
+				}
+				else if ( strcmp( $data['oldterm'], $data['newterm'] ) != 0 && trim( $data['newterm'] ) == '' ) {
+					$info .= ' '.__('Removed expiration.', OLBsystem::TEXTDOMAIN);
 				}
 				$info .= ''.$by;
 			}

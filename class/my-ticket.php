@@ -65,10 +65,15 @@ EOD;
 				$format = <<<EOD
 <tr>
 <th><label for="olbticket">%s</label></th>
-<td><input type="text" name="olbticket" id="olbticket" value="%s" /> ex. 10</td>
+<td><input type="text" name="olbticket" id="olbticket" value="%s" /> ex. 10
+%s</td>
 </tr>
 EOD;
-				$new = sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket']);
+				$info = '';
+				if ( $olb->ticket_system && !empty( $olb->ticket_expire ) ) {
+					$info = sprintf( '<br><span class="description">%s</span>', __('If a possession ticket is updated, the term of validity will be automatically updated by the value of a plug-in option "term of validity of a ticket".', OLBsystem::TEXTDOMAIN) );
+				}
+				$new = sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket'], $info );
 				$html = str_replace( '</table>', $new."\n</table>", $html );
 			}
 		}
@@ -134,7 +139,21 @@ EOD;
 		*/
 		if ( $olb->ticket_system && ( intval( $olb->ticket_expire ) > 0 ) ) {
 			if ( $result['new'] > $result['old'] ) {
-				$result['days'] = $olb->ticket_expire;
+				$now = current_time('timestamp');
+				$term = get_user_meta( $result['user_id'], 'olbterm', true );
+				$newtime = $now + $olb->ticket_expire * 60 * 60 *24;
+				$newterm = date( 'Y-m-d', $newtime );
+				$days = 0;
+				if ( empty( $term ) || strcmp( $term, date( 'Y-m-d', $now ) ) < 0 ) {
+					$days = $olb->ticket_expire;
+				}
+				else if ( strcmp( $term, $newterm ) < 0 ) {
+					list( $y, $m, $d ) = explode( '-', $term );
+					$orgtime = mktime( 0, 0, 0, $m, $d, $y );
+					$newtime = $now + $olb->ticket_expire * 60 * 60 *24;
+					$days = ( $newtime - $orgtime ) / ( 24 * 60 * 60 );
+				}
+				$result['days'] = $days;
 			}
 		}
 		return $result;
