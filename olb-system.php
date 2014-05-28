@@ -3,7 +3,7 @@
 Plugin Name: Online Lesson Booking system
 Plugin URI: http://sukimalab.com/olb/
 Description: Online Lesson Booking system (OLB) is reservation-form and scheduler for an one-to-one online lesson.
-Version: 0.4.3
+Version: 0.4.5
 Author: tnomi
 Author URI: http://sukimalab.com
 */
@@ -21,6 +21,7 @@ Author URI: http://sukimalab.com
 	require_once dirname(__FILE__).'/class/my-timetable.php';
 	require_once dirname(__FILE__).'/class/my-formaction.php';
 	require_once dirname(__FILE__).'/class/my-info.php';
+	require_once dirname(__FILE__).'/class/my-ticket.php';
 
 	if (!isset($_SESSION)) {
 		session_start();

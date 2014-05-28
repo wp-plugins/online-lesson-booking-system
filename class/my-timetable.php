@@ -288,10 +288,6 @@ class olbTimetable extends OLBsystem{
 			elseif( olbTimetable::isDoubleBooking( $user_id, $date, $time ) ) {
 				$result['code'] = 'DOUBLE_BOOKING';
 			}
-			// チケットシステム有効＋保有チケットなし
-			elseif( $olb->ticket_system && empty( $user->data['olbticket'] ) ) {
-				$result['code'] = 'USERTICKET_EMPTY';
-			}
 			else {
 				$result['code'] = 'NOT_RESERVED';
 			}

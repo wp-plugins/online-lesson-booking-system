@@ -48,8 +48,6 @@ class olbFunction {
 				return __('The number of reservations reached a limit per day.', OLBsystem::TEXTDOMAIN);
 			case 'RESERVE_LIMIT_PER_MONTH':
 				return __('The number of reservations reached a limit per month.', OLBsystem::TEXTDOMAIN);
-			case 'USERTICKET_EMPTY':
-				return __( 'Your possession tickets is empty. ', OLBsystem::TEXTDOMAIN );
 			case 'CANCEL_FAILED':
 				return __('Cancellation processing failed. It was not able to cancel.', OLBsystem::TEXTDOMAIN);
 			case 'RESERVE_FAILED':
@@ -166,9 +164,9 @@ class olbInitFunction {
 		add_filter( 'olb_can_reservation',  array( 'olbTimetable', 'canReservation' ), 10, 5 );
 		add_filter( 'olb_added_profile', array( 'olbHookAction', 'additional_fields'), 10, 2 );
 		add_filter( 'olb_added_profile_admin', array( 'olbHookAction', 'additional_fields_admin'), 10, 2 );
-		add_filter( 'olb_update_ticket', array( 'olbHookAction', 'update_ticket' ), 10, 1  );
 		add_filter( 'olb_update_term', array( 'olbHookAction', 'update_term' ), 10, 1  );
 		add_filter( 'olb_update_log', array( 'olbHookAction', 'update_log' ), 10, 1  );
+		add_filter( 'olb_line_of_logs', array( 'olb_logs', 'line' ), 10, 2  );
 		add_filter( 'olb_admin_pretending_user', array( 'olbFormAction', 'admin_pretending_user' ), 10, 2 );
 		add_filter( 'the_content', array( 'olbhookAction', 'admin_access_mypage' ), 10, 1 ); 
  

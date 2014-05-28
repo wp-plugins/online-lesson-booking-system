@@ -3,14 +3,14 @@
  *	タイムテーブル予約表の設定: Settings for Timetable Reservation 
  */
 
-load_textdomain(OLBsystem::TEXTDOMAIN, dirname(plugin_dir_path(__FILE__)).'/lang/'.OLBsystem::TEXTDOMAIN.'-'.get_locale().'.mo');
+load_plugin_textdomain( OLBsystem::TEXTDOMAIN, false, dirname(dirname(plugin_basename(__FILE__))).'/lang');
 
 class OLBsystem {
 	// システム設定
 	const TABLEPREFIX = 'olb_';
 	const TEXTDOMAIN = 'olbsystem';
 	const URL = 'http://olbsys.com/';
-	const PLUGIN_VERSION = '0.4.3';
+	const PLUGIN_VERSION = '0.4.5';
 	const DB_VERSION = '0.4.0';
 
 	// タイムテーブル基本設定
