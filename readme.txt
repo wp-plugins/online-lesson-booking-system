@@ -79,11 +79,11 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 * "Calendar" short code was added. On "Daily Schedule" pages, the date can be chosen from a calendar.<br>
 The type of a calendar is two kinds. They are "monthly" or "weekly".<br>
-[&raqo; About Daily schedule (ja)](http://olbsys.com/setup/teachers/#daily_schedule)/[(en)](http://olbsys.com/en/setup/teachers/#daily_schedule).
+[&raquo; About Daily schedule (ja)](http://olbsys.com/setup/teachers/#daily_schedule)/[(en)](http://olbsys.com/en/setup/teachers/#daily_schedule).
 
 * The teacher's self-portrait can be displayed on "Daily schedule".<br>
 Set a "Featured Image" in each "post" of teacher information.<br>
-[&raqo; About Teacher's portrait (ja)](http://olbsys.com/setup/teachers/#daily_schedule)/[(en)](http://olbsys.com/en/setup/teachers/#daily_schedule).
+[&raquo; About Teacher's portrait (ja)](http://olbsys.com/setup/teachers/#daily_schedule)/[(en)](http://olbsys.com/en/setup/teachers/#daily_schedule).
 
 = 0.4.5 =
 
