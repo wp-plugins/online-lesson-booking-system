@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 0.4.5
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,16 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Changelog ==
 
+= 0.5.0 =
+
+* "Calendar" short code was added. On "Daily Schedule" pages, the date can be chosen from a calendar.<br>
+The type of a calendar is two kinds. They are "monthly" or "weekly".<br>
+[&raqo; About Daily schedule (ja)](http://olbsys.com/setup/teachers/#daily_schedule)/[(en)](http://olbsys.com/en/setup/teachers/#daily_schedule).
+
+* The teacher's self-portrait can be displayed on "Daily schedule".<br>
+Set a "Featured Image" in each "post" of teacher information.<br>
+[&raqo; About Teacher's portrait (ja)](http://olbsys.com/setup/teachers/#daily_schedule)/[(en)](http://olbsys.com/en/setup/teachers/#daily_schedule).
+
 = 0.4.5 =
 
 * The message in a "Ticket-logs" was changed partially.
@@ -130,6 +140,8 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.4.5 =
+= 0.5.0 =
 
-The message in a "Ticket-logs" was changed partially. And Bug fix. 
+"Calendar" short code was added. On "Daily Schedule" pages, the date can be chosen from a calendar.
+And, the teacher's self-portrait can be displayed on "Daily schedule".
+Set a "Featured Image" in each "post" of teacher information.

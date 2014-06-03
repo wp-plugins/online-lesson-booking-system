@@ -3,6 +3,7 @@
  *	講師情報: Room info (as teacher)
  */
 add_filter( 'olb_get_room_data', array( 'olbRoom', 'get_room_data' ), 10, 2 );
+add_filter( 'olb_get_portrait', array( 'olbRoom', 'get_portrait' ), 10, 2 );
 
 class olbRoom extends olbPaging {
 
@@ -50,9 +51,19 @@ class olbRoom extends olbPaging {
 				'status'   => $room->data->user_status,
 				'email'    => $room->data->user_email,
 				'url'      => $room->data->user_url,
+				'olbprofile'  => get_user_meta( $room->data->ID, 'olbprofile', true ), 
 				'olbgroup' => get_user_meta( $room->data->ID, 'olbgroup', true ),
 			);
 		return $roomdata;
+	}
+
+	/**
+	 *	講師自画像を取得: Get portrait of room
+	 */
+	public static function get_portrait( $portrait, $room ) {
+		$p = get_the_post_thumbnail( $room['olbprofile'], 'thumbnail' );
+		$portrait =  ( !empty( $p ) ) ? sprintf( '<div class="portrait"><a href="%s">%s</a></div>', $room['url'], $p ) : '';
+		return $portrait;
 	}
 
 	/** 

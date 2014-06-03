@@ -1355,7 +1355,8 @@ EOD;
 		for($i=0; $i<$this->daymax; $i++){
 			$mt = strtotime($this->startdate)+(60*60*24*$i);		// sec
 			$day = date('m/d', $mt);
-			$wday = date('(D)', $mt);
+			$w = date( 'w', $mt );
+			$wday = sprintf( '(%s)', OLBsystem::dow( $w ) );	// ex.'(Sun)'
 			$wclass = strtolower(date('l', $mt));		// ex.'sunday'
 
 			printf('<th class="%1$s">%2$s<br>%3$s</th>'."\n", $wclass, $day, $wday);
@@ -1707,7 +1708,9 @@ EOD;
 		$class = '';
 		for($i=0; $i<count($rooms); $i++){
 			if(!empty($rooms[$i]['url'])) {
-				printf('<th class="%1$s"><a href="%3$s">%2$s</a></th>'."\n", $class, $rooms[$i]['name'], $rooms[$i]['url']);
+				$portrait = '';
+				$portrait = apply_filters( 'olb_get_portrait', $portrait, $rooms[$i] );
+				printf('<th class="%1$s">%4$s<a href="%3$s">%2$s</a></th>'."\n", $class, $rooms[$i]['name'], $rooms[$i]['url'], $portrait);
 			}
 			else {
 				printf('<th class="%1$s">%2$s</th>'."\n", $class, $rooms[$i]['name']);
@@ -1872,10 +1875,10 @@ EOD;
 
 		for($i=0; $i<$this->daymax; $i++){
 			$mt = strtotime($this->startdate)+(60*60*24*$i);		// sec
-			$day = date('m/d', $mt);					// ex.'06/06(Sun)'
-			$wday = date('(D)', $mt);					// ex.'06/06(Sun)'
+			$day = date('m/d', $mt);					// ex.'06/06'
+			$w = date( 'w', $mt );
+			$wday = sprintf( '(%s)', OLBsystem::dow( $w ) );	// ex.'(Sun)'
 			$wclass = strtolower(date('l', $mt));		// ex.'sunday'
-//			$wid = date('w', $mt);							// ex. 0-6
 			printf('<th class="%1$s">%2$s<br>%3$s</th>'."\n", $wclass, $day, $wday);
 		}
 		echo "</tr>\n";

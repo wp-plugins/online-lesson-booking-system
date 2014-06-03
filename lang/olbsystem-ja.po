@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-05-28 14:03+0900\n"
-"PO-Revision-Date: 2014-05-28 14:03+0900\n"
+"POT-Creation-Date: 2014-06-03 14:59+0900\n"
+"PO-Revision-Date: 2014-06-03 14:59+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -301,7 +301,7 @@ msgstr "対象"
 msgid "Special pages"
 msgstr "特別なページの名前"
 
-#: class/my-auth.php:152 class/my-hookactions.php:675
+#: class/my-auth.php:152 class/my-hookactions.php:677
 msgid "ID"
 msgstr "ID"
 
@@ -336,6 +336,11 @@ msgstr "住所"
 #: class/my-auth.php:160 class/my-hookactions.php:129
 msgid "Phone"
 msgstr "電話番号"
+
+#: class/my-calendar.php:309 class/my-calendar.php:396
+#, fuzzy
+msgid "Today"
+msgstr "今日"
 
 #: class/my-formaction.php:132
 #, php-format
@@ -546,12 +551,12 @@ msgid "CANCEL"
 msgstr "キャンセル"
 
 #: class/my-history.php:372 class/my-history.php:468
-#: class/my-hookactions.php:206 class/my-hookactions.php:674
-#: class/my-hookactions.php:690 class/my-timetable.php:537
+#: class/my-hookactions.php:206 class/my-hookactions.php:676
+#: class/my-hookactions.php:692 class/my-timetable.php:537
 #: class/my-timetable.php:613 class/my-timetable.php:673
 #: class/my-timetable.php:818 class/my-timetable.php:882
 #: class/my-timetable.php:1026 class/my-timetable.php:1088
-#: class/my-timetable.php:1705
+#: class/my-timetable.php:1706
 msgid "Teacher"
 msgstr "講師"
 
@@ -616,29 +621,29 @@ msgstr "有効期限"
 msgid "Property \"Teacher\""
 msgstr "講師属性"
 
-#: class/my-hookactions.php:731 class/my-hookactions.php:988
+#: class/my-hookactions.php:733 class/my-hookactions.php:990
 msgid "Members information"
 msgstr "会員情報"
 
-#: class/my-hookactions.php:733 class/my-hookactions.php:990
+#: class/my-hookactions.php:735 class/my-hookactions.php:992
 msgid "Recent history"
 msgstr "最近の受講履歴"
 
-#: class/my-hookactions.php:734 class/my-hookactions.php:977
-#: class/my-hookactions.php:991 class/my-hookactions.php:1005
+#: class/my-hookactions.php:736 class/my-hookactions.php:979
+#: class/my-hookactions.php:993 class/my-hookactions.php:1007
 msgid "No history"
 msgstr "履歴情報はありません"
 
-#: class/my-hookactions.php:763 class/my-hookactions.php:765
-#: class/my-hookactions.php:998 class/my-hookactions.php:1000
+#: class/my-hookactions.php:765 class/my-hookactions.php:767
+#: class/my-hookactions.php:1000 class/my-hookactions.php:1002
 msgid "Ticket Logs"
 msgstr "チケット更新ログ"
 
-#: class/my-hookactions.php:764 class/my-hookactions.php:999
+#: class/my-hookactions.php:766 class/my-hookactions.php:1001
 msgid "No Logs"
 msgstr "ログはまだありません"
 
-#: class/my-hookactions.php:909
+#: class/my-hookactions.php:911
 msgid ""
 "\n"
 "<p>\n"
@@ -688,47 +693,47 @@ msgstr ""
 "<p>（予定はありません）</p>\n"
 "[/olb_members_schedule]\n"
 
-#: class/my-hookactions.php:937
+#: class/my-hookactions.php:939
 msgid "Scheduler for teacher"
 msgstr "講師用スケジュール編集"
 
-#: class/my-hookactions.php:943
+#: class/my-hookactions.php:945
 msgid "Cancel form for teacher"
 msgstr "講師用キャンセルフォーム"
 
-#: class/my-hookactions.php:949
+#: class/my-hookactions.php:951
 msgid "Report form for teacher"
 msgstr "講師用出欠フォーム"
 
-#: class/my-hookactions.php:955
+#: class/my-hookactions.php:957
 msgid "Reservation and cancellation form"
 msgstr "予約・キャンセルフォーム"
 
-#: class/my-hookactions.php:961
+#: class/my-hookactions.php:963
 msgid "Members my-page"
 msgstr "会員マイページ"
 
-#: class/my-hookactions.php:967
+#: class/my-hookactions.php:969
 msgid "Daily schedule"
 msgstr "日別スケジュール（全講師）"
 
-#: class/my-hookactions.php:976 class/my-hookactions.php:978
+#: class/my-hookactions.php:978 class/my-hookactions.php:980
 msgid "Teachers history"
 msgstr "講師用実施履歴"
 
-#: class/my-hookactions.php:982 class/my-hookactions.php:984
+#: class/my-hookactions.php:984 class/my-hookactions.php:986
 msgid "Teachers schedule"
 msgstr "講師用予約済み情報"
 
-#: class/my-hookactions.php:983 class/my-hookactions.php:1011
+#: class/my-hookactions.php:985 class/my-hookactions.php:1013
 msgid "No schedule"
 msgstr "予約情報はありません"
 
-#: class/my-hookactions.php:1004 class/my-hookactions.php:1006
+#: class/my-hookactions.php:1006 class/my-hookactions.php:1008
 msgid "Members history"
 msgstr "会員受講履歴"
 
-#: class/my-hookactions.php:1010 class/my-hookactions.php:1012
+#: class/my-hookactions.php:1012 class/my-hookactions.php:1014
 msgid "Members schedule"
 msgstr "会員予約情報"
 
@@ -879,6 +884,34 @@ msgstr ""
 "(処理日時: %SEND_TIME%)\n"
 "\n"
 
+#: class/my-settings.php:302
+msgid "Sun"
+msgstr "日"
+
+#: class/my-settings.php:303
+msgid "Mon"
+msgstr "月"
+
+#: class/my-settings.php:304
+msgid "Tue"
+msgstr "火"
+
+#: class/my-settings.php:305
+msgid "Wed"
+msgstr "水"
+
+#: class/my-settings.php:306
+msgid "Thu"
+msgstr "木"
+
+#: class/my-settings.php:307
+msgid "Fri"
+msgstr "金"
+
+#: class/my-settings.php:308
+msgid "Sat"
+msgstr "土"
+
 #: class/my-shortcodes.php:41
 msgid "&laquo; PREV DAY"
 msgstr "前日"
@@ -955,8 +988,8 @@ msgid ""
 "*) When timetable is canceled by a teacher, it is closed at the same time"
 msgstr "*) 講師によるキャンセルは、同時にそのタイムテーブルをクローズします。"
 
-#: class/my-timetable.php:958 class/my-timetable.php:1841
-#: class/my-timetable.php:1851
+#: class/my-timetable.php:958 class/my-timetable.php:1844
+#: class/my-timetable.php:1854
 msgid "update"
 msgstr "更新"
 
@@ -1015,6 +1048,9 @@ msgstr "管理者メニュー"
 #: class/my-widget.php:322
 msgid "Dash board"
 msgstr "WordPress管理画面"
+
+#~ msgid "This month"
+#~ msgstr "今月"
 
 #~ msgid ""
 #~ "Updating of a possession ticket will update the term of validity "

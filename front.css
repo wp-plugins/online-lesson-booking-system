@@ -222,6 +222,13 @@ table.daily_schedule td, table.daily_schedule th.times {
 	text-align: center;
 	line-height: 1.3em;
 }
+table.daily_schedule th .portrait {
+	display: block;
+	padding: 10px;
+}
+table.daily_schedule th .portrait img {
+	width: 80px;
+}
 table.daily_schedule th.times {
 	width: 10%;
 }
@@ -244,6 +251,37 @@ table.daily_schedule td.you {
 }
 table.daily_schedule td.you a {
 
+}
+
+/*
+ *	Calendar
+ */
+table.olb_calendar th,
+table.olb_calendar td {
+	padding: 0 !important;
+	text-align: center;
+}
+table.olb_calendar th.sunday,
+table.olb_calendar td.sunday ,
+table.olb_calendar td.sunday a {
+	background-color: #ffeef6;
+	color: #c06;
+}
+table.olb_calendar th.saturday,
+table.olb_calendar td.saturday,
+table.olb_calendar td.saturday a {
+	background-color: #eef6ff;
+	color: #06c;
+}
+table.olb_calendar td.today {
+	background-color: #ffeecc;
+}
+table.olb_calendar_weekly td .wmonth {
+	font-size: x-small;
+	color: #999;
+}
+.back2day {
+	font-size: x-small;
 }
 
 /*
@@ -320,10 +358,12 @@ table.weekly_schedule th.times {
 	width: 10%;
 }
 table.weekly_schedule th.sunday {
-	background-color: #fdd;
+	background-color: #ffeef6;
+	color: #c06;
 }
 table.weekly_schedule th.saturday {
-	background-color: #def;
+	background-color: #eef6ff;
+	color: #06c;
 }
 table.weekly_schedule td.open {
 	background-color: #1af;

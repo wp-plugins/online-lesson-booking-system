@@ -641,6 +641,7 @@ EOD;
 			if(!empty($room->data['id'])){
 				if($room->isRoomManager()) {
 					wp_update_user(array('ID'=>$room->data['id'], 'user_url'=>get_permalink($post_id)));
+					update_user_meta( $room->data['id'], 'olbprofile', $post_id );
 				}
 			}
 		}
@@ -661,6 +662,7 @@ EOD;
 				if(!empty($room->data['id'])){
 					if($room->isRoomManager()) {
 						wp_update_user(array('ID'=>$room->data['id'], 'user_url'=>''));
+						delete_user_meta( $room->data['id'], 'olbprofile' );
 					}
 				}
 			}
@@ -965,7 +967,7 @@ Hello [olb_member_data key="name"].
 			),
 			'daily_schedule' => array(
 				'post_title'     => __('Daily schedule', OLBsystem::TEXTDOMAIN),
-				'post_content'   => '[olb_daily_schedule]',
+				'post_content'   => "[olb_calendar]\n[olb_daily_schedule]",
 				'post_name'      => $specialpages['daily_schedule_page'],
 				'post_status'   => 'publish',
 			),

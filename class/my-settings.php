@@ -10,7 +10,7 @@ class OLBsystem {
 	const TABLEPREFIX = 'olb_';
 	const TEXTDOMAIN = 'olbsystem';
 	const URL = 'http://olbsys.com/';
-	const PLUGIN_VERSION = '0.4.5';
+	const PLUGIN_VERSION = '0.5.0';
 	const DB_VERSION = '0.4.0';
 
 	// タイムテーブル基本設定
@@ -294,5 +294,30 @@ EOD;
 		}
 	}
 
+	/**
+	 *	Get DOW
+	 */
+	public static function dow( $weekday ) {
+		$dow = array(
+			__( 'Sun', OLBsystem::TEXTDOMAIN ),
+			__( 'Mon', OLBsystem::TEXTDOMAIN ),
+			__( 'Tue', OLBsystem::TEXTDOMAIN ),
+			__( 'Wed', OLBsystem::TEXTDOMAIN ),
+			__( 'Thu', OLBsystem::TEXTDOMAIN ),
+			__( 'Fri', OLBsystem::TEXTDOMAIN ),
+			__( 'Sat', OLBsystem::TEXTDOMAIN )
+		);
+		if ( $weekday >= 0 && $weekday <= 6 ) {
+			return $dow[$weekday];
+		}
+		return false;
+	}
+
+	/**
+	 *	Get DOW name
+	 */
+	public static function dow_lower( $weekday ) {
+		return strtolower( date( 'l', mktime( 0, 0, 0, 6, 1 + $weekday, 2014 ) ) );
+	}
 }
 ?>
