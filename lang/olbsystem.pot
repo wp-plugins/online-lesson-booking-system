@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-05-10 04:50+0900\n"
-"PO-Revision-Date: 2014-05-10 04:50+0900\n"
+"POT-Creation-Date: 2014-06-03 14:59+0900\n"
+"PO-Revision-Date: 2014-06-03 14:59+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: \n"
-"Language: ja\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,6 +13,7 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: class/my-adminpage.php:12
 msgid "Online Lesson Booking system"
@@ -274,7 +275,7 @@ msgid "Subject to teacher"
 msgstr ""
 
 #: class/my-adminpage.php:479 class/my-adminpage.php:506
-#: class/my-adminpage.php:533 class/my-timetable.php:832
+#: class/my-adminpage.php:533 class/my-timetable.php:828
 msgid "Message"
 msgstr ""
 
@@ -298,81 +299,85 @@ msgstr ""
 msgid "Special pages"
 msgstr ""
 
-#: class/my-auth.php:153 class/my-hookactions.php:707
+#: class/my-auth.php:152 class/my-hookactions.php:677
 msgid "ID"
 msgstr ""
 
-#: class/my-auth.php:154
+#: class/my-auth.php:153
 msgid "Name"
 msgstr ""
 
-#: class/my-auth.php:155 class/my-hookactions.php:124
+#: class/my-auth.php:154 class/my-hookactions.php:130
 msgid "Skype ID"
 msgstr ""
 
-#: class/my-auth.php:156
+#: class/my-auth.php:155
 msgid "Term"
 msgstr ""
 
-#: class/my-auth.php:157
+#: class/my-auth.php:156
 msgid "Email"
 msgstr ""
 
-#: class/my-auth.php:158
+#: class/my-auth.php:157
 msgid "First name"
 msgstr ""
 
-#: class/my-auth.php:159
+#: class/my-auth.php:158
 msgid "Last name"
 msgstr ""
 
-#: class/my-auth.php:160 class/my-hookactions.php:122
+#: class/my-auth.php:159 class/my-hookactions.php:128
 msgid "Address"
 msgstr ""
 
-#: class/my-auth.php:161 class/my-hookactions.php:123
+#: class/my-auth.php:160 class/my-hookactions.php:129
 msgid "Phone"
 msgstr ""
 
-#: class/my-formaction.php:148
+#: class/my-calendar.php:309 class/my-calendar.php:396
+msgid "Today"
+msgstr ""
+
+#: class/my-formaction.php:132
 #, php-format
 msgid "%d minutes before start time"
 msgstr ""
 
-#: class/my-formaction.php:166
+#: class/my-formaction.php:150
 msgid "Free reservation applied."
 msgstr ""
 
-#: class/my-formaction.php:168
+#: class/my-formaction.php:152
 #, php-format
 msgid "Your free reservation: %d times left."
 msgstr ""
 
-#: class/my-formaction.php:518
+#: class/my-formaction.php:494
 msgid "Select teacher"
 msgstr ""
 
-#: class/my-formaction.php:533
+#: class/my-formaction.php:509
 msgid "Or input teacher's ID (ex.'2')"
 msgstr ""
 
-#: class/my-formaction.php:550
+#: class/my-formaction.php:526
 msgid "Select member"
 msgstr ""
 
-#: class/my-formaction.php:565
+#: class/my-formaction.php:541
 msgid "Or input member's ID (ex.'5')"
 msgstr ""
 
-#: class/my-formaction.php:659
+#: class/my-formaction.php:635
 msgid "Admin is pretending a user"
 msgstr ""
 
-#: class/my-formaction.php:666
+#: class/my-formaction.php:642
 msgid "Admin is pretending a teacher"
 msgstr ""
 
-#: class/my-formaction.php:672
+#: class/my-formaction.php:648
 msgid "OFF"
 msgstr ""
 
@@ -425,54 +430,50 @@ msgid "The number of reservations reached a limit per month."
 msgstr ""
 
 #: class/my-functions.php:52
-msgid "Your possession tickets is empty. "
-msgstr ""
-
-#: class/my-functions.php:54
 msgid "Cancellation processing failed. It was not able to cancel."
 msgstr ""
 
-#: class/my-functions.php:56
+#: class/my-functions.php:54
 msgid "Reservation processing failed. It was not able to reserve."
 msgstr ""
 
-#: class/my-functions.php:58
+#: class/my-functions.php:56
 msgid "Sending email to user failed."
 msgstr ""
 
-#: class/my-functions.php:60
+#: class/my-functions.php:58
 msgid "Teacher is not specified."
 msgstr ""
 
-#: class/my-functions.php:62
+#: class/my-functions.php:60
 msgid "Member is not specified."
 msgstr ""
 
-#: class/my-functions.php:66
+#: class/my-functions.php:64
 msgid "No members."
 msgstr ""
 
-#: class/my-functions.php:68
+#: class/my-functions.php:66
 msgid "No teachers."
 msgstr ""
 
-#: class/my-functions.php:70
+#: class/my-functions.php:68
 msgid "Specified teacher does not exist."
 msgstr ""
 
-#: class/my-functions.php:72
+#: class/my-functions.php:70
 msgid "Specified member does not exist."
 msgstr ""
 
-#: class/my-functions.php:74
+#: class/my-functions.php:72
 msgid "Onetime token error."
 msgstr ""
 
-#: class/my-functions.php:76
+#: class/my-functions.php:74
 msgid "It reserved."
 msgstr ""
 
-#: class/my-functions.php:78
+#: class/my-functions.php:76
 msgid "It canceled."
 msgstr ""
 
@@ -512,10 +513,10 @@ msgstr ""
 
 #: class/my-history.php:161 class/my-history.php:263 class/my-history.php:371
 #: class/my-history.php:466 class/my-history.php:568
-#: class/my-timetable.php:548 class/my-timetable.php:624
-#: class/my-timetable.php:679 class/my-timetable.php:829
-#: class/my-timetable.php:888 class/my-timetable.php:1037
-#: class/my-timetable.php:1094
+#: class/my-timetable.php:544 class/my-timetable.php:620
+#: class/my-timetable.php:675 class/my-timetable.php:825
+#: class/my-timetable.php:884 class/my-timetable.php:1033
+#: class/my-timetable.php:1090
 msgid "Date/Time"
 msgstr ""
 
@@ -524,7 +525,7 @@ msgid "Member(Skype)"
 msgstr ""
 
 #: class/my-history.php:163 class/my-history.php:173 class/my-history.php:373
-#: class/my-history.php:386 class/my-timetable.php:1040
+#: class/my-history.php:386 class/my-timetable.php:1036
 msgid "Absent"
 msgstr ""
 
@@ -545,12 +546,12 @@ msgid "CANCEL"
 msgstr ""
 
 #: class/my-history.php:372 class/my-history.php:468
-#: class/my-hookactions.php:212 class/my-hookactions.php:706
-#: class/my-hookactions.php:722 class/my-timetable.php:541
-#: class/my-timetable.php:617 class/my-timetable.php:677
-#: class/my-timetable.php:822 class/my-timetable.php:886
-#: class/my-timetable.php:1030 class/my-timetable.php:1092
-#: class/my-timetable.php:1709
+#: class/my-hookactions.php:206 class/my-hookactions.php:676
+#: class/my-hookactions.php:692 class/my-timetable.php:537
+#: class/my-timetable.php:613 class/my-timetable.php:673
+#: class/my-timetable.php:818 class/my-timetable.php:882
+#: class/my-timetable.php:1026 class/my-timetable.php:1088
+#: class/my-timetable.php:1706
 msgid "Teacher"
 msgstr ""
 
@@ -558,104 +559,86 @@ msgstr ""
 msgid "Update info"
 msgstr ""
 
-#: class/my-history.php:582
+#: class/my-history.php:603
 msgid "by PayPal payment"
 msgstr ""
 
-#: class/my-history.php:587
-msgid "by Admin"
-msgstr ""
-
-#: class/my-history.php:593 class/my-history.php:626
+#: class/my-history.php:614 class/my-history.php:651
 #, php-format
 msgid "Corrected %d ticket."
 msgstr ""
 
-#: class/my-history.php:596 class/my-history.php:629
+#: class/my-history.php:617 class/my-history.php:654
 #, php-format
 msgid "Added %d ticket."
 msgstr ""
 
-#: class/my-history.php:607
+#: class/my-history.php:628 class/my-history.php:658
 #, php-format
-msgid "Extended for %d days."
+msgid "Extended till %s."
 msgstr ""
 
-#: class/my-history.php:611
+#: class/my-history.php:632 class/my-history.php:661
 #, php-format
-msgid "Corrected for %d days."
+msgid "Corrected to %s."
 msgstr ""
 
-#: class/my-history.php:615 class/my-history.php:620
+#: class/my-history.php:636 class/my-history.php:664
+msgid "Removed expiration."
+msgstr ""
+
+#: class/my-history.php:640 class/my-history.php:645
 msgid "Error"
 msgstr ""
 
-#: class/my-history.php:633
-#, php-format
-msgid "And extended for %d days."
-msgstr ""
-
-#: class/my-history.php:636
-#, php-format
-msgid "And corrected for %d days."
-msgstr ""
-
-#: class/my-hookactions.php:34
+#: class/my-hookactions.php:40
 msgid "My page"
 msgstr ""
 
-#: class/my-hookactions.php:41 class/my-widget.php:80 class/my-widget.php:187
+#: class/my-hookactions.php:47 class/my-widget.php:80 class/my-widget.php:187
 #: class/my-widget.php:323
 msgid "Logout"
 msgstr ""
 
-#: class/my-hookactions.php:146 class/my-hookactions.php:195
+#: class/my-hookactions.php:152 class/my-hookactions.php:190
 msgid "Online-Booking-System Additional Fields"
 msgstr ""
 
-#: class/my-hookactions.php:147
+#: class/my-hookactions.php:153
 msgid "The term of validity is updated after the check of payment."
 msgstr ""
 
-#: class/my-hookactions.php:156 class/my-hookactions.php:224
+#: class/my-hookactions.php:162 class/my-hookactions.php:218
 msgid "Term of validity"
 msgstr ""
 
-#: class/my-hookactions.php:159
-msgid "The possession tickets is updated after the check of payment."
-msgstr ""
-
-#: class/my-hookactions.php:166 class/my-hookactions.php:233
-msgid "Possession tickets"
-msgstr ""
-
-#: class/my-hookactions.php:212
+#: class/my-hookactions.php:206
 msgid "Property \"Teacher\""
 msgstr ""
 
-#: class/my-hookactions.php:763 class/my-hookactions.php:1020
+#: class/my-hookactions.php:733 class/my-hookactions.php:990
 msgid "Members information"
 msgstr ""
 
-#: class/my-hookactions.php:765 class/my-hookactions.php:1022
+#: class/my-hookactions.php:735 class/my-hookactions.php:992
 msgid "Recent history"
 msgstr ""
 
-#: class/my-hookactions.php:766 class/my-hookactions.php:1009
-#: class/my-hookactions.php:1023 class/my-hookactions.php:1037
+#: class/my-hookactions.php:736 class/my-hookactions.php:979
+#: class/my-hookactions.php:993 class/my-hookactions.php:1007
 msgid "No history"
 msgstr ""
 
-#: class/my-hookactions.php:795 class/my-hookactions.php:797
-#: class/my-hookactions.php:1030 class/my-hookactions.php:1032
+#: class/my-hookactions.php:765 class/my-hookactions.php:767
+#: class/my-hookactions.php:1000 class/my-hookactions.php:1002
 msgid "Ticket Logs"
 msgstr ""
 
-#: class/my-hookactions.php:796 class/my-hookactions.php:1031
+#: class/my-hookactions.php:766 class/my-hookactions.php:1001
 msgid "No Logs"
 msgstr ""
 
-#: class/my-hookactions.php:941
+#: class/my-hookactions.php:911
 msgid ""
 "\n"
 "<p>\n"
@@ -682,47 +665,47 @@ msgid ""
 "[/olb_members_schedule]\n"
 msgstr ""
 
-#: class/my-hookactions.php:969
+#: class/my-hookactions.php:939
 msgid "Scheduler for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:975
+#: class/my-hookactions.php:945
 msgid "Cancel form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:981
+#: class/my-hookactions.php:951
 msgid "Report form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:987
+#: class/my-hookactions.php:957
 msgid "Reservation and cancellation form"
 msgstr ""
 
-#: class/my-hookactions.php:993
+#: class/my-hookactions.php:963
 msgid "Members my-page"
 msgstr ""
 
-#: class/my-hookactions.php:999
+#: class/my-hookactions.php:969
 msgid "Daily schedule"
 msgstr ""
 
-#: class/my-hookactions.php:1008 class/my-hookactions.php:1010
+#: class/my-hookactions.php:978 class/my-hookactions.php:980
 msgid "Teachers history"
 msgstr ""
 
-#: class/my-hookactions.php:1014 class/my-hookactions.php:1016
+#: class/my-hookactions.php:984 class/my-hookactions.php:986
 msgid "Teachers schedule"
 msgstr ""
 
-#: class/my-hookactions.php:1015 class/my-hookactions.php:1043
+#: class/my-hookactions.php:985 class/my-hookactions.php:1013
 msgid "No schedule"
 msgstr ""
 
-#: class/my-hookactions.php:1036 class/my-hookactions.php:1038
+#: class/my-hookactions.php:1006 class/my-hookactions.php:1008
 msgid "Members history"
 msgstr ""
 
-#: class/my-hookactions.php:1042 class/my-hookactions.php:1044
+#: class/my-hookactions.php:1012 class/my-hookactions.php:1014
 msgid "Members schedule"
 msgstr ""
 
@@ -750,7 +733,7 @@ msgstr ""
 msgid "Latest from Plugin"
 msgstr ""
 
-#: class/my-info.php:64 class/my-info.php:79
+#: class/my-info.php:65 class/my-info.php:81
 msgid "Latest from \"Online Lesson Booking\" plugin"
 msgstr ""
 
@@ -836,6 +819,34 @@ msgid ""
 "\n"
 msgstr ""
 
+#: class/my-settings.php:302
+msgid "Sun"
+msgstr ""
+
+#: class/my-settings.php:303
+msgid "Mon"
+msgstr ""
+
+#: class/my-settings.php:304
+msgid "Tue"
+msgstr ""
+
+#: class/my-settings.php:305
+msgid "Wed"
+msgstr ""
+
+#: class/my-settings.php:306
+msgid "Thu"
+msgstr ""
+
+#: class/my-settings.php:307
+msgid "Fri"
+msgstr ""
+
+#: class/my-settings.php:308
+msgid "Sat"
+msgstr ""
+
 #: class/my-shortcodes.php:41
 msgid "&laquo; PREV DAY"
 msgstr ""
@@ -859,44 +870,63 @@ msgstr ""
 msgid "Do not have authority to show this page."
 msgstr ""
 
-#: class/my-timetable.php:452 class/my-timetable.php:465
-#: class/my-timetable.php:571
+#: class/my-ticket.php:43
+msgid "The possession tickets is updated after the check of payment."
+msgstr ""
+
+#: class/my-ticket.php:50 class/my-ticket.php:76
+msgid "Possession tickets"
+msgstr ""
+
+#: class/my-ticket.php:74
+msgid ""
+"If a possession ticket is updated, the term of validity will be "
+"automatically updated by the value of a plug-in option \"term of validity of "
+"a ticket\"."
+msgstr ""
+
+#: class/my-ticket.php:303
+msgid "Your possession tickets is empty. "
+msgstr ""
+
+#: class/my-timetable.php:448 class/my-timetable.php:461
+#: class/my-timetable.php:567
 msgid "FREE"
 msgstr ""
 
-#: class/my-timetable.php:459
+#: class/my-timetable.php:455
 msgid "reserve"
 msgstr ""
 
-#: class/my-timetable.php:463 class/my-timetable.php:569
+#: class/my-timetable.php:459 class/my-timetable.php:565
 msgid "Reserved"
 msgstr ""
 
-#: class/my-timetable.php:472 class/my-timetable.php:755
+#: class/my-timetable.php:468 class/my-timetable.php:751
 msgid "cancel"
 msgstr ""
 
-#: class/my-timetable.php:539 class/my-timetable.php:615
-#: class/my-timetable.php:820 class/my-timetable.php:1028
+#: class/my-timetable.php:535 class/my-timetable.php:611
+#: class/my-timetable.php:816 class/my-timetable.php:1024
 msgid "Reserve ID"
 msgstr ""
 
-#: class/my-timetable.php:544 class/my-timetable.php:620
-#: class/my-timetable.php:825 class/my-timetable.php:1033
+#: class/my-timetable.php:540 class/my-timetable.php:616
+#: class/my-timetable.php:821 class/my-timetable.php:1029
 msgid "User"
 msgstr ""
 
-#: class/my-timetable.php:819
+#: class/my-timetable.php:815
 msgid ""
 "*) When timetable is canceled by a teacher, it is closed at the same time"
 msgstr ""
 
-#: class/my-timetable.php:962 class/my-timetable.php:1845
-#: class/my-timetable.php:1855
+#: class/my-timetable.php:958 class/my-timetable.php:1844
+#: class/my-timetable.php:1854
 msgid "update"
 msgstr ""
 
-#: class/my-timetable.php:1357
+#: class/my-timetable.php:1353
 msgid "Date"
 msgstr ""
 
