@@ -78,8 +78,7 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 = 0.5.1 =
 
-* Small bug fix.<br>
-(The tag error in <thead> of a calendar was corrected.) 
+* Small bug fix. 
 
 = 0.5.0 =
 
