@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,11 +69,17 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Screenshots ==
 
 1. "Scheduler" page 
-2. "Weekly schedule" page
-3. "Reservation form" page 
-4. "Plugin option" page
+2. "Daily schedule" page 
+3. "Weekly schedule" page
+4. "Reservation form" page 
+5. "Plugin option" page
 
 == Changelog ==
+
+= 0.5.1 =
+
+* Small bug fix.<br>
+(The tag error in <thead> of a calendar was corrected.) 
 
 = 0.5.0 =
 
@@ -140,8 +146,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.5.0 =
+= 0.5.1 =
 
-"Calendar" short code was added. On "Daily Schedule" pages, the date can be chosen from a calendar.
-And, the teacher's self-portrait can be displayed on "Daily schedule".
-Set a "Featured Image" in each "post" of teacher information.
+Small bug fix.

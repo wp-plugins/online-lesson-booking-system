@@ -125,7 +125,7 @@ class olb_calendar {
 				break;
 			}
 		}
-		echo "</th></thead>\n";
+		echo "</tr></thead>\n";
 		// DATE
 		echo "<tbody>\n";
 		for ( $i = 0; isset( $calendar[$i] ); $i++ ) {
@@ -200,7 +200,7 @@ class olb_calendar {
 				break;
 			}
 		}
-		echo "</th></thead>\n";
+		echo "</tr></thead>\n";
 		// DATE
 		echo "<tbody>\n";
 		echo "<tr>\n";
