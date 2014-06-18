@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 0.5.1
+Stable tag: 0.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,10 +76,14 @@ Not include. Please use the "membership" which is a standard function of WordPre
 
 == Changelog ==
 
+= 0.5.2 =
+
+* Malfunction was solved when used together with "[Events Manager](https://wordpress.org/plugins/events-manager/ )" etc.<br> 
+(The malfunction is 404 errors when the subpage below an "Events" page is accessed, for example.) 
+
 = 0.5.1 =
 
-* Small bug fix.<br>
-(The tag error in <thead> of a calendar was corrected.) 
+* Small bug fix. 
 
 = 0.5.0 =
 
@@ -146,6 +150,7 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.5.1 =
+= 0.5.2 =
 
-Small bug fix.
+Malfunction was solved when used together with "Events Manager" etc.
+(The malfunction is 404 errors when the subpage below an "Events" page is accessed, for example.) 
