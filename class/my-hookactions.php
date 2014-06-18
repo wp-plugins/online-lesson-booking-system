@@ -414,10 +414,13 @@ EOD;
 	 *	各ページへのアクセス制限: Control for access to  special page
 	 */
 	public static function inSpecialPageAccess($query_vars) {
-		global $olb;
+		global $olb, $wpdb;
 
 		if(!empty($query_vars->query_vars['name'])) {
-			list($current_post) = query_posts('name='.$query_vars->query_vars['name']);
+			$prefix = $wpdb->prefix;
+			$query = 'SELECT ID FROM '.$prefix.'posts WHERE `post_name`=%s';
+			$cp = $wpdb->get_row( $wpdb->prepare($query, array($query_vars->query_vars['name'])), OBJECT);
+			$current_post = get_post( $cp->ID );
 		}
 		else if(!empty($query_vars->query_vars['pagename'])) {
 			$current_post = get_page_by_path($query_vars->query_vars['pagename']);
@@ -516,7 +519,6 @@ EOD;
 				exit;
 			}
 		}
-
 	}
 
 	/**
@@ -576,11 +578,14 @@ EOD;
 	 *	フォームアクション: form action
 	 */
 	public static function formAction($query_vars){
-		global $olb;
+		global $olb, $wpdb;
 		
 		if($_SERVER['REQUEST_METHOD']=='POST'){
 			if(!empty($query_vars->query_vars['name'])) {
-				list($current_post) = query_posts('name='.$query_vars->query_vars['name']);
+				$prefix = $wpdb->prefix;
+				$query = 'SELECT ID FROM '.$prefix.'posts WHERE `post_name`=%s';
+				$cp = $wpdb->get_row( $wpdb->prepare($query, array($query_vars->query_vars['name'])), OBJECT);
+				$current_post = get_post( $cp->ID );
 			}
 			else if(!empty($query_vars->query_vars['pagename'])) {
 				$current_post = get_page_by_path($query_vars->query_vars['pagename']);
