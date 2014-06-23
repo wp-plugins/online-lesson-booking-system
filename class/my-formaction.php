@@ -2,8 +2,34 @@
 /** 
  *	タイムテーブル: Timetable
  */
+add_filter( 'olb_to_user_email', array( 'olbFormAction', 'to_user_email' ), 10, 1 );
+add_filter( 'olb_to_teacher_email', array( 'olbFormAction', 'to_teacher_email' ), 10, 1 );
 
 class olbFormAction {
+
+	/**
+	 *	ユーザー宛先: User's email
+	 */
+	public static function to_user_email( $email ) {
+		/*
+		 Default email: e.g. 'John <john@example.com>'
+		 How to add other addresses,
+		 e.g. 'John <john@example.com>, paula@example.com, ...'
+		*/
+		return $email;
+	}
+
+	/**
+	 *	講師宛先: Teacher's email
+	 */
+	public static function to_teacher_email( $email ) {
+		/*
+		 Default email: e.g. 'John <john@example.com>'
+		 How to add other addresses,
+		 e.g. 'John <john@example.com>, paula@example.com, ...'
+		*/
+		return $email;
+	}
 
 	/**
 	 *	予約・キャンセル: Reservation and Cancellation by member
@@ -170,6 +196,7 @@ class olbFormAction {
 		$to_user_body = $mail_body.$to_user_signature;
 		$to_user_headers = sprintf("From: %s\r\n", $options['from_email']);
 		$to_user_email = sprintf('%s <%s>', $user->data['name'], $user->data['email']);
+		$to_user_email = apply_filters( 'olb_to_user_email', $to_user_email );
 
 		$ret = olbTimetable::sendReserveMail($to_user_email , $to_user_subject, $to_user_body, $to_user_headers);
 		// エラーあり
@@ -183,9 +210,10 @@ class olbFormAction {
 		}
 
 		// 講師宛
-		$to_teacher_email = $room['email'];
 		$to_teacher_body = $mail_body;
 		$to_teacher_headers = sprintf("From: %s\r\n", $to_user_email);
+		$to_teacher_email = $room['email'];
+		$to_teacher_email = apply_filters( 'olb_to_teacher_email', $to_teacher_email );
 
 		$ret = olbTimetable::sendReserveMail($to_teacher_email, $to_teacher_subject, $to_teacher_body, $to_teacher_headers);
 
@@ -304,6 +332,7 @@ class olbFormAction {
 		$to_user_body = $mail_body.$to_user_signature;
 		$to_user_headers = sprintf("From: %s\r\n", $options['from_email']);
 		$to_user_email = sprintf('%s <%s>', $user->data['name'], $user->data['email']);
+		$to_user_email = apply_filters( 'olb_to_user_email', $to_user_email );
 
 		$ret = olbTimetable::sendReserveMail($to_user_email , $to_user_subject, $to_user_body, $to_user_headers);
 		// エラーあり
@@ -317,9 +346,10 @@ class olbFormAction {
 		}
 
 		// 講師宛
-		$to_teacher_email = $room['email'];
 		$to_teacher_body = $mail_body;
 		$to_teacher_headers = sprintf("From: %s\r\n", $to_user_email);
+		$to_teacher_email = $room['email'];
+		$to_teacher_email = apply_filters( 'olb_to_teacher_email', $to_teacher_email );
 
 		$ret = olbTimetable::sendReserveMail($to_teacher_email, $to_teacher_subject, $to_teacher_body, $to_teacher_headers);
 		$url = get_permalink(get_page_by_path($olb->edit_schedule_page)->ID);

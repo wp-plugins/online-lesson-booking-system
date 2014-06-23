@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 0.5.2
+Stable tag: 0.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,10 @@ Not include. Please use the "membership" which is a standard function of WordPre
 5. "Plugin option" page
 
 == Changelog ==
+
+= 0.5.3 =
+
+* The filter hooks was added. Those are the receiver's addresses of the notice e-mail of reservation (or cancellation). 
 
 = 0.5.2 =
 
@@ -150,7 +154,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.5.2 =
+= 0.5.3 =
 
-Malfunction was solved when used together with "Events Manager" etc.
-(The malfunction is 404 errors when the subpage below an "Events" page is accessed, for example.) 
+The filter hooks was added. Those are the receiver's addresses of the notice e-mail of reservation (or cancellation). 

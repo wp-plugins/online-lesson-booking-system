@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-06-18 10:17+0900\n"
-"PO-Revision-Date: 2014-06-18 10:17+0900\n"
+"POT-Creation-Date: 2014-06-23 08:53+0900\n"
+"PO-Revision-Date: 2014-06-23 08:54+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -339,45 +339,45 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: class/my-formaction.php:132
+#: class/my-formaction.php:158
 #, php-format
 msgid "%d minutes before start time"
 msgstr ""
 
-#: class/my-formaction.php:150
+#: class/my-formaction.php:176
 msgid "Free reservation applied."
 msgstr ""
 
-#: class/my-formaction.php:152
+#: class/my-formaction.php:178
 #, php-format
 msgid "Your free reservation: %d times left."
 msgstr ""
 
-#: class/my-formaction.php:494
+#: class/my-formaction.php:524
 msgid "Select teacher"
 msgstr ""
 
-#: class/my-formaction.php:509
+#: class/my-formaction.php:539
 msgid "Or input teacher's ID (ex.'2')"
 msgstr ""
 
-#: class/my-formaction.php:526
+#: class/my-formaction.php:556
 msgid "Select member"
 msgstr ""
 
-#: class/my-formaction.php:541
+#: class/my-formaction.php:571
 msgid "Or input member's ID (ex.'5')"
 msgstr ""
 
-#: class/my-formaction.php:635
+#: class/my-formaction.php:665
 msgid "Admin is pretending a user"
 msgstr ""
 
-#: class/my-formaction.php:642
+#: class/my-formaction.php:672
 msgid "Admin is pretending a teacher"
 msgstr ""
 
-#: class/my-formaction.php:648
+#: class/my-formaction.php:678
 msgid "OFF"
 msgstr ""
 
