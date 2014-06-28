@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 0.5.3
+Stable tag: 0.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,10 @@ Not include. Please use the "membership" which is a standard function of WordPre
 5. "Plugin option" page
 
 == Changelog ==
+
+= 0.5.4 =
+
+* The bug in the case of the profile edit and display by teacher user was corrected. 
 
 = 0.5.3 =
 
@@ -154,6 +158,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.5.3 =
+= 0.5.4 =
 
-The filter hooks was added. Those are the receiver's addresses of the notice e-mail of reservation (or cancellation). 
+The bug in the case of the profile edit and display by teacher user was corrected.

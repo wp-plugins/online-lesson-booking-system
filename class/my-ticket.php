@@ -40,15 +40,18 @@ class olb_ticket {
 		global $olb;
 
 		if($olb->ticket_system) {
-			$description = __('The possession tickets is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
-			$format = <<<EOD
+			// 購読者
+			if ( in_array( 'subscriber', $user->data['roles'] ) ) {
+				$description = __('The possession tickets is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
+				$format = <<<EOD
 <tr>
 <th>%s</th>
 <td>%s <span class="description" style="margin-left:20px">(%s)</span></td>
 </tr>
 EOD;
-			$new = sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket'], $description);
-			$html = str_replace( '</table>', $new."\n</table>", $html );
+				$new = sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket'], $description);
+				$html = str_replace( '</table>', $new."\n</table>", $html );
+			}
 		}
 		return $html;
 	}
