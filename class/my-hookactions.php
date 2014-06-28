@@ -136,11 +136,8 @@ EOD;
 	 */
 	public static function showAddedProfile(){
 		$user = new olbAuth();
-		// 購読者
-		if(in_array('subscriber', $user->data['roles'])){
-			$html = '';
-			echo apply_filters( 'olb_added_profile', $html, $user );
-		}
+		$html = '';
+		echo apply_filters( 'olb_added_profile', $html, $user );
 	}
 
 	/** 
@@ -150,16 +147,33 @@ EOD;
 		global $olb;
 
 		$title = __('Online-Booking-System Additional Fields', OLBsystem::TEXTDOMAIN);
-		$description = __('The term of validity is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
 		$format = <<<EOD
 <h3>%s</h3>
 <table class="form-table">
+EOD;
+		$html = sprintf( $format, $title );
+
+		// 購読者
+		if ( in_array( 'subscriber', $user->data['roles'] ) ) {
+			$description = __('The term of validity is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
+			$format = <<<EOD
 <tr>
 <th>%s</th>
 <td>%s <span class="description" style="margin-left:20px">(%s)</span></td>
 </tr>
 EOD;
-		$html = sprintf($format, $title, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description);
+			$html .= sprintf( $format, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description );
+		}
+		// 投稿者
+		if ( in_array( 'author', $user->data['roles'] ) ) {
+			$format = <<<EOD
+<tr>
+<th>%s</th>
+<td>%s <input type="hidden" name="olbgroup" id="olbgroup" value="%s" /></td>
+</tr>
+EOD;
+			$html .= sprintf( $format, __('Property "Teacher"', OLBsystem::TEXTDOMAIN), __('Teacher', OLBsystem::TEXTDOMAIN), $user->data['olbgroup'] );
+		}
 		$html .= "</table>\n";
 		return $html;
 	}
