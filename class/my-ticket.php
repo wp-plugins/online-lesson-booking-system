@@ -144,17 +144,22 @@ EOD;
 			if ( $result['new'] > $result['old'] ) {
 				$now = current_time('timestamp');
 				$term = get_user_meta( $result['user_id'], 'olbterm', true );
-				$newtime = $now + $olb->ticket_expire * 60 * 60 *24;
+				if ( $result['type'] == 'paypal' && $result['ppdays'] > 0 ) {
+					$add = $result['ppdays'];
+				}
+				else {
+					$add = $olb->ticket_expire;
+				}
+				$newtime = $now + $add * 60 * 60 *24;
 				$newterm = date( 'Y-m-d', $newtime );
 				$days = 0;
-				if ( empty( $term ) || strcmp( $term, date( 'Y-m-d', $now ) ) < 0 ) {
-					$days = $olb->ticket_expire;
+				if ( empty( $term ) ) {
+					$days = $add;
 				}
 				else if ( strcmp( $term, $newterm ) < 0 ) {
 					list( $y, $m, $d ) = explode( '-', $term );
 					$orgtime = mktime( 0, 0, 0, $m, $d, $y );
-					$newtime = $now + $olb->ticket_expire * 60 * 60 *24;
-					$days = ( $newtime - $orgtime ) / ( 24 * 60 * 60 );
+					$days = intval( ( $newtime - $orgtime ) / ( 24 * 60 * 60 ) );
 				}
 				$result['days'] = $days;
 			}

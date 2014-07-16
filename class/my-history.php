@@ -624,7 +624,7 @@ class olb_logs extends olbHistory {
 				// no change of point 
 				if ( $data['old'] == $data['new'] ) {
 					// extended
-					if ( $data['days'] > 0 ) {
+					if ( $data['days'] > 0 && strcmp( $data['oldterm'], $data['newterm'] ) != 0 ) {
 						$info = sprintf( __('Extended till %s.', OLBsystem::TEXTDOMAIN).' %s', $data['newterm'], $by );
 					}
 					// corrected 
@@ -654,7 +654,7 @@ class olb_logs extends olbHistory {
 					$info = sprintf( __('Added %d ticket.', OLBsystem::TEXTDOMAIN), $r['points'] );
 				}
 
-				if ( $data['days'] > 0 ) {
+				if ( $data['days'] > 0 && strcmp( $data['oldterm'], $data['newterm'] ) != 0 ) {
 					$info .= sprintf( ' '.__('Extended till %s.', OLBsystem::TEXTDOMAIN), $data['newterm'] );
 				}
 				else if ( $data['days'] < 0 ) {
