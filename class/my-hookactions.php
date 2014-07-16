@@ -136,11 +136,8 @@ EOD;
 	 */
 	public static function showAddedProfile(){
 		$user = new olbAuth();
-		// 購読者
-		if(in_array('subscriber', $user->data['roles'])){
-			$html = '';
-			echo apply_filters( 'olb_added_profile', $html, $user );
-		}
+		$html = '';
+		echo apply_filters( 'olb_added_profile', $html, $user );
 	}
 
 	/** 
@@ -150,16 +147,34 @@ EOD;
 		global $olb;
 
 		$title = __('Online-Booking-System Additional Fields', OLBsystem::TEXTDOMAIN);
-		$description = __('The term of validity is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
 		$format = <<<EOD
 <h3>%s</h3>
 <table class="form-table">
+EOD;
+		$html = sprintf( $format, $title );
+
+		// 購読者
+		if ( in_array( 'subscriber', $user->data['roles'] ) ) {
+			$description = __('The term of validity is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
+			$format = <<<EOD
 <tr>
 <th>%s</th>
 <td>%s <span class="description" style="margin-left:20px">(%s)</span></td>
 </tr>
 EOD;
-		$html = sprintf($format, $title, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description);
+			$html .= sprintf( $format, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description );
+		}
+		// 投稿者
+		if ( in_array( 'author', $user->data['roles'] ) ) {
+			$format = <<<EOD
+<tr>
+<th>%s</th>
+<td>%s</td>
+</tr>
+EOD;
+			$value = ( $user->data['olbgroup'] ) ? __('Teacher', OLBsystem::TEXTDOMAIN) : '('.__('Not set', OLBsystem::TEXTDOMAIN).')';
+			$html .= sprintf( $format, __('Property "Teacher"', OLBsystem::TEXTDOMAIN), $value );
+		}
 		$html .= "</table>\n";
 		return $html;
 	}
@@ -241,21 +256,21 @@ EOD;
 		else {
 			$user_id = $_POST['user_id'];
 		}
-		// 講師
-		$oldgroup = get_user_meta($user_id, 'olbgroup', true);
-		if (!empty($_POST['olbgroup'])){
-			update_user_meta($user_id, 'olbgroup', $_POST['olbgroup']);
-		}
-		else {
-			delete_user_meta($user_id, 'olbgroup', '');
-		}
-		$newgroup = get_user_meta($user_id, 'olbgroup', true);
-		if($oldgroup != $newgroup){
-			$result = array( 'user_id'=>$user_id, 'old'=>$oldgroup, 'new'=>$newgroup );
-			$result = apply_filters('olb_update_profile_group', $result );
-		}
-
 		if ( $olb->operator->isLoggedIn() && $olb->operator->isAdmin() ) {
+			// 講師
+			$oldgroup = get_user_meta($user_id, 'olbgroup', true);
+			if (!empty($_POST['olbgroup'])){
+				update_user_meta($user_id, 'olbgroup', $_POST['olbgroup']);
+			}
+			else {
+				delete_user_meta($user_id, 'olbgroup', '');
+			}
+			$newgroup = get_user_meta($user_id, 'olbgroup', true);
+			if($oldgroup != $newgroup){
+				$result = array( 'user_id'=>$user_id, 'old'=>$oldgroup, 'new'=>$newgroup );
+				$result = apply_filters('olb_update_profile_group', $result );
+			}
+
 			// process payment
 			$result = array(
 				'type'    => 'admin',
@@ -328,11 +343,20 @@ EOD;
 
 		if ( $days ) {
 			$now = current_time('timestamp');
-			$term = get_user_meta( $result['user_id'], 'olbterm', true );
+			$term = $oldterm = get_user_meta( $result['user_id'], 'olbterm', true );
 			// Start date
 			// When updating the point, it starts from today.
-			if ( $result['old'] != $result['new'] /*&& $result['type'] != 'admin'*/) {
-				$term = date( 'Y-m-d', $now );
+			if ( $result['old'] != $result['new'] ) {
+				if ( $result['type'] == 'admin' ) {
+					if ( empty( $days ) || empty( $term ) ) {
+						$term = date( 'Y-m-d', $now );
+					}
+				}
+				else {
+					if ( empty( $term ) || strcmp( $term, date( 'Y-m-d', $now ) ) < 0) {
+						$term = date( 'Y-m-d', $now );
+					}
+				}
 			}
 			else if ( empty( $term ) || ( strcmp( $term, date( 'Y-m-d', $now ) ) < 0 && $result['type'] != 'admin' ) ){
 				$term = date( 'Y-m-d', $now );
@@ -341,7 +365,7 @@ EOD;
 
 			$newterm = date( 'Y-m-d', mktime( 0, 0, 0, $m, $d + $days, $y ) );
 			update_user_meta( $result['user_id'], 'olbterm', $newterm );
-			$result['oldterm'] = $term;
+			$result['oldterm'] = $oldterm;
 			$result['newterm'] = $newterm;
 			$result['days'] = $days;
 		}
