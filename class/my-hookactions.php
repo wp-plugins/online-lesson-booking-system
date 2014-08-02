@@ -662,7 +662,7 @@ EOD;
 	 */
 	public static function saveRoomURL($post_id){
 		// 週間スケジュールから講師IDを取得しページURLを保存: get room-id from tag of weekly schecule, save url
-		$content = str_replace("\"", '', stripslashes($_POST['content']));
+		$content = str_replace("\"", '', stripslashes( get_post( $post_id )->post_content ) ); //$content = str_replace("\"", '', stripslashes($_POST['content']));
 		$match = preg_match('/\[olb_weekly_schedule\sid=[0-9]+\]/', $content, $matches);
 		if($match){
 			$id = preg_replace('/[^0-9]/', '', $matches[0]);

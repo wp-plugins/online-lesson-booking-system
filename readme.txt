@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 0.6.0
+Stable tag: 0.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,11 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.6.1 =
+
+* The update process of a teacher's profile item "website" was improved. <br>
+The item will be updated by "bulk action (edit post) ", also by "Import". 
 
 = 0.6.0 =
 
@@ -166,6 +171,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.6.0 =
+= 0.6.1 =
 
-The function of some parts was changed a little. New information feed from "olbsys.com" was added.
+The update process of a teacher's profile item "website" was improved.
