@@ -128,6 +128,7 @@ class olbAdminPage {
 <div class="inner-sidebar">
 <?php do_action( 'olb_plugin_info' ); ?>
 <?php do_action( 'olb_latest_info' ); ?>
+<?php do_action( 'olb_extensions_info' ); ?>
 </div>
 
 <div id="post-body">
