@@ -5,6 +5,7 @@
 add_action( 'wp_dashboard_setup', array( 'olbInfo', 'olb_dashboard' ) );
 add_action( 'olb_plugin_info', array( 'olbInfo', 'plugin_info') );
 add_action( 'olb_latest_info', array( 'olbInfo', 'latest_info') );
+add_action( 'olb_extensions_info', array( 'olbInfo', 'extensions_info') );
 
 class olbInfo {
 	/** 
@@ -47,14 +48,46 @@ class olbInfo {
 			$url .= WPLANG.'/';
 		}
 		$feed = fetch_feed( $url );
-		$feed->set_cache_duration( 60*60 );
-		$feed->init();
-		$param = sprintf( 'title=%s&items=5&show_summary=0&show_author=0&show_date=0', __( 'Latest from Plugin', OLBsystem::TEXTDOMAIN ) );
-		wp_widget_rss_output( $feed, $param );
+		if ( !empty( $feed->data ) ) {
+			$feed->set_cache_duration( 60*60 );
+			$feed->init();
+			$param = sprintf( 'title=%s&items=5&show_summary=0&show_author=0&show_date=0', __( 'Latest from Plugin', OLBsystem::TEXTDOMAIN ) );
+			@wp_widget_rss_output( $feed, $param );
+		}
 		?>
 		</div>
 	</div>
 	<?php
+	}
+
+	/** 
+	 *	EXTENSIONS INFO (in PLUGIN OPTION PAGE)
+	 */
+	public static function extensions_info() {
+		$url = OLBsystem::URL.'extensions/feed';
+		/*
+		if ( WPLANG != '' && WPLANG != 'ja' ) {
+			$url .= WPLANG.'/';
+		}
+		*/
+		$feed = fetch_feed( $url );
+		if ( !empty( $feed->data ) ) {
+			$feed->set_cache_duration( 60*60 );
+			$feed->init();
+	?>
+	<div class="postbox">
+		<h3><span><?php _e( 'Extentions Information', OLBsystem::TEXTDOMAIN ); ?></span></h3>
+		<div class="inside">
+			<p><a href="<?php echo OLBsystem::URL; ?>extensions/" target="_blank">&raquo; <?php _e( 'Extension codes for OLB', OLBsystem::TEXTDOMAIN ); ?></a></p>
+			<hr>
+		<?php
+			$param = sprintf( 'title=%s&items=5&show_summary=0&show_author=0&show_date=0', __( 'Extentions Information', OLBsystem::TEXTDOMAIN ) );
+			@wp_widget_rss_output( $feed, $param );
+		?>
+		</div>
+	</div>
+	<?php
+		}
 	}
 
 	/** 
@@ -76,10 +109,15 @@ class olbInfo {
 			$url .= WPLANG.'/';
 		}
 		$feed = fetch_feed( $url );
-		$feed->set_cache_duration( 60*60 );
-		$feed->init();
-		$param = sprintf( 'title=%s&items=5&show_summary=0&show_author=0&show_date=1', __( 'Latest from "Online Lesson Booking" plugin', OLBsystem::TEXTDOMAIN ) );
-		wp_widget_rss_output( $feed, $param );
+		if ( !empty( $feed->data ) ) {
+			$feed->set_cache_duration( 60*60 );
+			$feed->init();
+			$param = sprintf( 'title=%s&items=5&show_summary=0&show_author=0&show_date=1', __( 'Latest from "Online Lesson Booking" plugin', OLBsystem::TEXTDOMAIN ) );
+			@wp_widget_rss_output( $feed, $param );
+		}
+		else {
+			printf( '(%s)', __( 'Feed not found', OLBsystem::TEXTDOMAIN ) );
+		}
 		echo '</div>';
 	}
 

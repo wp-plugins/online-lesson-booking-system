@@ -1127,7 +1127,9 @@ EOD;
 		if($type == 'cancel'){
 			$limittime = self::calcHour($time, $olb->cancel_deadline*(-1));
 		}
-		$limit = date('Y-m-d_Hi', mktime(substr($limittime, 0, 2), substr($limittime, -2), 0, substr($date, 5, 2), substr($date, -2), substr($date, 0, 4)));
+		list( $h, $i ) = explode( ':', $limittime );
+		list( $y, $m, $d ) = explode( '-', $date );
+		$limit = date('Y-m-d_Hi', mktime( $h, $i, 0, $m, $d, $y ) );
 		if($now >= $limit){
 			return true;
 		}

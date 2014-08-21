@@ -3,8 +3,8 @@ Contributors: tnomi
 Donate link: 
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 0.5.3
+Tested up to: 3.9.2
+Stable tag: 0.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,6 +75,31 @@ Not include. Please use the "membership" which is a standard function of WordPre
 5. "Plugin option" page
 
 == Changelog ==
+
+See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.6.2 =
+
+* The bug in the deadline time calculation which receives reservation and cancellation was corrected. 
+* The variable which can be used in the notice mail of reservation was added. <br>
+"%USER_TERM%" is the member's term of validity.<br>
+"%USER_TERM_REM%" is the remaining days of a member's term of validity.<br>
+"%USER_TICKETS%" is the number of tickets which the member owns.
+
+= 0.6.1 =
+
+* The update process of a teacher's profile item "website" was improved. <br>
+The item will be updated by "bulk action (edit post) ", also by "Import". 
+
+= 0.6.0 =
+
+* Profile edit by a teacher was changed a little. 
+* Change of the term of validity by an administrator was changed a little. 
+* New information feed from "olbsys.com" was added.
+
+= 0.5.4 =
+
+* The bug in the case of the profile edit and display by teacher user was corrected. 
 
 = 0.5.3 =
 
@@ -154,6 +179,7 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.5.3 =
+= 0.6.2 =
 
-The filter hooks was added. Those are the receiver's addresses of the notice e-mail of reservation (or cancellation). 
+The bug in the deadline time calculation which receives reservation and cancellation was corrected. 
+The variable which can be used in the notice mail of reservation was added. 
