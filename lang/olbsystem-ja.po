@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-07-12 05:49+0900\n"
-"PO-Revision-Date: 2014-07-12 05:51+0900\n"
+"POT-Creation-Date: 2014-08-21 09:39+0900\n"
+"PO-Revision-Date: 2014-08-21 09:41+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: olbsys.com\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -26,7 +26,7 @@ msgid "OLBsystem"
 msgstr "OLBsystem"
 
 #: class/my-adminpage.php:20 class/my-adminpage.php:21
-#: class/my-adminpage.php:137 class/my-adminpage.php:580
+#: class/my-adminpage.php:132 class/my-adminpage.php:580
 msgid "General"
 msgstr "全般設定"
 
@@ -57,83 +57,83 @@ msgstr "設定がリセットされました"
 msgid "Settings are updated"
 msgstr "設定が更新されました"
 
-#: class/my-adminpage.php:142
+#: class/my-adminpage.php:137
 msgid "Timetable settings"
 msgstr "タイムテーブル設定"
 
-#: class/my-adminpage.php:145
+#: class/my-adminpage.php:140
 msgid "Start time"
 msgstr "表示開始時刻"
 
-#: class/my-adminpage.php:153
+#: class/my-adminpage.php:148
 msgid "End time"
 msgstr "表示終了時刻"
 
-#: class/my-adminpage.php:161
+#: class/my-adminpage.php:156
 msgid "Interval"
 msgstr "時間間隔(分)"
 
-#: class/my-adminpage.php:164
+#: class/my-adminpage.php:159
 msgid "minutes"
 msgstr "分"
 
-#: class/my-adminpage.php:170
+#: class/my-adminpage.php:165
 msgid "Reservation settings"
 msgstr "予約処理設定"
 
-#: class/my-adminpage.php:173
+#: class/my-adminpage.php:168
 msgid "Time to close a reservation request "
 msgstr "予約受付締切時間"
 
-#: class/my-adminpage.php:176 class/my-adminpage.php:185
+#: class/my-adminpage.php:171 class/my-adminpage.php:180
 msgid "minutes before"
 msgstr "分前"
 
-#: class/my-adminpage.php:182
+#: class/my-adminpage.php:177
 msgid "Time to close a cancellation request "
 msgstr "キャンセル受付締切時間"
 
-#: class/my-adminpage.php:191
+#: class/my-adminpage.php:186
 msgid "The limit of the reservation per day"
 msgstr "1日に予約できる回数"
 
-#: class/my-adminpage.php:194 class/my-adminpage.php:203
+#: class/my-adminpage.php:189 class/my-adminpage.php:198
 msgid "empty (or 0) is unlimited"
 msgstr "空(または0)なら制限なし"
 
-#: class/my-adminpage.php:200
+#: class/my-adminpage.php:195
 msgid "The limit of the reservation per month"
 msgstr "1ヶ月に予約できる回数"
 
-#: class/my-adminpage.php:209
+#: class/my-adminpage.php:204
 msgid "The limit of the reservation which is not charged"
 msgstr "無料予約できる回数"
 
-#: class/my-adminpage.php:212
+#: class/my-adminpage.php:207
 msgid "It is so-called \"Trial lesson\" or a \"Free ticket\"."
 msgstr "いわゆる「体験レッスン」または「フリーチケット」です。"
 
-#: class/my-adminpage.php:217
+#: class/my-adminpage.php:212
 msgid "Using ticket system"
 msgstr "チケット制を適用する"
 
-#: class/my-adminpage.php:220
+#: class/my-adminpage.php:215
 msgid "Set up each member's number of possession tickets."
 msgstr "会員ごとの保有チケット数を設定してください。"
 
-#: class/my-adminpage.php:225
+#: class/my-adminpage.php:220
 msgid "Meta-key of ticket"
 msgstr "チケット数のメタキー"
 
-#: class/my-adminpage.php:233
+#: class/my-adminpage.php:228
 msgid "The term of validity of ticket"
 msgstr "チケットの有効期限"
 
-#: class/my-adminpage.php:235
+#: class/my-adminpage.php:230
 msgid "Days."
 msgstr "日"
 
-#: class/my-adminpage.php:236
+#: class/my-adminpage.php:231
 msgid ""
 "If this is larger than zero, when the each member's number of tickets is "
 "updated, the term of validity will also be updated automatically."
@@ -141,55 +141,55 @@ msgstr ""
 "この値が0より大きい場合、会員ごとの保有チケット数が更新された時に、有効期限を"
 "自動的に更新します。"
 
-#: class/my-adminpage.php:241
+#: class/my-adminpage.php:236
 msgid "CRON settings"
 msgstr "CRON設定"
 
-#: class/my-adminpage.php:244
+#: class/my-adminpage.php:239
 msgid "The days which do not delete the past schedule"
 msgstr "過去のスケジュールの維持期間"
 
-#: class/my-adminpage.php:247
+#: class/my-adminpage.php:242
 msgid "days"
 msgstr "日分"
 
-#: class/my-adminpage.php:253
+#: class/my-adminpage.php:248
 msgid "CRON interval"
 msgstr "CRON実行間隔"
 
-#: class/my-adminpage.php:256
+#: class/my-adminpage.php:251
 msgid "every harf hour"
 msgstr "30分ごと"
 
-#: class/my-adminpage.php:257
+#: class/my-adminpage.php:252
 msgid "hourly"
 msgstr "1時間ごと"
 
-#: class/my-adminpage.php:258
+#: class/my-adminpage.php:253
 msgid "daily"
 msgstr "1日ごと"
 
-#: class/my-adminpage.php:259
+#: class/my-adminpage.php:254
 msgid "debug(every 10 seconds)"
 msgstr "確認用（10秒ごと）"
 
-#: class/my-adminpage.php:266
+#: class/my-adminpage.php:261
 msgid "View settings"
 msgstr "表示設定"
 
-#: class/my-adminpage.php:269
+#: class/my-adminpage.php:264
 msgid "Show teachers per page"
 msgstr "1ページ当たりに表示する講師数"
 
-#: class/my-adminpage.php:277
+#: class/my-adminpage.php:272
 msgid "Customize user profile page"
 msgstr "プロフィール編集ページの改変"
 
-#: class/my-adminpage.php:281
+#: class/my-adminpage.php:276
 msgid "Yes"
 msgstr "適用する"
 
-#: class/my-adminpage.php:292 class/my-adminpage.php:406
+#: class/my-adminpage.php:287 class/my-adminpage.php:406
 #: class/my-adminpage.php:546 class/my-adminpage.php:593
 msgid "Update"
 msgstr "更新"
@@ -341,45 +341,54 @@ msgstr "電話番号"
 msgid "Today"
 msgstr "今日"
 
-#: class/my-formaction.php:158
+#: class/my-formaction.php:126 class/my-formaction.php:311
+#, php-format
+msgid "%d days left"
+msgstr "残り%d日"
+
+#: class/my-formaction.php:129 class/my-formaction.php:314
+msgid "Expired"
+msgstr "期限切れ"
+
+#: class/my-formaction.php:171
 #, php-format
 msgid "%d minutes before start time"
 msgstr "開始時刻の%d分前"
 
-#: class/my-formaction.php:176
+#: class/my-formaction.php:189
 msgid "Free reservation applied."
 msgstr "無料予約を適用"
 
-#: class/my-formaction.php:178
+#: class/my-formaction.php:191
 #, php-format
 msgid "Your free reservation: %d times left."
 msgstr "無料予約：残り %d 回"
 
-#: class/my-formaction.php:524
+#: class/my-formaction.php:549
 msgid "Select teacher"
 msgstr "講師を選択してください"
 
-#: class/my-formaction.php:539
+#: class/my-formaction.php:564
 msgid "Or input teacher's ID (ex.'2')"
 msgstr "または、講師IDを入力します（例: 2）"
 
-#: class/my-formaction.php:556
+#: class/my-formaction.php:581
 msgid "Select member"
 msgstr "会員を選択してください"
 
-#: class/my-formaction.php:571
+#: class/my-formaction.php:596
 msgid "Or input member's ID (ex.'5')"
 msgstr "または、会員IDを入力します（例: 5）"
 
-#: class/my-formaction.php:665
+#: class/my-formaction.php:690
 msgid "Admin is pretending a user"
 msgstr "管理者が会員を装っています"
 
-#: class/my-formaction.php:672
+#: class/my-formaction.php:697
 msgid "Admin is pretending a teacher"
 msgstr "管理者が講師を装っています"
 
-#: class/my-formaction.php:678
+#: class/my-formaction.php:703
 msgid "OFF"
 msgstr "解除"
 
@@ -555,7 +564,7 @@ msgstr "キャンセル"
 #: class/my-timetable.php:537 class/my-timetable.php:613
 #: class/my-timetable.php:673 class/my-timetable.php:818
 #: class/my-timetable.php:882 class/my-timetable.php:1026
-#: class/my-timetable.php:1088 class/my-timetable.php:1706
+#: class/my-timetable.php:1088 class/my-timetable.php:1708
 msgid "Teacher"
 msgstr "講師"
 
@@ -950,15 +959,15 @@ msgstr "翌週"
 msgid "Do not have authority to show this page."
 msgstr "このページへのアクセス権がありません"
 
-#: class/my-ticket.php:45
+#: class/my-ticket.php:47
 msgid "The possession tickets is updated after the check of payment."
 msgstr "保有チケットはご入金の確認後に更新されます。"
 
-#: class/my-ticket.php:52 class/my-ticket.php:79
+#: class/my-ticket.php:54 class/my-ticket.php:81
 msgid "Possession tickets"
 msgstr "保有チケット数"
 
-#: class/my-ticket.php:77
+#: class/my-ticket.php:79
 msgid ""
 "If a possession ticket is updated, the term of validity will be "
 "automatically updated by the value of a plug-in option \"term of validity of "
@@ -967,7 +976,7 @@ msgstr ""
 "プラグインオプション「チケットの有効期限」の値により、保有チケットを更新する"
 "と自動的に有効期限が更新されます。"
 
-#: class/my-ticket.php:311
+#: class/my-ticket.php:313
 msgid "Your possession tickets is empty. "
 msgstr "あなたの保有チケットはありません。"
 
@@ -1003,12 +1012,12 @@ msgid ""
 "*) When timetable is canceled by a teacher, it is closed at the same time"
 msgstr "*) 講師によるキャンセルは、同時にそのタイムテーブルをクローズします。"
 
-#: class/my-timetable.php:958 class/my-timetable.php:1844
-#: class/my-timetable.php:1854
+#: class/my-timetable.php:958 class/my-timetable.php:1846
+#: class/my-timetable.php:1856
 msgid "update"
 msgstr "更新"
 
-#: class/my-timetable.php:1353
+#: class/my-timetable.php:1355
 msgid "Date"
 msgstr "日付"
 

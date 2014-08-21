@@ -125,11 +125,6 @@ class olbAdminPage {
 <?php screen_icon('options-general'); ?>
 <h2><?php echo esc_html($title); ?></h2>
 <div class="metabox-holder has-right-sidebar">
-<div class="inner-sidebar">
-<?php do_action( 'olb_plugin_info' ); ?>
-<?php do_action( 'olb_latest_info' ); ?>
-<?php do_action( 'olb_extensions_info' ); ?>
-</div>
 
 <div id="post-body">
 <div id="post-body-content">
@@ -297,6 +292,11 @@ class olbAdminPage {
 </div>
 </div>
 </div>
+</div>
+<div class="inner-sidebar">
+<?php do_action( 'olb_plugin_info' ); ?>
+<?php do_action( 'olb_latest_info' ); ?>
+<?php do_action( 'olb_extensions_info' ); ?>
 </div>
 </div>
 </div>

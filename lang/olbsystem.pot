@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-07-12 05:48+0900\n"
-"PO-Revision-Date: 2014-07-12 05:56+0900\n"
+"POT-Creation-Date: 2014-08-21 09:39+0900\n"
+"PO-Revision-Date: 2014-08-21 09:39+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: olbsys.com\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -26,7 +26,7 @@ msgid "OLBsystem"
 msgstr ""
 
 #: class/my-adminpage.php:20 class/my-adminpage.php:21
-#: class/my-adminpage.php:137 class/my-adminpage.php:580
+#: class/my-adminpage.php:132 class/my-adminpage.php:580
 msgid "General"
 msgstr ""
 
@@ -57,137 +57,137 @@ msgstr ""
 msgid "Settings are updated"
 msgstr ""
 
-#: class/my-adminpage.php:142
+#: class/my-adminpage.php:137
 msgid "Timetable settings"
 msgstr ""
 
-#: class/my-adminpage.php:145
+#: class/my-adminpage.php:140
 msgid "Start time"
 msgstr ""
 
-#: class/my-adminpage.php:153
+#: class/my-adminpage.php:148
 msgid "End time"
 msgstr ""
 
-#: class/my-adminpage.php:161
+#: class/my-adminpage.php:156
 msgid "Interval"
 msgstr ""
 
-#: class/my-adminpage.php:164
+#: class/my-adminpage.php:159
 msgid "minutes"
 msgstr ""
 
-#: class/my-adminpage.php:170
+#: class/my-adminpage.php:165
 msgid "Reservation settings"
 msgstr ""
 
-#: class/my-adminpage.php:173
+#: class/my-adminpage.php:168
 msgid "Time to close a reservation request "
 msgstr ""
 
-#: class/my-adminpage.php:176 class/my-adminpage.php:185
+#: class/my-adminpage.php:171 class/my-adminpage.php:180
 msgid "minutes before"
 msgstr ""
 
-#: class/my-adminpage.php:182
+#: class/my-adminpage.php:177
 msgid "Time to close a cancellation request "
 msgstr ""
 
-#: class/my-adminpage.php:191
+#: class/my-adminpage.php:186
 msgid "The limit of the reservation per day"
 msgstr ""
 
-#: class/my-adminpage.php:194 class/my-adminpage.php:203
+#: class/my-adminpage.php:189 class/my-adminpage.php:198
 msgid "empty (or 0) is unlimited"
 msgstr ""
 
-#: class/my-adminpage.php:200
+#: class/my-adminpage.php:195
 msgid "The limit of the reservation per month"
 msgstr ""
 
-#: class/my-adminpage.php:209
+#: class/my-adminpage.php:204
 msgid "The limit of the reservation which is not charged"
 msgstr ""
 
-#: class/my-adminpage.php:212
+#: class/my-adminpage.php:207
 msgid "It is so-called \"Trial lesson\" or a \"Free ticket\"."
 msgstr ""
 
-#: class/my-adminpage.php:217
+#: class/my-adminpage.php:212
 msgid "Using ticket system"
 msgstr ""
 
-#: class/my-adminpage.php:220
+#: class/my-adminpage.php:215
 msgid "Set up each member's number of possession tickets."
 msgstr ""
 
-#: class/my-adminpage.php:225
+#: class/my-adminpage.php:220
 msgid "Meta-key of ticket"
 msgstr ""
 
-#: class/my-adminpage.php:233
+#: class/my-adminpage.php:228
 msgid "The term of validity of ticket"
 msgstr ""
 
-#: class/my-adminpage.php:235
+#: class/my-adminpage.php:230
 msgid "Days."
 msgstr ""
 
-#: class/my-adminpage.php:236
+#: class/my-adminpage.php:231
 msgid ""
 "If this is larger than zero, when the each member's number of tickets is "
 "updated, the term of validity will also be updated automatically."
 msgstr ""
 
-#: class/my-adminpage.php:241
+#: class/my-adminpage.php:236
 msgid "CRON settings"
 msgstr ""
 
-#: class/my-adminpage.php:244
+#: class/my-adminpage.php:239
 msgid "The days which do not delete the past schedule"
 msgstr ""
 
-#: class/my-adminpage.php:247
+#: class/my-adminpage.php:242
 msgid "days"
 msgstr ""
 
-#: class/my-adminpage.php:253
+#: class/my-adminpage.php:248
 msgid "CRON interval"
 msgstr ""
 
-#: class/my-adminpage.php:256
+#: class/my-adminpage.php:251
 msgid "every harf hour"
 msgstr ""
 
-#: class/my-adminpage.php:257
+#: class/my-adminpage.php:252
 msgid "hourly"
 msgstr ""
 
-#: class/my-adminpage.php:258
+#: class/my-adminpage.php:253
 msgid "daily"
 msgstr ""
 
-#: class/my-adminpage.php:259
+#: class/my-adminpage.php:254
 msgid "debug(every 10 seconds)"
 msgstr ""
 
-#: class/my-adminpage.php:266
+#: class/my-adminpage.php:261
 msgid "View settings"
 msgstr ""
 
-#: class/my-adminpage.php:269
+#: class/my-adminpage.php:264
 msgid "Show teachers per page"
 msgstr ""
 
-#: class/my-adminpage.php:277
+#: class/my-adminpage.php:272
 msgid "Customize user profile page"
 msgstr ""
 
-#: class/my-adminpage.php:281
+#: class/my-adminpage.php:276
 msgid "Yes"
 msgstr ""
 
-#: class/my-adminpage.php:292 class/my-adminpage.php:406
+#: class/my-adminpage.php:287 class/my-adminpage.php:406
 #: class/my-adminpage.php:546 class/my-adminpage.php:593
 msgid "Update"
 msgstr ""
@@ -339,45 +339,54 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: class/my-formaction.php:158
+#: class/my-formaction.php:126 class/my-formaction.php:311
+#, php-format
+msgid "%d days left"
+msgstr ""
+
+#: class/my-formaction.php:129 class/my-formaction.php:314
+msgid "Expired"
+msgstr ""
+
+#: class/my-formaction.php:171
 #, php-format
 msgid "%d minutes before start time"
 msgstr ""
 
-#: class/my-formaction.php:176
+#: class/my-formaction.php:189
 msgid "Free reservation applied."
 msgstr ""
 
-#: class/my-formaction.php:178
+#: class/my-formaction.php:191
 #, php-format
 msgid "Your free reservation: %d times left."
 msgstr ""
 
-#: class/my-formaction.php:524
+#: class/my-formaction.php:549
 msgid "Select teacher"
 msgstr ""
 
-#: class/my-formaction.php:539
+#: class/my-formaction.php:564
 msgid "Or input teacher's ID (ex.'2')"
 msgstr ""
 
-#: class/my-formaction.php:556
+#: class/my-formaction.php:581
 msgid "Select member"
 msgstr ""
 
-#: class/my-formaction.php:571
+#: class/my-formaction.php:596
 msgid "Or input member's ID (ex.'5')"
 msgstr ""
 
-#: class/my-formaction.php:665
+#: class/my-formaction.php:690
 msgid "Admin is pretending a user"
 msgstr ""
 
-#: class/my-formaction.php:672
+#: class/my-formaction.php:697
 msgid "Admin is pretending a teacher"
 msgstr ""
 
-#: class/my-formaction.php:678
+#: class/my-formaction.php:703
 msgid "OFF"
 msgstr ""
 
@@ -551,7 +560,7 @@ msgstr ""
 #: class/my-timetable.php:537 class/my-timetable.php:613
 #: class/my-timetable.php:673 class/my-timetable.php:818
 #: class/my-timetable.php:882 class/my-timetable.php:1026
-#: class/my-timetable.php:1088 class/my-timetable.php:1706
+#: class/my-timetable.php:1088 class/my-timetable.php:1708
 msgid "Teacher"
 msgstr ""
 
@@ -886,22 +895,22 @@ msgstr ""
 msgid "Do not have authority to show this page."
 msgstr ""
 
-#: class/my-ticket.php:45
+#: class/my-ticket.php:47
 msgid "The possession tickets is updated after the check of payment."
 msgstr ""
 
-#: class/my-ticket.php:52 class/my-ticket.php:79
+#: class/my-ticket.php:54 class/my-ticket.php:81
 msgid "Possession tickets"
 msgstr ""
 
-#: class/my-ticket.php:77
+#: class/my-ticket.php:79
 msgid ""
 "If a possession ticket is updated, the term of validity will be "
 "automatically updated by the value of a plug-in option \"term of validity of "
 "a ticket\"."
 msgstr ""
 
-#: class/my-ticket.php:311
+#: class/my-ticket.php:313
 msgid "Your possession tickets is empty. "
 msgstr ""
 
@@ -937,12 +946,12 @@ msgid ""
 "*) When timetable is canceled by a teacher, it is closed at the same time"
 msgstr ""
 
-#: class/my-timetable.php:958 class/my-timetable.php:1844
-#: class/my-timetable.php:1854
+#: class/my-timetable.php:958 class/my-timetable.php:1846
+#: class/my-timetable.php:1856
 msgid "update"
 msgstr ""
 
-#: class/my-timetable.php:1353
+#: class/my-timetable.php:1355
 msgid "Date"
 msgstr ""
 

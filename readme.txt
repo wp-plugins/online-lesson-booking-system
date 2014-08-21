@@ -3,8 +3,8 @@ Contributors: tnomi
 Donate link: 
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 0.6.1
+Tested up to: 3.9.2
+Stable tag: 0.6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,14 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.6.2 =
+
+* The bug in the deadline time calculation which receives reservation and cancellation was corrected. 
+* The variable which can be used in the notice mail of reservation was added. <br>
+"%USER_TERM%" is the member's term of validity.<br>
+"%USER_TERM_REM%" is the remaining days of a member's term of validity.<br>
+"%USER_TICKETS%" is the number of tickets which the member owns.
 
 = 0.6.1 =
 
@@ -171,6 +179,7 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.6.1 =
+= 0.6.2 =
 
-The update process of a teacher's profile item "website" was improved.
+The bug in the deadline time calculation which receives reservation and cancellation was corrected. 
+The variable which can be used in the notice mail of reservation was added. 

@@ -13,6 +13,8 @@ add_filter( 'olb_update_term_exception', array( 'olb_ticket', 'update_term_excep
 add_filter( 'olb_can_reservation', array( 'olb_ticket', 'extend_can_reservation' ), 11, 5 );
 add_filter( 'olb_error',  array( 'olb_ticket', 'extend_error_message' ), 11, 2 );
 
+add_filter( 'olb_extend_email_values', array( 'olb_ticket', 'extend_email_values' ), 10, 2 );
+
 class olb_ticket {
 
 	/** 
@@ -319,4 +321,18 @@ EOD;
 		}
 	}
 
+	/**
+	 *	予約・キャンセル通知メールの拡張: Extend the variable in reservation mail
+	 */
+	public static function extend_email_values( $args, $result ) {
+		global $olb;
+
+		if ( $olb->ticket_system ) {
+			$user = new olbAuth( $result['user']->ID );
+			list( $search, $replace ) = $args;
+			array_push( $search, '%USER_TICKETS%' );
+			array_push( $replace, $user->data['olbticket'] );
+		}
+		return array( $search, $replace );
+	}
 }
