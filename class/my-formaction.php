@@ -4,6 +4,7 @@
  */
 add_filter( 'olb_to_user_email', array( 'olbFormAction', 'to_user_email' ), 10, 1 );
 add_filter( 'olb_to_teacher_email', array( 'olbFormAction', 'to_teacher_email' ), 10, 1 );
+add_filter( 'olb_email_values', array( 'olbFormAction', 'email_values' ), 10, 2 );
 
 class olbFormAction {
 
@@ -29,6 +30,14 @@ class olbFormAction {
 		 e.g. 'John <john@example.com>, paula@example.com, ...'
 		*/
 		return $email;
+	}
+
+	/**
+	 *	予約・キャンセル通知メールの変数: The variable of the notice mail of reservation
+	 */
+	public static function email_values( $args, $result ) {
+		list( $search, $replace ) = $args;
+		return array( $search, $replace );
 	}
 
 	/**
@@ -119,12 +128,25 @@ class olbFormAction {
 
 
 		$options = $olb->getPluginOptions('mail');
+		$rem = -1;
+		if ( !empty( $user->data['olbterm'] ) ) {
+			list( $ty, $tm, $td ) = explode( '-', $user->data['olbterm'] );
+			$t = mktime( 0, 0, 0, $tm, $td, $ty ) - current_time( 'timestamp' );
+			$rem = ceil( $t / ( 60*60*24 ) );
+		}
+		if ( $rem >= 0 ) {
+			$rem_text = sprintf( __( '%d days left', OLBsystem::TEXTDOMAIN ), $rem );
+		}
+		else {
+			$rem_text = __( 'Expired', OLBsystem::TEXTDOMAIN );
+		}
 		$search = array(
 			'%USER_ID%',
 			'%USER_NAME%',
 			'%USER_EMAIL%',
 			'%USER_SKYPE%',
-			'%USER_TICKETS%',
+			'%USER_TERM%',
+			'%USER_TERM_REM%',
 			'%ROOM_NAME%',
 			'%RESERVE_ID%',
 			'%RESERVE_DATE%',
@@ -136,13 +158,16 @@ class olbFormAction {
 			$user->data['name'],
 			$user->data['email'],
 			$user->data['skype'],
-			$user->data['olbticket'],
+			$user->data['olbterm'],
+			$rem_text,
 			$room['name'],
 			$record['id'],
 			$record['date'],
 			substr($record['time'], 0, 5),
 			date('Y-m-d H:i:s', current_time('timestamp')),
 			);
+
+		list( $search, $replace ) = apply_filters( 'olb_email_values', array( $search, $replace ), $result );
 
 		// 予約通知
 		if($_POST['reserveaction']=='reserve'){
@@ -291,13 +316,26 @@ class olbFormAction {
 		}
 
 		$options = $olb->getPluginOptions('mail');
+		$rem = -1;
+		if ( !empty( $user->data['olbterm'] ) ) {
+			list( $ty, $tm, $td ) = explode( '-', $user->data['olbterm'] );
+			$t = mktime( 0, 0, 0, $tm, $td, $ty ) - current_time( 'timestamp' );
+			$rem = ceil( $t / ( 60*60*24 ) );
+		}
+		if ( $rem >= 0 ) {
+			$rem_text = sprintf( __( '%d days left', OLBsystem::TEXTDOMAIN ), $rem );
+		}
+		else {
+			$rem_text = __( 'Expired', OLBsystem::TEXTDOMAIN );
+		}
 		// キャンセル通知
 		$search = array(
 			'%USER_ID%',
 			'%USER_NAME%',
 			'%USER_EMAIL%',
 			'%USER_SKYPE%',
-			'%USER_TICKETS%',
+			'%USER_TERM%',
+			'%USER_TERM_REM%',
 			'%ROOM_NAME%',
 			'%RESERVE_ID%',
 			'%RESERVE_DATE%',
@@ -310,7 +348,8 @@ class olbFormAction {
 			$user->data['name'],
 			$user->data['email'],
 			$user->data['skype'],
-			$user->data['olbticket'],
+			$user->data['olbterm'],
+			$rem_text,
 			$room['name'],
 			$record['id'],
 			$record['date'],
@@ -318,6 +357,7 @@ class olbFormAction {
 			date('Y-m-d H:i:s', current_time('timestamp')),
 			$_POST['message'],
 			);
+		list( $search, $replace ) = apply_filters( 'olb_email_values', array( $search, $replace ), $result );
 
 		list($mail_body, $to_user_subject, $to_teacher_subject) = str_replace(
 				$search,

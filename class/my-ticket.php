@@ -13,6 +13,8 @@ add_filter( 'olb_update_term_exception', array( 'olb_ticket', 'update_term_excep
 add_filter( 'olb_can_reservation', array( 'olb_ticket', 'extend_can_reservation' ), 11, 5 );
 add_filter( 'olb_error',  array( 'olb_ticket', 'extend_error_message' ), 11, 2 );
 
+add_filter( 'olb_email_values', array( 'olb_ticket', 'extend_email_values' ), 11, 2 );
+
 class olb_ticket {
 
 	/** 
@@ -40,15 +42,18 @@ class olb_ticket {
 		global $olb;
 
 		if($olb->ticket_system) {
-			$description = __('The possession tickets is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
-			$format = <<<EOD
+			// 購読者
+			if ( in_array( 'subscriber', $user->data['roles'] ) ) {
+				$description = __('The possession tickets is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
+				$format = <<<EOD
 <tr>
 <th>%s</th>
 <td>%s <span class="description" style="margin-left:20px">(%s)</span></td>
 </tr>
 EOD;
-			$new = sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket'], $description);
-			$html = str_replace( '</table>', $new."\n</table>", $html );
+				$new = sprintf($format, __('Possession tickets', OLBsystem::TEXTDOMAIN), $user->data['olbticket'], $description);
+				$html = str_replace( '</table>', $new."\n</table>", $html );
+			}
 		}
 		return $html;
 	}
@@ -141,17 +146,22 @@ EOD;
 			if ( $result['new'] > $result['old'] ) {
 				$now = current_time('timestamp');
 				$term = get_user_meta( $result['user_id'], 'olbterm', true );
-				$newtime = $now + $olb->ticket_expire * 60 * 60 *24;
+				if ( $result['type'] == 'paypal' && $result['ppdays'] > 0 ) {
+					$add = $result['ppdays'];
+				}
+				else {
+					$add = $olb->ticket_expire;
+				}
+				$newtime = $now + $add * 60 * 60 *24;
 				$newterm = date( 'Y-m-d', $newtime );
 				$days = 0;
-				if ( empty( $term ) || strcmp( $term, date( 'Y-m-d', $now ) ) < 0 ) {
-					$days = $olb->ticket_expire;
+				if ( empty( $term ) ) {
+					$days = $add;
 				}
 				else if ( strcmp( $term, $newterm ) < 0 ) {
 					list( $y, $m, $d ) = explode( '-', $term );
 					$orgtime = mktime( 0, 0, 0, $m, $d, $y );
-					$newtime = $now + $olb->ticket_expire * 60 * 60 *24;
-					$days = ( $newtime - $orgtime ) / ( 24 * 60 * 60 );
+					$days = intval( ( $newtime - $orgtime ) / ( 24 * 60 * 60 ) );
 				}
 				$result['days'] = $days;
 			}
@@ -311,4 +321,18 @@ EOD;
 		}
 	}
 
+	/**
+	 *	予約・キャンセル通知メールの拡張: Extend the variable in reservation mail
+	 */
+	public static function extend_email_values( $args, $result ) {
+		global $olb;
+
+		list( $search, $replace ) = $args;
+		if ( $olb->ticket_system ) {
+			$user = new olbAuth( $result['user']->ID );
+			array_push( $search, '%USER_TICKETS%' );
+			array_push( $replace, $user->data['olbticket'] );
+		}
+		return array( $search, $replace );
+	}
 }
