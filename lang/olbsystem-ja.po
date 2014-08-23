@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-08-21 09:39+0900\n"
-"PO-Revision-Date: 2014-08-21 09:41+0900\n"
+"POT-Creation-Date: 2014-08-23 16:21+0900\n"
+"PO-Revision-Date: 2014-08-23 16:22+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: olbsys.com\n"
 "Language: ja\n"
@@ -341,54 +341,54 @@ msgstr "電話番号"
 msgid "Today"
 msgstr "今日"
 
-#: class/my-formaction.php:126 class/my-formaction.php:311
+#: class/my-formaction.php:138 class/my-formaction.php:326
 #, php-format
 msgid "%d days left"
 msgstr "残り%d日"
 
-#: class/my-formaction.php:129 class/my-formaction.php:314
+#: class/my-formaction.php:141 class/my-formaction.php:329
 msgid "Expired"
 msgstr "期限切れ"
 
-#: class/my-formaction.php:171
+#: class/my-formaction.php:183
 #, php-format
 msgid "%d minutes before start time"
 msgstr "開始時刻の%d分前"
 
-#: class/my-formaction.php:189
+#: class/my-formaction.php:201
 msgid "Free reservation applied."
 msgstr "無料予約を適用"
 
-#: class/my-formaction.php:191
+#: class/my-formaction.php:203
 #, php-format
 msgid "Your free reservation: %d times left."
 msgstr "無料予約：残り %d 回"
 
-#: class/my-formaction.php:549
+#: class/my-formaction.php:564
 msgid "Select teacher"
 msgstr "講師を選択してください"
 
-#: class/my-formaction.php:564
+#: class/my-formaction.php:579
 msgid "Or input teacher's ID (ex.'2')"
 msgstr "または、講師IDを入力します（例: 2）"
 
-#: class/my-formaction.php:581
+#: class/my-formaction.php:596
 msgid "Select member"
 msgstr "会員を選択してください"
 
-#: class/my-formaction.php:596
+#: class/my-formaction.php:611
 msgid "Or input member's ID (ex.'5')"
 msgstr "または、会員IDを入力します（例: 5）"
 
-#: class/my-formaction.php:690
+#: class/my-formaction.php:705
 msgid "Admin is pretending a user"
 msgstr "管理者が会員を装っています"
 
-#: class/my-formaction.php:697
+#: class/my-formaction.php:712
 msgid "Admin is pretending a teacher"
 msgstr "管理者が講師を装っています"
 
-#: class/my-formaction.php:703
+#: class/my-formaction.php:718
 msgid "OFF"
 msgstr "解除"
 

@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 3.9.2
-Stable tag: 0.6.2
+Stable tag: 0.6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,10 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.6.3 =
+
+* The bug of the notice mail of "reservation/cancellation" was corrected. 
 
 = 0.6.2 =
 
@@ -179,7 +183,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.6.2 =
+= 0.6.3 =
 
-The bug in the deadline time calculation which receives reservation and cancellation was corrected. 
-The variable which can be used in the notice mail of reservation was added. 
+The bug of the notice mail of "reservation/cancellation" was corrected.
