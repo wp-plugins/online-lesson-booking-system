@@ -445,7 +445,7 @@ class olb_member_schedule extends olbHistory {
 			}
 		}
 		$query .= 'WHERE `user_id`=%d AND (`date`>%s OR (`date`=%s AND `time`>=%s))';
-		$query .= 'ORDER BY date DESC, time DESC';
+		$query .= 'ORDER BY date ASC, time ASC';
 		$query.= $limit;
 		$ret = $wpdb->get_results($wpdb->prepare($query, array($target_id, $this->currentdate, $this->currentdate, $this->currenttime)), ARRAY_A);
 		return $ret;

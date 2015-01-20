@@ -3,8 +3,8 @@ Contributors: tnomi
 Donate link: 
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
-Tested up to: 3.9.2
-Stable tag: 0.6.3
+Tested up to: 4.1
+Stable tag: 0.6.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,8 @@ Online Lesson Booking system (OLB) was made in order to equip a web site with th
 
 Teacher (author) sets up a timetable using a scheduler, and member (subscriber) makes a reservation by clicking timetable.
 Teacher and a member are informed by e-mail in the case of reservation and cancellation. 
+
+Visit [The User's Guide (ja)](http://olbsys.com)/[(en)](http://olbsys.com/en/) for more info.
 
 == Installation ==
 
@@ -77,6 +79,11 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.6.4 =
+
+* Record sorting of the "member's schedule" was corrected to an ascending order of time. (from descending order.)
+* The default "width" of some tables (timetable, calendar, etc.) in "front.css" were changed. 
 
 = 0.6.3 =
 
@@ -183,6 +190,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.6.3 =
+= 0.6.4 =
 
-The bug of the notice mail of "reservation/cancellation" was corrected.
+Record sorting of the "Member's schedule" was corrected to an ascending order of time. And small change in "front.css".
