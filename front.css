@@ -4,6 +4,7 @@
 form#edit_schedule input.submit {
 }
 table.edit_schedule {
+	width: 100%;
 	border-collapse: collapse;
 	margin: 5px auto;
 }
@@ -87,6 +88,7 @@ table.edit_schedule .reserved {
  *	Member's information
  */
 table.members_info {
+	width: 100%;
 	border-collapse: collapse;
 	border: 1px solid #ccc;
 	font-size: small;
@@ -111,6 +113,7 @@ div.members_info {
  *	Member's attendance history
  */
 table.history_list {
+	width: 100%;
 	border-collapse: collapse;
 	border: 1px solid #ccc;
 	font-size: small;
@@ -138,6 +141,7 @@ table.history_list th.absent {
 }
 
 table.future_list {
+	width: 100%;
 	border-collapse: collapse;
 	border: 1px solid #ccc;
 	font-size: small;
@@ -202,6 +206,7 @@ table.ticket_logs th.date {
  *	Daily schedule board
  */
 table.daily_schedule {
+	width: 100%;
 	border-collapse: collapse;
 	border: 1px solid #ccc;
 	font-size: small;
@@ -256,6 +261,9 @@ table.daily_schedule td.you a {
 /*
  *	Calendar
  */
+table.olb_calendar {
+	width: 100%;
+}
 table.olb_calendar th,
 table.olb_calendar td {
 	padding: 0 !important;
@@ -333,6 +341,7 @@ table.single_schedule_status td.you a {
  *	Weekly schedule board
  */
 table.weekly_schedule {
+	width: 100%;
 	border-collapse: collapse;
 	padding: 1px;
 	border: 1px solid #ccc;
