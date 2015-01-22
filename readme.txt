@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 0.6.4
+Stable tag: 0.6.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,10 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.6.5 =
+
+* The mail address format of the reservation notice for the user was changed to "user@example.com" from "User <user@example.com>".<br>Because a send error on wp_mail() occurs in several servers.
 
 = 0.6.4 =
 
@@ -190,6 +194,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.6.4 =
+= 0.6.5 =
 
-Record sorting of the "Member's schedule" was corrected to an ascending order of time. And small change in "front.css".
+The mail address format of the reservation notice for the user was changed to "user@example.com" from "User <user@example.com>".
