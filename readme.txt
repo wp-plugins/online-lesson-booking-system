@@ -82,7 +82,7 @@ See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.
 
 = 0.6.5 =
 
-* The mail address format of the reservation notice for the user was changed to "user@example.com" from "User <user@example.com>".<br>Because a send error on wp_mail() occurs in several servers.
+* The mail address format of the reservation notice for the user was changed to "user@example.com" from "User &lt;user@example.com&gt;".<br>Because a send error on wp_mail() occurs in several servers.
 
 = 0.6.4 =
 
@@ -196,4 +196,4 @@ However, the translation files which are attached at present are only Japanese a
 
 = 0.6.5 =
 
-The mail address format of the reservation notice for the user was changed to "user@example.com" from "User <user@example.com>".
+The mail address format of the reservation notice for the user was changed to "user@example.com" from "User &lt;user@example.com&gt;".
