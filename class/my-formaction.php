@@ -220,7 +220,7 @@ class olbFormAction {
 		}
 		$to_user_body = $mail_body.$to_user_signature;
 		$to_user_headers = sprintf("From: %s\r\n", $options['from_email']);
-		$to_user_email = sprintf('%s <%s>', $user->data['name'], $user->data['email']);
+		$to_user_email = $user->data['email'];
 		$to_user_email = apply_filters( 'olb_to_user_email', $to_user_email );
 
 		$ret = olbTimetable::sendReserveMail($to_user_email , $to_user_subject, $to_user_body, $to_user_headers);
@@ -371,7 +371,7 @@ class olbFormAction {
 		$to_user_signature = $options['signature'];
 		$to_user_body = $mail_body.$to_user_signature;
 		$to_user_headers = sprintf("From: %s\r\n", $options['from_email']);
-		$to_user_email = sprintf('%s <%s>', $user->data['name'], $user->data['email']);
+		$to_user_email = $user->data['email'];
 		$to_user_email = apply_filters( 'olb_to_user_email', $to_user_email );
 
 		$ret = olbTimetable::sendReserveMail($to_user_email , $to_user_subject, $to_user_body, $to_user_headers);

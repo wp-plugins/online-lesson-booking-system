@@ -166,7 +166,7 @@ class olb_room_history extends olbHistory {
 
 			foreach($records as $r) {
 				$user = new olbAuth($r['user_id']);
-				echo '<tr>'."\n";
+				echo '<tr id="lessonid'.$r['id'].'">'."\n";
 				$time = $olb->getTimetableKey($r['date'], $r['time']);
 				$reportlink = $olb->htmlReportLink($time, '#');
 				if($r['absent']){
@@ -269,11 +269,12 @@ class olb_room_schedule extends olbHistory {
 
 			foreach($records as $r) {
 				$user = new olbAuth($r['user_id']);
-				echo '<tr>'."\n";
+				echo '<tr id="lessonid'.$r['id'].'">'."\n";
+				$class_cancel = 'cancel';
 				$time = olbTimetable::getTimetableKey($r['date'], $r['time']);
-
 				if(olbTimetable::isTimeover('cancel', $r['date'], $r['time'])){
-					$cancellink = __('Time over', OLBsystem::TEXTDOMAIN);
+					$cancellink = $olb->htmlCancelLink($time, __('Time over', OLBsystem::TEXTDOMAIN));
+					$class_cancel .= ' timeover';
 				}
 				else {
 					$cancellink = $olb->htmlCancelLink($time, __('CANCEL', OLBsystem::TEXTDOMAIN));
@@ -287,12 +288,13 @@ class olb_room_schedule extends olbHistory {
 					$user_name = sprintf('<a href="%s">%s</a>', $members_info_url, $user->data['name']);
 				}
 				$waiting = self::waitingTime($r['date'], $r['time'], current_time('timestamp'));
-				printf('<td class="date">%s %s</td><td class="waiting">%s</td><td class="member">%s(%s)</td><td class="cancel">%s</td>',
+				printf('<td class="date">%s %s</td><td class="waiting">%s</td><td class="member">%s(%s)</td><td class="%s">%s</td>',
 					$r['date'],
 					substr($r['time'], 0, 5),
 					$waiting,
 					$user_name,
 					$user->data['skype'],
+					$class_cancel,
 					$cancellink
 					);
 				echo '</tr>'."\n";
@@ -376,7 +378,7 @@ class olb_member_history extends olbHistory {
 
 			foreach($records as $r) {
 				$room = olbRoom::get($r['room_id']);
-				echo '<tr>'."\n";
+				echo '<tr id="lessonid'.$r['id'].'">'."\n";
 				$roomlink = $room['name'];
 				if(!empty($room['url'])){
 					$roomlink = sprintf('<a href="%s">%s</a>', $room['url'], $room['name']);
@@ -445,7 +447,7 @@ class olb_member_schedule extends olbHistory {
 			}
 		}
 		$query .= 'WHERE `user_id`=%d AND (`date`>%s OR (`date`=%s AND `time`>=%s))';
-		$query .= 'ORDER BY date DESC, time DESC';
+		$query .= 'ORDER BY date ASC, time ASC';
 		$query.= $limit;
 		$ret = $wpdb->get_results($wpdb->prepare($query, array($target_id, $this->currentdate, $this->currentdate, $this->currenttime)), ARRAY_A);
 		return $ret;
@@ -472,26 +474,29 @@ class olb_member_schedule extends olbHistory {
 
 			foreach($records as $r) {
 				$room = olbRoom::get($r['room_id']);
-				echo '<tr>'."\n";
+				echo '<tr id="lessonid'.$r['id'].'">'."\n";
 				if(!empty($room['url'])){
 					$roomlink = sprintf('<a href="%s">%s</a>', $room['url'], $room['name']);
 				}
 				else {
 					$roomlink = $room['name'];
 				}
+				$class_cancel = 'cancel';
 				$time = olbTimetable::getTimetableKey($r['date'], $r['time']);
 				if(olbTimetable::isTimeover('cancel', $r['date'], $r['time'])){
-					$cancellink = __('Time over', OLBsystem::TEXTDOMAIN);
+					$cancellink = $olb->htmlReserveLink($r['room_id'], $time, __('Time over', OLBsystem::TEXTDOMAIN));
+					$class_cancel .= ' timeover';
 				}
 				else {
 					$cancellink = $olb->htmlReserveLink($r['room_id'], $time, __('CANCEL', OLBsystem::TEXTDOMAIN));
 				}
 				$waiting = self::waitingTime($r['date'], $r['time'], current_time('timestamp'));
-				printf('<td class="date">%s %s</td><td class="waiting">%s</td><td class="room">%s</td><td class="cancel">%s</td>',
+				printf('<td class="date">%s %s</td><td class="waiting">%s</td><td class="room">%s</td><td class="%s">%s</td>',
 					$r['date'],
 					substr($r['time'], 0, 5),
 					$waiting,
 					$roomlink,
+					$class_cancel,
 					$cancellink
 					);
 				echo '</tr>'."\n";

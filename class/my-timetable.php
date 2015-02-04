@@ -570,7 +570,7 @@ EOD;
 					$free = '';
 				}
 				$format = <<<EOD
-<div id="reservation" class="reservation">
+<div id="reservation" class="reservation timeover">
 <dl>
 <dt>%LABEL_ID%:</dt>
 <dd>%ID% {$already_reserved} {$free}
@@ -609,7 +609,7 @@ EOD;
 					);
 				$replace = array(
 						__('Reserve ID', OLBsystem::TEXTDOMAIN),
-						$reserve_id,
+						$record['id'],
 						__('Teacher', OLBsystem::TEXTDOMAIN),
 						sprintf('<a href="%s">%s</a>', $room['url'], $room['name']),
 						$olb->room_id,
@@ -681,6 +681,7 @@ EOD;
 			echo str_replace($search, $replace, $format);
 		}
 		$html = ob_get_contents();
+		$html = apply_filters( 'olb_reservation_form', $html, $result, $error );
 		ob_end_clean();
 		if ($out) {
 			echo $html;
@@ -746,10 +747,7 @@ EOD;
 			 */
 			extract($result);	// $code, $record, $user, $room
 
-			if($code=='ALREADY_RESERVED') {
-				$action = 'cancel';
-				$submit = __('cancel', OLBsystem::TEXTDOMAIN);
-
+			if ( in_array( $code, array( 'ALREADY_RESERVED', 'CANCEL_TIMEOVER' ) ) ) {
 				$user_name = $user->data['name'];
 				$members_info_url = get_permalink(get_page_by_path($olb->edit_schedule_page.'/'.$olb->members_info_page)->ID);
 				if($members_info_url) {
@@ -757,6 +755,11 @@ EOD;
 					$members_info_url .= 'user_id='.$user->data['id'];
 					$user_name = sprintf('<a href="%s">%s</a>', $members_info_url, $user->data['name']);
 				}
+			}
+
+			if($code=='ALREADY_RESERVED') {
+				$action = 'cancel';
+				$submit = __('cancel', OLBsystem::TEXTDOMAIN);
 
 				$format = <<<EOD
 <form id="reservation" class="reservation" method="post" action="%FORMACTION%">
@@ -853,15 +856,41 @@ EOD;
 </div>
 EOD;
 			}
+			if(in_array($error, array(
+					'CANCEL_TIMEOVER'
+				))){
+				$format = <<<EOD
+<div id="reservation" class="reservation timeover">
+<dl>
+<dt>%LABEL_ID%:</dt>
+<dd>%ID% {$already_reserved} {$free}
+<input type="hidden" id="reserve_id" name="reserve_id" value="%ID%" />
+<dt>%LABEL_ROOM%:</dt>
+<dd>%ROOM_NAME%
+<input type="hidden" id="room_id" name="room_id" value="%ROOM_ID%" />
+</dd>
+<dt>%LABEL_USER%:</dt>
+<dd>%USER_NAME%(Skype: %USER_SKYPE%)
+<input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
+</dd>
+<dt>%LABEL_DATETIME%:</dt>
+<dd>%DATE% %TIME%
+<input type="hidden" id="reservedate" name="reservedate" value="%DATE%" />
+<input type="hidden" id="reservetime" name="reservetime" value="%TIME%" />
+</dd>
+</dl>
+<div class="alert">%MESSAGE%</div>
+</div>
+EOD;
+			}
 			else {
 				// 'NOT_RESERVED';
-				// 'CANCEL_TIMEOVER';
 
 				$format = <<<EOD
 <div id="reservation" class="reservation">
 <dl>
-<dt>%LABEL_ROOM%:</dt>
-<dd>%ROOM_NAME%</dd>
+<dt>%LABEL_USER%:</dt>
+<dd>%USER_NAME%(Skype: %USER_SKYPE%)</dd>
 <dt>%LABEL_DATETIME%:</dt>
 <dd>%DATE% %TIME%</dd>
 </dl>
@@ -870,8 +899,14 @@ EOD;
 EOD;
 			}
 			$search = array(
+					'%LABEL_ID%',
+					'%ID%',
 					'%LABEL_ROOM%',
 					'%ROOM_NAME%',
+					'%ROOM_ID%',
+					'%LABEL_USER%',
+					'%USER_NAME%',
+					'%USER_SKYPE%',
 					'%LABEL_DATETIME%',
 					'%DATE%',
 					'%TIME%',
@@ -879,8 +914,14 @@ EOD;
 					'%SUBMIT%'
 				);
 			$replace = array(
+					__('Reserve ID', OLBsystem::TEXTDOMAIN),
+					$record['id'],
 					__('Teacher', OLBsystem::TEXTDOMAIN),
 					$room['name'],
+					$olb->room_id,
+					__('User', OLBsystem::TEXTDOMAIN),
+					$user_name,
+					$user->data['skype'],
 					__('Date/Time', OLBsystem::TEXTDOMAIN),
 					$date,
 					$time,
@@ -890,6 +931,7 @@ EOD;
 			echo str_replace($search, $replace, $format);
 		}
 		$html = ob_get_contents();
+		$html = apply_filters( 'olb_cancellation_form', $html, $result, $error );
 		ob_end_clean();
 		if ($out) {
 			echo $html;
