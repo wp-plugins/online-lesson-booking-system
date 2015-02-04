@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 0.6.5
+Stable tag: 0.6.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,12 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.6.6 =
+
+* The contents of a “Cancellation form for teacher” page and schedule list were changed a little.
+* A detail of reservation which cancellation request already closed were linked in schedule list.
+* Some filters were added.
 
 = 0.6.5 =
 
@@ -194,6 +200,7 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.6.5 =
+= 0.6.6 =
 
-The mail address format of the reservation notice for the user was changed to "user@example.com" from "User &lt;user@example.com&gt;".
+The contents of a “Cancellation form for teacher” page, and schedule list, etc. were changed.
+
