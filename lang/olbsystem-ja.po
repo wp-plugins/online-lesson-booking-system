@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2014-08-23 16:21+0900\n"
-"PO-Revision-Date: 2014-08-23 16:22+0900\n"
+"POT-Creation-Date: 2015-03-04 15:44+0900\n"
+"PO-Revision-Date: 2015-03-04 15:44+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: olbsys.com\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -277,7 +277,7 @@ msgid "Subject to teacher"
 msgstr "講師宛件名"
 
 #: class/my-adminpage.php:480 class/my-adminpage.php:507
-#: class/my-adminpage.php:534 class/my-timetable.php:828
+#: class/my-adminpage.php:534 class/my-timetable.php:832
 msgid "Message"
 msgstr "メッセージ"
 
@@ -301,7 +301,7 @@ msgstr "対象"
 msgid "Special pages"
 msgstr "特別なページの名前"
 
-#: class/my-auth.php:152 class/my-hookactions.php:706
+#: class/my-auth.php:152 class/my-hookactions.php:756
 msgid "ID"
 msgstr "ID"
 
@@ -524,12 +524,12 @@ msgstr "%d日後"
 msgid "%d days later"
 msgstr "%d日後"
 
-#: class/my-history.php:161 class/my-history.php:263 class/my-history.php:371
-#: class/my-history.php:466 class/my-history.php:568
+#: class/my-history.php:161 class/my-history.php:263 class/my-history.php:373
+#: class/my-history.php:468 class/my-history.php:573
 #: class/my-timetable.php:544 class/my-timetable.php:620
-#: class/my-timetable.php:675 class/my-timetable.php:825
-#: class/my-timetable.php:884 class/my-timetable.php:1033
-#: class/my-timetable.php:1090
+#: class/my-timetable.php:675 class/my-timetable.php:829
+#: class/my-timetable.php:926 class/my-timetable.php:1076
+#: class/my-timetable.php:1133
 msgid "Date/Time"
 msgstr "日時"
 
@@ -537,70 +537,70 @@ msgstr "日時"
 msgid "Member(Skype)"
 msgstr "会員（Skype）"
 
-#: class/my-history.php:163 class/my-history.php:173 class/my-history.php:373
-#: class/my-history.php:386 class/my-timetable.php:1036
+#: class/my-history.php:163 class/my-history.php:173 class/my-history.php:375
+#: class/my-history.php:388 class/my-timetable.php:1079
 msgid "Absent"
 msgstr "欠席"
 
-#: class/my-history.php:264 class/my-history.php:467
+#: class/my-history.php:264 class/my-history.php:469
 msgid "Waiting"
 msgstr "待ち時間"
 
-#: class/my-history.php:266 class/my-history.php:469
+#: class/my-history.php:266 class/my-history.php:471
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: class/my-history.php:276 class/my-history.php:484
+#: class/my-history.php:276 class/my-history.php:487
 msgid "Time over"
 msgstr "時間切れ"
 
-#: class/my-history.php:279 class/my-history.php:487
+#: class/my-history.php:280 class/my-history.php:491
 msgid "CANCEL"
 msgstr "キャンセル"
 
-#: class/my-history.php:372 class/my-history.php:468
+#: class/my-history.php:374 class/my-history.php:470
 #: class/my-hookactions.php:175 class/my-hookactions.php:221
-#: class/my-hookactions.php:705 class/my-hookactions.php:721
+#: class/my-hookactions.php:755 class/my-hookactions.php:771
 #: class/my-timetable.php:537 class/my-timetable.php:613
-#: class/my-timetable.php:673 class/my-timetable.php:818
-#: class/my-timetable.php:882 class/my-timetable.php:1026
-#: class/my-timetable.php:1088 class/my-timetable.php:1708
+#: class/my-timetable.php:673 class/my-timetable.php:822
+#: class/my-timetable.php:920 class/my-timetable.php:1069
+#: class/my-timetable.php:1131 class/my-timetable.php:1751
 msgid "Teacher"
 msgstr "講師"
 
-#: class/my-history.php:569
+#: class/my-history.php:574
 msgid "Update info"
 msgstr "更新情報"
 
-#: class/my-history.php:603
+#: class/my-history.php:608
 msgid "by PayPal payment"
 msgstr "PayPal支払い"
 
-#: class/my-history.php:614 class/my-history.php:651
+#: class/my-history.php:619 class/my-history.php:656
 #, php-format
 msgid "Corrected %d ticket."
 msgstr "%dチケット修正。"
 
-#: class/my-history.php:617 class/my-history.php:654
+#: class/my-history.php:622 class/my-history.php:659
 #, php-format
 msgid "Added %d ticket."
 msgstr "%dチケット追加。"
 
-#: class/my-history.php:628 class/my-history.php:658
+#: class/my-history.php:633 class/my-history.php:663
 #, php-format
 msgid "Extended till %s."
 msgstr "有効期限を %sまで延長。"
 
-#: class/my-history.php:632 class/my-history.php:661
+#: class/my-history.php:637 class/my-history.php:666
 #, php-format
 msgid "Corrected to %s."
 msgstr "有効期限を %sへ修正。"
 
-#: class/my-history.php:636 class/my-history.php:664
+#: class/my-history.php:641 class/my-history.php:669
 msgid "Removed expiration."
 msgstr "有効期限を削除。"
 
-#: class/my-history.php:640 class/my-history.php:645
+#: class/my-history.php:645 class/my-history.php:650
 msgid "Error"
 msgstr "エラー"
 
@@ -633,29 +633,29 @@ msgstr "未設定"
 msgid "Property \"Teacher\""
 msgstr "講師属性"
 
-#: class/my-hookactions.php:762 class/my-hookactions.php:1019
+#: class/my-hookactions.php:812 class/my-hookactions.php:1069
 msgid "Members information"
 msgstr "会員情報"
 
-#: class/my-hookactions.php:764 class/my-hookactions.php:1021
+#: class/my-hookactions.php:814 class/my-hookactions.php:1071
 msgid "Recent history"
 msgstr "最近の受講履歴"
 
-#: class/my-hookactions.php:765 class/my-hookactions.php:1008
-#: class/my-hookactions.php:1022 class/my-hookactions.php:1036
+#: class/my-hookactions.php:815 class/my-hookactions.php:1058
+#: class/my-hookactions.php:1072 class/my-hookactions.php:1086
 msgid "No history"
 msgstr "履歴情報はありません"
 
-#: class/my-hookactions.php:794 class/my-hookactions.php:796
-#: class/my-hookactions.php:1029 class/my-hookactions.php:1031
+#: class/my-hookactions.php:844 class/my-hookactions.php:846
+#: class/my-hookactions.php:1079 class/my-hookactions.php:1081
 msgid "Ticket Logs"
 msgstr "チケット更新ログ"
 
-#: class/my-hookactions.php:795 class/my-hookactions.php:1030
+#: class/my-hookactions.php:845 class/my-hookactions.php:1080
 msgid "No Logs"
 msgstr "ログはまだありません"
 
-#: class/my-hookactions.php:940
+#: class/my-hookactions.php:990
 msgid ""
 "\n"
 "<p>\n"
@@ -705,47 +705,47 @@ msgstr ""
 "<p>（予定はありません）</p>\n"
 "[/olb_members_schedule]\n"
 
-#: class/my-hookactions.php:968
+#: class/my-hookactions.php:1018
 msgid "Scheduler for teacher"
 msgstr "講師用スケジュール編集"
 
-#: class/my-hookactions.php:974
+#: class/my-hookactions.php:1024
 msgid "Cancel form for teacher"
 msgstr "講師用キャンセルフォーム"
 
-#: class/my-hookactions.php:980
+#: class/my-hookactions.php:1030
 msgid "Report form for teacher"
 msgstr "講師用出欠フォーム"
 
-#: class/my-hookactions.php:986
+#: class/my-hookactions.php:1036
 msgid "Reservation and cancellation form"
 msgstr "予約・キャンセルフォーム"
 
-#: class/my-hookactions.php:992
+#: class/my-hookactions.php:1042
 msgid "Members my-page"
 msgstr "会員マイページ"
 
-#: class/my-hookactions.php:998
+#: class/my-hookactions.php:1048
 msgid "Daily schedule"
 msgstr "日別スケジュール（全講師）"
 
-#: class/my-hookactions.php:1007 class/my-hookactions.php:1009
+#: class/my-hookactions.php:1057 class/my-hookactions.php:1059
 msgid "Teachers history"
 msgstr "講師用実施履歴"
 
-#: class/my-hookactions.php:1013 class/my-hookactions.php:1015
+#: class/my-hookactions.php:1063 class/my-hookactions.php:1065
 msgid "Teachers schedule"
 msgstr "講師用予約済み情報"
 
-#: class/my-hookactions.php:1014 class/my-hookactions.php:1042
+#: class/my-hookactions.php:1064 class/my-hookactions.php:1092
 msgid "No schedule"
 msgstr "予約情報はありません"
 
-#: class/my-hookactions.php:1035 class/my-hookactions.php:1037
+#: class/my-hookactions.php:1085 class/my-hookactions.php:1087
 msgid "Members history"
 msgstr "会員受講履歴"
 
-#: class/my-hookactions.php:1041 class/my-hookactions.php:1043
+#: class/my-hookactions.php:1091 class/my-hookactions.php:1093
 msgid "Members schedule"
 msgstr "会員予約情報"
 
@@ -993,33 +993,56 @@ msgstr "予約"
 msgid "Reserved"
 msgstr "予約済み"
 
-#: class/my-timetable.php:468 class/my-timetable.php:751
+#: class/my-timetable.php:468 class/my-timetable.php:762
 msgid "cancel"
 msgstr "キャンセル"
 
 #: class/my-timetable.php:535 class/my-timetable.php:611
-#: class/my-timetable.php:816 class/my-timetable.php:1024
+#: class/my-timetable.php:820 class/my-timetable.php:918
+#: class/my-timetable.php:1067
 msgid "Reserve ID"
 msgstr "予約ID"
 
 #: class/my-timetable.php:540 class/my-timetable.php:616
-#: class/my-timetable.php:821 class/my-timetable.php:1029
+#: class/my-timetable.php:825 class/my-timetable.php:923
+#: class/my-timetable.php:1072
 msgid "User"
 msgstr "ユーザー"
 
-#: class/my-timetable.php:815
+#: class/my-timetable.php:819
 msgid ""
 "*) When timetable is canceled by a teacher, it is closed at the same time"
 msgstr "*) 講師によるキャンセルは、同時にそのタイムテーブルをクローズします。"
 
-#: class/my-timetable.php:958 class/my-timetable.php:1846
-#: class/my-timetable.php:1856
+#: class/my-timetable.php:1001 class/my-timetable.php:1889
+#: class/my-timetable.php:1899
 msgid "update"
 msgstr "更新"
 
-#: class/my-timetable.php:1355
+#: class/my-timetable.php:1398 class/my-timetable.php:1919
 msgid "Date"
 msgstr "日付"
+
+#: class/my-timetable.php:1451 class/my-timetable.php:1604
+#: class/my-timetable.php:1815 class/my-timetable.php:1968
+msgid "-"
+msgstr "-"
+
+#: class/my-timetable.php:1470 class/my-timetable.php:1483
+#: class/my-timetable.php:1613 class/my-timetable.php:1636
+#: class/my-timetable.php:1823 class/my-timetable.php:1836
+msgid "closed"
+msgstr "Close"
+
+#: class/my-timetable.php:1478 class/my-timetable.php:1626
+#: class/my-timetable.php:1831
+msgid "You"
+msgstr "You"
+
+#: class/my-timetable.php:1489 class/my-timetable.php:1647
+#: class/my-timetable.php:1842
+msgid "Open"
+msgstr "Open"
 
 #: class/my-widget.php:9
 msgid "This block is displayed while member logged in."

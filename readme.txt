@@ -3,8 +3,8 @@ Contributors: tnomi
 Donate link: 
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
-Tested up to: 3.9.2
-Stable tag: 0.6.3
+Tested up to: 4.1.1
+Stable tag: 0.6.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,6 +16,8 @@ Online Lesson Booking system (OLB) was made in order to equip a web site with th
 
 Teacher (author) sets up a timetable using a scheduler, and member (subscriber) makes a reservation by clicking timetable.
 Teacher and a member are informed by e-mail in the case of reservation and cancellation. 
+
+Visit [The User's Guide (ja)](http://olbsys.com)/[(en)](http://olbsys.com/en/) for more info.
 
 == Installation ==
 
@@ -77,6 +79,27 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.6.7 =
+
+* When the user opened a page which needs login, the user is returned to the page just after the login.
+* The word in timetable which indicates the reservation state ('Open', 'closed', etc.) were changed to gettext.<br>Those can be translated.
+* Small change in HTML. Some classes were added.
+
+= 0.6.6 =
+
+* The contents of a “Cancellation form for teacher” page and schedule list were changed a little.
+* A detail of reservation which cancellation request already closed were linked in schedule list.
+* Some filters were added.
+
+= 0.6.5 =
+
+* The mail address format of the reservation notice for the user was changed to "user@example.com" from "User &lt;user@example.com&gt;".<br>Because a send error on wp_mail() occurs in several servers.
+
+= 0.6.4 =
+
+* Record sorting of the "member's schedule" was corrected to an ascending order of time. (from descending order.)
+* The default "width" of some tables (timetable, calendar, etc.) in "front.css" were changed. 
 
 = 0.6.3 =
 
@@ -183,6 +206,7 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.6.3 =
+= 0.6.7 =
 
-The bug of the notice mail of "reservation/cancellation" was corrected.
+The contents of a “Cancellation form for teacher” page, and schedule list, etc. were changed.
+And some words are changed to gettext.

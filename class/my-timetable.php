@@ -570,7 +570,7 @@ EOD;
 					$free = '';
 				}
 				$format = <<<EOD
-<div id="reservation" class="reservation">
+<div id="reservation" class="reservation timeover">
 <dl>
 <dt>%LABEL_ID%:</dt>
 <dd>%ID% {$already_reserved} {$free}
@@ -609,7 +609,7 @@ EOD;
 					);
 				$replace = array(
 						__('Reserve ID', OLBsystem::TEXTDOMAIN),
-						$reserve_id,
+						$record['id'],
 						__('Teacher', OLBsystem::TEXTDOMAIN),
 						sprintf('<a href="%s">%s</a>', $room['url'], $room['name']),
 						$olb->room_id,
@@ -681,6 +681,7 @@ EOD;
 			echo str_replace($search, $replace, $format);
 		}
 		$html = ob_get_contents();
+		$html = apply_filters( 'olb_reservation_form', $html, $result, $error );
 		ob_end_clean();
 		if ($out) {
 			echo $html;
@@ -746,10 +747,7 @@ EOD;
 			 */
 			extract($result);	// $code, $record, $user, $room
 
-			if($code=='ALREADY_RESERVED') {
-				$action = 'cancel';
-				$submit = __('cancel', OLBsystem::TEXTDOMAIN);
-
+			if ( in_array( $code, array( 'ALREADY_RESERVED', 'CANCEL_TIMEOVER' ) ) ) {
 				$user_name = $user->data['name'];
 				$members_info_url = get_permalink(get_page_by_path($olb->edit_schedule_page.'/'.$olb->members_info_page)->ID);
 				if($members_info_url) {
@@ -757,6 +755,12 @@ EOD;
 					$members_info_url .= 'user_id='.$user->data['id'];
 					$user_name = sprintf('<a href="%s">%s</a>', $members_info_url, $user->data['name']);
 				}
+			}
+
+			if($code=='ALREADY_RESERVED') {
+				$action = 'cancel';
+				$submit = __('cancel', OLBsystem::TEXTDOMAIN);
+				$returnurl = ( !strpos( $_SERVER['HTTP_REFERER'], 'redirect_to' ) ) ? $_SERVER['HTTP_REFERER'] : get_permalink( get_page_by_path( $olb->edit_schedule_page )->ID );
 
 				$format = <<<EOD
 <form id="reservation" class="reservation" method="post" action="%FORMACTION%">
@@ -829,7 +833,7 @@ EOD;
 						wp_nonce_field(OLBsystem::TEXTDOMAIN, 'onetimetoken', true, false),
 						$action,
 						$submit,
-						$_SERVER['HTTP_REFERER'],
+						$returnurl,
 					);
 				echo str_replace($search, $replace, $format);
 			}
@@ -853,15 +857,41 @@ EOD;
 </div>
 EOD;
 			}
+			if(in_array($error, array(
+					'CANCEL_TIMEOVER'
+				))){
+				$format = <<<EOD
+<div id="reservation" class="reservation timeover">
+<dl>
+<dt>%LABEL_ID%:</dt>
+<dd>%ID% {$already_reserved} {$free}
+<input type="hidden" id="reserve_id" name="reserve_id" value="%ID%" />
+<dt>%LABEL_ROOM%:</dt>
+<dd>%ROOM_NAME%
+<input type="hidden" id="room_id" name="room_id" value="%ROOM_ID%" />
+</dd>
+<dt>%LABEL_USER%:</dt>
+<dd>%USER_NAME%(Skype: %USER_SKYPE%)
+<input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
+</dd>
+<dt>%LABEL_DATETIME%:</dt>
+<dd>%DATE% %TIME%
+<input type="hidden" id="reservedate" name="reservedate" value="%DATE%" />
+<input type="hidden" id="reservetime" name="reservetime" value="%TIME%" />
+</dd>
+</dl>
+<div class="alert">%MESSAGE%</div>
+</div>
+EOD;
+			}
 			else {
 				// 'NOT_RESERVED';
-				// 'CANCEL_TIMEOVER';
 
 				$format = <<<EOD
 <div id="reservation" class="reservation">
 <dl>
-<dt>%LABEL_ROOM%:</dt>
-<dd>%ROOM_NAME%</dd>
+<dt>%LABEL_USER%:</dt>
+<dd>%USER_NAME%(Skype: %USER_SKYPE%)</dd>
 <dt>%LABEL_DATETIME%:</dt>
 <dd>%DATE% %TIME%</dd>
 </dl>
@@ -870,8 +900,14 @@ EOD;
 EOD;
 			}
 			$search = array(
+					'%LABEL_ID%',
+					'%ID%',
 					'%LABEL_ROOM%',
 					'%ROOM_NAME%',
+					'%ROOM_ID%',
+					'%LABEL_USER%',
+					'%USER_NAME%',
+					'%USER_SKYPE%',
 					'%LABEL_DATETIME%',
 					'%DATE%',
 					'%TIME%',
@@ -879,8 +915,14 @@ EOD;
 					'%SUBMIT%'
 				);
 			$replace = array(
+					__('Reserve ID', OLBsystem::TEXTDOMAIN),
+					$record['id'],
 					__('Teacher', OLBsystem::TEXTDOMAIN),
 					$room['name'],
+					$olb->room_id,
+					__('User', OLBsystem::TEXTDOMAIN),
+					$user_name,
+					$user->data['skype'],
 					__('Date/Time', OLBsystem::TEXTDOMAIN),
 					$date,
 					$time,
@@ -890,6 +932,7 @@ EOD;
 			echo str_replace($search, $replace, $format);
 		}
 		$html = ob_get_contents();
+		$html = apply_filters( 'olb_cancellation_form', $html, $result, $error );
 		ob_end_clean();
 		if ($out) {
 			echo $html;
@@ -1390,7 +1433,7 @@ EOD;
 		ob_start();
 
 		while($t < $this->endtime){
-			$trclass = array();
+			$trclass = array( 'time'.str_replace( ':', '', $t ) );
 
 			if(!empty($this->opentime) && $t < $this->opentime){
 				$trclass[] = 'invalid';
@@ -1405,7 +1448,7 @@ EOD;
 
 			for($i=0; $i<$this->daymax; $i++) {
 				$class = array();
-				$html = '-';
+				$html = __( '-', OLBsystem::TEXTDOMAIN );
 				$class[] = 'status';
 
 				$mt = strtotime($this->startdate)+(60*60*24*$i);		// sec
@@ -1424,7 +1467,7 @@ EOD;
 						// 受付終了: Time up
 						if(in_array('past', $class) && !in_array('invalid', $class)){
 							$class[] = 'closed';
-							$html = 'closed';
+							$html = __( 'closed', OLBsystem::TEXTDOMAIN );
 						}
 						else{
 							// ユーザーの予約が入っているか
@@ -1432,18 +1475,18 @@ EOD;
 								// 指定されたユーザーによる予約か
 								if (!empty($this->user_id) && $timetable[$key]['user_id']==$this->user_id) {
 									$class[] = 'you';
-									$html = self::htmlReserveLink($this->room_id, $key, 'You');
+									$html = self::htmlReserveLink($this->room_id, $key, __( 'You', OLBsystem::TEXTDOMAIN ) );
 								}
 								// 開講(予約済)
 								else {
 									$class[] = 'closed';
-									$html = 'closed';
+									$html = __( 'closed', OLBsystem::TEXTDOMAIN );
 								}
 							}
 							// 開講(予約受付中)
 							else {
 								$class[] = 'open';
-								$html = self::htmlReserveLink($this->room_id, $key, 'Open');
+								$html = self::htmlReserveLink($this->room_id, $key, __( 'Open', OLBsystem::TEXTDOMAIN ) );
 							}
 						}
 					}
@@ -1531,7 +1574,7 @@ EOD;
 		ob_start();
 		// 表示開始時刻 - 表示終了時刻
 		while($t < $this->endtime){
-			$trclass = array();
+			$trclass = array( 'time'.str_replace( ':', '', $t ) );
 			// 営業開始時刻が指定されている場合
 			if(!empty($this->opentime) && $t < $this->opentime){
 				$trclass[] = 'invalid';
@@ -1558,7 +1601,7 @@ EOD;
 			$room = olbRoom::get($room_id);
 
 			$class = array();
-			$html = '-';
+			$html = __( '-', OLBsystem::TEXTDOMAIN );
 			$class[] = 'status';
 
 			// 指定された講師による開講があるか
@@ -1567,7 +1610,7 @@ EOD;
 				if(in_array('past', $trclass)){
 					$class[] = 'closed';
 					if($type=='a'){
-						$html = 'closed';
+						$html = __( 'closed', OLBsystem::TEXTDOMAIN );
 					}
 					else if($type=='b'){
 						$html = $t;
@@ -1580,7 +1623,7 @@ EOD;
 						if (!empty($this->user_id) && $timetable[$key]['user_id']==$this->user_id) {
 							$class[] = 'you';
 							if($type=='a'){
-								$html = self::htmlReserveLink($room_id, $key, 'You');
+								$html = self::htmlReserveLink($room_id, $key, __( 'You', OLBsystem::TEXTDOMAIN ) );
 							}
 							else if($type=='b'){
 								$html = self::htmlReserveLink($room_id, $key, $t);
@@ -1590,7 +1633,7 @@ EOD;
 						else {
 							$class[] = 'closed';
 							if($type=='a'){
-								$html = 'closed';
+								$html = __( 'closed', OLBsystem::TEXTDOMAIN );
 							}
 							else if($type=='b'){
 								$html = $t;
@@ -1601,7 +1644,7 @@ EOD;
 					else {
 						$class[] = 'open';
 						if($type=='a'){
-							$html = self::htmlReserveLink($room_id, $key, 'Open');
+							$html = self::htmlReserveLink($room_id, $key, __( 'Open', OLBsystem::TEXTDOMAIN ) );
 						}
 						else if($type=='b'){
 							$html = self::htmlReserveLink($room_id, $key, $t);
@@ -1742,7 +1785,7 @@ EOD;
 		ob_start();
 		// 表示開始時刻 - 表示終了時刻
 		while($t < $this->endtime){
-			$trclass = array();
+			$trclass = array( 'time'.str_replace( ':', '', $t ) );
 			// 営業開始時刻が指定されている場合
 			if(!empty($this->opentime) && $t < $this->opentime){
 				$trclass[] = 'invalid';
@@ -1769,7 +1812,7 @@ EOD;
 				$room = olbRoom::get($rooms[$i]['id']);
 
 				$class = array();
-				$html = '-';
+				$html = __( '-', OLBsystem::TEXTDOMAIN );
 				$class[] = 'status';
 
 				// 指定された講師による開講があるか
@@ -1777,7 +1820,7 @@ EOD;
 					// 受付時間終了
 					if(in_array('past', $trclass)){
 						$class[] = 'closed';
-						$html = 'closed';
+						$html = __( 'closed', OLBsystem::TEXTDOMAIN );
 					}
 					else {
 						// ユーザーの予約が入っているか
@@ -1785,18 +1828,18 @@ EOD;
 							// 指定されたユーザーによる予約か
 							if (!empty($this->user_id) && $timetable[$key]['user_id']==$this->user_id) {
 								$class[] = 'you';
-								$html = self::htmlReserveLink($rooms[$i]['id'], $key, 'You');
+								$html = self::htmlReserveLink($rooms[$i]['id'], $key, __( 'You', OLBsystem::TEXTDOMAIN ) );
 							}
 							// 開講(予約済)
 							else {
 								$class[] = 'closed';
-								$html = 'closed';
+								$html = __( 'closed', OLBsystem::TEXTDOMAIN );
 							}
 						}
 						// 開講(予約受付中)
 						else {
 							$class[] = 'open';
-							$html = self::htmlReserveLink($rooms[$i]['id'], $key, 'Open');
+							$html = self::htmlReserveLink($rooms[$i]['id'], $key, __( 'Open', OLBsystem::TEXTDOMAIN ) );
 						}
 					}
 				}
@@ -1843,7 +1886,7 @@ EOD;
 		$header = self::htmlEditScheduleHeader();
 		$body =	self::htmlEditScheduleBody();
 
-		printf('<input type="submit" name="submit" value="%s" class="submit" />', __('update'));
+		printf('<input type="submit" name="submit" value="%s" class="submit" />', __( 'update', OLBsystem::TEXTDOMAIN ) );
 		echo '<table class="edit_schedule">'."\n"
 			.'<thead>'."\n"
 			.$header
@@ -1853,7 +1896,7 @@ EOD;
 			.$body
 			.'</tbody>'."\n"
 			.'</table>'."\n";
-		printf('<input type="submit" name="submit" value="%s" class="submit" />', __('update'));
+		printf('<input type="submit" name="submit" value="%s" class="submit" />', __( 'update', OLBsystem::TEXTDOMAIN ) );
 		wp_nonce_field(OLBsystem::TEXTDOMAIN, 'onetimetoken');
 		echo '</form>'."\n";
 
@@ -1873,7 +1916,7 @@ EOD;
 	public function htmlEditScheduleHeader($out = false){
 		ob_start();
 		echo '<tr class="head">'."\n"
-			.'<th>レッスン日</th>'."\n";
+			.'<th>'.__( 'Date', OLBsystem::TEXTDOMAIN ).'</th>'."\n";
 
 		for($i=0; $i<$this->daymax; $i++){
 			$mt = strtotime($this->startdate)+(60*60*24*$i);		// sec
@@ -1907,7 +1950,7 @@ EOD;
 
 		ob_start();
 		while($t < $this->endtime){
-			$trclass = array();
+			$trclass = array( 'time'.str_replace( ':', '', $t ) );
 
 			if(!empty($this->opentime) && $t < $this->opentime){
 				$trclass[] = 'invalid';
@@ -1922,7 +1965,7 @@ EOD;
 
 			for($i=0; $i<$this->daymax; $i++) {
 				$class = array();
-				$html = '-';
+				$html = __( '-', OLBsystem::TEXTDOMAIN );
 				$class[] = 'status';
 
 				$mt = strtotime($this->startdate)+(60*60*24*$i);		// sec
