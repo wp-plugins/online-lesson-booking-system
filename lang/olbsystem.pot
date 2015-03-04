@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2015-02-04 11:49+0900\n"
-"PO-Revision-Date: 2015-02-04 11:49+0900\n"
+"POT-Creation-Date: 2015-03-04 15:44+0900\n"
+"PO-Revision-Date: 2015-03-04 15:44+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: olbsys.com\n"
 "Language: en_US\n"
@@ -275,7 +275,7 @@ msgid "Subject to teacher"
 msgstr ""
 
 #: class/my-adminpage.php:480 class/my-adminpage.php:507
-#: class/my-adminpage.php:534 class/my-timetable.php:831
+#: class/my-adminpage.php:534 class/my-timetable.php:832
 msgid "Message"
 msgstr ""
 
@@ -299,7 +299,7 @@ msgstr ""
 msgid "Special pages"
 msgstr ""
 
-#: class/my-auth.php:152 class/my-hookactions.php:706
+#: class/my-auth.php:152 class/my-hookactions.php:756
 msgid "ID"
 msgstr ""
 
@@ -523,9 +523,9 @@ msgstr ""
 #: class/my-history.php:161 class/my-history.php:263 class/my-history.php:373
 #: class/my-history.php:468 class/my-history.php:573
 #: class/my-timetable.php:544 class/my-timetable.php:620
-#: class/my-timetable.php:675 class/my-timetable.php:828
-#: class/my-timetable.php:925 class/my-timetable.php:1075
-#: class/my-timetable.php:1132
+#: class/my-timetable.php:675 class/my-timetable.php:829
+#: class/my-timetable.php:926 class/my-timetable.php:1076
+#: class/my-timetable.php:1133
 msgid "Date/Time"
 msgstr ""
 
@@ -534,7 +534,7 @@ msgid "Member(Skype)"
 msgstr ""
 
 #: class/my-history.php:163 class/my-history.php:173 class/my-history.php:375
-#: class/my-history.php:388 class/my-timetable.php:1078
+#: class/my-history.php:388 class/my-timetable.php:1079
 msgid "Absent"
 msgstr ""
 
@@ -556,11 +556,11 @@ msgstr ""
 
 #: class/my-history.php:374 class/my-history.php:470
 #: class/my-hookactions.php:175 class/my-hookactions.php:221
-#: class/my-hookactions.php:705 class/my-hookactions.php:721
+#: class/my-hookactions.php:755 class/my-hookactions.php:771
 #: class/my-timetable.php:537 class/my-timetable.php:613
-#: class/my-timetable.php:673 class/my-timetable.php:821
-#: class/my-timetable.php:919 class/my-timetable.php:1068
-#: class/my-timetable.php:1130 class/my-timetable.php:1750
+#: class/my-timetable.php:673 class/my-timetable.php:822
+#: class/my-timetable.php:920 class/my-timetable.php:1069
+#: class/my-timetable.php:1131 class/my-timetable.php:1751
 msgid "Teacher"
 msgstr ""
 
@@ -629,29 +629,29 @@ msgstr ""
 msgid "Property \"Teacher\""
 msgstr ""
 
-#: class/my-hookactions.php:762 class/my-hookactions.php:1019
+#: class/my-hookactions.php:812 class/my-hookactions.php:1069
 msgid "Members information"
 msgstr ""
 
-#: class/my-hookactions.php:764 class/my-hookactions.php:1021
+#: class/my-hookactions.php:814 class/my-hookactions.php:1071
 msgid "Recent history"
 msgstr ""
 
-#: class/my-hookactions.php:765 class/my-hookactions.php:1008
-#: class/my-hookactions.php:1022 class/my-hookactions.php:1036
+#: class/my-hookactions.php:815 class/my-hookactions.php:1058
+#: class/my-hookactions.php:1072 class/my-hookactions.php:1086
 msgid "No history"
 msgstr ""
 
-#: class/my-hookactions.php:794 class/my-hookactions.php:796
-#: class/my-hookactions.php:1029 class/my-hookactions.php:1031
+#: class/my-hookactions.php:844 class/my-hookactions.php:846
+#: class/my-hookactions.php:1079 class/my-hookactions.php:1081
 msgid "Ticket Logs"
 msgstr ""
 
-#: class/my-hookactions.php:795 class/my-hookactions.php:1030
+#: class/my-hookactions.php:845 class/my-hookactions.php:1080
 msgid "No Logs"
 msgstr ""
 
-#: class/my-hookactions.php:940
+#: class/my-hookactions.php:990
 msgid ""
 "\n"
 "<p>\n"
@@ -678,47 +678,47 @@ msgid ""
 "[/olb_members_schedule]\n"
 msgstr ""
 
-#: class/my-hookactions.php:968
+#: class/my-hookactions.php:1018
 msgid "Scheduler for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:974
+#: class/my-hookactions.php:1024
 msgid "Cancel form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:980
+#: class/my-hookactions.php:1030
 msgid "Report form for teacher"
 msgstr ""
 
-#: class/my-hookactions.php:986
+#: class/my-hookactions.php:1036
 msgid "Reservation and cancellation form"
 msgstr ""
 
-#: class/my-hookactions.php:992
+#: class/my-hookactions.php:1042
 msgid "Members my-page"
 msgstr ""
 
-#: class/my-hookactions.php:998
+#: class/my-hookactions.php:1048
 msgid "Daily schedule"
 msgstr ""
 
-#: class/my-hookactions.php:1007 class/my-hookactions.php:1009
+#: class/my-hookactions.php:1057 class/my-hookactions.php:1059
 msgid "Teachers history"
 msgstr ""
 
-#: class/my-hookactions.php:1013 class/my-hookactions.php:1015
+#: class/my-hookactions.php:1063 class/my-hookactions.php:1065
 msgid "Teachers schedule"
 msgstr ""
 
-#: class/my-hookactions.php:1014 class/my-hookactions.php:1042
+#: class/my-hookactions.php:1064 class/my-hookactions.php:1092
 msgid "No schedule"
 msgstr ""
 
-#: class/my-hookactions.php:1035 class/my-hookactions.php:1037
+#: class/my-hookactions.php:1085 class/my-hookactions.php:1087
 msgid "Members history"
 msgstr ""
 
-#: class/my-hookactions.php:1041 class/my-hookactions.php:1043
+#: class/my-hookactions.php:1091 class/my-hookactions.php:1093
 msgid "Members schedule"
 msgstr ""
 
@@ -932,29 +932,50 @@ msgid "cancel"
 msgstr ""
 
 #: class/my-timetable.php:535 class/my-timetable.php:611
-#: class/my-timetable.php:819 class/my-timetable.php:917
-#: class/my-timetable.php:1066
+#: class/my-timetable.php:820 class/my-timetable.php:918
+#: class/my-timetable.php:1067
 msgid "Reserve ID"
 msgstr ""
 
 #: class/my-timetable.php:540 class/my-timetable.php:616
-#: class/my-timetable.php:824 class/my-timetable.php:922
-#: class/my-timetable.php:1071
+#: class/my-timetable.php:825 class/my-timetable.php:923
+#: class/my-timetable.php:1072
 msgid "User"
 msgstr ""
 
-#: class/my-timetable.php:818
+#: class/my-timetable.php:819
 msgid ""
 "*) When timetable is canceled by a teacher, it is closed at the same time"
 msgstr ""
 
-#: class/my-timetable.php:1000 class/my-timetable.php:1888
-#: class/my-timetable.php:1898
+#: class/my-timetable.php:1001 class/my-timetable.php:1889
+#: class/my-timetable.php:1899
 msgid "update"
 msgstr ""
 
-#: class/my-timetable.php:1397
+#: class/my-timetable.php:1398 class/my-timetable.php:1919
 msgid "Date"
+msgstr ""
+
+#: class/my-timetable.php:1451 class/my-timetable.php:1604
+#: class/my-timetable.php:1815 class/my-timetable.php:1968
+msgid "-"
+msgstr ""
+
+#: class/my-timetable.php:1470 class/my-timetable.php:1483
+#: class/my-timetable.php:1613 class/my-timetable.php:1636
+#: class/my-timetable.php:1823 class/my-timetable.php:1836
+msgid "closed"
+msgstr ""
+
+#: class/my-timetable.php:1478 class/my-timetable.php:1626
+#: class/my-timetable.php:1831
+msgid "You"
+msgstr ""
+
+#: class/my-timetable.php:1489 class/my-timetable.php:1647
+#: class/my-timetable.php:1842
+msgid "Open"
 msgstr ""
 
 #: class/my-widget.php:9
