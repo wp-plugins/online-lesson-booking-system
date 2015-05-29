@@ -414,14 +414,31 @@ EOD;
 	public static function redirectAfterLogin($user_login, $current_user){
 		global $olb;
 
+		$parse = parse_url( $_SERVER['HTTP_REFERER'] );
+		parse_str( $parse['query'], $query );
+
 		$user = new olbAuth($current_user->ID);
 		if($user->isMember()) {
+			if ( isset( $query['redirect_to'] ) ) {
+				header('Location: '.$query['redirect_to']);
+				exit;
+			}
 			header('Location: '.get_permalink(get_page_by_path($olb->member_page)->ID));
 			exit;
 		}
 		else if($user->isRoomManager()){
+			if ( isset( $query['redirect_to'] ) ) {
+				header('Location: '.$query['redirect_to']);
+				exit;
+			}
 			header('Location: '.get_permalink(get_page_by_path($olb->edit_schedule_page)->ID));
 			exit;
+		}
+		else if( $user->isAdmin() ) {
+			if ( isset( $query['redirect_to'] ) ) {
+				header('Location: '.$query['redirect_to']);
+				exit;
+			}
 		}
 	}
 
@@ -460,6 +477,23 @@ EOD;
 		}
 		$user = new olbAuth();
 
+		$redirect_info = array();
+		if ( !$user->isLoggedIn() ) {
+			if ( !empty( $_SERVER['REDIRECT_URL'] ) ) {
+				$redirect_url = ( empty( $_SERVER['HTTPS'] ) ? 'http://' : 'https://' )
+							   .$_SERVER['HTTP_HOST']
+							   .$_SERVER['REDIRECT_URL'];
+				if ( !empty( $_SERVER['REDIRECT_QUERY_STRING'] ) ) {
+					$redirect_url .= ( strstr( $redirect_url, '?' ) ) ? '&' : '?';
+					$redirect_url .= $_SERVER['REDIRECT_QUERY_STRING'];
+				}
+				$redirect_url = urlencode( $redirect_url );
+				$redirect_info = array(
+					'redirect_to='.$redirect_url
+					);
+			}
+		}
+
 		// 先祖postのID
 		$ancestor_id = array_pop(get_post_ancestors($current_post->ID));
 		$ancestor = ( $ancestor_id ) ? get_post($ancestor_id) : $current_post;
@@ -472,6 +506,10 @@ EOD;
 				}
 				else {
 					$url = get_permalink(get_page_by_path($olb->login_page)->ID);
+				}
+				if ( !empty( $redirect_info ) ) {
+					$url .= ( strstr( $url, '?' ) ) ? '&' : '?';
+					$url = $url.implode( '&', $redirect_info );
 				}
 				header('Location: '.$url);
 				exit;
@@ -495,7 +533,11 @@ EOD;
 				else {
 					$url = get_permalink(get_page_by_path($olb->login_page)->ID);
 				}
-				header('Location: '.$url);
+				if ( !empty( $redirect_info ) ) {
+					$url .= ( strstr( $url, '?' ) ) ? '&' : '?';
+					$url = $url.implode( '&', $redirect_info );
+				}
+				header( 'Location: '.$url );
 				exit;
 			}
 			if(!$user->isMember()){
@@ -512,6 +554,10 @@ EOD;
 				}
 				else {
 					$url = get_permalink(get_page_by_path($olb->login_page)->ID);
+				}
+				if ( !empty( $redirect_info ) ) {
+					$url .= ( strstr( $url, '?' ) ) ? '&' : '?';
+					$url = $url.implode( '&', $redirect_info );
 				}
 				header('Location: '.$url);
 				exit;
@@ -534,6 +580,10 @@ EOD;
 				}
 				else {
 					$url = get_permalink(get_page_by_path($olb->login_page)->ID);
+				}
+				if ( !empty( $redirect_info ) ) {
+					$url .= ( strstr( $url, '?' ) ) ? '&' : '?';
+					$url = $url.implode( '&', $redirect_info );
 				}
 				header('Location: '.$url);
 				exit;
