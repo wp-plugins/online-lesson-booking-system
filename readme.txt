@@ -3,8 +3,8 @@ Contributors: tnomi
 Donate link: 
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
-Tested up to: 4.1.1
-Stable tag: 0.6.7
+Tested up to: 4.2.2
+Stable tag: 0.6.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,11 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.6.8 =
+
+* The time format of the "[Reservation form (ja)](http://olbsys.com/setup/special-pages/#reserve_form)/[(en)](http://olbsys.com/en/setup/special-pages/#reserve_form)" and the "[Cancellation form (ja)](http://olbsys.com/setup/special-pages/#cancel_form)/[(en)](http://olbsys.com/en/setup/special-pages/#cancel_form)" were corrected from "00:00:00" to "00:00".<br>
+e.g. "2015-05-30 14:30"
 
 = 0.6.7 =
 
@@ -206,7 +211,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.6.7 =
+= 0.6.8 =
 
-The contents of a “Cancellation form for teacher” page, and schedule list, etc. were changed.
-And some words are changed to gettext.
+The time format of the "Reservation form" and the "Cancellation form" were corrected from "00:00:00" to "00:00".

@@ -496,7 +496,7 @@ class olbTimetable extends OLBsystem{
 <input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
 </dd>
 <dt>%LABEL_DATETIME%:</dt>
-<dd>%DATE% %TIME%
+<dd>%DATETIME%
 <input type="hidden" id="reservedate" name="reservedate" value="%DATE%" />
 <input type="hidden" id="reservetime" name="reservetime" value="%TIME%" />
 </dd>
@@ -523,6 +523,7 @@ EOD;
 						'%USER_ID%',
 						'%USER_SKYPE%',
 						'%LABEL_DATETIME%',
+						'%DATETIME%',
 						'%DATE%',
 						'%TIME%',
 						'%NONCE%',
@@ -542,6 +543,7 @@ EOD;
 						$olb->operator->data['id'],
 						$olb->operator->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
+						sprintf( '%s %s', $date, substr( $time, 0, 5 ) ),
 						$date,
 						$time,
 						wp_nonce_field(OLBsystem::TEXTDOMAIN, 'onetimetoken', true, false),
@@ -584,7 +586,7 @@ EOD;
 <input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
 </dd>
 <dt>%LABEL_DATETIME%:</dt>
-<dd>%DATE% %TIME%
+<dd>%DATETIME%
 <input type="hidden" id="reservedate" name="reservedate" value="%DATE%" />
 <input type="hidden" id="reservetime" name="reservetime" value="%TIME%" />
 </dd>
@@ -603,6 +605,7 @@ EOD;
 						'%USER_ID%',
 						'%USER_SKYPE%',
 						'%LABEL_DATETIME%',
+						'%DATETIME%',
 						'%DATE%',
 						'%TIME%',
 						'%MESSAGE%',
@@ -618,6 +621,7 @@ EOD;
 						$olb->operator->data['id'],
 						$olb->operator->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
+						sprintf( '%s %s', $date, substr( $time, 0, 5 ) ),
 						$date,
 						$time,
 						apply_filters( 'olb_error', $information, $error ),
@@ -656,7 +660,7 @@ EOD;
 <dt>%LABEL_ROOM%:</dt>
 <dd>%ROOM_NAME%</dd>
 <dt>%LABEL_DATETIME%:</dt>
-<dd>%DATE% %TIME%</dd>
+<dd>%DATETIME%</dd>
 </dl>
 <div class="alert">%MESSAGE%</div>
 </div>
@@ -665,6 +669,7 @@ EOD;
 						'%LABEL_ROOM%',
 						'%ROOM_NAME%',
 						'%LABEL_DATETIME%',
+						'%DATETIME%',
 						'%DATE%',
 						'%TIME%',
 						'%MESSAGE%',
@@ -673,6 +678,7 @@ EOD;
 						__('Teacher', OLBsystem::TEXTDOMAIN),
 						sprintf('<a href="%s">%s</a>', $room['url'], $room['name']),
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
+						sprintf( '%s %s', $date, substr( $time, 0, 5 ) ),
 						$date,
 						$time,
 						apply_filters( 'olb_error', $information, $error ),
@@ -778,7 +784,7 @@ EOD;
 <input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
 </dd>
 <dt>%LABEL_DATETIME%:</dt>
-<dd>%DATE% %TIME%
+<dd>%DATETIME%
 <input type="hidden" id="reservedate" name="reservedate" value="%DATE%" />
 <input type="hidden" id="reservetime" name="reservetime" value="%TIME%" />
 </dd>
@@ -806,6 +812,7 @@ EOD;
 						'%USER_ID%',
 						'%USER_SKYPE%',
 						'%LABEL_DATETIME%',
+						'%DATETIME%',
 						'%DATE%',
 						'%TIME%',
 						'%LABEL_MESSAGE%',
@@ -827,6 +834,7 @@ EOD;
 						$user->data['id'],
 						$user->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
+						sprintf( '%s %s', $date, substr( $time, 0, 5 ) ),
 						$date,
 						$time,
 						__('Message', OLBsystem::TEXTDOMAIN),
@@ -875,7 +883,7 @@ EOD;
 <input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
 </dd>
 <dt>%LABEL_DATETIME%:</dt>
-<dd>%DATE% %TIME%
+<dd>%DATETIME%
 <input type="hidden" id="reservedate" name="reservedate" value="%DATE%" />
 <input type="hidden" id="reservetime" name="reservetime" value="%TIME%" />
 </dd>
@@ -893,7 +901,7 @@ EOD;
 <dt>%LABEL_USER%:</dt>
 <dd>%USER_NAME%(Skype: %USER_SKYPE%)</dd>
 <dt>%LABEL_DATETIME%:</dt>
-<dd>%DATE% %TIME%</dd>
+<dd>%DATETIME%</dd>
 </dl>
 <div class="alert">%MESSAGE%</div>
 </div>
@@ -909,6 +917,7 @@ EOD;
 					'%USER_NAME%',
 					'%USER_SKYPE%',
 					'%LABEL_DATETIME%',
+					'%DATETIME%',
 					'%DATE%',
 					'%TIME%',
 					'%MESSAGE%',
@@ -924,6 +933,7 @@ EOD;
 					$user_name,
 					$user->data['skype'],
 					__('Date/Time', OLBsystem::TEXTDOMAIN),
+					sprintf( '%s %s', $date, substr( $time, 0, 5 ) ),
 					$date,
 					$time,
 					apply_filters( 'olb_error', $information, $error ),
@@ -1025,7 +1035,7 @@ EOD;
 <input type="hidden" id="user_id" name="user_id" value="%USER_ID%" />
 </dd>
 <dt>%LABEL_DATETIME%:</dt>
-<dd>%DATE% %TIME%
+<dd>%DATETIME%
 <input type="hidden" id="reservedate" name="reservedate" value="%DATE%" />
 <input type="hidden" id="reservetime" name="reservetime" value="%TIME%" />
 </dd>
@@ -1053,6 +1063,7 @@ EOD;
 						'%USER_ID%',
 						'%USER_SKYPE%',
 						'%LABEL_DATETIME%',
+						'%DATETIME%',
 						'%DATE%',
 						'%TIME%',
 						'%LABEL_ABSENT%',
@@ -1074,6 +1085,7 @@ EOD;
 						$user->data['id'],
 						$user->data['skype'],
 						__('Date/Time', OLBsystem::TEXTDOMAIN),
+						sprintf( '%s %s', $date, substr( $time, 0, 5 ) ),
 						$date,
 						$time,
 						__('Absent', OLBsystem::TEXTDOMAIN),
@@ -1111,7 +1123,7 @@ EOD;
 <dt>%LABEL_ROOM%:</dt>
 <dd>%ROOM_NAME%</dd>
 <dt>%LABEL_DATETIME%:</dt>
-<dd>%DATE% %TIME%</dd>
+<dd>%DATETIME%</dd>
 </dl>
 <div class="alert alert-error">%MESSAGE%</div>
 <input type="button" id="reservesubmit" name="reservesubmit" value="%SUBMIT%" />
@@ -1122,6 +1134,7 @@ EOD;
 					'%LABEL_ROOM%',
 					'%ROOM_NAME%',
 					'%LABEL_DATETIME%',
+					'%DATETIME%',
 					'%DATE%',
 					'%TIME%',
 					'%MESSAGE%',
@@ -1131,6 +1144,7 @@ EOD;
 					__('Teacher', OLBsystem::TEXTDOMAIN),
 					$room['name'],
 					__('Date/Time', OLBsystem::TEXTDOMAIN),
+					sprintf( '%s %s', $date, substr( $time, 0, 5 ) ),
 					$date,
 					$time,
 					apply_filters( 'olb_error', $information, $error ),

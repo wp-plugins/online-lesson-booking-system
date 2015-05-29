@@ -1,19 +1,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: OLBsystem\n"
-"POT-Creation-Date: 2015-03-04 15:44+0900\n"
-"PO-Revision-Date: 2015-03-04 15:44+0900\n"
+"POT-Creation-Date: 2015-05-29 15:10+0900\n"
+"PO-Revision-Date: 2015-05-29 15:11+0900\n"
 "Last-Translator: tnomi <tnomi@sukimalab.com>\n"
 "Language-Team: olbsys.com\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: class/my-adminpage.php:12
 msgid "Online Lesson Booking system"
@@ -277,7 +278,7 @@ msgid "Subject to teacher"
 msgstr "講師宛件名"
 
 #: class/my-adminpage.php:480 class/my-adminpage.php:507
-#: class/my-adminpage.php:534 class/my-timetable.php:832
+#: class/my-adminpage.php:534 class/my-timetable.php:840
 msgid "Message"
 msgstr "メッセージ"
 
@@ -526,10 +527,10 @@ msgstr "%d日後"
 
 #: class/my-history.php:161 class/my-history.php:263 class/my-history.php:373
 #: class/my-history.php:468 class/my-history.php:573
-#: class/my-timetable.php:544 class/my-timetable.php:620
-#: class/my-timetable.php:675 class/my-timetable.php:829
-#: class/my-timetable.php:926 class/my-timetable.php:1076
-#: class/my-timetable.php:1133
+#: class/my-timetable.php:545 class/my-timetable.php:623
+#: class/my-timetable.php:680 class/my-timetable.php:836
+#: class/my-timetable.php:935 class/my-timetable.php:1087
+#: class/my-timetable.php:1146
 msgid "Date/Time"
 msgstr "日時"
 
@@ -538,7 +539,7 @@ msgid "Member(Skype)"
 msgstr "会員（Skype）"
 
 #: class/my-history.php:163 class/my-history.php:173 class/my-history.php:375
-#: class/my-history.php:388 class/my-timetable.php:1079
+#: class/my-history.php:388 class/my-timetable.php:1091
 msgid "Absent"
 msgstr "欠席"
 
@@ -561,10 +562,10 @@ msgstr "キャンセル"
 #: class/my-history.php:374 class/my-history.php:470
 #: class/my-hookactions.php:175 class/my-hookactions.php:221
 #: class/my-hookactions.php:755 class/my-hookactions.php:771
-#: class/my-timetable.php:537 class/my-timetable.php:613
-#: class/my-timetable.php:673 class/my-timetable.php:822
-#: class/my-timetable.php:920 class/my-timetable.php:1069
-#: class/my-timetable.php:1131 class/my-timetable.php:1751
+#: class/my-timetable.php:538 class/my-timetable.php:616
+#: class/my-timetable.php:678 class/my-timetable.php:829
+#: class/my-timetable.php:929 class/my-timetable.php:1080
+#: class/my-timetable.php:1144 class/my-timetable.php:1765
 msgid "Teacher"
 msgstr "講師"
 
@@ -981,7 +982,7 @@ msgid "Your possession tickets is empty. "
 msgstr "あなたの保有チケットはありません。"
 
 #: class/my-timetable.php:448 class/my-timetable.php:461
-#: class/my-timetable.php:567
+#: class/my-timetable.php:569
 msgid "FREE"
 msgstr "無料"
 
@@ -989,58 +990,58 @@ msgstr "無料"
 msgid "reserve"
 msgstr "予約"
 
-#: class/my-timetable.php:459 class/my-timetable.php:565
+#: class/my-timetable.php:459 class/my-timetable.php:567
 msgid "Reserved"
 msgstr "予約済み"
 
-#: class/my-timetable.php:468 class/my-timetable.php:762
+#: class/my-timetable.php:468 class/my-timetable.php:768
 msgid "cancel"
 msgstr "キャンセル"
 
-#: class/my-timetable.php:535 class/my-timetable.php:611
-#: class/my-timetable.php:820 class/my-timetable.php:918
-#: class/my-timetable.php:1067
+#: class/my-timetable.php:536 class/my-timetable.php:614
+#: class/my-timetable.php:827 class/my-timetable.php:927
+#: class/my-timetable.php:1078
 msgid "Reserve ID"
 msgstr "予約ID"
 
-#: class/my-timetable.php:540 class/my-timetable.php:616
-#: class/my-timetable.php:825 class/my-timetable.php:923
-#: class/my-timetable.php:1072
+#: class/my-timetable.php:541 class/my-timetable.php:619
+#: class/my-timetable.php:832 class/my-timetable.php:932
+#: class/my-timetable.php:1083
 msgid "User"
 msgstr "ユーザー"
 
-#: class/my-timetable.php:819
+#: class/my-timetable.php:826
 msgid ""
 "*) When timetable is canceled by a teacher, it is closed at the same time"
 msgstr "*) 講師によるキャンセルは、同時にそのタイムテーブルをクローズします。"
 
-#: class/my-timetable.php:1001 class/my-timetable.php:1889
-#: class/my-timetable.php:1899
+#: class/my-timetable.php:1011 class/my-timetable.php:1903
+#: class/my-timetable.php:1913
 msgid "update"
 msgstr "更新"
 
-#: class/my-timetable.php:1398 class/my-timetable.php:1919
+#: class/my-timetable.php:1412 class/my-timetable.php:1933
 msgid "Date"
 msgstr "日付"
 
-#: class/my-timetable.php:1451 class/my-timetable.php:1604
-#: class/my-timetable.php:1815 class/my-timetable.php:1968
+#: class/my-timetable.php:1465 class/my-timetable.php:1618
+#: class/my-timetable.php:1829 class/my-timetable.php:1982
 msgid "-"
 msgstr "-"
 
-#: class/my-timetable.php:1470 class/my-timetable.php:1483
-#: class/my-timetable.php:1613 class/my-timetable.php:1636
-#: class/my-timetable.php:1823 class/my-timetable.php:1836
+#: class/my-timetable.php:1484 class/my-timetable.php:1497
+#: class/my-timetable.php:1627 class/my-timetable.php:1650
+#: class/my-timetable.php:1837 class/my-timetable.php:1850
 msgid "closed"
 msgstr "Close"
 
-#: class/my-timetable.php:1478 class/my-timetable.php:1626
-#: class/my-timetable.php:1831
+#: class/my-timetable.php:1492 class/my-timetable.php:1640
+#: class/my-timetable.php:1845
 msgid "You"
 msgstr "You"
 
-#: class/my-timetable.php:1489 class/my-timetable.php:1647
-#: class/my-timetable.php:1842
+#: class/my-timetable.php:1503 class/my-timetable.php:1661
+#: class/my-timetable.php:1856
 msgid "Open"
 msgstr "Open"
 
