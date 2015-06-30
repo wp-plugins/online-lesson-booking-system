@@ -3,7 +3,7 @@
 Plugin Name: Online Lesson Booking system
 Plugin URI: http://olbsys.com
 Description: Online Lesson Booking system (OLB) is reservation-form and scheduler for an one-to-one online lesson.
-Version: 0.6.8
+Version: 0.7.0
 Author: tnomi
 Author URI: http://sukimalab.com
 */
