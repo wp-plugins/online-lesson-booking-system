@@ -4,7 +4,7 @@ Donate link:
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
 Tested up to: 4.2.2
-Stable tag: 0.6.8
+Stable tag: 0.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,10 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.7.0 =
+
+* The option which invalidates a judgement of "Term of validity" was added into the plugin option page "OLBsystem:General".
 
 = 0.6.8 =
 
@@ -211,6 +215,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.6.8 =
+= 0.7.0 =
 
-The time format of the "Reservation form" and the "Cancellation form" were corrected from "00:00:00" to "00:00".
+The option which invalidates a judgement of "Term of validity" was added.
