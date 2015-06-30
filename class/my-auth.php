@@ -3,6 +3,7 @@
  *	ユーザー情報: User info 
  */
 add_filter( 'olb_get_user_data', array( 'olbAuth', 'get_user_data' ), 10, 2 );
+add_action( 'init', array( 'olbAuth', 'init' ), 10 );
 
 class olbAuth {
 
@@ -39,6 +40,13 @@ class olbAuth {
 				}
 			}
 		}
+	}
+
+	/**
+	 *	Init
+	 */
+	public function init() {
+		add_filter( 'olb_is_not_expire', array( 'olbAuth', 'check_is_not_expire' ), 10 );
 	}
 
 	/** 
@@ -124,13 +132,14 @@ class olbAuth {
 	 *	特定ユーザーの情報をhtmlで取得: Get user info (html)
 	 */
 	public static function htmlUser($userdata){
+		$options = OLBsystem::getPluginOptions( 'settings' );
+		$term = ( empty( $options['indefinite'] ) ) ? '<tr><th>%LABEL_TERM%</th><td>%USER_TERM%</td></tr>'."\n" : '';
 		$format = <<<EOD
 <table id="members_info" class="members_info">
 <tr><th>%LABEL_ID%</th><td>%USER_ID%</td></tr>
 <tr><th>%LABEL_NAME%</td><td>%USER_NAME%</td></tr>
 <tr><th>%LABEL_SKYPE%</th><td>%USER_SKYPE%</td></tr>
-<tr><th>%LABEL_TERM%</th><td>%USER_TERM%</td></tr>
-<tr><th>%LABEL_EMAIL%</th><td>%USER_EMAIL%</td></tr>
+{$term}<tr><th>%LABEL_EMAIL%</th><td>%USER_EMAIL%</td></tr>
 <tr><th>%LABEL_FIRSTNAME%</th><td>%USER_FIRSTNAME%</td></tr>
 <tr><th>%LABEL_LASTNAME%</th><td>%USER_LASTNAME%</td></tr>
 <tr><th>%LABEL_ADDRESS%</th><td>%USER_ADDRESS%</td></tr>
@@ -214,10 +223,26 @@ EOD;
 	 *	会員の有効期限の検査: Member term of validity inspection 
 	 */
 	public function isNotExpire($date){
-		if(self::isMember() && !empty($this->data['olbterm']) && $this->data['olbterm']>=$date){
-			return true;
+		$args = array(
+			'date' => $date,
+			'user' => $this,
+			'result' => false
+			);
+		$args = apply_filters( 'olb_is_not_expire', $args );
+		return $args['result'];
+	}
+	public function check_is_not_expire( $args ) {
+		$user = $args['user'];
+		$date = $args['date'];
+
+		$options = OLBsystem::getPluginOptions( 'settings' );
+		if ( !empty( $options['indefinite'] ) ) {
+			$args['result'] = true;
 		}
-		return false;
+		else if ( $user->isMember() && !empty( $user->data['olbterm'] ) && $user->data['olbterm']>=$date ) {
+			$args['result'] = true;
+		}
+		return $args;
 	}
 
 	/** 

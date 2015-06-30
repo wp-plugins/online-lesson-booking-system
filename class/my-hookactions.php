@@ -153,6 +153,7 @@ EOD;
 EOD;
 		$html = sprintf( $format, $title );
 
+		$options = OLBsystem::getPluginOptions( 'settings' );
 		// 購読者
 		if ( in_array( 'subscriber', $user->data['roles'] ) ) {
 			$description = __('The term of validity is updated after the check of payment.', OLBsystem::TEXTDOMAIN);
@@ -162,7 +163,9 @@ EOD;
 <td>%s <span class="description" style="margin-left:20px">(%s)</span></td>
 </tr>
 EOD;
-			$html .= sprintf( $format, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description );
+			if ( empty( $options['indefinite'] ) ) {
+				$html .= sprintf( $format, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], $description );
+			}
 		}
 		// 投稿者
 		if ( in_array( 'author', $user->data['roles'] ) ) {
@@ -201,6 +204,7 @@ EOD;
 	 */
 	public static function additional_fields_admin( $html, $user ){
 		global $olb;
+		$options = OLBsystem::getPluginOptions( 'settings' );
 
 		$title = __('Online-Booking-System Additional Fields', OLBsystem::TEXTDOMAIN);
 		$html = sprintf( "<h3>%s</h3>\n", $title );
@@ -212,7 +216,7 @@ EOD;
 				$checked = 'checked="checked"';
 			}
 			$format = <<<EOD
-<table class="form-table">
+<table class="form-table olb_admin_profile_fields">
 <tr>
 <th>%s</th>
 <td><label for="olbgroup"><input type="checkbox" name="olbgroup" id="olbgroup" value="teacher" %s/> %s</label></td>
@@ -223,14 +227,18 @@ EOD;
 
 		// 購読者のみ
 		if(in_array('subscriber', $user->data['roles'])){
+			$class = array();
+			if ( !empty( $options['indefinite'] ) ) {
+				$class[] = 'olb_indefinite';
+			}
 			$format = <<<EOD
-<table class="form-table">
-<tr>
+<table class="form-table olb_admin_profile_fields">
+<tr class="%s">
 <th><label for="olbterm">%s</label></th>
 <td><input type="text" name="olbterm" id="olbterm" value="%s" /> ex. %s</td>
 </tr>
 EOD;
-			$html .= sprintf($format, __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], date( 'Y-m-d', current_time('timestamp')+60*60*24*30 ) );
+			$html .= sprintf($format, implode( ' ', $class ), __('Term of validity', OLBsystem::TEXTDOMAIN), $user->data['olbterm'], date( 'Y-m-d', current_time('timestamp')+60*60*24*30 ) );
 		}
 		$html .= "</table>\n";
 		return $html;

@@ -2,8 +2,17 @@
 /** 
  *	管理画面: WP Admin page
  */
+add_action( 'admin_enqueue_scripts', array( 'olbAdminPage', 'style' ) );
 
 class olbAdminPage {
+	/**
+	 *	CSS for admin page
+	 */
+	public static function style() {
+		global $olb;
+		wp_enqueue_style( 'olb_admin_style', $olb->mypluginurl.'admin.css' );
+	}
+
 	/** 
 	 *	プラグインメニュー: Plugin menu
 	 */
@@ -100,6 +109,9 @@ class olbAdminPage {
 			}
 			if(!isset($_POST['olb_options']['ticket_system'])) {
 				$olb_options[$options_group]['ticket_system'] = 0;
+			}
+			if(!isset($_POST['olb_options']['indefinite'])) {
+				$olb_options[$options_group]['indefinite'] = 0;
 			}
 			update_option($options_key, $olb_options);
 			/*
@@ -205,6 +217,14 @@ class olbAdminPage {
 <td>
 <input type="text" name="olb_options[free]" id="" value="<?php echo $options['free']; ?>" size="5" />
 <p class="description"><?php _e('It is so-called "Trial lesson" or a "Free ticket".', OLBsystem::TEXTDOMAIN); ?></p>
+</td>
+</tr>
+
+<tr valign="top">
+<th scope="row"><?php _e('Indefinite period', OLBsystem::TEXTDOMAIN); ?></th>
+<td>
+<input type="checkbox" name="olb_options[indefinite]" id="" value="1" <?php echo ( !empty( $options['indefinite'] ) ) ? 'checked' : ''; ?> />
+<p class="description"><?php _e('The expiration date isn&#39;t judged.', OLBsystem::TEXTDOMAIN); ?></p>
 </td>
 </tr>
 
