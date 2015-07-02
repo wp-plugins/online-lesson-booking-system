@@ -10,7 +10,7 @@ class OLBsystem {
 	const TABLEPREFIX = 'olb_';
 	const TEXTDOMAIN = 'olbsystem';
 	const URL = 'http://olbsys.com/';
-	const PLUGIN_VERSION = '0.6.8';
+	const PLUGIN_VERSION = '0.7.1';
 	const DB_VERSION = '0.4.0';
 
 	// タイムテーブル基本設定
@@ -208,6 +208,7 @@ class OLBsystem {
 				'limit_per_day'       => 2,
 				'limit_per_month'     => 0,
 				'free'                => 2,
+				'indefinite'          => 0,
 				'ticket_system'       => 0,
 				'ticket_metakey'      => 'olbticket',
 				'ticket_expire'       => 60,
