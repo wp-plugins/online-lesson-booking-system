@@ -9,12 +9,12 @@ class olbHookAction {
 	 *	MOファイルをロード: load textdomain
 	 */
 	public static function moReload(){
-		if ( get_locale() != WPLANG ) {
-			if ( is_textdomain_loaded( OLBsystem::TEXTDOMAIN ) ) {
+//		if ( get_locale() != WPLANG ) {
+//			if ( is_textdomain_loaded( OLBsystem::TEXTDOMAIN ) ) {
 				unload_textdomain( OLBsystem::TEXTDOMAIN );
-			}
+//			}
 			load_plugin_textdomain( OLBsystem::TEXTDOMAIN, false, dirname(dirname(plugin_basename(__FILE__))).'/lang');
-		}
+//		}
 	}
 	
 	/** 
