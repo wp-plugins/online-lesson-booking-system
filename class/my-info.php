@@ -13,8 +13,8 @@ class olbInfo {
 	 */
 	public static function plugin_info() {
 		$url = OLBsystem::URL;
-		if ( WPLANG != '' &&  WPLANG != 'ja' ) {
-			$url .= WPLANG.'/';
+		if ( get_locale() != 'ja' ) {
+			$url .= 'en'.'/';
 		}
 	?>
 	<div class="postbox">
@@ -44,8 +44,8 @@ class olbInfo {
 		<div class="inside">
 		<?php
 		$url = OLBsystem::URL;
-		if ( WPLANG != '' && WPLANG != 'ja' ) {
-			$url .= WPLANG.'/';
+		if ( get_locale() != 'ja' ) {
+			$url .= 'en'.'/';
 		}
 		$feed = fetch_feed( $url );
 		if ( !empty( $feed->data ) ) {
@@ -66,8 +66,8 @@ class olbInfo {
 	public static function extensions_info() {
 		$url = OLBsystem::URL.'extensions/feed';
 		/*
-		if ( WPLANG != '' && WPLANG != 'ja' ) {
-			$url .= WPLANG.'/';
+		if ( get_locale() != 'ja' ) {
+			$url .= 'en'.'/';
 		}
 		*/
 		$feed = fetch_feed( $url );
@@ -105,8 +105,8 @@ class olbInfo {
 	public static function latest_info_dashboard() {
 		echo '<div class="rss-widget">';
 		$url = OLBsystem::URL;
-		if ( WPLANG != '' && WPLANG != 'ja' ) {
-			$url .= WPLANG.'/';
+		if ( get_locale() != 'ja' ) {
+			$url .= 'en'.'/';
 		}
 		$feed = fetch_feed( $url );
 		if ( !empty( $feed->data ) ) {

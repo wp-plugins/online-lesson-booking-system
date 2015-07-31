@@ -3,8 +3,8 @@ Contributors: tnomi
 Donate link: 
 Tags: booking, reservation, appointment, timetable, lesson 
 Requires at least: 3.5
-Tested up to: 4.2.2
-Stable tag: 0.7.1
+Tested up to: 4.2.3
+Stable tag: 0.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,10 @@ Not include. Please use the "membership" which is a standard function of WordPre
 == Changelog ==
 
 See [Change log (ja)](http://olbsys.com/category/updates/)/[(en)](http://olbsys.com/en/category/updates/).
+
+= 0.7.2 =
+
+* Bug fix caused by abolition of "WPLANG".
 
 = 0.7.1 =
 
@@ -219,6 +223,6 @@ However, the translation files which are attached at present are only Japanese a
 
 == Upgrade Notice ==
 
-= 0.7.1 =
+= 0.7.2 =
 
-An incomplete file in Version 0.7.0 was complemented.
+* Bug fix caused by abolition of "WPLANG".
